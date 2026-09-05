@@ -84,7 +84,7 @@
 </style>
 </head><body>
 <h1>🧪 ZEC 알파랩 대시보드</h1>
-<div class="updated">마지막 갱신: 2026-09-05 20:04:25 UTC (30분마다 자동재생성)</div>
+<div class="updated">마지막 갱신: 2026-09-05 20:34:25 UTC (30분마다 자동재생성)</div>
 
 <h2>1. 알파 레지스트리 현황 (총 115건)</h2>
 <div class="summary">
@@ -1772,7 +1772,7 @@
               </div>
               <div class="card-subtitle">고변동성풀 재적용(D142+D156+D158, D161)</div>
               <div class="card-body">
-                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#16a34a">롱</span></div>
                 <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
                 <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
                 <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
@@ -2058,10 +2058,10 @@
               </div>
               <div class="card-subtitle">고변동성풀 재적용(D142+D156+D158, D161)</div>
               <div class="card-body">
-                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#dc2626">숏</span></div>
-                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
-                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">1</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">0.000</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$-0.15</span></div>
                 <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
               </div>
             </div><div class="card" style="--accent:#0ea5a5">
@@ -3187,6 +3187,20 @@
 <h2>3. 최근 거래 사후분석 (포스트모템)</h2>
 <p class="small muted">거래 청산시 자동기록(<code>zec_posttrade_analyzer.py</code>) - MAE/MFE, 청산사유, 트레일링스탑이었다면 청산 후 6봉 뒤 휩소/노이즈 vs 진짜반전 판정, 보유기간 vs 그 심볼 과거중앙값, 개선포인트 자동생성.</p>
 <div class="card-grid"><div class="card card-tall" style="--accent:#d97706">
+              <div class="card-top">
+                <div class="card-title">ARBUSDT</div>
+                <span class="card-badge" style="background:#d9770622;color:#d97706;border-color:#d9770655">확인대기</span>
+              </div>
+              <div class="card-subtitle">HIGHVOL_POOL_D158Keltner · 2026-09-05 20:00:00+00:00</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
+                <div class="card-row"><span class="label">청산사유</span><span class="value">trailing_stop</span></div>
+                <div class="card-row"><span class="label">손익</span><span class="value" style="color:#dc2626">-15.14%</span></div>
+                <div class="card-row"><span class="label">MAE / MFE</span><span class="value">-27.76% / 0.18%</span></div>
+                <div class="card-row"><span class="label">보유</span><span class="value">31봉</span></div>
+              </div>
+              <div class="card-note">MFE(0.18%) 대비 실현손익(-15.14%)이 절반 이하 - 이익반납 폭이 커서 트레일 발동조건(폭) 재검토 여지</div>
+            </div><div class="card card-tall" style="--accent:#d97706">
               <div class="card-top">
                 <div class="card-title">ZENUSDT</div>
                 <span class="card-badge" style="background:#d9770622;color:#d97706;border-color:#d9770655">확인대기</span>
