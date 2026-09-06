@@ -84,11 +84,11 @@
 </style>
 </head><body>
 <h1>🧪 ZEC 알파랩 대시보드</h1>
-<div class="updated">마지막 갱신: 2026-09-06 15:04:25 UTC (30분마다 자동재생성)</div>
+<div class="updated">마지막 갱신: 2026-09-06 15:34:25 UTC (30분마다 자동재생성)</div>
 
-<h2>1. 알파 레지스트리 현황 (총 121건)</h2>
+<h2>1. 알파 레지스트리 현황 (총 122건)</h2>
 <div class="summary">
-  <div class="summary-card" style="--accent:#7c3aed"><div class="n">0</div><div>실전전환후보</div></div><div class="summary-card" style="--accent:#059669"><div class="n">0</div><div>페이퍼통과(실전후보)</div></div><div class="summary-card" style="--accent:#16a34a"><div class="n">16</div><div>페이퍼가동중</div></div><div class="summary-card" style="--accent:#2563eb"><div class="n">10</div><div>확정(페이퍼미가동)</div></div><div class="summary-card" style="--accent:#0891b2"><div class="n">1</div><div>포워드테스팅(미확정)</div></div><div class="summary-card" style="--accent:#d97706"><div class="n">18</div><div>근접미확정</div></div><div class="summary-card" style="--accent:#6b7280"><div class="n">15</div><div>판정불가</div></div><div class="summary-card" style="--accent:#dc2626"><div class="n">56</div><div>기각</div></div><div class="summary-card" style="--accent:#991b1b"><div class="n">5</div><div>철회</div></div>
+  <div class="summary-card" style="--accent:#7c3aed"><div class="n">0</div><div>실전전환후보</div></div><div class="summary-card" style="--accent:#059669"><div class="n">0</div><div>페이퍼통과(실전후보)</div></div><div class="summary-card" style="--accent:#16a34a"><div class="n">16</div><div>페이퍼가동중</div></div><div class="summary-card" style="--accent:#2563eb"><div class="n">10</div><div>확정(페이퍼미가동)</div></div><div class="summary-card" style="--accent:#0891b2"><div class="n">1</div><div>포워드테스팅(미확정)</div></div><div class="summary-card" style="--accent:#d97706"><div class="n">18</div><div>근접미확정</div></div><div class="summary-card" style="--accent:#6b7280"><div class="n">16</div><div>판정불가</div></div><div class="summary-card" style="--accent:#dc2626"><div class="n">56</div><div>기각</div></div><div class="summary-card" style="--accent:#991b1b"><div class="n">5</div><div>철회</div></div>
 </div>
 
         <section class="status-section">
@@ -611,7 +611,7 @@
         </div></div>
         </section>
         <section class="status-section">
-          <h3><span class="badge" style="background:#6b7280">15</span> 판정불가 <code>(inconclusive)</code></h3>
+          <h3><span class="badge" style="background:#6b7280">16</span> 판정불가 <code>(inconclusive)</code></h3>
           <div class="card-grid"><div class="card" style="--accent:#6b7280" title="HYPE 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">HYPE_MACD_DEEP_OPT</div>
@@ -776,6 +776,17 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">7.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="BULLA 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">BULLA_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">BULLA 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
           </div>
         </div></div>
         </section>
@@ -1839,10 +1850,10 @@
               </div>
               <div class="card-subtitle">고변동성풀 재적용(D142+D156+D158, D161)</div>
               <div class="card-body">
-                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
-                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">1</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">inf</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.22</span></div>
                 <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
               </div>
             </div><div class="card" style="--accent:#0ea5a5">
@@ -3253,7 +3264,21 @@
 
 <h2>3. 최근 거래 사후분석 (포스트모템)</h2>
 <p class="small muted">거래 청산시 자동기록(<code>zec_posttrade_analyzer.py</code>) - MAE/MFE, 청산사유, 트레일링스탑이었다면 청산 후 6봉 뒤 휩소/노이즈 vs 진짜반전 판정, 보유기간 vs 그 심볼 과거중앙값, 개선포인트 자동생성.</p>
-<div class="card-grid"><div class="card card-tall" style="--accent:#3a3f4d">
+<div class="card-grid"><div class="card card-tall" style="--accent:#d97706">
+              <div class="card-top">
+                <div class="card-title">ARBUSDT</div>
+                <span class="card-badge" style="background:#d9770622;color:#d97706;border-color:#d9770655">확인대기</span>
+              </div>
+              <div class="card-subtitle">HIGHVOL_POOL_D142Donchian · 2026-09-06 15:00:00+00:00</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">청산사유</span><span class="value">trailing_stop</span></div>
+                <div class="card-row"><span class="label">손익</span><span class="value" style="color:#16a34a">21.60%</span></div>
+                <div class="card-row"><span class="label">MAE / MFE</span><span class="value">-0.44% / 38.35%</span></div>
+                <div class="card-row"><span class="label">보유</span><span class="value">19봉</span></div>
+              </div>
+              <div class="card-note">특이사항 없음 - 정상범위 청산</div>
+            </div><div class="card card-tall" style="--accent:#3a3f4d">
               <div class="card-top">
                 <div class="card-title">DASHUSDT</div>
                 <span class="card-badge" style="background:#dc262622;color:#dc2626;border-color:#dc262655">휩소/노이즈</span>
