@@ -83,15 +83,27 @@
   }
 
   /* --- [2026-09-07] 탭구조 --- */
-  .tabs { display:flex; gap:4px; border-bottom:1px solid var(--border); margin-bottom:24px; }
+  .tabs { display:flex; gap:4px; border-bottom:1px solid var(--border); margin-bottom:24px; overflow-x:auto; }
   .tab-btn {
     background:none; border:none; color:var(--muted); font-size:13px; font-weight:600;
     padding:10px 18px; cursor:pointer; border-bottom:2px solid transparent; font-family:inherit;
-    letter-spacing:0.2px;
+    letter-spacing:0.2px; white-space:nowrap; flex-shrink:0;
   }
   .tab-btn:hover { color:var(--text); }
   .tab-btn.active { color:var(--accent-gold); border-bottom-color:var(--accent-gold); }
   .tab-panel[hidden] { display:none !important; }
+
+  /* --- [2026-09-07] 변경이력탭 --- */
+  .changelog-day { margin:24px 0; padding-left:14px; border-left:2px solid var(--border); }
+  .changelog-day h3 { margin:0 0 10px; color:var(--accent-gold); font-size:14px; }
+  .changelog-item {
+    background:var(--surface); border:1px solid var(--border); border-radius:8px;
+    padding:10px 14px; margin-bottom:8px; font-size:12.5px;
+  }
+  .changelog-tag {
+    display:inline-block; font-size:10px; font-weight:700; padding:2px 8px; border-radius:6px;
+    border:1px solid; margin-right:6px; vertical-align:1px;
+  }
 
   /* --- [2026-09-07] 랭킹탭 --- */
   .rank-table { font-size:12.5px; }
@@ -143,12 +155,14 @@
 </style>
 </head><body>
 <h1>🧪 ZEC 알파랩 대시보드</h1>
-<div class="updated">마지막 갱신: 2026-09-07 12:16:24 UTC (30분마다 자동재생성)</div>
+<div class="updated">마지막 갱신: 2026-09-07 12:23:38 UTC (30분마다 자동재생성)</div>
 
 <div class="tabs" role="tablist">
   <button class="tab-btn active" data-tab="ranking" role="tab" aria-selected="true">🏆 랭킹</button>
   <button class="tab-btn" data-tab="cards" role="tab" aria-selected="false">📇 카드뷰</button>
   <button class="tab-btn" data-tab="graph" role="tab" aria-selected="false">🕸️ 그래프뷰</button>
+  <button class="tab-btn" data-tab="live" role="tab" aria-selected="false">🔴 라이브랭킹</button>
+  <button class="tab-btn" data-tab="changelog" role="tab" aria-selected="false">📜 변경이력</button>
   <button class="tab-btn" data-tab="dead" role="tab" aria-selected="false">🗄️ 기각/철회</button>
 </div>
 
@@ -3353,6 +3367,117 @@
   <div class="gd-body" id="gd-body"></div>
 </div>
 
+<div id="tab-live" class="tab-panel" hidden>
+
+    <h2>🔴 라이브 실전 랭킹</h2>
+    <div class="callout">
+      <b style="color:var(--accent-gold)">아직 라이브 전환된 알파 없음</b><br>
+      <span class="small muted">페이퍼 승격기준(n≥20, PF≥1.0, 킬스위치 미발동) 통과 → <code>paper_passed</code> →
+      사용자 본인이 직접 실계좌 연결을 승인 → <code>live_candidate</code> 전환, 순서로 진행됩니다.
+      이 대시보드/세션이 실전매매를 자동으로 시작하는 일은 없습니다 - 반드시 사용자 승인이 먼저입니다.
+      전환되는 순간 이 탭이 자동으로 채워지도록 구조는 이미 준비돼 있습니다(<code>zec_live_trade_log.jsonl</code> 기록 시작시).</span>
+    </div>
+    
+</div>
+
+<div id="tab-changelog" class="tab-panel" hidden>
+
+    <h2>📜 변경이력 (일자별)</h2>
+    <p class="small muted">위: 이 세션에서 실제로 있었던 버그/인프라/기능 변경(수작업 기록, 각 항목 출처 명시 - 과장 없이 실제 코드주석 확인분만).
+    아래(📋 레지스트리): <code>zec_alpha_registry.csv</code>의 실제 upsert 날짜 기준 자동집계(수동개입 없음, 알파 확정/기각/배포 건수가 그대로 나옴) - 이게 이 랩의 진짜 진행상황입니다.</p>
+    <section class="changelog-day">
+          <h3>2026-09-07</h3>
+          <div class="changelog-item">
+              <span class="changelog-tag" style="background:#dc262622;color:#dc2626;border-color:#dc262655">🐛 버그수정</span>
+              <b>자율탐색 무한루프 버그 발견+수정</b>
+              <div class="small muted" style="margin-top:2px;">데이터부족 조기반환 경로가 registry에 기록을 안 남겨 신규상장 심볼(MARSCOINUSDT)이 16시간+ 계속 재선택되던 버그 - inconclusive 등록으로 스킵리스트 편입, 즉시 재발방지 완료.</div>
+              <div class="small muted" style="margin-top:2px;opacity:0.6;">출처: zec_autonomous_alpha_search.py:126</div>
+            </div><div class="changelog-item">
+              <span class="changelog-tag" style="background:#dc262622;color:#dc2626;border-color:#dc262655">🐛 버그수정</span>
+              <b>kline 캐시 이상틱 발견 - 자동오판 직전 차단</b>
+              <div class="small muted" style="margin-top:2px;">신규 메타엔진 첫 실행 중 DASHUSDT 1시간봉(low=$0.10 이상틱)이 단일거래 pnl=63047%를 만들어 TRAIN PF를 8.5로 왜곡시키는 걸 registry 기록 전에 발견, 정정 - 스파이크 방어필터+거래당 손익상한 추가.</div>
+              <div class="small muted" style="margin-top:2px;opacity:0.6;">출처: zec_meta_hypothesis_engine.py 내 _sanitize_ohlc_spike(), discovery_log D210 정정기록</div>
+            </div><div class="changelog-item">
+              <span class="changelog-tag" style="background:#0891b222;color:#0891b2;border-color:#0891b255">🔧 인프라</span>
+              <b>메타 가설생성 엔진 구축</b>
+              <div class="small muted" style="margin-top:2px;">registry/discovery_log/postmortem을 실제로 읽어 계열포화도·rule17실패유형·postmortem구조신호를 분석해 다음가설을 스스로 선정+실행, 선정근거를 discovery_log에 매번 감사기록 - 단순 자산스윕 반복에서 진짜 피드백루프로 전환.</div>
+              <div class="small muted" style="margin-top:2px;opacity:0.6;">출처: zec_meta_hypothesis_engine.py</div>
+            </div><div class="changelog-item">
+              <span class="changelog-tag" style="background:#7c3aed22;color:#7c3aed;border-color:#7c3aed55">✨ 기능추가</span>
+              <b>대시보드 그래프뷰/랭킹/페이퍼실적 컬럼 추가</b>
+              <div class="small muted" style="margin-top:2px;">탭구조 전환, D3 관계그래프, BH-FDR기반 랭킹(그룹당 대표1개), 알파별 페이퍼 승률/평균손익/오픈포지션 노출.</div>
+              <div class="small muted" style="margin-top:2px;opacity:0.6;">출처: zec_dashboard_generator.py</div>
+            </div><div class="changelog-item">
+              <span class="changelog-tag" style="background:#e0b34d22;color:var(--accent-gold);border-color:#e0b34d55">📋 레지스트리</span>
+              <b>기각 10건 · 판정불가 6건 · 근접미확정 2건</b>
+              <div class="small muted" style="margin-top:2px;"><code>MARSCOIN_MACD_DEEP_OPT</code>, <code>TAO_MACD_DEEP_OPT</code>, <code>PUMP_MACD_DEEP_OPT</code>, <code>DONCHIAN_FAMILY_EXIT_B_CONSENSUS_BREAKDOWN</code>, <code>DONCHIAN_FAMILY_EXIT_C_ATR_DYNAMIC</code>, <code>HIGHVOL_TRAIL_WIDEN_SWEEP_V1</code>, <code>FLOCK_MACD_DEEP_OPT</code>, <code>1000PEPE_MACD_DEEP_OPT</code> 외 10건</div>
+            </div>
+        </section><section class="changelog-day">
+          <h3>2026-09-06</h3>
+          <div class="changelog-item">
+              <span class="changelog-tag" style="background:#0891b222;color:#0891b2;border-color:#0891b255">🔧 인프라</span>
+              <b>노출액상한(70%) freeze 룰 + donchian_channel_family 확장태깅</b>
+              <div class="small muted" style="margin-top:2px;">총노출액/기준자본 70% 초과시 신규배포/사이징증대 자동보류. D199 정량분석으로 돈치안/ATR확장/켈트너 계열 9개의 실제 신호중복(100%/78.9%/40.7%)을 실증, paper_running_correlated 상태값 신설.</div>
+              <div class="small muted" style="margin-top:2px;opacity:0.6;">출처: zec_master_kill_switch.py:29,56</div>
+            </div><div class="changelog-item">
+              <span class="changelog-tag" style="background:#e0b34d22;color:var(--accent-gold);border-color:#e0b34d55">📋 레지스트리</span>
+              <b>페이퍼가동(중복군) 5건 · 판정불가 2건 · 근접미확정 1건 · 확정 1건</b>
+              <div class="small muted" style="margin-top:2px;"><code>FUNDING_MOMENTUM_CONFIRMATION_V1</code>, <code>MULTICHANNEL_BREAKOUT_AGREEMENT_V1</code>, <code>MULTICHANNEL_4CH_3OF4_V1</code>, <code>MULTICHANNEL_3CH_UNANIMOUS_V1</code>, <code>WIDE_TRAIL_OPTIONALITY_V1</code>, <code>MULTITIMEFRAME_BREAKOUT_AGREEMENT_V1</code>, <code>BULLA_MACD_DEEP_OPT</code>, <code>DASH_MACD_DEEP_OPT</code> 외 1건</div>
+            </div>
+        </section><section class="changelog-day">
+          <h3>2026-09-05</h3>
+          <div class="changelog-item">
+              <span class="changelog-tag" style="background:#d9770622;color:#d97706;border-color:#d9770655">🔍 자체감사</span>
+              <b>자체감사 #3/#4 - 포트폴리오 노출액/상관위험 발견</b>
+              <div class="small muted" style="margin-top:2px;">개별엔진은 보수적이나 합산시 노출액이 기준자본에 근접함을 발견 + taker_ratio_family 5개가 사실상 동일축의 변주임을 발견 - 이후 킬스위치/correlation_group 태깅 체계로 이어짐.</div>
+              <div class="small muted" style="margin-top:2px;opacity:0.6;">출처: zec_registry_manager.py:46, zec_dashboard_generator.py:658</div>
+            </div><div class="changelog-item">
+              <span class="changelog-tag" style="background:#e0b34d22;color:var(--accent-gold);border-color:#e0b34d55">📋 레지스트리</span>
+              <b>기각 14건 · 페이퍼가동 7건 · 판정불가 4건 · 포워드테스팅 1건 · 확정 1건</b>
+              <div class="small muted" style="margin-top:2px;"><code>CONVICTION_CANDLE_BIGPOOL_V1</code>, <code>DAILY_MACD_ACCEL_TRAILING_V1</code>, <code>AVG_TRADE_SIZE_TRAILING_V1</code>, <code>BTC_TAKER_SPILLOVER_V1</code>, <code>TAKER_RATIO_CROSSSECTIONAL_V1</code>, <code>DONCHIAN_TAKER_CONFLUENCE_V1</code>, <code>PYRAMID_BREAKOUT_TRAILING_V1</code>, <code>ADAPTIVE_TRAIL_OPTIONALITY_V1</code> 외 19건</div>
+            </div>
+        </section><section class="changelog-day">
+          <h3>2026-09-04</h3>
+          <div class="changelog-item">
+              <span class="changelog-tag" style="background:#e0b34d22;color:var(--accent-gold);border-color:#e0b34d55">📋 레지스트리</span>
+              <b>기각 36건 · 페이퍼가동 8건 · 근접미확정 8건 · 철회 4건 · 판정불가 2건 · 확정 1건</b>
+              <div class="small muted" style="margin-top:2px;"><code>DOT_MACD_DEEP_OPT</code>, <code>ARB_MACD_DEEP_OPT</code>, <code>XLM_MACD_DEEP_OPT</code>, <code>EOS_MACD_DEEP_OPT</code>, <code>VET_MACD_DEEP_OPT</code>, <code>INJ_MACD_DEEP_OPT</code>, <code>THETA_MACD_DEEP_OPT</code>, <code>ALGO_MACD_DEEP_OPT</code> 외 51건</div>
+            </div>
+        </section><section class="changelog-day">
+          <h3>2026-09-03</h3>
+          <div class="changelog-item">
+              <span class="changelog-tag" style="background:#dc262622;color:#dc2626;border-color:#dc262655">🐛 버그수정</span>
+              <b>D127 look-ahead 버그 발견 → 확정3종 전부 철회</b>
+              <div class="small muted" style="margin-top:2px;">왜도/첨도/자기상관 '확정' 알파 3종이 1봉 look-ahead(교란테스트로 발견)로 통째로 무효였음이 드러남.</div>
+              <div class="small muted" style="margin-top:2px;opacity:0.6;">출처: zec_new_indicator_gate.py:4</div>
+            </div><div class="changelog-item">
+              <span class="changelog-tag" style="background:#0891b222;color:#0891b2;border-color:#0891b255">🔧 인프라</span>
+              <b>가설등록 강제 게이트 파이프라인 구축(D128)</b>
+              <div class="small muted" style="margin-top:2px;">register_hypothesis→run_lookahead_perturbation_test→require_gate_approval 3단계를 함수 인자체인으로 강제 - 위와 같은 사고가 '깜빡함'으로 재발할 수 없게 구조화.</div>
+              <div class="small muted" style="margin-top:2px;opacity:0.6;">출처: zec_new_indicator_gate.py:2</div>
+            </div><div class="changelog-item">
+              <span class="changelog-tag" style="background:#e0b34d22;color:var(--accent-gold);border-color:#e0b34d55">📋 레지스트리</span>
+              <b>근접미확정 9건 · 판정불가 9건 · 기각 6건 · 페이퍼가동 3건</b>
+              <div class="small muted" style="margin-top:2px;"><code>BTC_MACD_DEEP_OPT</code>, <code>BNB_MACD_DEEP_OPT</code>, <code>ETH_MACD_DEEP_OPT</code>, <code>SOL_MACD_DEEP_OPT</code>, <code>LINK_MACD_DEEP_OPT</code>, <code>ADA_MACD_DEEP_OPT</code>, <code>XRP_MACD_DEEP_OPT</code>, <code>DOGE_MACD_DEEP_OPT</code> 외 19건</div>
+            </div>
+        </section><section class="changelog-day">
+          <h3>2026-09-02</h3>
+          <div class="changelog-item">
+              <span class="changelog-tag" style="background:#e0b34d22;color:var(--accent-gold);border-color:#e0b34d55">📋 레지스트리</span>
+              <b>철회 1건</b>
+              <div class="small muted" style="margin-top:2px;"><code>VOLSKEW_CROSSASSET</code></div>
+            </div>
+        </section><section class="changelog-day">
+          <h3>2026-08-31</h3>
+          <div class="changelog-item">
+              <span class="changelog-tag" style="background:#e0b34d22;color:var(--accent-gold);border-color:#e0b34d55">📋 레지스트리</span>
+              <b>확정 1건</b>
+              <div class="small muted" style="margin-top:2px;"><code>ZEC_COMPANION_V1</code></div>
+            </div>
+        </section>
+    
+</div>
+
 <div id="tab-dead" class="tab-panel" hidden>
 <h2>기각 / 근접미확정 / 판정불가 / 철회</h2>
 <p class="small muted">통계적으로 확정되지 못했거나 철회된 항목 - 그래프뷰에서는 제외되지만 재탐색 판단을 위해 기록은 유지.</p>
@@ -4864,7 +4989,11 @@
 
   // --- 탭 전환 ---
   var tabBtns = document.querySelectorAll(".tab-btn");
-  var tabPanels = {ranking: document.getElementById("tab-ranking"), cards: document.getElementById("tab-cards"), graph: document.getElementById("tab-graph"), dead: document.getElementById("tab-dead")};
+  var tabPanels = {
+    ranking: document.getElementById("tab-ranking"), cards: document.getElementById("tab-cards"),
+    graph: document.getElementById("tab-graph"), live: document.getElementById("tab-live"),
+    changelog: document.getElementById("tab-changelog"), dead: document.getElementById("tab-dead"),
+  };
   var graphInited = false;
   tabBtns.forEach(function(btn) {
     btn.addEventListener("click", function() {
