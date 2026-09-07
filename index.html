@@ -49,7 +49,8 @@
     display:flex; flex-direction:column;
   }
   .card-tall { height:216px; }
-  .card-position { height:242px; }
+  .card-position { height:350px; }
+  .position-card:hover { border-color:var(--accent); }
   .card-top { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
   .card-title {
     font-size:13px; font-weight:700; color:var(--text); letter-spacing:0.1px;
@@ -156,7 +157,7 @@
 </style>
 </head><body>
 <h1>🧪 ZEC 알파랩 대시보드</h1>
-<div class="updated">마지막 갱신: 2026-09-07 13:13:13 UTC (30분마다 자동재생성)</div>
+<div class="updated">마지막 갱신: 2026-09-07 13:19:15 UTC (30분마다 자동재생성)</div>
 
 <div class="tabs" role="tablist">
   <button class="tab-btn active" data-tab="ranking" role="tab" aria-selected="true">🏆 랭킹</button>
@@ -3372,693 +3373,750 @@
 <div id="tab-positions" class="tab-panel" hidden>
 
     <h2>📍 실시간 포지션 (오픈 57건, 20개 자산)</h2>
-    <p class="small muted">마지막 확인: 2026-09-07 13:13:14 UTC · <b>주의: 완전 실시간 아님</b> - 각 알파는 자기 페이퍼엔진 예약작업(대부분 30분 주기)이 돌 때만 갱신되고,
+    <p class="small muted">마지막 확인: 2026-09-07 13:19:16 UTC · <b>주의: 완전 실시간 아님</b> - 각 알파는 자기 페이퍼엔진 예약작업(대부분 30분 주기)이 돌 때만 갱신되고,
     "현재가"도 그 시점 마지막 1H봉 종가(카드별 "N시간 전 봉"으로 정확한 기준시각 표시) - 두 값 다 최대 수십분~한두시간 지연 가능.</p>
     <section class="status-section">
           <h3><span class="badge" style="background:#0891b2">9</span> LINKUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="DONCHIAN_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">DONCHIAN_TRAILING_V1</div>
+                <div class="card-title">DONCHIAN_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-04 09:00 · 경과 3일 4시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">12.0860&rarr;13.2630 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">12.0860&rarr;13.2630 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+9.74%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.42·CI하한1.16·<span class="muted">거래없음</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="ATR_EXPANSION_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">ATR_EXPANSION_TRAILING_V1</div>
+                <div class="card-title">ATR_EXPANSION_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-06 21:00 · 경과 16시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.0995&rarr;13.2630 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.0995&rarr;13.2630 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+1.25%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.50·CI하한1.23·<span style="color:#dc2626">0%</span>(n=1) <span class="insuff-badge">부족</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="KELTNER_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">KELTNER_TRAILING_V1</div>
+                <div class="card-title">KELTNER_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-04 10:00 · 경과 3일 3시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">12.0450&rarr;13.2630 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">12.0450&rarr;13.2630 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+10.11%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.29·CI하한1.07·<span class="muted">거래없음</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="DAILY_MACD_ACCEL_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">DAILY_MACD_ACCEL_TRAILING_V1</div>
+                <div class="card-title">DAILY_MACD_ACCEL_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-07 01:00 · 경과 12시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.1546&rarr;13.2630 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.1546&rarr;13.2630 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.82%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.29·CI하한1.03·<span class="muted">거래없음</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="FUNDING_MOMENTUM_CONFIRMATION_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">FUNDING_MOMENTUM_CONFIRMATION_V1</div>
+                <div class="card-title">FUNDING_MOMENTUM_CONFIRMATION_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-07 00:00 · 경과 13시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.2336&rarr;13.2630 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.2336&rarr;13.2630 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.22%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.41·CI하한1.15·<span class="muted">거래없음</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="MULTICHANNEL_BREAKOUT_AGREEMENT_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">MULTICHANNEL_BREAKOUT_AGREEMENT_V1</div>
+                <div class="card-title">MULTICHANNEL_BREAKOUT_AGREEMENT_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-07 00:00 · 경과 13시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.2336&rarr;13.2630 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.2336&rarr;13.2630 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.22%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.42·CI하한1.18·<span class="muted">거래없음</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="MULTICHANNEL_4CH_3OF4_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">MULTICHANNEL_4CH_3OF4_V1</div>
+                <div class="card-title">MULTICHANNEL_4CH_3OF4_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-07 00:00 · 경과 13시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.2336&rarr;13.2630 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.2336&rarr;13.2630 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.22%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.43·CI하한1.19·<span class="muted">거래없음</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="WIDE_TRAIL_OPTIONALITY_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">WIDE_TRAIL_OPTIONALITY_V1</div>
+                <div class="card-title">WIDE_TRAIL_OPTIONALITY_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-07 00:00 · 경과 13시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.2336&rarr;13.2630 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.2336&rarr;13.2630 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.22%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.45·CI하한1.09·<span class="muted">거래없음</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="MULTITIMEFRAME_BREAKOUT_AGREEMENT_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">MULTITIMEFRAME_BREAKOUT_AGREEMENT_V1</div>
+                <div class="card-title">MULTITIMEFRAME_BREAKOUT_AGREEMENT_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-07 00:00 · 경과 13시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.2336&rarr;13.2630 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.2336&rarr;13.2630 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.22%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.27·CI하한1.03·<span class="muted">거래없음</span></span></div>
               </div>
             </div></div>
         </section><section class="status-section">
           <h3><span class="badge" style="background:#0891b2">6</span> DOGEUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="DONCHIAN_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">DONCHIAN_TRAILING_V1</div>
+                <div class="card-title">DONCHIAN_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-05 18:00 · 경과 1일 19시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.094247&rarr;0.091350 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.094247&rarr;0.091350 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-3.07%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.42·CI하한1.16·<span class="muted">거래없음</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="ATR_EXPANSION_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">ATR_EXPANSION_TRAILING_V1</div>
+                <div class="card-title">ATR_EXPANSION_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-05 18:00 · 경과 1일 19시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.094247&rarr;0.091350 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.094247&rarr;0.091350 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-3.07%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.50·CI하한1.23·<span style="color:#dc2626">0%</span>(n=1) <span class="insuff-badge">부족</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#dc2626">
+            </div><div class="card card-position position-card" style="--accent:#dc2626;cursor:pointer;" data-alpha-id="KELTNER_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">KELTNER_TRAILING_V1</div>
+                <div class="card-title">KELTNER_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-04 13:00 · 경과 3일 0시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.084938&rarr;0.091350 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.084938&rarr;0.091350 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-7.02%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.29·CI하한1.07·<span class="muted">거래없음</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="DAILY_MACD_ACCEL_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">DAILY_MACD_ACCEL_TRAILING_V1</div>
+                <div class="card-title">DAILY_MACD_ACCEL_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-07 01:00 · 경과 12시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.090995&rarr;0.091350 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.090995&rarr;0.091350 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.39%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.29·CI하한1.03·<span class="muted">거래없음</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="OI_SURGE_FORWARD_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">OI_SURGE_FORWARD_V1</div>
+                <div class="card-title">OI_SURGE_FORWARD_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-05 19:00 · 경과 1일 18시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.091836&rarr;0.091350 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.091836&rarr;0.091350 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-0.53%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF-·CI하한-·<span class="muted">거래없음</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="BREAKOUT_RETEST_CONFIRMATION_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">BREAKOUT_RETEST_CONFIRMATION_V1</div>
+                <div class="card-title">BREAKOUT_RETEST_CONFIRMATION_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-05 22:00 · 경과 1일 15시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.090615&rarr;0.091350 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.090615&rarr;0.091350 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.81%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.31·CI하한1.07·<span class="muted">거래없음</span></span></div>
               </div>
             </div></div>
         </section><section class="status-section">
           <h3><span class="badge" style="background:#0891b2">5</span> ZECUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="DONCHIAN_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">DONCHIAN_TRAILING_V1</div>
+                <div class="card-title">DONCHIAN_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-04 08:00 · 경과 3일 5시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">967.69&rarr;1,197.09 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">967.69&rarr;1,197.09 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+23.71%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.42·CI하한1.16·<span class="muted">거래없음</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="ATR_EXPANSION_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">ATR_EXPANSION_TRAILING_V1</div>
+                <div class="card-title">ATR_EXPANSION_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-04 10:00 · 경과 3일 3시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">1,003.85&rarr;1,197.09 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">1,003.85&rarr;1,197.09 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+19.25%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.50·CI하한1.23·<span style="color:#dc2626">0%</span>(n=1) <span class="insuff-badge">부족</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="KELTNER_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">KELTNER_TRAILING_V1</div>
+                <div class="card-title">KELTNER_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-04 10:00 · 경과 3일 3시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">1,003.85&rarr;1,197.09 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">1,003.85&rarr;1,197.09 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+19.25%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.29·CI하한1.07·<span class="muted">거래없음</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="DAILY_MACD_ACCEL_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">DAILY_MACD_ACCEL_TRAILING_V1</div>
+                <div class="card-title">DAILY_MACD_ACCEL_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-05 03:00 · 경과 2일 10시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">1,029.86&rarr;1,197.09 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">1,029.86&rarr;1,197.09 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+16.24%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.29·CI하한1.03·<span class="muted">거래없음</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="BREAKOUT_RETEST_CONFIRMATION_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">BREAKOUT_RETEST_CONFIRMATION_V1</div>
+                <div class="card-title">BREAKOUT_RETEST_CONFIRMATION_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-06 04:00 · 경과 1일 9시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">1,073.37&rarr;1,197.09 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">1,073.37&rarr;1,197.09 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+11.53%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.31·CI하한1.07·<span class="muted">거래없음</span></span></div>
               </div>
             </div></div>
         </section><section class="status-section">
           <h3><span class="badge" style="background:#0891b2">3</span> ADAUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#dc2626">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#dc2626;cursor:pointer;" data-alpha-id="ATR_EXPANSION_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">ATR_EXPANSION_TRAILING_V1</div>
+                <div class="card-title">ATR_EXPANSION_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-04 15:00 · 경과 2일 22시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.210994&rarr;0.223800 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.210994&rarr;0.223800 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-5.72%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.50·CI하한1.23·<span style="color:#dc2626">0%</span>(n=1) <span class="insuff-badge">부족</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#dc2626">
+            </div><div class="card card-position position-card" style="--accent:#dc2626;cursor:pointer;" data-alpha-id="KELTNER_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">KELTNER_TRAILING_V1</div>
+                <div class="card-title">KELTNER_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-04 13:00 · 경과 3일 0시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.214293&rarr;0.223800 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.214293&rarr;0.223800 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-4.25%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.29·CI하한1.07·<span class="muted">거래없음</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="DAILY_MACD_ACCEL_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">DAILY_MACD_ACCEL_TRAILING_V1</div>
+                <div class="card-title">DAILY_MACD_ACCEL_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-05 03:00 · 경과 2일 10시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.210305&rarr;0.223800 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.210305&rarr;0.223800 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+6.42%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.29·CI하한1.03·<span class="muted">거래없음</span></span></div>
               </div>
             </div></div>
         </section><section class="status-section">
           <h3><span class="badge" style="background:#0891b2">3</span> ARUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="DONCHIAN_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">DONCHIAN_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">DONCHIAN_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-05 01:00 · 경과 2일 12시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">2.7214&rarr;3.0240 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">2.7214&rarr;3.0240 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+11.12%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.57·CI하한1.32·<span style="color:#16a34a">75%</span>(n=4) <span class="insuff-badge">부족</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#dc2626">
+            </div><div class="card card-position position-card" style="--accent:#dc2626;cursor:pointer;" data-alpha-id="ATR_EXPANSION_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-05 10:00 · 경과 2일 3시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">2.8286&rarr;3.0240 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">2.8286&rarr;3.0240 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-6.46%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.62·CI하한1.37·<span style="color:#16a34a">75%</span>(n=4) <span class="insuff-badge">부족</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="KELTNER_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-05 01:00 · 경과 2일 12시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">2.7214&rarr;3.0240 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">2.7214&rarr;3.0240 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+11.12%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.38·CI하한1.19·<span style="color:#16a34a">50%</span>(n=6) <span class="insuff-badge">부족</span></span></div>
               </div>
             </div></div>
         </section><section class="status-section">
           <h3><span class="badge" style="background:#0891b2">3</span> CRVUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="DONCHIAN_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">DONCHIAN_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">DONCHIAN_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-05 22:00 · 경과 1일 15시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.384192&rarr;0.401300 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.384192&rarr;0.401300 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+4.45%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.57·CI하한1.32·<span style="color:#16a34a">75%</span>(n=4) <span class="insuff-badge">부족</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="ATR_EXPANSION_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-07 04:00 · 경과 9시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.385493&rarr;0.401300 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.385493&rarr;0.401300 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+4.10%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.62·CI하한1.37·<span style="color:#16a34a">75%</span>(n=4) <span class="insuff-badge">부족</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="KELTNER_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-07 03:00 · 경과 10시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.400900&rarr;0.401300 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.400900&rarr;0.401300 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.10%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.38·CI하한1.19·<span style="color:#16a34a">50%</span>(n=6) <span class="insuff-badge">부족</span></span></div>
               </div>
             </div></div>
         </section><section class="status-section">
           <h3><span class="badge" style="background:#0891b2">3</span> MINAUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="DONCHIAN_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">DONCHIAN_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">DONCHIAN_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-05 22:00 · 경과 1일 15시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.076238&rarr;0.077210 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.076238&rarr;0.077210 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+1.27%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.57·CI하한1.32·<span style="color:#16a34a">75%</span>(n=4) <span class="insuff-badge">부족</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="ATR_EXPANSION_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-07 11:00 · 경과 2시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.079310&rarr;0.077210 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.079310&rarr;0.077210 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-2.65%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.62·CI하한1.37·<span style="color:#16a34a">75%</span>(n=4) <span class="insuff-badge">부족</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="KELTNER_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-07 09:00 · 경과 4시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.080660&rarr;0.077210 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.080660&rarr;0.077210 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-4.28%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.38·CI하한1.19·<span style="color:#16a34a">50%</span>(n=6) <span class="insuff-badge">부족</span></span></div>
               </div>
             </div></div>
         </section><section class="status-section">
           <h3><span class="badge" style="background:#0891b2">3</span> UNIUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="DONCHIAN_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">DONCHIAN_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">DONCHIAN_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-05 17:00 · 경과 1일 20시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">6.7174&rarr;7.1410 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">6.7174&rarr;7.1410 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+6.31%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.57·CI하한1.32·<span style="color:#16a34a">75%</span>(n=4) <span class="insuff-badge">부족</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="ATR_EXPANSION_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-06 02:00 · 경과 1일 11시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">7.3607&rarr;7.1410 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">7.3607&rarr;7.1410 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-2.98%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.62·CI하한1.37·<span style="color:#16a34a">75%</span>(n=4) <span class="insuff-badge">부족</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="KELTNER_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-05 17:00 · 경과 1일 20시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">6.7174&rarr;7.1410 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">6.7174&rarr;7.1410 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+6.31%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.38·CI하한1.19·<span style="color:#16a34a">50%</span>(n=6) <span class="insuff-badge">부족</span></span></div>
               </div>
             </div></div>
         </section><section class="status-section">
           <h3><span class="badge" style="background:#0891b2">3</span> TUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="ATR_EXPANSION_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-06 10:00 · 경과 1일 3시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.004586&rarr;0.004623 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.004586&rarr;0.004623 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.80%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.62·CI하한1.37·<span style="color:#16a34a">75%</span>(n=4) <span class="insuff-badge">부족</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#dc2626">
+            </div><div class="card card-position position-card" style="--accent:#dc2626;cursor:pointer;" data-alpha-id="KELTNER_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-04 23:00 · 경과 2일 14시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.004208&rarr;0.004623 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.004208&rarr;0.004623 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-8.98%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.38·CI하한1.19·<span style="color:#16a34a">50%</span>(n=6) <span class="insuff-badge">부족</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#dc2626">
+            </div><div class="card card-position position-card" style="--accent:#dc2626;cursor:pointer;" data-alpha-id="TAKER_RATIO_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">TAKER_RATIO_TRAILING_V1</div>
+                <div class="card-title">TAKER_RATIO_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-07 11:00 · 경과 2시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.004402&rarr;0.004623 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.004402&rarr;0.004623 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-4.78%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF2.05·CI하한1.56·<span class="muted">거래없음</span></span></div>
               </div>
             </div></div>
         </section><section class="status-section">
           <h3><span class="badge" style="background:#0891b2">3</span> MAGICUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="KELTNER_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-05 03:00 · 경과 2일 10시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.045723&rarr;0.047340 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.045723&rarr;0.047340 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+3.54%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.38·CI하한1.19·<span style="color:#16a34a">50%</span>(n=6) <span class="insuff-badge">부족</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="TAKER_RATIO_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">TAKER_RATIO_TRAILING_V1</div>
+                <div class="card-title">TAKER_RATIO_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-05 22:00 · 경과 1일 15시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.046633&rarr;0.047340 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.046633&rarr;0.047340 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+1.52%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF2.05·CI하한1.56·<span class="muted">거래없음</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="DAILY_MACD_TAKER_CONFLUENCE_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">DAILY_MACD_TAKER_CONFLUENCE_HIGHVOL_V1</div>
+                <div class="card-title">DAILY_MACD_TAKER_CONFLUENCE_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-06 01:00 · 경과 1일 12시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.047264&rarr;0.047340 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.047264&rarr;0.047340 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.16%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.62·CI하한1.16·<span class="muted">거래없음</span></span></div>
               </div>
             </div></div>
         </section><section class="status-section">
           <h3><span class="badge" style="background:#0891b2">2</span> SOLUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="ATR_EXPANSION_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">ATR_EXPANSION_TRAILING_V1</div>
+                <div class="card-title">ATR_EXPANSION_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-06 14:00 · 경과 23시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">107.07&rarr;105.49 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">107.07&rarr;105.49 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-1.48%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.50·CI하한1.23·<span style="color:#dc2626">0%</span>(n=1) <span class="insuff-badge">부족</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#dc2626">
+            </div><div class="card card-position position-card" style="--accent:#dc2626;cursor:pointer;" data-alpha-id="KELTNER_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">KELTNER_TRAILING_V1</div>
+                <div class="card-title">KELTNER_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-04 13:00 · 경과 3일 0시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">101.49&rarr;105.49 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">101.49&rarr;105.49 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-3.79%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.29·CI하한1.07·<span class="muted">거래없음</span></span></div>
               </div>
             </div></div>
         </section><section class="status-section">
           <h3><span class="badge" style="background:#0891b2">2</span> XRPUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#dc2626">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#dc2626;cursor:pointer;" data-alpha-id="ATR_EXPANSION_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">ATR_EXPANSION_TRAILING_V1</div>
+                <div class="card-title">ATR_EXPANSION_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-07 10:00 · 경과 3시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">1.3959&rarr;1.4114 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">1.3959&rarr;1.4114 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-1.10%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.50·CI하한1.23·<span style="color:#dc2626">0%</span>(n=1) <span class="insuff-badge">부족</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#dc2626">
+            </div><div class="card card-position position-card" style="--accent:#dc2626;cursor:pointer;" data-alpha-id="KELTNER_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">KELTNER_TRAILING_V1</div>
+                <div class="card-title">KELTNER_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-04 13:00 · 경과 3일 0시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">1.4081&rarr;1.4114 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">1.4081&rarr;1.4114 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-0.23%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.29·CI하한1.07·<span class="muted">거래없음</span></span></div>
               </div>
             </div></div>
         </section><section class="status-section">
           <h3><span class="badge" style="background:#0891b2">2</span> BNBUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="KELTNER_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">KELTNER_TRAILING_V1</div>
+                <div class="card-title">KELTNER_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-05 07:00 · 경과 2일 6시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">728.05&rarr;747.01 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">728.05&rarr;747.01 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+2.60%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.29·CI하한1.07·<span class="muted">거래없음</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="OI_SURGE_FORWARD_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">OI_SURGE_FORWARD_V1</div>
+                <div class="card-title">OI_SURGE_FORWARD_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-05 16:00 · 경과 1일 21시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">770.84&rarr;747.01 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">770.84&rarr;747.01 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-3.09%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF-·CI하한-·<span class="muted">거래없음</span></span></div>
               </div>
             </div></div>
         </section><section class="status-section">
           <h3><span class="badge" style="background:#0891b2">2</span> BTCUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#dc2626">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#dc2626;cursor:pointer;" data-alpha-id="KELTNER_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">KELTNER_TRAILING_V1</div>
+                <div class="card-title">KELTNER_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-04 13:00 · 경과 3일 0시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">79,384.19&rarr;79,496.90 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">79,384.19&rarr;79,496.90 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-0.14%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.29·CI하한1.07·<span class="muted">거래없음</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="KELTNER_TAKER_CONFLUENCE_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">KELTNER_TAKER_CONFLUENCE_V1</div>
+                <div class="card-title">KELTNER_TAKER_CONFLUENCE_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-05 17:00 · 경과 1일 20시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">80,041.50&rarr;79,496.90 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">80,041.50&rarr;79,496.90 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-0.68%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF2.02·CI하한1.27·<span class="muted">거래없음</span></span></div>
               </div>
             </div></div>
         </section><section class="status-section">
           <h3><span class="badge" style="background:#0891b2">2</span> ZENUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="ATR_EXPANSION_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-06 14:00 · 경과 23시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">7.2916&rarr;7.2610 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">7.2916&rarr;7.2610 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-0.42%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.62·CI하한1.37·<span style="color:#16a34a">75%</span>(n=4) <span class="insuff-badge">부족</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#16a34a">
+            </div><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="KELTNER_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-06 05:00 · 경과 1일 8시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">7.3507&rarr;7.2610 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">7.3507&rarr;7.2610 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-1.22%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.38·CI하한1.19·<span style="color:#16a34a">50%</span>(n=6) <span class="insuff-badge">부족</span></span></div>
               </div>
             </div></div>
         </section><section class="status-section">
           <h3><span class="badge" style="background:#0891b2">2</span> ANKRUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="KELTNER_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-06 02:00 · 경과 1일 11시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.004307&rarr;0.004331 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.004307&rarr;0.004331 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.55%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.38·CI하한1.19·<span style="color:#16a34a">50%</span>(n=6) <span class="insuff-badge">부족</span></span></div>
               </div>
-            </div><div class="card card-position" style="--accent:#dc2626">
+            </div><div class="card card-position position-card" style="--accent:#dc2626;cursor:pointer;" data-alpha-id="TAKER_RATIO_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">TAKER_RATIO_TRAILING_V1</div>
+                <div class="card-title">TAKER_RATIO_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-04 16:00 · 경과 2일 21시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.004180&rarr;0.004331 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.004180&rarr;0.004331 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-3.49%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF2.05·CI하한1.56·<span class="muted">거래없음</span></span></div>
               </div>
             </div></div>
         </section><section class="status-section">
           <h3><span class="badge" style="background:#0891b2">1</span> ETHUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#dc2626">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#dc2626;cursor:pointer;" data-alpha-id="ATR_EXPANSION_TRAILING_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">ATR_EXPANSION_TRAILING_V1</div>
+                <div class="card-title">ATR_EXPANSION_TRAILING_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-07 04:00 · 경과 9시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">2,494.76&rarr;2,497.59 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">2,494.76&rarr;2,497.59 (1.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-0.11%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.50·CI하한1.23·<span style="color:#dc2626">0%</span>(n=1) <span class="insuff-badge">부족</span></span></div>
               </div>
             </div></div>
         </section><section class="status-section">
           <h3><span class="badge" style="background:#0891b2">1</span> DASHUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="ATR_EXPANSION_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-06 08:00 · 경과 1일 5시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">70.4452&rarr;72.2200 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">70.4452&rarr;72.2200 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+2.52%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.62·CI하한1.37·<span style="color:#16a34a">75%</span>(n=4) <span class="insuff-badge">부족</span></span></div>
               </div>
             </div></div>
         </section><section class="status-section">
           <h3><span class="badge" style="background:#0891b2">1</span> ARBUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#dc2626">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#dc2626;cursor:pointer;" data-alpha-id="KELTNER_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-07 04:00 · 경과 9시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.175142&rarr;0.185500 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.175142&rarr;0.185500 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-5.58%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.38·CI하한1.19·<span style="color:#16a34a">50%</span>(n=6) <span class="insuff-badge">부족</span></span></div>
               </div>
             </div></div>
         </section><section class="status-section">
           <h3><span class="badge" style="background:#0891b2">1</span> EGLDUSDT</h3>
-          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+          <div class="card-grid"><div class="card card-position position-card" style="--accent:#16a34a;cursor:pointer;" data-alpha-id="KELTNER_TRAILING_HIGHVOL_V1" title="탭하면 전략 상세">
               <div class="card-top">
-                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1 <span style="opacity:0.5;">&rsaquo;</span></div>
                 
               </div>
               <div class="card-subtitle">진입 09-04 16:00 · 경과 2일 21시간</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
-                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">4.8954&rarr;4.4610 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">4.8954&rarr;4.4610 (11.3h전)</span></div>
                 <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-8.87%</span></div>
+                <div class="card-row" style="font-size:10.5px;"><span class="label">전략전적</span><span class="value">PF1.38·CI하한1.19·<span style="color:#16a34a">50%</span>(n=6) <span class="insuff-badge">부족</span></span></div>
               </div>
             </div></div>
         </section>
@@ -5739,6 +5797,15 @@
       tabBtns.forEach(function(b) { b.classList.toggle("active", b === btn); b.setAttribute("aria-selected", b === btn ? "true" : "false"); });
       Object.keys(tabPanels).forEach(function(k) { tabPanels[k].hidden = (k !== target); });
       if (target === "graph" && !graphInited) { graphInited = true; initGraph(); }
+    });
+  });
+
+  // --- [2026-09-07] 실시간 포지션 카드 클릭 -> 그래프뷰의 상세패널(showDetail) 재사용 ---
+  document.querySelectorAll(".position-card").forEach(function(card) {
+    card.addEventListener("click", function() {
+      var id = card.getAttribute("data-alpha-id");
+      var node = GRAPH_DATA.nodes.find(function(n) { return n.id === id && n.type === "alpha"; });
+      if (node) showDetail(node);
     });
   });
 
