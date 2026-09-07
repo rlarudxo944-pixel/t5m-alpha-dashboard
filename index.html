@@ -49,6 +49,7 @@
     display:flex; flex-direction:column;
   }
   .card-tall { height:216px; }
+  .card-position { height:242px; }
   .card-top { display:flex; align-items:flex-start; justify-content:space-between; gap:8px; }
   .card-title {
     font-size:13px; font-weight:700; color:var(--text); letter-spacing:0.1px;
@@ -155,12 +156,13 @@
 </style>
 </head><body>
 <h1>🧪 ZEC 알파랩 대시보드</h1>
-<div class="updated">마지막 갱신: 2026-09-07 13:04:26 UTC (30분마다 자동재생성)</div>
+<div class="updated">마지막 갱신: 2026-09-07 13:13:13 UTC (30분마다 자동재생성)</div>
 
 <div class="tabs" role="tablist">
   <button class="tab-btn active" data-tab="ranking" role="tab" aria-selected="true">🏆 랭킹</button>
   <button class="tab-btn" data-tab="cards" role="tab" aria-selected="false">📇 카드뷰</button>
   <button class="tab-btn" data-tab="graph" role="tab" aria-selected="false">🕸️ 그래프뷰</button>
+  <button class="tab-btn" data-tab="positions" role="tab" aria-selected="false">📍 실시간 포지션</button>
   <button class="tab-btn" data-tab="live" role="tab" aria-selected="false">🔴 라이브랭킹</button>
   <button class="tab-btn" data-tab="changelog" role="tab" aria-selected="false">📜 변경이력</button>
   <button class="tab-btn" data-tab="dead" role="tab" aria-selected="false">🗄️ 기각/철회</button>
@@ -351,9 +353,9 @@
 </div>
 
 <div id="tab-cards" class="tab-panel" hidden>
-<h2>1. 알파 레지스트리 현황 (총 143건)</h2>
+<h2>1. 알파 레지스트리 현황 (총 145건)</h2>
 <div class="summary">
-  <div class="summary-card" style="--accent:#7c3aed"><div class="n">0</div><div>실전전환후보</div></div><div class="summary-card" style="--accent:#059669"><div class="n">0</div><div>페이퍼통과(실전후보)</div></div><div class="summary-card" style="--accent:#16a34a"><div class="n">18</div><div>페이퍼가동중</div></div><div class="summary-card" style="--accent:#65a30d"><div class="n">5</div><div>페이퍼가동중(신호중복군)</div></div><div class="summary-card" style="--accent:#2563eb"><div class="n">4</div><div>확정(페이퍼미가동)</div></div><div class="summary-card" style="--accent:#0891b2"><div class="n">1</div><div>포워드테스팅(미확정)</div></div><div class="summary-card" style="--accent:#d97706"><div class="n">20</div><div>근접미확정</div></div><div class="summary-card" style="--accent:#6b7280"><div class="n">24</div><div>판정불가</div></div><div class="summary-card" style="--accent:#dc2626"><div class="n">66</div><div>기각</div></div><div class="summary-card" style="--accent:#991b1b"><div class="n">5</div><div>철회</div></div>
+  <div class="summary-card" style="--accent:#7c3aed"><div class="n">0</div><div>실전전환후보</div></div><div class="summary-card" style="--accent:#059669"><div class="n">0</div><div>페이퍼통과(실전후보)</div></div><div class="summary-card" style="--accent:#16a34a"><div class="n">18</div><div>페이퍼가동중</div></div><div class="summary-card" style="--accent:#65a30d"><div class="n">5</div><div>페이퍼가동중(신호중복군)</div></div><div class="summary-card" style="--accent:#2563eb"><div class="n">4</div><div>확정(페이퍼미가동)</div></div><div class="summary-card" style="--accent:#0891b2"><div class="n">1</div><div>포워드테스팅(미확정)</div></div><div class="summary-card" style="--accent:#d97706"><div class="n">20</div><div>근접미확정</div></div><div class="summary-card" style="--accent:#6b7280"><div class="n">25</div><div>판정불가</div></div><div class="summary-card" style="--accent:#dc2626"><div class="n">67</div><div>기각</div></div><div class="summary-card" style="--accent:#991b1b"><div class="n">5</div><div>철회</div></div>
 </div>
 <p class="small muted">근접미확정/판정불가/기각/철회 상세 카드는 <b>[기각/철회]</b> 탭에서 확인.</p>
 
@@ -3348,7 +3350,7 @@
             </div></div>
 
 <h2>4. Discovery Log 최근 항목</h2>
-<ul><li>D211: 고변동성풀 트레일폭확장 스윕(메타엔진 자동생성) — **근접미확정**</li><li>D210: 고변동성풀 트레일폭확장 스윕(메타엔진 자동생성) — **확정**</li><li>D209: donchian_channel_family 통합청산방식 비교(Exit-B/Exit-C) — **기각(둘다 TRAIN게이트 미달)**</li><li>D203: 멀티타임프레임 브레이크아웃 합의(1H+4H 동시돌파) — **확정이나 이 세션 확정알파 중 가장 얇은 CI**</li><li>D202: 멀티채널합의+광폭트레일링(옵셔널리티/꼬리위험프리미엄 구조) — **확정! 진짜 옵션적 페이오프 시그니처 실증, 그러나 MDD 이 세션 최악**</li><li>D201: 멀티채널합의 민감도확장(V1 만장일치 / V2,V3 +볼린저돌파) — **"더 엄격하면 더 좋다"는 직관 반박, D198 설계 재확인**</li><li>D200: 다중비교보정 재재실행(D197/D198 반영, 총23건) — **BH-FDR 9건 생존, D198/D197 둘다 신규합류**</li><li>D199: D194 신호중복 정밀조사 — **100% D142부분집합 + 켈트너78.9%/ATR확장40.7% 중복 실증, 배타적틈새는 edge없음**</li><li>D198: 멀티채널 브레이크아웃 합의(돈치안+ATR확장+켈트너 2-of-3) — **신규 확정! 브레이크아웃계열 최고 CI**</li><li>D197: 돈치안브레이크아웃+펀딩비율변화율확인 — **확정, 그러나 D194와 동일 중복의혹**</li><li>D196: 포트폴리오 노출액 상한 룰(신규배포/사이징증대 자동보류) 신설</li><li>D195: 다중비교보정 재실행(D191/D193/D194 반영) — **D194가 셋 중 유일하게 BH-FDR 생존**</li></ul>
+<ul><li>D223: 돈치안브레이크아웃+크로스거래소베이시스변화율확인(cross_exchange_basis_confirmation) — **기각(TRAIN게이트 미달)**</li><li>D211: 고변동성풀 트레일폭확장 스윕(메타엔진 자동생성) — **근접미확정**</li><li>D210: 고변동성풀 트레일폭확장 스윕(메타엔진 자동생성) — **확정**</li><li>D209: donchian_channel_family 통합청산방식 비교(Exit-B/Exit-C) — **기각(둘다 TRAIN게이트 미달)**</li><li>D203: 멀티타임프레임 브레이크아웃 합의(1H+4H 동시돌파) — **확정이나 이 세션 확정알파 중 가장 얇은 CI**</li><li>D202: 멀티채널합의+광폭트레일링(옵셔널리티/꼬리위험프리미엄 구조) — **확정! 진짜 옵션적 페이오프 시그니처 실증, 그러나 MDD 이 세션 최악**</li><li>D201: 멀티채널합의 민감도확장(V1 만장일치 / V2,V3 +볼린저돌파) — **"더 엄격하면 더 좋다"는 직관 반박, D198 설계 재확인**</li><li>D200: 다중비교보정 재재실행(D197/D198 반영, 총23건) — **BH-FDR 9건 생존, D198/D197 둘다 신규합류**</li><li>D199: D194 신호중복 정밀조사 — **100% D142부분집합 + 켈트너78.9%/ATR확장40.7% 중복 실증, 배타적틈새는 edge없음**</li><li>D198: 멀티채널 브레이크아웃 합의(돈치안+ATR확장+켈트너 2-of-3) — **신규 확정! 브레이크아웃계열 최고 CI**</li><li>D197: 돈치안브레이크아웃+펀딩비율변화율확인 — **확정, 그러나 D194와 동일 중복의혹**</li><li>D196: 포트폴리오 노출액 상한 룰(신규배포/사이징증대 자동보류) 신설</li></ul>
 </div>
 
 <div id="tab-graph" class="tab-panel" hidden>
@@ -3365,6 +3367,702 @@
 <div id="graph-detail" hidden>
   <div class="gd-head"><div class="gd-title" id="gd-title"></div><button class="gd-close" id="gd-close" aria-label="닫기">✕</button></div>
   <div class="gd-body" id="gd-body"></div>
+</div>
+
+<div id="tab-positions" class="tab-panel" hidden>
+
+    <h2>📍 실시간 포지션 (오픈 57건, 20개 자산)</h2>
+    <p class="small muted">마지막 확인: 2026-09-07 13:13:14 UTC · <b>주의: 완전 실시간 아님</b> - 각 알파는 자기 페이퍼엔진 예약작업(대부분 30분 주기)이 돌 때만 갱신되고,
+    "현재가"도 그 시점 마지막 1H봉 종가(카드별 "N시간 전 봉"으로 정확한 기준시각 표시) - 두 값 다 최대 수십분~한두시간 지연 가능.</p>
+    <section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">9</span> LINKUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">DONCHIAN_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-04 09:00 · 경과 3일 4시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">12.0860&rarr;13.2630 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+9.74%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">ATR_EXPANSION_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-06 21:00 · 경과 16시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.0995&rarr;13.2630 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+1.25%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">KELTNER_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-04 10:00 · 경과 3일 3시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">12.0450&rarr;13.2630 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+10.11%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">DAILY_MACD_ACCEL_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-07 01:00 · 경과 12시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.1546&rarr;13.2630 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.82%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">FUNDING_MOMENTUM_CONFIRMATION_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-07 00:00 · 경과 13시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.2336&rarr;13.2630 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.22%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">MULTICHANNEL_BREAKOUT_AGREEMENT_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-07 00:00 · 경과 13시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.2336&rarr;13.2630 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.22%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">MULTICHANNEL_4CH_3OF4_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-07 00:00 · 경과 13시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.2336&rarr;13.2630 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.22%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">WIDE_TRAIL_OPTIONALITY_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-07 00:00 · 경과 13시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.2336&rarr;13.2630 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.22%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">MULTITIMEFRAME_BREAKOUT_AGREEMENT_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-07 00:00 · 경과 13시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">13.2336&rarr;13.2630 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.22%</span></div>
+              </div>
+            </div></div>
+        </section><section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">6</span> DOGEUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">DONCHIAN_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-05 18:00 · 경과 1일 19시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.094247&rarr;0.091350 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-3.07%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">ATR_EXPANSION_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-05 18:00 · 경과 1일 19시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.094247&rarr;0.091350 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-3.07%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#dc2626">
+              <div class="card-top">
+                <div class="card-title">KELTNER_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-04 13:00 · 경과 3일 0시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.084938&rarr;0.091350 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-7.02%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">DAILY_MACD_ACCEL_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-07 01:00 · 경과 12시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.090995&rarr;0.091350 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.39%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">OI_SURGE_FORWARD_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-05 19:00 · 경과 1일 18시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.091836&rarr;0.091350 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-0.53%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">BREAKOUT_RETEST_CONFIRMATION_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-05 22:00 · 경과 1일 15시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.090615&rarr;0.091350 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.81%</span></div>
+              </div>
+            </div></div>
+        </section><section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">5</span> ZECUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">DONCHIAN_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-04 08:00 · 경과 3일 5시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">967.69&rarr;1,197.09 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+23.71%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">ATR_EXPANSION_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-04 10:00 · 경과 3일 3시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">1,003.85&rarr;1,197.09 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+19.25%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">KELTNER_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-04 10:00 · 경과 3일 3시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">1,003.85&rarr;1,197.09 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+19.25%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">DAILY_MACD_ACCEL_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-05 03:00 · 경과 2일 10시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">1,029.86&rarr;1,197.09 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+16.24%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">BREAKOUT_RETEST_CONFIRMATION_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-06 04:00 · 경과 1일 9시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">1,073.37&rarr;1,197.09 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+11.53%</span></div>
+              </div>
+            </div></div>
+        </section><section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">3</span> ADAUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#dc2626">
+              <div class="card-top">
+                <div class="card-title">ATR_EXPANSION_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-04 15:00 · 경과 2일 22시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.210994&rarr;0.223800 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-5.72%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#dc2626">
+              <div class="card-top">
+                <div class="card-title">KELTNER_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-04 13:00 · 경과 3일 0시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.214293&rarr;0.223800 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-4.25%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">DAILY_MACD_ACCEL_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-05 03:00 · 경과 2일 10시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.210305&rarr;0.223800 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+6.42%</span></div>
+              </div>
+            </div></div>
+        </section><section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">3</span> ARUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">DONCHIAN_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-05 01:00 · 경과 2일 12시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">2.7214&rarr;3.0240 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+11.12%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#dc2626">
+              <div class="card-top">
+                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-05 10:00 · 경과 2일 3시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">2.8286&rarr;3.0240 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-6.46%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-05 01:00 · 경과 2일 12시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">2.7214&rarr;3.0240 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+11.12%</span></div>
+              </div>
+            </div></div>
+        </section><section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">3</span> CRVUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">DONCHIAN_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-05 22:00 · 경과 1일 15시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.384192&rarr;0.401300 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+4.45%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-07 04:00 · 경과 9시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.385493&rarr;0.401300 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+4.10%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-07 03:00 · 경과 10시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.400900&rarr;0.401300 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.10%</span></div>
+              </div>
+            </div></div>
+        </section><section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">3</span> MINAUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">DONCHIAN_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-05 22:00 · 경과 1일 15시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.076238&rarr;0.077210 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+1.27%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-07 11:00 · 경과 2시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.079310&rarr;0.077210 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-2.65%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-07 09:00 · 경과 4시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.080660&rarr;0.077210 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-4.28%</span></div>
+              </div>
+            </div></div>
+        </section><section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">3</span> UNIUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">DONCHIAN_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-05 17:00 · 경과 1일 20시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">6.7174&rarr;7.1410 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+6.31%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-06 02:00 · 경과 1일 11시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">7.3607&rarr;7.1410 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-2.98%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-05 17:00 · 경과 1일 20시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">6.7174&rarr;7.1410 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+6.31%</span></div>
+              </div>
+            </div></div>
+        </section><section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">3</span> TUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-06 10:00 · 경과 1일 3시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.004586&rarr;0.004623 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.80%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#dc2626">
+              <div class="card-top">
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-04 23:00 · 경과 2일 14시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.004208&rarr;0.004623 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-8.98%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#dc2626">
+              <div class="card-top">
+                <div class="card-title">TAKER_RATIO_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-07 11:00 · 경과 2시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.004402&rarr;0.004623 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-4.78%</span></div>
+              </div>
+            </div></div>
+        </section><section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">3</span> MAGICUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-05 03:00 · 경과 2일 10시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.045723&rarr;0.047340 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+3.54%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">TAKER_RATIO_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-05 22:00 · 경과 1일 15시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.046633&rarr;0.047340 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+1.52%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">DAILY_MACD_TAKER_CONFLUENCE_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-06 01:00 · 경과 1일 12시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.047264&rarr;0.047340 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.16%</span></div>
+              </div>
+            </div></div>
+        </section><section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">2</span> SOLUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">ATR_EXPANSION_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-06 14:00 · 경과 23시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">107.07&rarr;105.49 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-1.48%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#dc2626">
+              <div class="card-top">
+                <div class="card-title">KELTNER_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-04 13:00 · 경과 3일 0시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">101.49&rarr;105.49 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-3.79%</span></div>
+              </div>
+            </div></div>
+        </section><section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">2</span> XRPUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#dc2626">
+              <div class="card-top">
+                <div class="card-title">ATR_EXPANSION_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-07 10:00 · 경과 3시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">1.3959&rarr;1.4114 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-1.10%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#dc2626">
+              <div class="card-top">
+                <div class="card-title">KELTNER_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-04 13:00 · 경과 3일 0시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">1.4081&rarr;1.4114 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-0.23%</span></div>
+              </div>
+            </div></div>
+        </section><section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">2</span> BNBUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">KELTNER_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-05 07:00 · 경과 2일 6시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">728.05&rarr;747.01 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+2.60%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">OI_SURGE_FORWARD_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-05 16:00 · 경과 1일 21시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">770.84&rarr;747.01 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-3.09%</span></div>
+              </div>
+            </div></div>
+        </section><section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">2</span> BTCUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#dc2626">
+              <div class="card-top">
+                <div class="card-title">KELTNER_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-04 13:00 · 경과 3일 0시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">79,384.19&rarr;79,496.90 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-0.14%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">KELTNER_TAKER_CONFLUENCE_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-05 17:00 · 경과 1일 20시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">80,041.50&rarr;79,496.90 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-0.68%</span></div>
+              </div>
+            </div></div>
+        </section><section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">2</span> ZENUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-06 14:00 · 경과 23시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">7.2916&rarr;7.2610 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-0.42%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-06 05:00 · 경과 1일 8시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">7.3507&rarr;7.2610 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-1.22%</span></div>
+              </div>
+            </div></div>
+        </section><section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">2</span> ANKRUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-06 02:00 · 경과 1일 11시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.004307&rarr;0.004331 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+0.55%</span></div>
+              </div>
+            </div><div class="card card-position" style="--accent:#dc2626">
+              <div class="card-top">
+                <div class="card-title">TAKER_RATIO_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-04 16:00 · 경과 2일 21시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.004180&rarr;0.004331 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-3.49%</span></div>
+              </div>
+            </div></div>
+        </section><section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">1</span> ETHUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#dc2626">
+              <div class="card-top">
+                <div class="card-title">ATR_EXPANSION_TRAILING_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-07 04:00 · 경과 9시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">2,494.76&rarr;2,497.59 (1.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-0.11%</span></div>
+              </div>
+            </div></div>
+        </section><section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">1</span> DASHUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-06 08:00 · 경과 1일 5시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">70.4452&rarr;72.2200 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#16a34a">+2.52%</span></div>
+              </div>
+            </div></div>
+        </section><section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">1</span> ARBUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#dc2626">
+              <div class="card-top">
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-07 04:00 · 경과 9시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#dc2626">숏</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">0.175142&rarr;0.185500 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-5.58%</span></div>
+              </div>
+            </div></div>
+        </section><section class="status-section">
+          <h3><span class="badge" style="background:#0891b2">1</span> EGLDUSDT</h3>
+          <div class="card-grid"><div class="card card-position" style="--accent:#16a34a">
+              <div class="card-top">
+                <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
+                
+              </div>
+              <div class="card-subtitle">진입 09-04 16:00 · 경과 2일 21시간</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">방향</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">진입&rarr;현재</span><span class="value" style="font-size:10.5px;">4.8954&rarr;4.4610 (11.2h전)</span></div>
+                <div class="card-row"><span class="label">미실현손익</span><span class="value" style="color:#dc2626">-8.87%</span></div>
+              </div>
+            </div></div>
+        </section>
+    
 </div>
 
 <div id="tab-live" class="tab-panel" hidden>
@@ -3409,8 +4107,8 @@
               <div class="small muted" style="margin-top:2px;opacity:0.6;">출처: zec_dashboard_generator.py</div>
             </div><div class="changelog-item">
               <span class="changelog-tag" style="background:#e0b34d22;color:var(--accent-gold);border-color:#e0b34d55">📋 레지스트리</span>
-              <b>기각 10건 · 판정불가 7건 · 근접미확정 2건</b>
-              <div class="small muted" style="margin-top:2px;"><code>MARSCOIN_MACD_DEEP_OPT</code>, <code>TAO_MACD_DEEP_OPT</code>, <code>PUMP_MACD_DEEP_OPT</code>, <code>DONCHIAN_FAMILY_EXIT_B_CONSENSUS_BREAKDOWN</code>, <code>DONCHIAN_FAMILY_EXIT_C_ATR_DYNAMIC</code>, <code>HIGHVOL_TRAIL_WIDEN_SWEEP_V1</code>, <code>FLOCK_MACD_DEEP_OPT</code>, <code>1000PEPE_MACD_DEEP_OPT</code> 외 11건</div>
+              <b>기각 11건 · 판정불가 8건 · 근접미확정 2건</b>
+              <div class="small muted" style="margin-top:2px;"><code>MARSCOIN_MACD_DEEP_OPT</code>, <code>TAO_MACD_DEEP_OPT</code>, <code>PUMP_MACD_DEEP_OPT</code>, <code>DONCHIAN_FAMILY_EXIT_B_CONSENSUS_BREAKDOWN</code>, <code>DONCHIAN_FAMILY_EXIT_C_ATR_DYNAMIC</code>, <code>HIGHVOL_TRAIL_WIDEN_SWEEP_V1</code>, <code>FLOCK_MACD_DEEP_OPT</code>, <code>1000PEPE_MACD_DEEP_OPT</code> 외 13건</div>
             </div>
         </section><section class="changelog-day">
           <h3>2026-09-06</h3>
@@ -3747,7 +4445,7 @@
         </div></div>
         </section>
         <section class="status-section">
-          <h3><span class="badge" style="background:#6b7280">24</span> 판정불가 <code>(inconclusive)</code></h3>
+          <h3><span class="badge" style="background:#6b7280">25</span> 판정불가 <code>(inconclusive)</code></h3>
           <div class="card-grid"><div class="card card-tall" style="--accent:#6b7280" title="HYPE 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">HYPE_MACD_DEEP_OPT</div>
@@ -4060,10 +4758,23 @@
             <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
             <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
+        </div><div class="card card-tall" style="--accent:#6b7280" title="LIT 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">LIT_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">LIT 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
+          </div>
         </div></div>
         </section>
         <section class="status-section">
-          <h3><span class="badge" style="background:#dc2626">66</span> 기각 <code>(rejected)</code></h3>
+          <h3><span class="badge" style="background:#dc2626">67</span> 기각 <code>(rejected)</code></h3>
           <div class="card-grid"><div class="card card-tall" style="--accent:#dc2626" title="ETH 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">ETH_MACD_DEEP_OPT</div>
@@ -4922,6 +5633,19 @@
             <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
             <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
+        </div><div class="card card-tall" style="--accent:#dc2626" title="돈치안+크로스거래소베이시스변화율확인">
+          <div class="card-top">
+            <div class="card-title">CROSS_EXCHANGE_BASIS_MOMENTUM_V1</div>
+            
+          </div>
+          <div class="card-subtitle">돈치안+크로스거래소베이시스변화율확인</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">775.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
+          </div>
         </div></div>
         </section>
         <section class="status-section">
@@ -5004,8 +5728,9 @@
   var tabBtns = document.querySelectorAll(".tab-btn");
   var tabPanels = {
     ranking: document.getElementById("tab-ranking"), cards: document.getElementById("tab-cards"),
-    graph: document.getElementById("tab-graph"), live: document.getElementById("tab-live"),
-    changelog: document.getElementById("tab-changelog"), dead: document.getElementById("tab-dead"),
+    graph: document.getElementById("tab-graph"), positions: document.getElementById("tab-positions"),
+    live: document.getElementById("tab-live"), changelog: document.getElementById("tab-changelog"),
+    dead: document.getElementById("tab-dead"),
   };
   var graphInited = false;
   tabBtns.forEach(function(btn) {
