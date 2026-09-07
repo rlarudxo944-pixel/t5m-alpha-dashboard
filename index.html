@@ -81,15 +81,68 @@
     .summary { flex-direction:column; }
     .summary-card { min-width:0; }
   }
+
+  /* --- [2026-09-07] 탭구조 --- */
+  .tabs { display:flex; gap:4px; border-bottom:1px solid var(--border); margin-bottom:24px; }
+  .tab-btn {
+    background:none; border:none; color:var(--muted); font-size:13px; font-weight:600;
+    padding:10px 18px; cursor:pointer; border-bottom:2px solid transparent; font-family:inherit;
+    letter-spacing:0.2px;
+  }
+  .tab-btn:hover { color:var(--text); }
+  .tab-btn.active { color:var(--accent-gold); border-bottom-color:var(--accent-gold); }
+  .tab-panel[hidden] { display:none !important; }
+
+  /* --- 그래프뷰 --- */
+  #graph-wrap { position:relative; background:var(--surface); border:1px solid var(--border); border-radius:10px; overflow:hidden; }
+  #graph-svg { display:block; width:100%; height:70vh; min-height:420px; touch-action:none; cursor:grab; }
+  #graph-svg:active { cursor:grabbing; }
+  .graph-legend { display:flex; flex-wrap:wrap; gap:6px 16px; margin:12px 0 16px; font-size:11px; color:var(--muted); }
+  .graph-legend .dot { display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:5px; vertical-align:-1px; }
+  .graph-hint { position:absolute; left:12px; bottom:10px; font-size:10.5px; color:var(--muted); background:#0f1115aa; padding:4px 9px; border-radius:6px; pointer-events:none; }
+  #graph-detail {
+    position:fixed; z-index:50; background:var(--surface); border:1px solid var(--border);
+    box-shadow:0 8px 28px #000a; display:flex; flex-direction:column;
+    right:20px; top:50%; transform:translateY(-50%); width:300px; max-height:78vh;
+    border-radius:12px; overflow:hidden;
+  }
+  #graph-detail[hidden] { display:none; }
+  #graph-detail .gd-head { display:flex; justify-content:space-between; align-items:flex-start; padding:16px 16px 10px; border-bottom:1px solid var(--border); gap:8px; }
+  #graph-detail .gd-title { font-size:14px; font-weight:700; color:var(--text); line-height:1.35; }
+  #graph-detail .gd-close { background:none; border:none; color:var(--muted); font-size:18px; cursor:pointer; line-height:1; padding:2px 4px; flex-shrink:0; }
+  #graph-detail .gd-close:hover { color:var(--text); }
+  #graph-detail .gd-body { padding:12px 16px 16px; overflow-y:auto; font-size:12px; }
+  #graph-detail .gd-body .card-row { font-family:"SF Mono","Consolas",monospace; padding:3px 0; }
+  #graph-detail .gd-hypo { color:var(--muted); font-size:11.5px; line-height:1.5; margin-top:10px; padding-top:10px; border-top:1px solid var(--border); }
+  .node-label { font-size:9px; fill:var(--text); pointer-events:none; font-weight:600; }
+  .hub-label { font-size:10px; fill:var(--accent-gold); pointer-events:none; font-weight:700; }
+  .link { stroke:var(--border); stroke-width:1.2; }
+
+  @media (max-width:640px) {
+    .tab-btn { padding:9px 12px; font-size:12px; }
+    #graph-svg { height:60vh; }
+    #graph-detail {
+      right:0; left:0; top:auto; bottom:0; transform:none; width:100%;
+      max-height:48vh; border-radius:14px 14px 0 0;
+    }
+  }
 </style>
 </head><body>
 <h1>🧪 ZEC 알파랩 대시보드</h1>
-<div class="updated">마지막 갱신: 2026-09-07 06:04:25 UTC (30분마다 자동재생성)</div>
+<div class="updated">마지막 갱신: 2026-09-07 06:34:25 UTC (30분마다 자동재생성)</div>
 
-<h2>1. 알파 레지스트리 현황 (총 136건)</h2>
-<div class="summary">
-  <div class="summary-card" style="--accent:#7c3aed"><div class="n">0</div><div>실전전환후보</div></div><div class="summary-card" style="--accent:#059669"><div class="n">0</div><div>페이퍼통과(실전후보)</div></div><div class="summary-card" style="--accent:#16a34a"><div class="n">18</div><div>페이퍼가동중</div></div><div class="summary-card" style="--accent:#65a30d"><div class="n">5</div><div>페이퍼가동중(신호중복군)</div></div><div class="summary-card" style="--accent:#2563eb"><div class="n">4</div><div>확정(페이퍼미가동)</div></div><div class="summary-card" style="--accent:#0891b2"><div class="n">1</div><div>포워드테스팅(미확정)</div></div><div class="summary-card" style="--accent:#d97706"><div class="n">20</div><div>근접미확정</div></div><div class="summary-card" style="--accent:#6b7280"><div class="n">21</div><div>판정불가</div></div><div class="summary-card" style="--accent:#dc2626"><div class="n">62</div><div>기각</div></div><div class="summary-card" style="--accent:#991b1b"><div class="n">5</div><div>철회</div></div>
+<div class="tabs" role="tablist">
+  <button class="tab-btn active" data-tab="cards" role="tab" aria-selected="true">📇 카드뷰</button>
+  <button class="tab-btn" data-tab="graph" role="tab" aria-selected="false">🕸️ 그래프뷰</button>
+  <button class="tab-btn" data-tab="dead" role="tab" aria-selected="false">🗄️ 기각/철회</button>
 </div>
+
+<div id="tab-cards" class="tab-panel">
+<h2>1. 알파 레지스트리 현황 (총 137건)</h2>
+<div class="summary">
+  <div class="summary-card" style="--accent:#7c3aed"><div class="n">0</div><div>실전전환후보</div></div><div class="summary-card" style="--accent:#059669"><div class="n">0</div><div>페이퍼통과(실전후보)</div></div><div class="summary-card" style="--accent:#16a34a"><div class="n">18</div><div>페이퍼가동중</div></div><div class="summary-card" style="--accent:#65a30d"><div class="n">5</div><div>페이퍼가동중(신호중복군)</div></div><div class="summary-card" style="--accent:#2563eb"><div class="n">4</div><div>확정(페이퍼미가동)</div></div><div class="summary-card" style="--accent:#0891b2"><div class="n">1</div><div>포워드테스팅(미확정)</div></div><div class="summary-card" style="--accent:#d97706"><div class="n">20</div><div>근접미확정</div></div><div class="summary-card" style="--accent:#6b7280"><div class="n">21</div><div>판정불가</div></div><div class="summary-card" style="--accent:#dc2626"><div class="n">63</div><div>기각</div></div><div class="summary-card" style="--accent:#991b1b"><div class="n">5</div><div>철회</div></div>
+</div>
+<p class="small muted">근접미확정/판정불가/기각/철회 상세 카드는 <b>[기각/철회]</b> 탭에서 확인.</p>
 
         <section class="status-section">
           <h3><span class="badge" style="background:#7c3aed">0</span> 실전전환후보 <code>(live_candidate)</code></h3>
@@ -420,1210 +473,6 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">0.0</span></div>
-          </div>
-        </div></div>
-        </section>
-        <section class="status-section">
-          <h3><span class="badge" style="background:#d97706">20</span> 근접미확정 <code>(near_miss)</code></h3>
-          <div class="card-grid"><div class="card" style="--accent:#d97706" title="SOL 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">SOL_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">SOL 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">2.932</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.857, 7.286]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">63.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#d97706" title="LINK 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">LINK_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">LINK 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">2.58</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.919, 5.815]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">64.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#d97706" title="XRP 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">XRP_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">XRP 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">2.346</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.487, 7.498]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">53.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#d97706" title="DOGE 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">DOGE_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">DOGE 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">2.69</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.822, 7.198]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">44.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#d97706" title="TRX 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">TRX_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">TRX 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">4.248</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.46, 12.128]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">53.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#d97706" title="ATOM 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">ATOM_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">ATOM 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">2.583</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.697, 7.337]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">50.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#d97706" title="NEAR 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">NEAR_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">NEAR 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">2.647</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.572, 6.632]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">57.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#d97706" title="UNI 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">UNI_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">UNI 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">2.118</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.765, 4.756]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">62.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#d97706" title="CHZ 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">CHZ_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">CHZ 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">2.116</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.456, 5.834]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">52.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#d97706" title="CRV 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">CRV_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">CRV 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.816</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.593, 3.966]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">73.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#d97706" title="LDO 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">LDO_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">LDO 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">2.94</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.943, 9.416]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">45.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#d97706" title="SUSHI 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">SUSHI_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">SUSHI 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.651</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.513, 3.861]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">80.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#d97706" title="CELR(Celer Network) 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">CELR_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">CELR(Celer Network) 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.987</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.65, 5.175]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">62.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#d97706" title="청산캐스케이드 비대칭(Amihud방향분리) - 신규지표">
-          <div class="card-top">
-            <div class="card-title">LIQCASCADE_ASYMMETRY_V1</div>
-            
-          </div>
-          <div class="card-subtitle">청산캐스케이드 비대칭(Amihud방향분리) - 신규지표</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.176</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.94, 1.465]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">753.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#d97706" title="ENA 자산전용 정밀최적화(자율모드)">
-          <div class="card-top">
-            <div class="card-title">ENA_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">ENA 자산전용 정밀최적화(자율모드)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">9.109</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.931, 45.74]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">16.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#d97706" title="BTC기준 상대가치스프레드(공적분단순화)">
-          <div class="card-top">
-            <div class="card-title">BTC_RELVALUE_SPREAD_V1</div>
-            
-          </div>
-          <div class="card-subtitle">BTC기준 상대가치스프레드(공적분단순화)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.156</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.994, 1.343]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">1366.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#d97706" title="확신캔들(body_ratio)연속+트레일링스탑">
-          <div class="card-top">
-            <div class="card-title">CONVICTION_CANDLE_TRAILING_V1</div>
-            
-          </div>
-          <div class="card-subtitle">확신캔들(body_ratio)연속+트레일링스탑</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.677</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.985, 2.8]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">90.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#d97706" title="멀티채널 브레이크아웃 합의(3채널 만장일치, 3-of-3)">
-          <div class="card-top">
-            <div class="card-title">MULTICHANNEL_3CH_UNANIMOUS_V1</div>
-            
-          </div>
-          <div class="card-subtitle">멀티채널 브레이크아웃 합의(3채널 만장일치, 3-of-3)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.223</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.987, 1.499]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">680.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#d97706" title="고변동성풀 트레일폭확장 스윕(메타엔진)">
-          <div class="card-top">
-            <div class="card-title">HIGHVOL_TRAIL_WIDEN_SWEEP_V1</div>
-            
-          </div>
-          <div class="card-subtitle">고변동성풀 트레일폭확장 스윕(메타엔진)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.108</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.937, 1.301]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">1072.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#d97706" title="1000PEPE 자산전용 정밀최적화(자율모드)">
-          <div class="card-top">
-            <div class="card-title">1000PEPE_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">1000PEPE 자산전용 정밀최적화(자율모드)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.639</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.918, 2.661]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">122.0</span></div>
-          </div>
-        </div></div>
-        </section>
-        <section class="status-section">
-          <h3><span class="badge" style="background:#6b7280">21</span> 판정불가 <code>(inconclusive)</code></h3>
-          <div class="card-grid"><div class="card" style="--accent:#6b7280" title="HYPE 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">HYPE_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">HYPE 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="MATIC 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">MATIC_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">MATIC 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">2.851</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 22.512]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">13.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="POL(MATIC 리브랜딩) 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">POL_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">POL(MATIC 리브랜딩) 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="APT 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">APT_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">APT 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="ARB 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">ARB_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">ARB 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="WAVES 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">WAVES_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">WAVES 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">9.267</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.283, 76.792]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">12.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="AKE 자산전용 정밀최적화(자율모드)">
-          <div class="card-top">
-            <div class="card-title">AKE_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">AKE 자산전용 정밀최적화(자율모드)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="T 자산전용 정밀최적화(자율모드)">
-          <div class="card-top">
-            <div class="card-title">T_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">T 자산전용 정밀최적화(자율모드)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="SUI 자산전용 정밀최적화(자율모드)">
-          <div class="card-top">
-            <div class="card-title">SUI_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">SUI 자산전용 정밀최적화(자율모드)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="MAGMA 자산전용 정밀최적화(자율모드)">
-          <div class="card-top">
-            <div class="card-title">MAGMA_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">MAGMA 자산전용 정밀최적화(자율모드)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="USELESS 자산전용 정밀최적화(자율모드)">
-          <div class="card-top">
-            <div class="card-title">USELESS_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">USELESS 자산전용 정밀최적화(자율모드)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="금(PAXG) 확정패턴재적용_GOLD_PAXG_DONCHIAN_V1">
-          <div class="card-top">
-            <div class="card-title">GOLD_PAXG_DONCHIAN_V1</div>
-            
-          </div>
-          <div class="card-subtitle">금(PAXG) 확정패턴재적용_GOLD_PAXG_DONCHIAN_V1</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">4.898</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.769, 178.4]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">7.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="금(PAXG) 확정패턴재적용_GOLD_PAXG_ATR_V1">
-          <div class="card-top">
-            <div class="card-title">GOLD_PAXG_ATR_V1</div>
-            
-          </div>
-          <div class="card-subtitle">금(PAXG) 확정패턴재적용_GOLD_PAXG_ATR_V1</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">0.699</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.062, 10.1]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">7.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="금(PAXG) 확정패턴재적용_GOLD_PAXG_KELTNER_V1">
-          <div class="card-top">
-            <div class="card-title">GOLD_PAXG_KELTNER_V1</div>
-            
-          </div>
-          <div class="card-subtitle">금(PAXG) 확정패턴재적용_GOLD_PAXG_KELTNER_V1</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">2.189</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.229, 48.8]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">7.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="금(PAXG) 확정패턴재적용_GOLD_PAXG_TAKER_V1">
-          <div class="card-top">
-            <div class="card-title">GOLD_PAXG_TAKER_V1</div>
-            
-          </div>
-          <div class="card-subtitle">금(PAXG) 확정패턴재적용_GOLD_PAXG_TAKER_V1</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">7.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="BULLA 자산전용 정밀최적화(자율모드)">
-          <div class="card-top">
-            <div class="card-title">BULLA_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">BULLA 자산전용 정밀최적화(자율모드)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="RAYSOL 자산전용 정밀최적화(자율모드)">
-          <div class="card-top">
-            <div class="card-title">RAYSOL_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">RAYSOL 자산전용 정밀최적화(자율모드)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="MARSCOIN 자산전용 정밀최적화(자율모드)">
-          <div class="card-top">
-            <div class="card-title">MARSCOIN_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">MARSCOIN 자산전용 정밀최적화(자율모드)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="PUMP 자산전용 정밀최적화(자율모드)">
-          <div class="card-top">
-            <div class="card-title">PUMP_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">PUMP 자산전용 정밀최적화(자율모드)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="PONS 자산전용 정밀최적화(자율모드)">
-          <div class="card-top">
-            <div class="card-title">PONS_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">PONS 자산전용 정밀최적화(자율모드)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#6b7280" title="TRUMP 자산전용 정밀최적화(자율모드)">
-          <div class="card-top">
-            <div class="card-title">TRUMP_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">TRUMP 자산전용 정밀최적화(자율모드)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div></div>
-        </section>
-        <section class="status-section">
-          <h3><span class="badge" style="background:#dc2626">62</span> 기각 <code>(rejected)</code></h3>
-          <div class="card-grid"><div class="card" style="--accent:#dc2626" title="ETH 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">ETH_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">ETH 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.473</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.41, 3.915]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">65.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="ADA 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">ADA_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">ADA 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">0.719</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.168, 1.706]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">68.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="UTC 세션/시간대 계절성(raw drift)">
-          <div class="card-top">
-            <div class="card-title">SESSION_HOUR_SEASONALITY</div>
-            
-          </div>
-          <div class="card-subtitle">UTC 세션/시간대 계절성(raw drift)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="LTC 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">LTC_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">LTC 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.238</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.369, 2.924]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">59.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="ETC 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">ETC_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">ETC 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.753</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 6.885]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">49.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="FIL 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">FIL_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">FIL 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.909</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.171, 6.551]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">57.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="XLM 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">XLM_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">XLM 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">2.384</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.277, 7.043]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">62.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="EOS 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">EOS_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">EOS 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.609</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.237, 7.297]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">21.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="VET 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">VET_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">VET 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">2.523</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.034, 8.95]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">43.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="INJ 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">INJ_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">INJ 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">2.117</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.265, 6.411]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">55.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="THETA 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">THETA_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">THETA 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.25</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.329, 3.345]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">65.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="ALGO 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">ALGO_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">ALGO 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.208</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.346, 3.187]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">54.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="SAND 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">SAND_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">SAND 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">2.611</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.289, 6.728]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">64.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="GRT 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">GRT_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">GRT 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">2.261</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.321, 6.942]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">56.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="ONE(Harmony) 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">ONE_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">ONE(Harmony) 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">2.743</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.172, 12.853]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">37.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="KAVA 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">KAVA_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">KAVA 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">0.507</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 2.312]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">46.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="ZIL 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">ZIL_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">ZIL 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">0.457</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.062, 1.169]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">71.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="AAVE 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">AAVE_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">AAVE 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.587</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.477, 3.656]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">70.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="RUNE 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">RUNE_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">RUNE 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">2.05</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.385, 5.68]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">55.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="DYDX 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">DYDX_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">DYDX 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.839</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.077, 5.623]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">57.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="GALA 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">GALA_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">GALA 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.002</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.199, 2.809]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">46.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="ENJ 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">ENJ_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">ENJ 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.902</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.503, 4.818]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">72.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="SNX 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">SNX_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">SNX 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.532</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.238, 4.715]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">57.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="OMG(OMG Network) 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">OMG_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">OMG(OMG Network) 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">4.493</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.224, 21.479]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">22.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="QTUM 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">QTUM_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">QTUM 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.01</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.373, 2.371]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">67.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="IOTA(MIOTA) 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">IOTA_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">IOTA(MIOTA) 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">2.566</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.239, 7.79]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">58.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="XTZ 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">XTZ_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">XTZ 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.485</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.206, 4.027]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">67.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="OGN(Origin) 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">OGN_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">OGN(Origin) 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">0.574</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.17, 1.317]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">76.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="IOST 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">IOST_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">IOST 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.681</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.052, 5.953]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">51.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="STORJ 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">STORJ_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">STORJ 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.328</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.174, 3.881]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">49.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="ANKR 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">ANKR_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">ANKR 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">0.296</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 0.951]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">54.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="APE(ApeCoin) 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">APE_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">APE(ApeCoin) 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">4.337</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.532, 20.484]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">47.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="FLOW 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">FLOW_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">FLOW 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.564</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.232, 5.016]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">52.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="MASK(Mask Network) 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">MASK_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">MASK(Mask Network) 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.543</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.301, 4.396]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">56.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="멀티TF장악캔들컨플루언스(dame_coi소스)">
-          <div class="card-top">
-            <div class="card-title">MTF_ENGULFING_CONFLUENCE_V1</div>
-            
-          </div>
-          <div class="card-subtitle">멀티TF장악캔들컨플루언스(dame_coi소스)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="dame_coi서브1 RSI극단+반전캔들(동적소폭타겟)">
-          <div class="card-top">
-            <div class="card-title">DAME_COI_RSI_EXTREME_REVERSAL_V1</div>
-            
-          </div>
-          <div class="card-subtitle">dame_coi서브1 RSI극단+반전캔들(동적소폭타겟)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="dame_coi서브2 숏바이어스 레짐필터">
-          <div class="card-top">
-            <div class="card-title">DAME_COI_SHORTBIAS_REGIME_V1</div>
-            
-          </div>
-          <div class="card-subtitle">dame_coi서브2 숏바이어스 레짐필터</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="dame_coi서브3 깊은되돌림+유동성스윕">
-          <div class="card-top">
-            <div class="card-title">DAME_COI_SWEEP_REVERSAL_V1</div>
-            
-          </div>
-          <div class="card-subtitle">dame_coi서브3 깊은되돌림+유동성스윕</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="dame_coi서브4 주봉vs일봉마감 반전필터">
-          <div class="card-top">
-            <div class="card-title">DAME_COI_WEEKLY_FILTER_V1</div>
-            
-          </div>
-          <div class="card-subtitle">dame_coi서브4 주봉vs일봉마감 반전필터</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="dame_coi서브5 RSI+반전캔들 진입+비대칭1:N R:R청산">
-          <div class="card-top">
-            <div class="card-title">DAME_COI_RSI_ASYM_RR_V1</div>
-            
-          </div>
-          <div class="card-subtitle">dame_coi서브5 RSI+반전캔들 진입+비대칭1:N R:R청산</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">0.81</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.404, 1.382]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">90.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="청산캐스케이드비대칭(D109)+트레일링스탑 재적용">
-          <div class="card-top">
-            <div class="card-title">LIQCASCADE_TRAILING_V1</div>
-            
-          </div>
-          <div class="card-subtitle">청산캐스케이드비대칭(D109)+트레일링스탑 재적용</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.046</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.797, 1.346]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">407.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="taker매수비율다이버전스+트레일링스탑">
-          <div class="card-top">
-            <div class="card-title">TAKER_DIVERGENCE_TRAILING_V1</div>
-            
-          </div>
-          <div class="card-subtitle">taker매수비율다이버전스+트레일링스탑</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">0.67</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 2.969]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">8.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="확신캔들+트레일링(21자산풀확장)">
-          <div class="card-top">
-            <div class="card-title">CONVICTION_CANDLE_BIGPOOL_V1</div>
-            
-          </div>
-          <div class="card-subtitle">확신캔들+트레일링(21자산풀확장)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.003</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.773, 1.274]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">423.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="평균체결규모급증+트레일링스탑">
-          <div class="card-top">
-            <div class="card-title">AVG_TRADE_SIZE_TRAILING_V1</div>
-            
-          </div>
-          <div class="card-subtitle">평균체결규모급증+트레일링스탑</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.05</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.407, 2.197]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">46.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="BTC taker매수비율 알트스필오버+트레일링스탑">
-          <div class="card-top">
-            <div class="card-title">BTC_TAKER_SPILLOVER_V1</div>
-            
-          </div>
-          <div class="card-subtitle">BTC taker매수비율 알트스필오버+트레일링스탑</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="taker매수비율 자산간상대순위+트레일링스탑">
-          <div class="card-top">
-            <div class="card-title">TAKER_RATIO_CROSSSECTIONAL_V1</div>
-            
-          </div>
-          <div class="card-subtitle">taker매수비율 자산간상대순위+트레일링스탑</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="돈치안브레이크아웃 피라미딩+트레일링스탑">
-          <div class="card-top">
-            <div class="card-title">PYRAMID_BREAKOUT_TRAILING_V1</div>
-            
-          </div>
-          <div class="card-subtitle">돈치안브레이크아웃 피라미딩+트레일링스탑</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="돈치안브레이크아웃 적응형2단계트레일링">
-          <div class="card-top">
-            <div class="card-title">ADAPTIVE_TRAIL_OPTIONALITY_V1</div>
-            
-          </div>
-          <div class="card-subtitle">돈치안브레이크아웃 적응형2단계트레일링</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.14</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.921, 1.39]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">935.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="dame_coi RSI극단반전캔들+확정트레일링스탑재조합">
-          <div class="card-top">
-            <div class="card-title">DAME_COI_RSI_TRAILING_V2</div>
-            
-          </div>
-          <div class="card-subtitle">dame_coi RSI극단반전캔들+확정트레일링스탑재조합</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">0.54</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.26, 0.995]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">57.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="hana_the_rich 4계층컨플루언스 재구성(FULL+ablation)">
-          <div class="card-top">
-            <div class="card-title">HANA_CONFLUENCE_V1</div>
-            
-          </div>
-          <div class="card-subtitle">hana_the_rich 4계층컨플루언스 재구성(FULL+ablation)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="돈치안+BTC상관관계레짐필터">
-          <div class="card-top">
-            <div class="card-title">CORRELATION_REGIME_DONCHIAN_V1</div>
-            
-          </div>
-          <div class="card-subtitle">돈치안+BTC상관관계레짐필터</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.49</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.117, 6.852]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">9.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="업비트프리미엄스필오버+거래량급증+트레일링스탑">
-          <div class="card-top">
-            <div class="card-title">UPBIT_PREMIUM_VOLUME_V1</div>
-            
-          </div>
-          <div class="card-subtitle">업비트프리미엄스필오버+거래량급증+트레일링스탑</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="횡단면 상대모멘텀 로테이션(시장중립)">
-          <div class="card-top">
-            <div class="card-title">CROSS_SECTIONAL_MOMENTUM_ROTATION_V1</div>
-            
-          </div>
-          <div class="card-subtitle">횡단면 상대모멘텀 로테이션(시장중립)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="돈치안브레이크아웃+펀딩비율(비극단정렬)이중확인+트레일링스탑">
-          <div class="card-top">
-            <div class="card-title">DONCHIAN_FUNDING_CONFIRMATION_V1</div>
-            
-          </div>
-          <div class="card-subtitle">돈치안브레이크아웃+펀딩비율(비극단정렬)이중확인+트레일링스탑</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="무기한선물-현물 베이시스 극단역추세">
-          <div class="card-top">
-            <div class="card-title">PERP_SPOT_BASIS_REVERSAL_V1</div>
-            
-          </div>
-          <div class="card-subtitle">무기한선물-현물 베이시스 극단역추세</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="라운드넘버(심리적가격대) 돌파 모멘텀/역추세">
-          <div class="card-top">
-            <div class="card-title">ROUND_NUMBER_BREAKOUT_V1</div>
-            
-          </div>
-          <div class="card-subtitle">라운드넘버(심리적가격대) 돌파 모멘텀/역추세</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="TAO 자산전용 정밀최적화(자율모드)">
-          <div class="card-top">
-            <div class="card-title">TAO_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">TAO 자산전용 정밀최적화(자율모드)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">3.76</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 25.315]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">13.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="돈치안패밀리 합의붕괴청산(Exit-B)">
-          <div class="card-top">
-            <div class="card-title">DONCHIAN_FAMILY_EXIT_B_CONSENSUS_BREAKDOWN</div>
-            <span class="card-badge" style="background:#dc262622;color:#dc2626;border-color:#dc262655">donchian_channel_family</span>
-          </div>
-          <div class="card-subtitle">돈치안패밀리 합의붕괴청산(Exit-B)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">8334.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="돈치안패밀리 ATR동적청산(Exit-C)">
-          <div class="card-top">
-            <div class="card-title">DONCHIAN_FAMILY_EXIT_C_ATR_DYNAMIC</div>
-            <span class="card-badge" style="background:#dc262622;color:#dc2626;border-color:#dc262655">donchian_channel_family</span>
-          </div>
-          <div class="card-subtitle">돈치안패밀리 ATR동적청산(Exit-C)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">5288.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="FLOCK 자산전용 정밀최적화(자율모드)">
-          <div class="card-top">
-            <div class="card-title">FLOCK_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">FLOCK 자산전용 정밀최적화(자율모드)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="WLD 자산전용 정밀최적화(자율모드)">
-          <div class="card-top">
-            <div class="card-title">WLD_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">WLD 자산전용 정밀최적화(자율모드)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.944</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 11.592]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">23.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#dc2626" title="JUP 자산전용 정밀최적화(자율모드)">
-          <div class="card-top">
-            <div class="card-title">JUP_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">JUP 자산전용 정밀최적화(자율모드)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.868</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 44.831]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">11.0</span></div>
-          </div>
-        </div></div>
-        </section>
-        <section class="status-section">
-          <h3><span class="badge" style="background:#991b1b">5</span> 철회 <code>(retracted)</code></h3>
-          <div class="card-grid"><div class="card" style="--accent:#991b1b" title="상하방 변동성 비대칭(vol-skew) 범용신호">
-          <div class="card-top">
-            <div class="card-title">VOLSKEW_CROSSASSET</div>
-            
-          </div>
-          <div class="card-subtitle">상하방 변동성 비대칭(vol-skew) 범용신호</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
-          </div>
-        </div><div class="card" style="--accent:#991b1b" title="FTM 자산전용 정밀최적화">
-          <div class="card-top">
-            <div class="card-title">FTM_MACD_DEEP_OPT</div>
-            
-          </div>
-          <div class="card-subtitle">FTM 자산전용 정밀최적화</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">5.532</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[1.387, 18.43]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">28.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#991b1b" title="수익률 왜도(skewness) 비대칭 - 신규지표">
-          <div class="card-top">
-            <div class="card-title">SKEWNESS_ASYMMETRY_V1</div>
-            
-          </div>
-          <div class="card-subtitle">수익률 왜도(skewness) 비대칭 - 신규지표</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.979</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[1.715, 2.28]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">1623.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#991b1b" title="첨도(kurtosis)극단+모멘텀 - 신규지표">
-          <div class="card-top">
-            <div class="card-title">KURTOSIS_MOMENTUM_V1</div>
-            
-          </div>
-          <div class="card-subtitle">첨도(kurtosis)극단+모멘텀 - 신규지표</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">3.446</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[2.724, 4.353]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">783.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#991b1b" title="자기상관(autocorrelation)레짐 - 신규지표">
-          <div class="card-top">
-            <div class="card-title">AUTOCORR_REGIME_V1</div>
-            
-          </div>
-          <div class="card-subtitle">자기상관(autocorrelation)레짐 - 신규지표</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.788</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[1.578, 2.028]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">2171.0</span></div>
           </div>
         </div></div>
         </section>
@@ -4217,5 +3066,1347 @@
 
 <h2>4. Discovery Log 최근 항목</h2>
 <ul><li>D211: 고변동성풀 트레일폭확장 스윕(메타엔진 자동생성) — **근접미확정**</li><li>D210: 고변동성풀 트레일폭확장 스윕(메타엔진 자동생성) — **확정**</li><li>D209: donchian_channel_family 통합청산방식 비교(Exit-B/Exit-C) — **기각(둘다 TRAIN게이트 미달)**</li><li>D203: 멀티타임프레임 브레이크아웃 합의(1H+4H 동시돌파) — **확정이나 이 세션 확정알파 중 가장 얇은 CI**</li><li>D202: 멀티채널합의+광폭트레일링(옵셔널리티/꼬리위험프리미엄 구조) — **확정! 진짜 옵션적 페이오프 시그니처 실증, 그러나 MDD 이 세션 최악**</li><li>D201: 멀티채널합의 민감도확장(V1 만장일치 / V2,V3 +볼린저돌파) — **"더 엄격하면 더 좋다"는 직관 반박, D198 설계 재확인**</li><li>D200: 다중비교보정 재재실행(D197/D198 반영, 총23건) — **BH-FDR 9건 생존, D198/D197 둘다 신규합류**</li><li>D199: D194 신호중복 정밀조사 — **100% D142부분집합 + 켈트너78.9%/ATR확장40.7% 중복 실증, 배타적틈새는 edge없음**</li><li>D198: 멀티채널 브레이크아웃 합의(돈치안+ATR확장+켈트너 2-of-3) — **신규 확정! 브레이크아웃계열 최고 CI**</li><li>D197: 돈치안브레이크아웃+펀딩비율변화율확인 — **확정, 그러나 D194와 동일 중복의혹**</li><li>D196: 포트폴리오 노출액 상한 룰(신규배포/사이징증대 자동보류) 신설</li><li>D195: 다중비교보정 재실행(D191/D193/D194 반영) — **D194가 셋 중 유일하게 BH-FDR 생존**</li></ul>
+</div>
+
+<div id="tab-graph" class="tab-panel" hidden>
+<h2>알파 관계 그래프 (살아있는 알파만 - 기각/철회 제외)</h2>
+<p class="small muted">노드 크기 = 표본크기(n, TEST 거래건수) · 노드 색 = 상태 · 골드색 작은 노드 = correlation_group 클러스터 허브(같은 축을 공유하는 알파들이 그쪽으로 모임). 드래그로 이동, 휠/핀치로 확대축소, 노드 탭하면 상세정보.</p>
+<div class="graph-legend">
+  <span><span class="dot" style="background:#7c3aed"></span>실전전환후보</span><span><span class="dot" style="background:#059669"></span>페이퍼통과(실전후보)</span><span><span class="dot" style="background:#16a34a"></span>페이퍼가동중</span><span><span class="dot" style="background:#65a30d"></span>페이퍼가동중(신호중복군)</span><span><span class="dot" style="background:#2563eb"></span>확정(페이퍼미가동)</span><span><span class="dot" style="background:#0891b2"></span>포워드테스팅(미확정)</span>
+  <span><span class="dot" style="background:#e0b34d"></span>correlation_group 허브</span>
+</div>
+<div id="graph-wrap">
+  <svg id="graph-svg"></svg>
+  <div class="graph-hint">드래그=이동 · 휠/핀치=확대축소 · 탭/클릭=상세</div>
+</div>
+</div>
+<div id="graph-detail" hidden>
+  <div class="gd-head"><div class="gd-title" id="gd-title"></div><button class="gd-close" id="gd-close" aria-label="닫기">✕</button></div>
+  <div class="gd-body" id="gd-body"></div>
+</div>
+
+<div id="tab-dead" class="tab-panel" hidden>
+<h2>기각 / 근접미확정 / 판정불가 / 철회</h2>
+<p class="small muted">통계적으로 확정되지 못했거나 철회된 항목 - 그래프뷰에서는 제외되지만 재탐색 판단을 위해 기록은 유지.</p>
+
+        <section class="status-section">
+          <h3><span class="badge" style="background:#d97706">20</span> 근접미확정 <code>(near_miss)</code></h3>
+          <div class="card-grid"><div class="card" style="--accent:#d97706" title="SOL 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">SOL_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">SOL 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.932</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.857, 7.286]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">63.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#d97706" title="LINK 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">LINK_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">LINK 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.58</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.919, 5.815]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">64.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#d97706" title="XRP 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">XRP_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">XRP 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.346</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.487, 7.498]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">53.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#d97706" title="DOGE 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">DOGE_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">DOGE 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.69</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.822, 7.198]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">44.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#d97706" title="TRX 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">TRX_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">TRX 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">4.248</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.46, 12.128]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">53.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#d97706" title="ATOM 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">ATOM_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">ATOM 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.583</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.697, 7.337]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">50.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#d97706" title="NEAR 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">NEAR_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">NEAR 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.647</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.572, 6.632]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">57.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#d97706" title="UNI 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">UNI_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">UNI 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.118</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.765, 4.756]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">62.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#d97706" title="CHZ 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">CHZ_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">CHZ 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.116</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.456, 5.834]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">52.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#d97706" title="CRV 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">CRV_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">CRV 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.816</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.593, 3.966]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">73.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#d97706" title="LDO 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">LDO_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">LDO 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.94</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.943, 9.416]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">45.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#d97706" title="SUSHI 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">SUSHI_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">SUSHI 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.651</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.513, 3.861]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">80.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#d97706" title="CELR(Celer Network) 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">CELR_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">CELR(Celer Network) 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.987</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.65, 5.175]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">62.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#d97706" title="청산캐스케이드 비대칭(Amihud방향분리) - 신규지표">
+          <div class="card-top">
+            <div class="card-title">LIQCASCADE_ASYMMETRY_V1</div>
+            
+          </div>
+          <div class="card-subtitle">청산캐스케이드 비대칭(Amihud방향분리) - 신규지표</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.176</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.94, 1.465]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">753.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#d97706" title="ENA 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">ENA_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">ENA 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">9.109</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.931, 45.74]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">16.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#d97706" title="BTC기준 상대가치스프레드(공적분단순화)">
+          <div class="card-top">
+            <div class="card-title">BTC_RELVALUE_SPREAD_V1</div>
+            
+          </div>
+          <div class="card-subtitle">BTC기준 상대가치스프레드(공적분단순화)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.156</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.994, 1.343]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">1366.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#d97706" title="확신캔들(body_ratio)연속+트레일링스탑">
+          <div class="card-top">
+            <div class="card-title">CONVICTION_CANDLE_TRAILING_V1</div>
+            
+          </div>
+          <div class="card-subtitle">확신캔들(body_ratio)연속+트레일링스탑</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.677</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.985, 2.8]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">90.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#d97706" title="멀티채널 브레이크아웃 합의(3채널 만장일치, 3-of-3)">
+          <div class="card-top">
+            <div class="card-title">MULTICHANNEL_3CH_UNANIMOUS_V1</div>
+            
+          </div>
+          <div class="card-subtitle">멀티채널 브레이크아웃 합의(3채널 만장일치, 3-of-3)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.223</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.987, 1.499]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">680.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#d97706" title="고변동성풀 트레일폭확장 스윕(메타엔진)">
+          <div class="card-top">
+            <div class="card-title">HIGHVOL_TRAIL_WIDEN_SWEEP_V1</div>
+            
+          </div>
+          <div class="card-subtitle">고변동성풀 트레일폭확장 스윕(메타엔진)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.108</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.937, 1.301]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">1072.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#d97706" title="1000PEPE 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">1000PEPE_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">1000PEPE 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.639</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.918, 2.661]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">122.0</span></div>
+          </div>
+        </div></div>
+        </section>
+        <section class="status-section">
+          <h3><span class="badge" style="background:#6b7280">21</span> 판정불가 <code>(inconclusive)</code></h3>
+          <div class="card-grid"><div class="card" style="--accent:#6b7280" title="HYPE 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">HYPE_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">HYPE 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="MATIC 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">MATIC_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">MATIC 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.851</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 22.512]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">13.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="POL(MATIC 리브랜딩) 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">POL_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">POL(MATIC 리브랜딩) 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="APT 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">APT_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">APT 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="ARB 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">ARB_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">ARB 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="WAVES 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">WAVES_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">WAVES 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">9.267</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.283, 76.792]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">12.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="AKE 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">AKE_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">AKE 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="T 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">T_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">T 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="SUI 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">SUI_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">SUI 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="MAGMA 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">MAGMA_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">MAGMA 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="USELESS 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">USELESS_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">USELESS 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="금(PAXG) 확정패턴재적용_GOLD_PAXG_DONCHIAN_V1">
+          <div class="card-top">
+            <div class="card-title">GOLD_PAXG_DONCHIAN_V1</div>
+            
+          </div>
+          <div class="card-subtitle">금(PAXG) 확정패턴재적용_GOLD_PAXG_DONCHIAN_V1</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">4.898</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.769, 178.4]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">7.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="금(PAXG) 확정패턴재적용_GOLD_PAXG_ATR_V1">
+          <div class="card-top">
+            <div class="card-title">GOLD_PAXG_ATR_V1</div>
+            
+          </div>
+          <div class="card-subtitle">금(PAXG) 확정패턴재적용_GOLD_PAXG_ATR_V1</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">0.699</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.062, 10.1]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">7.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="금(PAXG) 확정패턴재적용_GOLD_PAXG_KELTNER_V1">
+          <div class="card-top">
+            <div class="card-title">GOLD_PAXG_KELTNER_V1</div>
+            
+          </div>
+          <div class="card-subtitle">금(PAXG) 확정패턴재적용_GOLD_PAXG_KELTNER_V1</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.189</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.229, 48.8]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">7.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="금(PAXG) 확정패턴재적용_GOLD_PAXG_TAKER_V1">
+          <div class="card-top">
+            <div class="card-title">GOLD_PAXG_TAKER_V1</div>
+            
+          </div>
+          <div class="card-subtitle">금(PAXG) 확정패턴재적용_GOLD_PAXG_TAKER_V1</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">7.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="BULLA 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">BULLA_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">BULLA 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="RAYSOL 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">RAYSOL_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">RAYSOL 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="MARSCOIN 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">MARSCOIN_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">MARSCOIN 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="PUMP 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">PUMP_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">PUMP 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="PONS 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">PONS_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">PONS 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#6b7280" title="TRUMP 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">TRUMP_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">TRUMP 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div></div>
+        </section>
+        <section class="status-section">
+          <h3><span class="badge" style="background:#dc2626">63</span> 기각 <code>(rejected)</code></h3>
+          <div class="card-grid"><div class="card" style="--accent:#dc2626" title="ETH 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">ETH_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">ETH 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.473</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.41, 3.915]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">65.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="ADA 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">ADA_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">ADA 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">0.719</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.168, 1.706]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">68.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="UTC 세션/시간대 계절성(raw drift)">
+          <div class="card-top">
+            <div class="card-title">SESSION_HOUR_SEASONALITY</div>
+            
+          </div>
+          <div class="card-subtitle">UTC 세션/시간대 계절성(raw drift)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="LTC 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">LTC_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">LTC 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.238</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.369, 2.924]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">59.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="ETC 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">ETC_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">ETC 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.753</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 6.885]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">49.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="FIL 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">FIL_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">FIL 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.909</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.171, 6.551]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">57.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="XLM 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">XLM_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">XLM 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.384</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.277, 7.043]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">62.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="EOS 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">EOS_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">EOS 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.609</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.237, 7.297]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">21.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="VET 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">VET_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">VET 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.523</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.034, 8.95]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">43.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="INJ 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">INJ_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">INJ 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.117</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.265, 6.411]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">55.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="THETA 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">THETA_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">THETA 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.25</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.329, 3.345]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">65.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="ALGO 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">ALGO_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">ALGO 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.208</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.346, 3.187]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">54.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="SAND 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">SAND_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">SAND 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.611</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.289, 6.728]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">64.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="GRT 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">GRT_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">GRT 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.261</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.321, 6.942]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">56.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="ONE(Harmony) 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">ONE_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">ONE(Harmony) 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.743</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.172, 12.853]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">37.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="KAVA 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">KAVA_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">KAVA 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">0.507</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 2.312]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">46.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="ZIL 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">ZIL_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">ZIL 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">0.457</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.062, 1.169]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">71.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="AAVE 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">AAVE_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">AAVE 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.587</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.477, 3.656]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">70.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="RUNE 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">RUNE_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">RUNE 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.05</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.385, 5.68]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">55.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="DYDX 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">DYDX_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">DYDX 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.839</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.077, 5.623]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">57.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="GALA 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">GALA_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">GALA 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.002</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.199, 2.809]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">46.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="ENJ 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">ENJ_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">ENJ 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.902</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.503, 4.818]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">72.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="SNX 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">SNX_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">SNX 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.532</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.238, 4.715]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">57.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="OMG(OMG Network) 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">OMG_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">OMG(OMG Network) 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">4.493</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.224, 21.479]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">22.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="QTUM 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">QTUM_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">QTUM 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.01</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.373, 2.371]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">67.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="IOTA(MIOTA) 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">IOTA_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">IOTA(MIOTA) 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.566</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.239, 7.79]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">58.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="XTZ 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">XTZ_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">XTZ 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.485</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.206, 4.027]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">67.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="OGN(Origin) 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">OGN_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">OGN(Origin) 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">0.574</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.17, 1.317]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">76.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="IOST 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">IOST_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">IOST 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.681</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.052, 5.953]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">51.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="STORJ 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">STORJ_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">STORJ 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.328</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.174, 3.881]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">49.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="ANKR 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">ANKR_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">ANKR 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">0.296</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 0.951]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">54.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="APE(ApeCoin) 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">APE_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">APE(ApeCoin) 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">4.337</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.532, 20.484]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">47.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="FLOW 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">FLOW_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">FLOW 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.564</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.232, 5.016]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">52.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="MASK(Mask Network) 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">MASK_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">MASK(Mask Network) 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.543</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.301, 4.396]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">56.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="멀티TF장악캔들컨플루언스(dame_coi소스)">
+          <div class="card-top">
+            <div class="card-title">MTF_ENGULFING_CONFLUENCE_V1</div>
+            
+          </div>
+          <div class="card-subtitle">멀티TF장악캔들컨플루언스(dame_coi소스)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="dame_coi서브1 RSI극단+반전캔들(동적소폭타겟)">
+          <div class="card-top">
+            <div class="card-title">DAME_COI_RSI_EXTREME_REVERSAL_V1</div>
+            
+          </div>
+          <div class="card-subtitle">dame_coi서브1 RSI극단+반전캔들(동적소폭타겟)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="dame_coi서브2 숏바이어스 레짐필터">
+          <div class="card-top">
+            <div class="card-title">DAME_COI_SHORTBIAS_REGIME_V1</div>
+            
+          </div>
+          <div class="card-subtitle">dame_coi서브2 숏바이어스 레짐필터</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="dame_coi서브3 깊은되돌림+유동성스윕">
+          <div class="card-top">
+            <div class="card-title">DAME_COI_SWEEP_REVERSAL_V1</div>
+            
+          </div>
+          <div class="card-subtitle">dame_coi서브3 깊은되돌림+유동성스윕</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="dame_coi서브4 주봉vs일봉마감 반전필터">
+          <div class="card-top">
+            <div class="card-title">DAME_COI_WEEKLY_FILTER_V1</div>
+            
+          </div>
+          <div class="card-subtitle">dame_coi서브4 주봉vs일봉마감 반전필터</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="dame_coi서브5 RSI+반전캔들 진입+비대칭1:N R:R청산">
+          <div class="card-top">
+            <div class="card-title">DAME_COI_RSI_ASYM_RR_V1</div>
+            
+          </div>
+          <div class="card-subtitle">dame_coi서브5 RSI+반전캔들 진입+비대칭1:N R:R청산</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">0.81</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.404, 1.382]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">90.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="청산캐스케이드비대칭(D109)+트레일링스탑 재적용">
+          <div class="card-top">
+            <div class="card-title">LIQCASCADE_TRAILING_V1</div>
+            
+          </div>
+          <div class="card-subtitle">청산캐스케이드비대칭(D109)+트레일링스탑 재적용</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.046</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.797, 1.346]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">407.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="taker매수비율다이버전스+트레일링스탑">
+          <div class="card-top">
+            <div class="card-title">TAKER_DIVERGENCE_TRAILING_V1</div>
+            
+          </div>
+          <div class="card-subtitle">taker매수비율다이버전스+트레일링스탑</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">0.67</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 2.969]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">8.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="확신캔들+트레일링(21자산풀확장)">
+          <div class="card-top">
+            <div class="card-title">CONVICTION_CANDLE_BIGPOOL_V1</div>
+            
+          </div>
+          <div class="card-subtitle">확신캔들+트레일링(21자산풀확장)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.003</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.773, 1.274]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">423.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="평균체결규모급증+트레일링스탑">
+          <div class="card-top">
+            <div class="card-title">AVG_TRADE_SIZE_TRAILING_V1</div>
+            
+          </div>
+          <div class="card-subtitle">평균체결규모급증+트레일링스탑</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.05</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.407, 2.197]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">46.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="BTC taker매수비율 알트스필오버+트레일링스탑">
+          <div class="card-top">
+            <div class="card-title">BTC_TAKER_SPILLOVER_V1</div>
+            
+          </div>
+          <div class="card-subtitle">BTC taker매수비율 알트스필오버+트레일링스탑</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="taker매수비율 자산간상대순위+트레일링스탑">
+          <div class="card-top">
+            <div class="card-title">TAKER_RATIO_CROSSSECTIONAL_V1</div>
+            
+          </div>
+          <div class="card-subtitle">taker매수비율 자산간상대순위+트레일링스탑</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="돈치안브레이크아웃 피라미딩+트레일링스탑">
+          <div class="card-top">
+            <div class="card-title">PYRAMID_BREAKOUT_TRAILING_V1</div>
+            
+          </div>
+          <div class="card-subtitle">돈치안브레이크아웃 피라미딩+트레일링스탑</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="돈치안브레이크아웃 적응형2단계트레일링">
+          <div class="card-top">
+            <div class="card-title">ADAPTIVE_TRAIL_OPTIONALITY_V1</div>
+            
+          </div>
+          <div class="card-subtitle">돈치안브레이크아웃 적응형2단계트레일링</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.14</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.921, 1.39]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">935.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="dame_coi RSI극단반전캔들+확정트레일링스탑재조합">
+          <div class="card-top">
+            <div class="card-title">DAME_COI_RSI_TRAILING_V2</div>
+            
+          </div>
+          <div class="card-subtitle">dame_coi RSI극단반전캔들+확정트레일링스탑재조합</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">0.54</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.26, 0.995]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">57.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="hana_the_rich 4계층컨플루언스 재구성(FULL+ablation)">
+          <div class="card-top">
+            <div class="card-title">HANA_CONFLUENCE_V1</div>
+            
+          </div>
+          <div class="card-subtitle">hana_the_rich 4계층컨플루언스 재구성(FULL+ablation)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="돈치안+BTC상관관계레짐필터">
+          <div class="card-top">
+            <div class="card-title">CORRELATION_REGIME_DONCHIAN_V1</div>
+            
+          </div>
+          <div class="card-subtitle">돈치안+BTC상관관계레짐필터</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.49</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.117, 6.852]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">9.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="업비트프리미엄스필오버+거래량급증+트레일링스탑">
+          <div class="card-top">
+            <div class="card-title">UPBIT_PREMIUM_VOLUME_V1</div>
+            
+          </div>
+          <div class="card-subtitle">업비트프리미엄스필오버+거래량급증+트레일링스탑</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="횡단면 상대모멘텀 로테이션(시장중립)">
+          <div class="card-top">
+            <div class="card-title">CROSS_SECTIONAL_MOMENTUM_ROTATION_V1</div>
+            
+          </div>
+          <div class="card-subtitle">횡단면 상대모멘텀 로테이션(시장중립)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="돈치안브레이크아웃+펀딩비율(비극단정렬)이중확인+트레일링스탑">
+          <div class="card-top">
+            <div class="card-title">DONCHIAN_FUNDING_CONFIRMATION_V1</div>
+            
+          </div>
+          <div class="card-subtitle">돈치안브레이크아웃+펀딩비율(비극단정렬)이중확인+트레일링스탑</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="무기한선물-현물 베이시스 극단역추세">
+          <div class="card-top">
+            <div class="card-title">PERP_SPOT_BASIS_REVERSAL_V1</div>
+            
+          </div>
+          <div class="card-subtitle">무기한선물-현물 베이시스 극단역추세</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="라운드넘버(심리적가격대) 돌파 모멘텀/역추세">
+          <div class="card-top">
+            <div class="card-title">ROUND_NUMBER_BREAKOUT_V1</div>
+            
+          </div>
+          <div class="card-subtitle">라운드넘버(심리적가격대) 돌파 모멘텀/역추세</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="TAO 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">TAO_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">TAO 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">3.76</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 25.315]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">13.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="돈치안패밀리 합의붕괴청산(Exit-B)">
+          <div class="card-top">
+            <div class="card-title">DONCHIAN_FAMILY_EXIT_B_CONSENSUS_BREAKDOWN</div>
+            <span class="card-badge" style="background:#dc262622;color:#dc2626;border-color:#dc262655">donchian_channel_family</span>
+          </div>
+          <div class="card-subtitle">돈치안패밀리 합의붕괴청산(Exit-B)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">8334.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="돈치안패밀리 ATR동적청산(Exit-C)">
+          <div class="card-top">
+            <div class="card-title">DONCHIAN_FAMILY_EXIT_C_ATR_DYNAMIC</div>
+            <span class="card-badge" style="background:#dc262622;color:#dc2626;border-color:#dc262655">donchian_channel_family</span>
+          </div>
+          <div class="card-subtitle">돈치안패밀리 ATR동적청산(Exit-C)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">5288.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="FLOCK 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">FLOCK_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">FLOCK 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="WLD 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">WLD_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">WLD 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.944</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 11.592]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">23.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="JUP 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">JUP_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">JUP 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.868</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 44.831]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">11.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#dc2626" title="ASTER 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">ASTER_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">ASTER 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">0.0</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 0.0]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">9.0</span></div>
+          </div>
+        </div></div>
+        </section>
+        <section class="status-section">
+          <h3><span class="badge" style="background:#991b1b">5</span> 철회 <code>(retracted)</code></h3>
+          <div class="card-grid"><div class="card" style="--accent:#991b1b" title="상하방 변동성 비대칭(vol-skew) 범용신호">
+          <div class="card-top">
+            <div class="card-title">VOLSKEW_CROSSASSET</div>
+            
+          </div>
+          <div class="card-subtitle">상하방 변동성 비대칭(vol-skew) 범용신호</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+          </div>
+        </div><div class="card" style="--accent:#991b1b" title="FTM 자산전용 정밀최적화">
+          <div class="card-top">
+            <div class="card-title">FTM_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">FTM 자산전용 정밀최적화</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">5.532</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[1.387, 18.43]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">28.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#991b1b" title="수익률 왜도(skewness) 비대칭 - 신규지표">
+          <div class="card-top">
+            <div class="card-title">SKEWNESS_ASYMMETRY_V1</div>
+            
+          </div>
+          <div class="card-subtitle">수익률 왜도(skewness) 비대칭 - 신규지표</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.979</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[1.715, 2.28]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">1623.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#991b1b" title="첨도(kurtosis)극단+모멘텀 - 신규지표">
+          <div class="card-top">
+            <div class="card-title">KURTOSIS_MOMENTUM_V1</div>
+            
+          </div>
+          <div class="card-subtitle">첨도(kurtosis)극단+모멘텀 - 신규지표</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">3.446</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[2.724, 4.353]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">783.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#991b1b" title="자기상관(autocorrelation)레짐 - 신규지표">
+          <div class="card-top">
+            <div class="card-title">AUTOCORR_REGIME_V1</div>
+            
+          </div>
+          <div class="card-subtitle">자기상관(autocorrelation)레짐 - 신규지표</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.788</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[1.578, 2.028]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">2171.0</span></div>
+          </div>
+        </div></div>
+        </section>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
+<script>
+(function() {
+  var GRAPH_DATA = {"nodes": [{"id": "ZEC_COMPANION_V1", "type": "alpha", "name": "ZEC MACD MTF Companion (원조 확정 스펙)", "status": "confirmed", "color": "#2563eb", "statusLabel": "확정(페이퍼미가동)", "hypothesis": "MACD MTF 크로스+SwitchLock+④필터+Breakeven50", "correlationGroup": "", "testPf": "6.142", "ciLow": "2.081", "ciHigh": "16.933", "testN": "52.0", "trainPf": "1.375", "notes": "세션 baseline. [정정 2026-09-04] test_n을 21로 잘못 기록했었음 - zec_final_confirmed_spec_report.md 원본 확인 결과 정확히 52건, 승률42.3%, MDD9.72%. [CAVEAT-2026-09-03] T5M_Research_Protocol.md(2026-08-26)에 의하면 ZEC TEST(2024-2026) 구간이 프로젝트 전역사에서 40-50회+ 재사용됨(researcher degrees of freedom) - 해당문서는 이 구간을 확정용 클린OOS로 더는 주장 안하기로 함. TRAIN(1.375)<TEST(6.142) 패턴은 전형적 과최적화 징후는 아니나 완전독립 최초검증이라는 강한주장은 자제. LF26 참고.", "r": 11.5}, {"id": "BTC_MACD_DEEP_OPT", "type": "alpha", "name": "BTC 자산전용 정밀최적화", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "ZEC와 동일 구조를 BTC 자체 파라미터로 재탐색", "correlationGroup": "", "testPf": "6.368", "ciLow": "1.674", "ciHigh": "15.757", "testN": "56.0", "trainPf": "4.468", "notes": "[D64 슬리피지버그수정 반영, 2026-09-03] 절대값->가격비례(0.05%) 슬리피지로 재검증, 여전히 확정(CI하한1.674). 원래수치(버그판): PF=7.139,CI=[1.876,18.329] - 방향/결론 불변, 크기만 소폭 하향(더 정확).", "r": 11.7}, {"id": "BNB_MACD_DEEP_OPT", "type": "alpha", "name": "BNB 자산전용 정밀최적화", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "BTC와 동일 파이프라인을 BNB에 적용", "correlationGroup": "", "testPf": "3.746", "ciLow": "1.303", "ciHigh": "8.394", "testN": "68.0", "trainPf": "5.971", "notes": "LF25: 방법론 2번째 재현 성공 - BTC/BNB 둘 다 시총최상위·최장상장", "r": 12.1}, {"id": "AVAX_MACD_DEEP_OPT", "type": "alpha", "name": "AVAX 자산전용 정밀최적화", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "동일 파이프라인을 AVAX에 적용", "correlationGroup": "", "testPf": "4.596", "ciLow": "1.069", "ciHigh": "12.281", "testN": "51.0", "trainPf": "5.799", "notes": "LF25 재검증 3번째 성공. 밈/중형주 계열도 확정 가능함을 보여줌(시총최상위 전용 가설 약화)", "r": 11.5}, {"id": "DOT_MACD_DEEP_OPT", "type": "alpha", "name": "DOT 자산전용 정밀최적화", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "동일 파이프라인을 DOT에 적용", "correlationGroup": "", "testPf": "3.594", "ciLow": "1.215", "ciHigh": "8.955", "testN": "49.0", "trainPf": "4.053", "notes": "5번째 확정. TP를 낮출수록(25%) 오히려 좋아진 유일한 사례 - 다른 확정자산(BTC/AVAX)과 반대패턴", "r": 11.4}, {"id": "DONCHIAN_TRAILING_V1", "type": "alpha", "name": "돈치안브레이크아웃+트레일링스탑", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "200봉 최고/최저 이탈시 그 방향 진입, 극단값 대비 12% 트레일링스탑 청산(고정보유 아님) - 필터없는 순수추세추종", "correlationGroup": "donchian_channel_family", "testPf": "1.415", "ciLow": "1.164", "ciHigh": "1.712", "testN": "883.0", "trainPf": "1.346", "notes": "[2026-09-04] 페이퍼가동 시작(zec_donchian_trailing_paper_engine.py). 대상 6자산(SOL/ADA/XRP/LINK/DOGE/ZEC)만 - BTC/ETH/BNB는 개별PF<1이라 제외. 사이징: CI하한+PF점추정 반영 보수적고정비율(켈리아님), BASE_CAPITAL1000USDT x 6%=60USDT 총배정, 자산별 7~15USDT. 킬스위치 타이트화(연속손실3회, 포트폴리오4회) - MDD-94.71%경고 반영. 예약작업 ZEC_Donchian_Trailing_Paper_Poll 등록완료.", "r": 22.6}, {"id": "VWAP_DEVIATION_V1", "type": "alpha", "name": "VWAP괴리 모멘텀", "status": "confirmed", "color": "#2563eb", "statusLabel": "확정(페이퍼미가동)", "hypothesis": "96봉 VWAP(거래량가중평균가) 대비 가격괴리의 z-score(192봉정규화)가 |z|>=2.5일때 그 방향 순응(모멘텀), 48봉 고정보유", "correlationGroup": "", "testPf": "1.328", "ciLow": "1.105", "ciHigh": "1.593", "testN": "972.0", "trainPf": "1.332", "notes": "D154. 8/9자산 개별PF>1(BNB만 PF<1=0.768). LF11 비용배수 2.25배(기준2~3배 충족하나 D142(5.71배)보다 훨씬 얇음). LF13 MAE평균-4.22%/14.3%가 MAE<=-8%. [LF2] 복리MDD -88.78%(위험). **경고: 비용스트레스 2x/3x 둘다 CI가 1을 포함(생존실패)** - D142(3x에서도 생존)와 대조적으로 매우 얇은 마진의 확정. 페이퍼전환 전 사용자 판단 필요.", "r": 23.3}, {"id": "ATR_EXPANSION_TRAILING_V1", "type": "alpha", "name": "ATR확장+트레일링스탑", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "ATR(14봉)이 최근70봉평균 대비 1.3배이상 확장시 직전6봉추세방향 순응, 극단값대비15%트레일링스탑 청산", "correlationGroup": "donchian_channel_family", "testPf": "1.499", "ciLow": "1.225", "ciHigh": "1.811", "testN": "812.0", "trainPf": "1.308", "notes": "[2026-09-04] 표준프로세스(확정->사이징->페이퍼콜드스타트, 승인대기없이 자동) 적용. 사이징: BASE_CAPITAL1000x6%=60USDT, 자산별 ETH6/SOL8/ADA8/XRP7/LINK7/DOGE9/ZEC15. BTC/BNB 제외(개별PF<1). 킬스위치 D142와 동일(연속손실3회/포트폴리오4회). 예약작업 ZEC_ATR_Trailing_Paper_Poll 등록완료, 7자산 콜드스타트 확인.", "r": 22.0}, {"id": "KELTNER_TRAILING_V1", "type": "alpha", "name": "켈트너채널돌파+트레일링스탑", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "close가 켈트너채널(EMA20중심+ATR20*1.5폭) 상단/하단 돌파시 그방향 진입, 15%트레일링스탑 청산", "correlationGroup": "donchian_channel_family", "testPf": "1.289", "ciLow": "1.072", "ciHigh": "1.537", "testN": "946.0", "trainPf": "1.381", "notes": "[2026-09-04] 표준프로세스 적용, 리스크반영해 보수적사이징(4%,40USDT: BTC4/SOL5/BNB4/ADA5/XRP6/LINK6/DOGE4/ZEC6)+타이트킬스위치(연속손실2회/포트폴리오3회). 예약작업 ZEC_Keltner_Trailing_Paper_Poll 등록, 8자산 콜드스타트 확인.", "r": 23.1}, {"id": "DONCHIAN_TRAILING_HIGHVOL_V1", "type": "alpha", "name": "D142돈치안+트레일링(고변동성풀재적용)", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "고변동성 알트코인군에서 돈치안돌파+트레일링 신호가 원9자산풀보다 강하게 나타날 것", "correlationGroup": "", "testPf": "1.567", "ciLow": "1.323", "ciHigh": "1.843", "testN": "1606.0", "trainPf": "", "notes": "D161. 원판대비 PF/CI개선되었으나 MDD-99.54%(원판-94.71%보다 악화). 예외적으로 D158보다도 보수적 사이징(총3.3%,스트림당1USDT,연속손실2).", "r": 27.7}, {"id": "ATR_EXPANSION_TRAILING_HIGHVOL_V1", "type": "alpha", "name": "D156ATR확장+트레일링(고변동성풀재적용)", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "고변동성 알트코인군에서 ATR확장+트레일링 신호가 원9자산풀보다 강하게 나타날 것", "correlationGroup": "", "testPf": "1.619", "ciLow": "1.371", "ciHigh": "1.904", "testN": "1464.0", "trainPf": "", "notes": "D161. 원판대비 PF/CI개선되었으나 MDD-99.44%(원판-94.03%보다 악화). 예외적으로 D158보다도 보수적 사이징(총3.3%,스트림당1USDT,연속손실2).", "r": 26.8}, {"id": "KELTNER_TRAILING_HIGHVOL_V1", "type": "alpha", "name": "D158켈트너+트레일링(고변동성풀재적용)", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "고변동성 알트코인군에서 켈트너돌파+트레일링 신호가 원8자산풀보다 강하게 나타날 것", "correlationGroup": "", "testPf": "1.376", "ciLow": "1.192", "ciHigh": "1.588", "testN": "1842.0", "trainPf": "", "notes": "D161. 원판대비 PF/CI개선되었으나 MDD-99.94%(세션최악기록, 원판-98.66%보다도 악화). 예외적으로 D158보다도 보수적 사이징(총3.3%,스트림당1USDT,연속손실2).", "r": 29.1}, {"id": "TAKER_RATIO_TRAILING_V1", "type": "alpha", "name": "taker매수비율모멘텀+트레일링스탑", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "taker매수비율(적극적시장가매수비중) 지속우위=수요주도추세, momentum진입+트레일링스탑", "correlationGroup": "taker_ratio_family", "testPf": "2.047", "ciLow": "1.559", "ciHigh": "2.646", "testN": "636.0", "trainPf": "", "notes": "D166. 이 세션 완전신규데이터축(taker매수비율,OI/롱숏비율은 바이낸스30일제한으로 배제). PF/CI 트레일링스탑계열 최고기록, MDD-93.24%(계열최양호). 9자산풀 자체TEST에서 TRAIN게이트미달조합을 호기심에 본 PF2.30값은 rule5위반이라 확정근거미사용 - 고변동성풀 재적용이 진짜 confirmatory test.", "r": 20.4}, {"id": "DAILY_MACD_ACCEL_TRAILING_V1", "type": "alpha", "name": "일봉MACD가속+1H트레일링스탑", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "1D MACD히스토그램 가속(그자체증가)=일봉단위 추세압력강화, momentum진입", "correlationGroup": "", "testPf": "1.288", "ciLow": "1.026", "ciHigh": "1.609", "testN": "502.0", "trainPf": "1.305", "notes": "D170. 이 세션 첫 일봉시간축 확정. CI하한1.026로 확정계열중 가장 얇으나 TRAIN수치 정상(이상치無). MDD-99.33%(D161급 최악등급)이라 3.3%보수적사이징+연속손실2 킬스위치 적용.", "r": 19.0}, {"id": "DONCHIAN_TAKER_CONFLUENCE_V1", "type": "alpha", "name": "돈치안+taker매수비율 컨플루언스+트레일링스탑", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "가격구조(돈치안돌파)+주문흐름(taker매수비율) 동시확인=이중확인 신호품질개선", "correlationGroup": "taker_ratio_family", "testPf": "1.979", "ciLow": "1.072", "ciHigh": "3.735", "testN": "60.0", "trainPf": "1.439", "notes": "D175. 이 세션 트레일링스탑계열 MDD 최고기록(-40.74%, 나머지 전부-93~99%대) - 이중확인이 신호빈도를 급감시켜(풀링60건) MDD문제 최초해결. 단, 자산별로는 극도로 희소(1-19건)해 개별배제 없이 9자산 균등5USDT씩 배포(4.5%총배정).", "r": 11.8}, {"id": "ATR_TAKER_CONFLUENCE_V1", "type": "alpha", "name": "ATR확장+taker매수비율 컨플루언스+트레일링스탑", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "D175원리(가격구조+주문흐름 이중확인) 일반화 - ATR확장에 적용", "correlationGroup": "taker_ratio_family", "testPf": "2.949", "ciLow": "1.524", "ciHigh": "6.232", "testN": "52.0", "trainPf": "1.184", "notes": "D183. D175원리 일반화 성공사례1 - MDD=-41.81%(원판D156-94.03%에서 극적개선, D175급). 자산별 극도로희소(0-33건)해 개별배제없이 9자산균등배분(5USDT,4.5%,연속손실3회).", "r": 11.5}, {"id": "KELTNER_TAKER_CONFLUENCE_V1", "type": "alpha", "name": "켈트너+taker매수비율 컨플루언스+트레일링스탑", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "D175원리(가격구조+주문흐름 이중확인) 일반화 - 켈트너에 적용", "correlationGroup": "taker_ratio_family", "testPf": "2.018", "ciLow": "1.269", "ciHigh": "3.219", "testN": "109.0", "trainPf": "1.338", "notes": "D183. D175원리 일반화 성공사례2 - MDD=-77.88%(원판D158-98.66%에서 개선, 완전은 아님). 자산별 희소해 개별배제없이 9자산균등배분(3.5USDT,3.15%,연속손실2회, D158급 보수적).", "r": 13.1}, {"id": "OI_SURGE_FORWARD_V1", "type": "alpha", "name": "OI급증+가격동행 momentum(라이브포워드테스팅)", "status": "forward_testing", "color": "#0891b2", "statusLabel": "포워드테스팅(미확정)", "hypothesis": "OI(미결제약정) 급증+가격동행=신규포지션유입(청산/숏커버아님), momentum지속", "correlationGroup": "", "testPf": "", "ciLow": "", "ciHigh": "", "testN": "0.0", "trainPf": "", "notes": "D184. 사용자지시 신규방법론 - OI이력30일제한으로 TRAIN백테스트불가, 데이터관찰전 상식/문헌기반 파라미터 사전등록 후 라이브페이퍼로 포워드테스팅. n>=30 누적전까지 판정보류(zec_oi_surge_promotion_check.py로 수시확인). 확정(confirmed)과 명확히 구분되는 신규상태값.", "r": 8}, {"id": "DAILY_MACD_TAKER_CONFLUENCE_V1", "type": "alpha", "name": "일봉MACD가속+taker매수비율 컨플루언스+트레일링스탑", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "D175원리(가격구조+주문흐름 이중확인) 4/4 완전일반화 - 일봉MACD가속에 적용", "correlationGroup": "taker_ratio_family", "testPf": "2.537", "ciLow": "1.317", "ciHigh": "5.175", "testN": "54.0", "trainPf": "1.231", "notes": "D185. D175원리 일반화 4/4 완성(최종) - MDD=-34.82%(이 세션 트레일링스탑계열 전체 최고기록). 자산별 극도로희소(0-20건)해 개별배제없이 9자산균등배분(5USDT,4.5%,연속손실3회). 기존 dual_confluence엔진에 3번째패턴으로 추가(27스트림).", "r": 11.6}, {"id": "DAILY_MACD_TAKER_CONFLUENCE_HIGHVOL_V1", "type": "alpha", "name": "일봉MACD가속+taker컨플루언스 고변동성풀재적용", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "D185(일봉MACD가속+taker,원9자산풀,MDD최고기록)의 자산모집단 일반화 - D161(트레일링3종 고변동성풀 3/3성공)과 동일방법론", "correlationGroup": "taker_ratio_family", "testPf": "1.616", "ciLow": "1.161", "ciHigh": "2.206", "testN": "222.0", "trainPf": "1.347", "notes": "D191. D175(돈치안+taker)/D183(ATR확장+taker,켈트너+taker)/D185(일봉MACD가속+taker,원9자산풀)에 이어 이중확인원리의 5번째 확정이자 D161(트레일링3종 고변동성풀 3/3)과 합쳐 자산모집단 무관 일반화 완성. MDD=-89.87%(고변동성풀 특유의 높은MDD, D161계열과 유사수준) - 사이징은 D161과 동일하게 매우 보수적으로(정액소액) 설계 필요. 자산별 개별TEST: EGLD/DASH/CRV는 개별PF<1(표본도 작음,CRV n=3) - 개별제외 검토, 나머지 8자산은 개별PF>1.", "r": 15.3}, {"id": "BREAKOUT_RETEST_CONFIRMATION_V1", "type": "alpha", "name": "돈치안브레이크아웃 리테스트확인진입+트레일링스탑", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "즉시진입형 브레이크아웃(D142)과 달리 돌파->되돌림(리테스트)->재돌파 3단계 확인 후 진입 - 가짜돌파 필터링", "correlationGroup": "", "testPf": "1.315", "ciLow": "1.07", "ciHigh": "1.596", "testN": "821.0", "trainPf": "1.351", "notes": "D193. 이 세션 최초의 이벤트기반 다단계 지연확인 진입구조(즉시진입 D142와 메커니즘 자체가 다름). D142(즉시진입) TEST PF=1.415 대비 PF점추정은 약간 낮으나(1.315) 유사한 CI(D142=[1.164,1.712] vs 이번=[1.070,1.596]) - 가짜돌파 필터링 가설의 명확한 개선효과는 확인 안 됐지만(오히려 지연으로 초입부 수익 일부 놓쳤을 가능성) 독립적으로 유의미한 별도 알파로 확정. 자산별 개별검증 미실시 - 페이퍼사이징 전 확인 필요.", "r": 22.1}, {"id": "DONCHIAN_MOMENTUM_RANK_FILTER_V1", "type": "alpha", "name": "돈치안브레이크아웃+횡단면모멘텀랭크필터", "status": "confirmed", "color": "#2563eb", "statusLabel": "확정(페이퍼미가동)", "hypothesis": "D188(횡단면로테이션,단독기각)의 랭킹정보를 D142(확정) 자산선별필터로 재사용 - 신호결합 아닌 자산품질결합 메타실험", "correlationGroup": "donchian_channel_family", "testPf": "1.418", "ciLow": "1.152", "ciHigh": "1.727", "testN": "735.0", "trainPf": "1.304", "notes": "D194. CI가 1 배제 - 통계적으로 확정. 그러나 D142와 사실상 동일한 브레이크아웃이벤트의 부분집합(필터로 거래수만 1609->1146(TRAIN)/883->735(TEST)로 축소, TRAIN/TEST PF는 D142원본과 거의 동일: D142 TRAIN1.346/TEST1.415 vs 이번 TRAIN1.304/TEST1.418) - 신규 알파라기보다 D142의 부분집합 재확인에 가까움. 페이퍼배포는 의도적으로 보류(문서화된 예외, 신호중복 사유): (1) D142와 동일 브레이크아웃이벤트를 재사용하므로 별도 엔진 가동시 같은 돌파에 두 페이퍼포지션이 중복체결되는 실질적 신호중복 위험, (2) D191/D193 연속확정으로 포트폴리오총노출액이 이미 가정기준자본의 94%(939.5/1000)에 도달해 추가배포 전 정책결정 필요(사용자에게 명시적으로 보고, 자동배포 강행 안 함).", "r": 21.3}, {"id": "FUNDING_MOMENTUM_CONFIRMATION_V1", "type": "alpha", "name": "돈치안브레이크아웃+펀딩비율변화율확인", "status": "paper_running_correlated", "color": "#65a30d", "statusLabel": "페이퍼가동중(신호중복군)", "hypothesis": "D189(펀딩비율 레벨확인, 기각)와 달리 펀딩비율의 변화방향(1차미분)을 확인축으로 사용", "correlationGroup": "donchian_channel_family", "testPf": "1.41", "ciLow": "1.146", "ciHigh": "1.722", "testN": "708.0", "trainPf": "1.338", "notes": "D197. CI가 1 배제 - 통계적으로 확정. 그러나 D194(돈치안+횡단면모멘텀랭크필터)와 결과가 거의 동일(D194: TRAIN1.304/TEST1.418/CI[1.152,1.727] vs 이번: TRAIN1.338/TEST1.410/CI[1.146,1.722]) - D194와 마찬가지로 D142의 부분집합일 가능성이 높음(D194가 D142와 100% 부분집합, 켈트너 78.9%, ATR확장 40.7%와 겹치는 것으로 실증됨 - 배포 전 D197도 동일한 중복도 분석 필요, 미실시). 페이퍼배포는 D194와 동일 사유로 잠정 보류 - 별도 중복도 분석 결과 나올 때까지 판단 유보.", "r": 21.1}, {"id": "MULTICHANNEL_BREAKOUT_AGREEMENT_V1", "type": "alpha", "name": "멀티채널 브레이크아웃 합의(돈치안+ATR확장+켈트너 2-of-3)", "status": "paper_running_correlated", "color": "#65a30d", "statusLabel": "페이퍼가동중(신호중복군)", "hypothesis": "D194 신호중복분석 발견(배타적 부분은 edge없음, 여러채널 동시동의 구간에 edge집중)을 역이용 - 처음부터 합의를 진입조건화", "correlationGroup": "donchian_channel_family", "testPf": "1.415", "ciLow": "1.18", "ciHigh": "1.689", "testN": "990.0", "trainPf": "1.333", "notes": "D198. 이 세션 브레이크아웃계열 전체 중 가장 높은 CI하한(1.180)+가장 큰 표본(n=990) - D142(1.164)/D194(1.152)/D197(1.146)보다 전부 우수. 배경: D194 신호중복분석에서 돈치안/켈트너/ATR확장이 78.9%/40.7% 겹치고, 안겹치는 배타적부분은 TRAIN PF1.243으로 게이트미달임을 실증 - edge가 \"여러채널 동시동의\" 구간에 집중된다는 사실을 이 알파가 명시적으로 포착. **배포 미결정**: 이미 개별배포된 D142/ATR_EXPANSION_TRAILING/KELTNER_TRAILING 3개 엔진과 병행배포하면 D194와 동일한 중복문제 재발(오히려 더 심함, 이 알파 자체가 그 3개의 교집합). 진짜 가치는 \"3개 개별엔진을 이걸로 통합/대체\"하는 구조개편인데, 이미 가동중인 엔진 3개를 retire하는 결정은 사용자 확인 필요 + 현재 노출액 94%>70% 배포동결 임계치 초과 상태(자체감사#2/2026-09-06 노출액상한룰)라 어느 쪽이든 즉시 자동배포 보류.", "r": 23.5}, {"id": "MULTICHANNEL_4CH_3OF4_V1", "type": "alpha", "name": "멀티채널 브레이크아웃 합의(4채널: +볼린저돌파, 3-of-4)", "status": "paper_running_correlated", "color": "#65a30d", "statusLabel": "페이퍼가동중(신호중복군)", "hypothesis": "D198 후속 민감도검증 - 4번째채널(볼린저20봉x2std 돌파, 이 세션 최초 돌파프레이밍) 추가 + 3-of-4 합의", "correlationGroup": "donchian_channel_family", "testPf": "1.428", "ciLow": "1.185", "ciHigh": "1.705", "testN": "963.0", "trainPf": "1.301", "notes": "D201-V3. CI가 1 배제 - 확정. D198(3채널,2-of-3,CI[1.180,1.689])과 거의 동일한 결과 - 채널4개 중 3개 공유(돈치안/ATR확장/켈트너)라 D198과 극도로 높은 중복 예상(추정, 별도 정량분석 안 했으나 D199 방법론상 자명함). **별도 페이퍼엔진으로 배포하지 않음** - D198과 사실상 같은 알파의 변주. 참고용 민감도검증 결과로만 기록.", "r": 23.3}, {"id": "WIDE_TRAIL_OPTIONALITY_V1", "type": "alpha", "name": "멀티채널합의+광폭트레일링(옵셔널리티/꼬리위험프리미엄 구조)", "status": "paper_running_correlated", "color": "#65a30d", "statusLabel": "페이퍼가동중(신호중복군)", "hypothesis": "사용자 세션초반 제안 \"옵션적 페이오프\"(승률낮아도 소수 큰승리) - D198 진입+트레일링폭만 12%->30% 확대", "correlationGroup": "donchian_channel_family", "testPf": "1.447", "ciLow": "1.091", "ciHigh": "1.884", "testN": "448.0", "trainPf": "1.7", "notes": "D202. CI가 1 배제 - 확정. **진짜 옵셔널리티 시그니처 확인**: TEST 중앙값 pnl=-1.40%(음수!)인데 평균은 +3.01%, 최대승리 +199.1%(TRAIN최대는 +459.8%) - 전형적 \"다수 소액손실 + 극소수 대박\"구조, D198(트레일12%, 중앙값 양수 추정)과 payoff 형태 자체가 다름. **그러나 MDD=-99.96%(entry_time 인터리브 기준)** - 이 세션 전체 최악 수준(D161급조차 능가). 옵션프리미엄 매수와 유사한 리스크구조라 선형사이징(다른 확정알파들처럼 자본의 1~2%) 적용시 사실상 파산위험 - 실제 옵션처럼 \"베팅당 자본의 0.1~0.5%\" 극소액 사이징 철학이 필요함(다른 알파와 사이징 논리 자체가 다름). D198과 진입시점이 완전동일(같은 신호, 출구관리만 다름)이라 병행배포시 같은 이벤트에 대해 사실상 포지션관리방식만 다른 이중배팅 - 노출액상한(94%>70%, 배포동결중) 사유로도 지금은 배포 보류. 향후 실전전환시 검토할 \"전혀 다른 리스크버킷\"(선형전략들과 별도의 초소액 옵션성 배정)으로 취급 권장.", "r": 18.4}, {"id": "MULTITIMEFRAME_BREAKOUT_AGREEMENT_V1", "type": "alpha", "name": "멀티타임프레임 브레이크아웃 합의(1H+4H 동시돈치안돌파)", "status": "paper_running_correlated", "color": "#65a30d", "statusLabel": "페이퍼가동중(신호중복군)", "hypothesis": "D198(멀티채널합의) 성공패턴을 지표축이 아닌 시간축으로 일반화 - 1H+4H 동일지표(돈치안) 동시돌파", "correlationGroup": "donchian_channel_family", "testPf": "1.272", "ciLow": "1.028", "ciHigh": "1.558", "testN": "783.0", "trainPf": "1.342", "notes": "D203. CI가 1 배제(하한1.028, 아슬아슬) - 확정이나 D198(CI하한1.180)보다 훨씬 약함. \"여러 관점 동시동의=edge\" 메타패턴이 지표축(D198)에서는 강하게 작동했지만 시간축에서는 효과가 뚜렷이 약함 - 1H와 4H 돈치안이 사실 거의 같은 정보를 다른 해상도로 보는것이라 진짜 독립적 확인이 아니었을 가능성(D194/D142처럼 4H신호 자체가 1H신호의 파생물에 가까움). D142와 상당히 겹칠것으로 예상(별도 정량분석 안 함). 배포 보류 - 노출액상한(94%>70%, 배포동결중) + CI가 다른 확정알파들보다 얇아 우선순위 낮음.", "r": 21.8}, {"id": "DASH_MACD_DEEP_OPT", "type": "alpha", "name": "DASH 자산전용 정밀최적화(자율모드)", "status": "confirmed", "color": "#2563eb", "statusLabel": "확정(페이퍼미가동)", "hypothesis": "동일 파이프라인을 자율모드로 적용", "correlationGroup": "", "testPf": "3.913", "ciLow": "1.222", "ciHigh": "11.602", "testN": "46.0", "trainPf": "4.53", "notes": "최선조합 TP25/SL15, 승률23.9%. CI하한=1.222 기준 판정.", "r": 11.3}, {"id": "hub::donchian_channel_family", "type": "hub", "name": "donchian_channel_family", "label": "donchian_channel_family", "r": 7, "color": "#e0b34d", "memberCount": 9}, {"id": "hub::taker_ratio_family", "type": "hub", "name": "taker_ratio_family", "label": "taker_ratio_family", "r": 7, "color": "#e0b34d", "memberCount": 6}], "edges": [{"source": "DONCHIAN_TRAILING_V1", "target": "hub::donchian_channel_family"}, {"source": "ATR_EXPANSION_TRAILING_V1", "target": "hub::donchian_channel_family"}, {"source": "KELTNER_TRAILING_V1", "target": "hub::donchian_channel_family"}, {"source": "DONCHIAN_MOMENTUM_RANK_FILTER_V1", "target": "hub::donchian_channel_family"}, {"source": "FUNDING_MOMENTUM_CONFIRMATION_V1", "target": "hub::donchian_channel_family"}, {"source": "MULTICHANNEL_BREAKOUT_AGREEMENT_V1", "target": "hub::donchian_channel_family"}, {"source": "MULTICHANNEL_4CH_3OF4_V1", "target": "hub::donchian_channel_family"}, {"source": "WIDE_TRAIL_OPTIONALITY_V1", "target": "hub::donchian_channel_family"}, {"source": "MULTITIMEFRAME_BREAKOUT_AGREEMENT_V1", "target": "hub::donchian_channel_family"}, {"source": "TAKER_RATIO_TRAILING_V1", "target": "hub::taker_ratio_family"}, {"source": "DONCHIAN_TAKER_CONFLUENCE_V1", "target": "hub::taker_ratio_family"}, {"source": "ATR_TAKER_CONFLUENCE_V1", "target": "hub::taker_ratio_family"}, {"source": "KELTNER_TAKER_CONFLUENCE_V1", "target": "hub::taker_ratio_family"}, {"source": "DAILY_MACD_TAKER_CONFLUENCE_V1", "target": "hub::taker_ratio_family"}, {"source": "DAILY_MACD_TAKER_CONFLUENCE_HIGHVOL_V1", "target": "hub::taker_ratio_family"}]};
+
+  // --- 탭 전환 ---
+  var tabBtns = document.querySelectorAll(".tab-btn");
+  var tabPanels = {cards: document.getElementById("tab-cards"), graph: document.getElementById("tab-graph"), dead: document.getElementById("tab-dead")};
+  var graphInited = false;
+  tabBtns.forEach(function(btn) {
+    btn.addEventListener("click", function() {
+      var target = btn.getAttribute("data-tab");
+      tabBtns.forEach(function(b) { b.classList.toggle("active", b === btn); b.setAttribute("aria-selected", b === btn ? "true" : "false"); });
+      Object.keys(tabPanels).forEach(function(k) { tabPanels[k].hidden = (k !== target); });
+      if (target === "graph" && !graphInited) { graphInited = true; initGraph(); }
+    });
+  });
+
+  // --- 그래프뷰(첫 클릭시 1회만 초기화) ---
+  function initGraph() {
+    var svg = d3.select("#graph-svg");
+    var wrap = document.getElementById("graph-wrap");
+    var width = wrap.clientWidth, height = wrap.clientHeight || 500;
+    svg.attr("viewBox", [0, 0, width, height]);
+
+    var g = svg.append("g");
+
+    svg.call(d3.zoom().scaleExtent([0.2, 4]).on("zoom", function(ev) { g.attr("transform", ev.transform); }));
+
+    var nodes = GRAPH_DATA.nodes.map(function(d) { return Object.assign({}, d); });
+    var edges = GRAPH_DATA.edges.map(function(d) { return Object.assign({}, d); });
+
+    var sim = d3.forceSimulation(nodes)
+      .force("link", d3.forceLink(edges).id(function(d) { return d.id; }).distance(60).strength(0.7))
+      .force("charge", d3.forceManyBody().strength(-140))
+      .force("center", d3.forceCenter(width / 2, height / 2))
+      .force("collide", d3.forceCollide().radius(function(d) { return d.r + 6; }));
+
+    var link = g.append("g").attr("class", "links").selectAll("line")
+      .data(edges).join("line").attr("class", "link");
+
+    var node = g.append("g").attr("class", "nodes").selectAll("g")
+      .data(nodes).join("g").style("cursor", "pointer")
+      .call(d3.drag()
+        .on("start", function(ev, d) { if (!ev.active) sim.alphaTarget(0.3).restart(); d.fx = d.x; d.fy = d.y; })
+        .on("drag", function(ev, d) { d.fx = ev.x; d.fy = ev.y; })
+        .on("end", function(ev, d) { if (!ev.active) sim.alphaTarget(0); d.fx = null; d.fy = null; }));
+
+    node.append("circle")
+      .attr("r", function(d) { return d.r; })
+      .attr("fill", function(d) { return d.color; })
+      .attr("fill-opacity", function(d) { return d.type === "hub" ? 0.9 : 0.85; })
+      .attr("stroke", function(d) { return d.type === "hub" ? "#e0b34d" : "#0f1115"; })
+      .attr("stroke-width", function(d) { return d.type === "hub" ? 2 : 1.5; });
+
+    node.append("text")
+      .attr("class", function(d) { return d.type === "hub" ? "hub-label" : "node-label"; })
+      .attr("x", function(d) { return d.r + 4; }).attr("y", 3)
+      .text(function(d) { return d.type === "hub" ? d.label : d.id; });
+
+    node.on("click", function(ev, d) { ev.stopPropagation(); showDetail(d); });
+    node.on("touchend", function(ev, d) { ev.stopPropagation(); showDetail(d); });
+
+    sim.on("tick", function() {
+      link.attr("x1", function(d) { return d.source.x; }).attr("y1", function(d) { return d.source.y; })
+          .attr("x2", function(d) { return d.target.x; }).attr("y2", function(d) { return d.target.y; });
+      node.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; });
+    });
+
+    window.addEventListener("resize", function() {
+      var w = wrap.clientWidth, h = wrap.clientHeight || 500;
+      svg.attr("viewBox", [0, 0, w, h]);
+      sim.force("center", d3.forceCenter(w / 2, h / 2));
+    });
+  }
+
+  function showDetail(d) {
+    var panel = document.getElementById("graph-detail");
+    var title = document.getElementById("gd-title");
+    var body = document.getElementById("gd-body");
+    if (d.type === "hub") {
+      title.textContent = "🔗 " + d.label;
+      body.innerHTML = '<div class="card-row"><span class="label">유형</span><span class="value">correlation_group 클러스터 허브</span></div>' +
+        '<div class="card-row"><span class="label">소속 알파수</span><span class="value">' + d.memberCount + '</span></div>' +
+        '<div class="gd-hypo">이 허브에 연결된 알파들은 같은 신호축(' + d.label + ')의 변주 - "독립 N개"가 아니라 "1개 축, N개 변주"로 취급.</div>';
+    } else {
+      var ci = (d.ciLow && d.ciHigh) ? ("[" + d.ciLow + ", " + d.ciHigh + "]") : "-";
+      title.textContent = d.id;
+      body.innerHTML =
+        '<div class="card-row"><span class="label">상태</span><span class="value" style="color:' + d.color + '">' + d.statusLabel + '</span></div>' +
+        '<div class="card-row"><span class="label">TRAIN PF</span><span class="value">' + (d.trainPf || '-') + '</span></div>' +
+        '<div class="card-row"><span class="label">TEST PF</span><span class="value">' + (d.testPf || '-') + '</span></div>' +
+        '<div class="card-row"><span class="label">CI</span><span class="value">' + ci + '</span></div>' +
+        '<div class="card-row"><span class="label">n</span><span class="value">' + (d.testN || '-') + '</span></div>' +
+        (d.correlationGroup ? '<div class="card-row"><span class="label">correlation_group</span><span class="value">' + d.correlationGroup + '</span></div>' : '') +
+        '<div class="gd-hypo">' + (d.hypothesis || d.notes || d.name || '') + '</div>';
+    }
+    panel.hidden = false;
+  }
+  document.getElementById("gd-close").addEventListener("click", function() { document.getElementById("graph-detail").hidden = true; });
+})();
+</script>
 
 </body></html>
