@@ -129,7 +129,7 @@
 </style>
 </head><body>
 <h1>🧪 ZEC 알파랩 대시보드</h1>
-<div class="updated">마지막 갱신: 2026-09-07 07:04:26 UTC (30분마다 자동재생성)</div>
+<div class="updated">마지막 갱신: 2026-09-07 07:18:15 UTC (30분마다 자동재생성)</div>
 
 <div class="tabs" role="tablist">
   <button class="tab-btn active" data-tab="cards" role="tab" aria-selected="true">📇 카드뷰</button>
@@ -138,9 +138,9 @@
 </div>
 
 <div id="tab-cards" class="tab-panel">
-<h2>1. 알파 레지스트리 현황 (총 138건)</h2>
+<h2>1. 알파 레지스트리 현황 (총 139건)</h2>
 <div class="summary">
-  <div class="summary-card" style="--accent:#7c3aed"><div class="n">0</div><div>실전전환후보</div></div><div class="summary-card" style="--accent:#059669"><div class="n">0</div><div>페이퍼통과(실전후보)</div></div><div class="summary-card" style="--accent:#16a34a"><div class="n">18</div><div>페이퍼가동중</div></div><div class="summary-card" style="--accent:#65a30d"><div class="n">5</div><div>페이퍼가동중(신호중복군)</div></div><div class="summary-card" style="--accent:#2563eb"><div class="n">4</div><div>확정(페이퍼미가동)</div></div><div class="summary-card" style="--accent:#0891b2"><div class="n">1</div><div>포워드테스팅(미확정)</div></div><div class="summary-card" style="--accent:#d97706"><div class="n">20</div><div>근접미확정</div></div><div class="summary-card" style="--accent:#6b7280"><div class="n">22</div><div>판정불가</div></div><div class="summary-card" style="--accent:#dc2626"><div class="n">63</div><div>기각</div></div><div class="summary-card" style="--accent:#991b1b"><div class="n">5</div><div>철회</div></div>
+  <div class="summary-card" style="--accent:#7c3aed"><div class="n">0</div><div>실전전환후보</div></div><div class="summary-card" style="--accent:#059669"><div class="n">0</div><div>페이퍼통과(실전후보)</div></div><div class="summary-card" style="--accent:#16a34a"><div class="n">18</div><div>페이퍼가동중</div></div><div class="summary-card" style="--accent:#65a30d"><div class="n">5</div><div>페이퍼가동중(신호중복군)</div></div><div class="summary-card" style="--accent:#2563eb"><div class="n">4</div><div>확정(페이퍼미가동)</div></div><div class="summary-card" style="--accent:#0891b2"><div class="n">1</div><div>포워드테스팅(미확정)</div></div><div class="summary-card" style="--accent:#d97706"><div class="n">20</div><div>근접미확정</div></div><div class="summary-card" style="--accent:#6b7280"><div class="n">22</div><div>판정불가</div></div><div class="summary-card" style="--accent:#dc2626"><div class="n">64</div><div>기각</div></div><div class="summary-card" style="--accent:#991b1b"><div class="n">5</div><div>철회</div></div>
 </div>
 <p class="small muted">근접미확정/판정불가/기각/철회 상세 카드는 <b>[기각/철회]</b> 탭에서 확인.</p>
 
@@ -3560,7 +3560,7 @@
         </div></div>
         </section>
         <section class="status-section">
-          <h3><span class="badge" style="background:#dc2626">63</span> 기각 <code>(rejected)</code></h3>
+          <h3><span class="badge" style="background:#dc2626">64</span> 기각 <code>(rejected)</code></h3>
           <div class="card-grid"><div class="card" style="--accent:#dc2626" title="ETH 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">ETH_MACD_DEEP_OPT</div>
@@ -4254,6 +4254,17 @@
             <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 0.0]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">9.0</span></div>
           </div>
+        </div><div class="card" style="--accent:#dc2626" title="DOOD 자산전용 정밀최적화(자율모드)">
+          <div class="card-top">
+            <div class="card-title">DOOD_MACD_DEEP_OPT</div>
+            
+          </div>
+          <div class="card-subtitle">DOOD 자산전용 정밀최적화(자율모드)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">2.943</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 229.315]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">5.0</span></div>
+          </div>
         </div></div>
         </section>
         <section class="status-section">
@@ -4353,6 +4364,8 @@
       .force("link", d3.forceLink(edges).id(function(d) { return d.id; }).distance(60).strength(0.7))
       .force("charge", d3.forceManyBody().strength(-140))
       .force("center", d3.forceCenter(width / 2, height / 2))
+      .force("x", d3.forceX(width / 2).strength(0.04))
+      .force("y", d3.forceY(height / 2).strength(0.04))
       .force("collide", d3.forceCollide().radius(function(d) { return d.r + 6; }));
 
     var link = g.append("g").attr("class", "links").selectAll("line")
