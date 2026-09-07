@@ -84,11 +84,11 @@
 </style>
 </head><body>
 <h1>🧪 ZEC 알파랩 대시보드</h1>
-<div class="updated">마지막 갱신: 2026-09-06 23:34:25 UTC (30분마다 자동재생성)</div>
+<div class="updated">마지막 갱신: 2026-09-07 00:04:25 UTC (30분마다 자동재생성)</div>
 
 <h2>1. 알파 레지스트리 현황 (총 124건)</h2>
 <div class="summary">
-  <div class="summary-card" style="--accent:#7c3aed"><div class="n">0</div><div>실전전환후보</div></div><div class="summary-card" style="--accent:#059669"><div class="n">0</div><div>페이퍼통과(실전후보)</div></div><div class="summary-card" style="--accent:#16a34a"><div class="n">16</div><div>페이퍼가동중</div></div><div class="summary-card" style="--accent:#2563eb"><div class="n">11</div><div>확정(페이퍼미가동)</div></div><div class="summary-card" style="--accent:#0891b2"><div class="n">1</div><div>포워드테스팅(미확정)</div></div><div class="summary-card" style="--accent:#d97706"><div class="n">18</div><div>근접미확정</div></div><div class="summary-card" style="--accent:#6b7280"><div class="n">17</div><div>판정불가</div></div><div class="summary-card" style="--accent:#dc2626"><div class="n">56</div><div>기각</div></div><div class="summary-card" style="--accent:#991b1b"><div class="n">5</div><div>철회</div></div>
+  <div class="summary-card" style="--accent:#7c3aed"><div class="n">0</div><div>실전전환후보</div></div><div class="summary-card" style="--accent:#059669"><div class="n">0</div><div>페이퍼통과(실전후보)</div></div><div class="summary-card" style="--accent:#16a34a"><div class="n">16</div><div>페이퍼가동중</div></div><div class="summary-card" style="--accent:#65a30d"><div class="n">5</div><div>페이퍼가동중(신호중복군)</div></div><div class="summary-card" style="--accent:#2563eb"><div class="n">6</div><div>확정(페이퍼미가동)</div></div><div class="summary-card" style="--accent:#0891b2"><div class="n">1</div><div>포워드테스팅(미확정)</div></div><div class="summary-card" style="--accent:#d97706"><div class="n">18</div><div>근접미확정</div></div><div class="summary-card" style="--accent:#6b7280"><div class="n">17</div><div>판정불가</div></div><div class="summary-card" style="--accent:#dc2626"><div class="n">56</div><div>기각</div></div><div class="summary-card" style="--accent:#991b1b"><div class="n">5</div><div>철회</div></div>
 </div>
 
         <section class="status-section">
@@ -148,7 +148,7 @@
         </div><div class="card" style="--accent:#16a34a" title="돈치안브레이크아웃+트레일링스탑">
           <div class="card-top">
             <div class="card-title">DONCHIAN_TRAILING_V1</div>
-            
+            <span class="card-badge" style="background:#16a34a22;color:#16a34a;border-color:#16a34a55">donchian_channel_family</span>
           </div>
           <div class="card-subtitle">돈치안브레이크아웃+트레일링스탑</div>
           <div class="card-body">
@@ -159,7 +159,7 @@
         </div><div class="card" style="--accent:#16a34a" title="ATR확장+트레일링스탑">
           <div class="card-top">
             <div class="card-title">ATR_EXPANSION_TRAILING_V1</div>
-            
+            <span class="card-badge" style="background:#16a34a22;color:#16a34a;border-color:#16a34a55">donchian_channel_family</span>
           </div>
           <div class="card-subtitle">ATR확장+트레일링스탑</div>
           <div class="card-body">
@@ -170,7 +170,7 @@
         </div><div class="card" style="--accent:#16a34a" title="켈트너채널돌파+트레일링스탑">
           <div class="card-top">
             <div class="card-title">KELTNER_TRAILING_V1</div>
-            
+            <span class="card-badge" style="background:#16a34a22;color:#16a34a;border-color:#16a34a55">donchian_channel_family</span>
           </div>
           <div class="card-subtitle">켈트너채널돌파+트레일링스탑</div>
           <div class="card-body">
@@ -280,7 +280,66 @@
         </div></div>
         </section>
         <section class="status-section">
-          <h3><span class="badge" style="background:#2563eb">11</span> 확정(페이퍼미가동) <code>(confirmed)</code></h3>
+          <h3><span class="badge" style="background:#65a30d">5</span> 페이퍼가동중(신호중복군) <code>(paper_running_correlated)</code></h3>
+          <div class="card-grid"><div class="card" style="--accent:#65a30d" title="돈치안브레이크아웃+펀딩비율변화율확인">
+          <div class="card-top">
+            <div class="card-title">FUNDING_MOMENTUM_CONFIRMATION_V1</div>
+            <span class="card-badge" style="background:#65a30d22;color:#65a30d;border-color:#65a30d55">donchian_channel_family</span>
+          </div>
+          <div class="card-subtitle">돈치안브레이크아웃+펀딩비율변화율확인</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.41</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[1.146, 1.722]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">708.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#65a30d" title="멀티채널 브레이크아웃 합의(돈치안+ATR확장+켈트너 2-of-3)">
+          <div class="card-top">
+            <div class="card-title">MULTICHANNEL_BREAKOUT_AGREEMENT_V1</div>
+            <span class="card-badge" style="background:#65a30d22;color:#65a30d;border-color:#65a30d55">donchian_channel_family</span>
+          </div>
+          <div class="card-subtitle">멀티채널 브레이크아웃 합의(돈치안+ATR확장+켈트너 2-of-3)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.415</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[1.18, 1.689]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">990.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#65a30d" title="멀티채널 브레이크아웃 합의(4채널: +볼린저돌파, 3-of-4)">
+          <div class="card-top">
+            <div class="card-title">MULTICHANNEL_4CH_3OF4_V1</div>
+            <span class="card-badge" style="background:#65a30d22;color:#65a30d;border-color:#65a30d55">donchian_channel_family</span>
+          </div>
+          <div class="card-subtitle">멀티채널 브레이크아웃 합의(4채널: +볼린저돌파, 3-of-4)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.428</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[1.185, 1.705]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">963.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#65a30d" title="멀티채널합의+광폭트레일링(옵셔널리티/꼬리위험프리미엄 구조)">
+          <div class="card-top">
+            <div class="card-title">WIDE_TRAIL_OPTIONALITY_V1</div>
+            <span class="card-badge" style="background:#65a30d22;color:#65a30d;border-color:#65a30d55">donchian_channel_family</span>
+          </div>
+          <div class="card-subtitle">멀티채널합의+광폭트레일링(옵셔널리티/꼬리위험프리미엄 구조)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.447</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[1.091, 1.884]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">448.0</span></div>
+          </div>
+        </div><div class="card" style="--accent:#65a30d" title="멀티타임프레임 브레이크아웃 합의(1H+4H 동시돈치안돌파)">
+          <div class="card-top">
+            <div class="card-title">MULTITIMEFRAME_BREAKOUT_AGREEMENT_V1</div>
+            <span class="card-badge" style="background:#65a30d22;color:#65a30d;border-color:#65a30d55">donchian_channel_family</span>
+          </div>
+          <div class="card-subtitle">멀티타임프레임 브레이크아웃 합의(1H+4H 동시돈치안돌파)</div>
+          <div class="card-body">
+            <div class="card-row"><span class="label">PF</span><span class="value">1.272</span></div>
+            <div class="card-row"><span class="label">CI</span><span class="value">[1.028, 1.558]</span></div>
+            <div class="card-row"><span class="label">n</span><span class="value">783.0</span></div>
+          </div>
+        </div></div>
+        </section>
+        <section class="status-section">
+          <h3><span class="badge" style="background:#2563eb">6</span> 확정(페이퍼미가동) <code>(confirmed)</code></h3>
           <div class="card-grid"><div class="card" style="--accent:#2563eb" title="ZEC MACD MTF Companion (원조 확정 스펙)">
           <div class="card-top">
             <div class="card-title">ZEC_COMPANION_V1</div>
@@ -328,68 +387,13 @@
         </div><div class="card" style="--accent:#2563eb" title="돈치안브레이크아웃+횡단면모멘텀랭크필터">
           <div class="card-top">
             <div class="card-title">DONCHIAN_MOMENTUM_RANK_FILTER_V1</div>
-            
+            <span class="card-badge" style="background:#2563eb22;color:#2563eb;border-color:#2563eb55">donchian_channel_family</span>
           </div>
           <div class="card-subtitle">돈치안브레이크아웃+횡단면모멘텀랭크필터</div>
           <div class="card-body">
             <div class="card-row"><span class="label">PF</span><span class="value">1.418</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.152, 1.727]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">735.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#2563eb" title="돈치안브레이크아웃+펀딩비율변화율확인">
-          <div class="card-top">
-            <div class="card-title">FUNDING_MOMENTUM_CONFIRMATION_V1</div>
-            
-          </div>
-          <div class="card-subtitle">돈치안브레이크아웃+펀딩비율변화율확인</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.41</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[1.146, 1.722]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">708.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#2563eb" title="멀티채널 브레이크아웃 합의(돈치안+ATR확장+켈트너 2-of-3)">
-          <div class="card-top">
-            <div class="card-title">MULTICHANNEL_BREAKOUT_AGREEMENT_V1</div>
-            
-          </div>
-          <div class="card-subtitle">멀티채널 브레이크아웃 합의(돈치안+ATR확장+켈트너 2-of-3)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.415</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[1.18, 1.689]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">990.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#2563eb" title="멀티채널 브레이크아웃 합의(4채널: +볼린저돌파, 3-of-4)">
-          <div class="card-top">
-            <div class="card-title">MULTICHANNEL_4CH_3OF4_V1</div>
-            
-          </div>
-          <div class="card-subtitle">멀티채널 브레이크아웃 합의(4채널: +볼린저돌파, 3-of-4)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.428</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[1.185, 1.705]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">963.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#2563eb" title="멀티채널합의+광폭트레일링(옵셔널리티/꼬리위험프리미엄 구조)">
-          <div class="card-top">
-            <div class="card-title">WIDE_TRAIL_OPTIONALITY_V1</div>
-            
-          </div>
-          <div class="card-subtitle">멀티채널합의+광폭트레일링(옵셔널리티/꼬리위험프리미엄 구조)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.447</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[1.091, 1.884]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">448.0</span></div>
-          </div>
-        </div><div class="card" style="--accent:#2563eb" title="멀티타임프레임 브레이크아웃 합의(1H+4H 동시돈치안돌파)">
-          <div class="card-top">
-            <div class="card-title">MULTITIMEFRAME_BREAKOUT_AGREEMENT_V1</div>
-            
-          </div>
-          <div class="card-subtitle">멀티타임프레임 브레이크아웃 합의(1H+4H 동시돈치안돌파)</div>
-          <div class="card-body">
-            <div class="card-row"><span class="label">PF</span><span class="value">1.272</span></div>
-            <div class="card-row"><span class="label">CI</span><span class="value">[1.028, 1.558]</span></div>
-            <div class="card-row"><span class="label">n</span><span class="value">783.0</span></div>
           </div>
         </div><div class="card" style="--accent:#2563eb" title="DASH 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
@@ -1493,22 +1497,32 @@
         </section>
 
 
-    <h2>1.5. 포트폴리오 리스크 (전체 12개 페이퍼엔진 합산)</h2>
+    <h2>1.5. 포트폴리오 리스크 (전체 17개 페이퍼엔진 합산)</h2>
     <div class="summary">
-      <div class="summary-card" style="--accent:#d97706"><div class="n">$939.5</div><div>포트폴리오 총 노출액</div></div>
-      <div class="summary-card" style="--accent:#dc2626"><div class="n">-$140.9</div><div>일일손실 정지기준(15%)</div></div>
-      <div class="summary-card" style="--accent:#991b1b"><div class="n">-$281.8</div><div>누적손실 정지기준(30%)</div></div>
+      <div class="summary-card" style="--accent:#d97706"><div class="n">$984.5</div><div>포트폴리오 총 노출액</div></div>
+      <div class="summary-card" style="--accent:#dc2626"><div class="n">-$147.7</div><div>일일손실 정지기준(15%)</div></div>
+      <div class="summary-card" style="--accent:#991b1b"><div class="n">-$295.3</div><div>누적손실 정지기준(30%)</div></div>
     </div>
     <p><span class='badge' style='background:#16a34a'>마스터킬스위치 정상(전역정지 없음)</span></p>
-    <p><span class='badge' style='background:#d97706'>🧊 배포동결(노출액 94.0% &gt; 70%)</span> <span class='small muted'>신규알파 배포/사이징증대 보류 - 기존거래는 영향없음</span></p>
+    <p><span class='badge' style='background:#d97706'>🧊 배포동결(노출액 98.5% &gt; 70%)</span> <span class='small muted'>신규알파 배포/사이징증대 보류 - 기존거래는 영향없음</span></p>
     <p class="small muted">[2026-09-05 자체감사#3] 개별엔진은 각자 보수적으로 설계됐으나 합산시 가정기준자본($1,000USDT)의
-    <b style="color:var(--accent-gold)">94.0%</b>까지 근접함을 발견 -
+    <b style="color:var(--accent-gold)">98.5%</b>까지 근접함을 발견 -
     <code>zec_master_kill_switch.py</code>(15분마다 예약작업)로 상시 모니터링, 초과시 전 엔진 신규진입 자동정지(수동해제 전용).</p>
     <div class="callout">
       <b style="color:var(--accent-gold)">⚠️ 상관위험군: taker_ratio_family</b> — 아래 5개는 서로 다른 id로 등록돼 있으나 신호구조상 전부 동일 축(taker매수비율,
       window=12/ratio_th=0.55·0.45)의 변주임. <b>"5개 독립알파"가 아니라 "1개 축, 5개 변주"</b>로 취급할 것(포트폴리오 상관위험 과소평가 방지, 자체감사#4).
       <ul style="margin:6px 0 0;">
         <li><code>TAKER_RATIO_TRAILING_V1</code></li><li><code>DONCHIAN_TAKER_CONFLUENCE_V1</code></li><li><code>ATR_TAKER_CONFLUENCE_V1</code></li><li><code>KELTNER_TAKER_CONFLUENCE_V1</code></li><li><code>DAILY_MACD_TAKER_CONFLUENCE_V1</code></li>
+      </ul>
+    </div>
+    <div class="callout">
+      <b style="color:var(--accent-gold)">⚠️ 상관위험군: donchian_channel_family</b> — [2026-09-06] 아래 9개는 전부 돈치안/ATR확장/켈트너
+      채널브레이크아웃(D142계열) 신호를 공유 - D199 정량분석으로 D142와 100%/78.9%/40.7% 실제 신호중복 실증됨.
+      <b>"9개 독립알파"가 아니라 "1개 축(돈치안계열), 9개 변주"</b>로 취급할 것. 신규5건(D197/D198/D201-V3/D202/D203)은
+      상태값도 <code>paper_running_correlated</code>로 구분 표시 - 신호중복 자체는 페이퍼배포를 막지 않되(실자본리스크 없음,
+      사용자판단 2026-09-06), 극보수 정액사이징($1/자산)으로 배포, 노출액상한(70%) freeze 해제 전까지 확대 안 함.
+      <ul style="margin:6px 0 0;">
+        <li><code>DONCHIAN_TRAILING_V1</code></li><li><code>ATR_EXPANSION_TRAILING_V1</code></li><li><code>KELTNER_TRAILING_V1</code></li><li><code>DONCHIAN_MOMENTUM_RANK_FILTER_V1</code></li><li><code>FUNDING_MOMENTUM_CONFIRMATION_V1</code></li><li><code>MULTICHANNEL_BREAKOUT_AGREEMENT_V1</code></li><li><code>MULTICHANNEL_4CH_3OF4_V1</code></li><li><code>WIDE_TRAIL_OPTIONALITY_V1</code></li><li><code>MULTITIMEFRAME_BREAKOUT_AGREEMENT_V1</code></li>
       </ul>
     </div>
     
@@ -3277,6 +3291,591 @@
               <div class="card-subtitle">브레이크아웃 리테스트확인진입(D193)</div>
               <div class="card-body">
                 <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#16a34a">롱</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">ADAUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">펀딩비율변화율확인(D197, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">BNBUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">펀딩비율변화율확인(D197, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">BTCUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">펀딩비율변화율확인(D197, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">DOGEUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">펀딩비율변화율확인(D197, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">ETHUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">펀딩비율변화율확인(D197, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">LINKUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">펀딩비율변화율확인(D197, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">SOLUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">펀딩비율변화율확인(D197, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">XRPUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">펀딩비율변화율확인(D197, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">ZECUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">펀딩비율변화율확인(D197, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">ADAUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티채널합의 2-of-3(D198, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">BNBUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티채널합의 2-of-3(D198, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">BTCUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티채널합의 2-of-3(D198, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">DOGEUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티채널합의 2-of-3(D198, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">ETHUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티채널합의 2-of-3(D198, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">LINKUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티채널합의 2-of-3(D198, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">SOLUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티채널합의 2-of-3(D198, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">XRPUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티채널합의 2-of-3(D198, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">ZECUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티채널합의 2-of-3(D198, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">ADAUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티채널합의 4채널3-of-4(D201-V3, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">BNBUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티채널합의 4채널3-of-4(D201-V3, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">BTCUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티채널합의 4채널3-of-4(D201-V3, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">DOGEUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티채널합의 4채널3-of-4(D201-V3, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">ETHUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티채널합의 4채널3-of-4(D201-V3, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">LINKUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티채널합의 4채널3-of-4(D201-V3, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">SOLUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티채널합의 4채널3-of-4(D201-V3, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">XRPUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티채널합의 4채널3-of-4(D201-V3, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">ZECUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티채널합의 4채널3-of-4(D201-V3, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">ADAUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">광폭트레일 옵셔널리티(D202, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">BNBUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">광폭트레일 옵셔널리티(D202, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">BTCUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">광폭트레일 옵셔널리티(D202, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">DOGEUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">광폭트레일 옵셔널리티(D202, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">ETHUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">광폭트레일 옵셔널리티(D202, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">LINKUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">광폭트레일 옵셔널리티(D202, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">SOLUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">광폭트레일 옵셔널리티(D202, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">XRPUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">광폭트레일 옵셔널리티(D202, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">ZECUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">광폭트레일 옵셔널리티(D202, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">ADAUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티타임프레임합의 1H+4H(D203, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">BNBUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티타임프레임합의 1H+4H(D203, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">BTCUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티타임프레임합의 1H+4H(D203, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">DOGEUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티타임프레임합의 1H+4H(D203, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">ETHUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티타임프레임합의 1H+4H(D203, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">LINKUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티타임프레임합의 1H+4H(D203, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">SOLUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티타임프레임합의 1H+4H(D203, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">XRPUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티타임프레임합의 1H+4H(D203, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
+                <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
+                <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
+                <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
+                <div class="card-row"><span class="label">상태</span><span class="value" style="color:#16a34a">정상</span></div>
+              </div>
+            </div><div class="card" style="--accent:#0ea5a5">
+              <div class="card-top">
+                <div class="card-title">ZECUSDT</div>
+                <span class="card-badge" style="background:#b4530922;color:#d97706;border-color:#b4530955">donchian_channel_family</span>
+              </div>
+              <div class="card-subtitle">멀티타임프레임합의 1H+4H(D203, 극보수$1/자산)</div>
+              <div class="card-body">
+                <div class="card-row"><span class="label">포지션</span><span class="value" style="color:#8b93a7">flat</span></div>
                 <div class="card-row"><span class="label">거래수</span><span class="value">0</span></div>
                 <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
                 <div class="card-row"><span class="label">누적손익</span><span class="value">$0.00</span></div>
