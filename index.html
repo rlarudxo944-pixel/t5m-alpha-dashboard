@@ -102,6 +102,10 @@
     display:inline-block; font-size:10px; font-weight:600; color:var(--accent-gold);
     background:#e0b34d1a; border:1px solid #e0b34d55; border-radius:6px; padding:2px 8px;
   }
+  .insuff-badge {
+    display:inline-block; font-size:9px; font-weight:700; color:#d97706;
+    background:#d977061a; border:1px solid #d9770655; border-radius:6px; padding:1px 6px; margin-left:3px;
+  }
 
   /* --- 그래프뷰 --- */
   #graph-wrap { position:relative; background:var(--surface); border:1px solid var(--border); border-radius:10px; overflow:hidden; }
@@ -139,7 +143,7 @@
 </style>
 </head><body>
 <h1>🧪 ZEC 알파랩 대시보드</h1>
-<div class="updated">마지막 갱신: 2026-09-07 12:04:26 UTC (30분마다 자동재생성)</div>
+<div class="updated">마지막 갱신: 2026-09-07 12:16:24 UTC (30분마다 자동재생성)</div>
 
 <div class="tabs" role="tablist">
   <button class="tab-btn active" data-tab="ranking" role="tab" aria-selected="true">🏆 랭킹</button>
@@ -153,10 +157,12 @@
     <h2>🏆 알파 랭킹 (BH-FDR 통과 5건)</h2>
     <p class="small muted">기준: ① 다중비교보정(BH-FDR) 통과 여부로 1차필터 → ② CI하한(95% 신뢰구간 하한, 점추정 PF 아님) 내림차순 →
     ③ correlation_group 공유시 그룹당 최선순위 1개만 노출(나머지는 배지의 "+N") → ④ CI하한이 비슷(±0.05)하면 n(표본크기) 큰 쪽 우선.
-    다중비교보정 리포트 기준시각: <b>2026-09-07 07:51 UTC</b> (수동트리거 스크립트라 신규확정 발생시 재실행 필요 - 이 시각 이후 새로 확정된 알파는 아래 목록에 없을 수 있음).</p>
+    다중비교보정 리포트 기준시각: <b>2026-09-07 07:51 UTC</b> (수동트리거 스크립트라 신규확정 발생시 재실행 필요 - 이 시각 이후 새로 확정된 알파는 아래 목록에 없을 수 있음).
+    <b>TEST 열(하한/PF/n)은 과거데이터 백테스트 1회검증</b>, <b>페이퍼 열(승률/평균손익/오픈)은 실시간 진행중인 페이퍼거래 실적</b> - 둘은 서로 다른 검증이니 혼동 금지.
+    페이퍼 승률은 n&lt;20(페이퍼승격 기준과 동일)이면 "표본부족" 배지가 붙음 - 이 경우 숫자 자체를 신뢰하지 말 것.</p>
     <div style="overflow-x:auto;">
     <table class="rank-table">
-      <thead><tr><th>#</th><th>알파</th><th>CI 하한</th><th>TEST PF</th><th>n</th><th>correlation_group</th></tr></thead>
+      <thead><tr><th>#</th><th>알파</th><th>CI 하한</th><th>TEST PF</th><th>TEST n</th><th>correlation_group</th><th>페이퍼 승률</th><th>평균손익</th><th>오픈</th></tr></thead>
       <tbody><tr>
               <td class="rank-no">🥇</td>
               <td><b>TAKER_RATIO_TRAILING_V1</b></td>
@@ -164,6 +170,9 @@
               <td class="mono">2.047</td>
               <td class="mono">636</td>
               <td><span class="rank-badge">taker_ratio_family +4</span></td>
+              <td><span class="muted">거래없음</span></td>
+              <td class="mono">-</td>
+              <td class="mono">3</td>
             </tr><tr>
               <td class="rank-no">🥈</td>
               <td><b>ATR_EXPANSION_TRAILING_HIGHVOL_V1</b></td>
@@ -171,6 +180,9 @@
               <td class="mono">1.619</td>
               <td class="mono">1464</td>
               <td></td>
+              <td><span style="color:#16a34a">75%</span> <span class="insuff-badge">표본부족(n=4)</span></td>
+              <td class="mono">+5.59%</td>
+              <td class="mono">7</td>
             </tr><tr>
               <td class="rank-no">🥉</td>
               <td><b>DONCHIAN_TRAILING_HIGHVOL_V1</b></td>
@@ -178,6 +190,9 @@
               <td class="mono">1.567</td>
               <td class="mono">1606</td>
               <td></td>
+              <td><span style="color:#16a34a">75%</span> <span class="insuff-badge">표본부족(n=4)</span></td>
+              <td class="mono">+10.56%</td>
+              <td class="mono">4</td>
             </tr><tr>
               <td class="rank-no">4</td>
               <td><b>KELTNER_TRAILING_HIGHVOL_V1</b></td>
@@ -185,6 +200,9 @@
               <td class="mono">1.376</td>
               <td class="mono">1842</td>
               <td></td>
+              <td><span style="color:#16a34a">50%</span> <span class="insuff-badge">표본부족(n=6)</span></td>
+              <td class="mono">+0.92%</td>
+              <td class="mono">10</td>
             </tr><tr>
               <td class="rank-no">5</td>
               <td><b>MULTICHANNEL_BREAKOUT_AGREEMENT_V1</b></td>
@@ -192,6 +210,9 @@
               <td class="mono">1.415</td>
               <td class="mono">990</td>
               <td><span class="rank-badge">donchian_channel_family +7</span></td>
+              <td><span class="muted">거래없음</span></td>
+              <td class="mono">-</td>
+              <td class="mono">1</td>
             </tr></tbody>
     </table>
     </div>
@@ -200,79 +221,115 @@
     <p class="small muted">순위 아님 - 다중비교보정을 통과하지 못했거나 아직 CI가 계산되지 않은 알파(페이퍼표본 축적중 등). 정보소실 방지를 위해 표시만 함.</p>
     <div style="overflow-x:auto;">
     <table class="rank-table">
-      <thead><tr><th>알파</th><th>CI 하한</th><th>TEST PF</th><th>n</th><th>correlation_group</th></tr></thead>
+      <thead><tr><th>알파</th><th>CI 하한</th><th>TEST PF</th><th>TEST n</th><th>correlation_group</th><th>페이퍼 승률</th><th>평균손익</th><th>오픈</th></tr></thead>
       <tbody><tr>
               <td>ZEC_COMPANION_V1</td>
               <td class="mono">2.081</td>
               <td class="mono">6.142</td>
               <td class="mono">52</td>
               <td></td>
+              <td><span class="muted">거래없음</span></td>
+              <td class="mono">-</td>
+              <td class="mono">0</td>
             </tr><tr>
               <td>BTC_MACD_DEEP_OPT</td>
               <td class="mono">1.674</td>
               <td class="mono">6.368</td>
               <td class="mono">56</td>
               <td></td>
+              <td><span class="muted">거래없음</span></td>
+              <td class="mono">-</td>
+              <td class="mono">0</td>
             </tr><tr>
               <td>ATR_TAKER_CONFLUENCE_V1</td>
               <td class="mono">1.524</td>
               <td class="mono">2.949</td>
               <td class="mono">52</td>
               <td><span class="rank-badge">taker_ratio_family +4</span></td>
+              <td><span class="muted">거래없음</span></td>
+              <td class="mono">-</td>
+              <td class="mono">0</td>
             </tr><tr>
               <td>BNB_MACD_DEEP_OPT</td>
               <td class="mono">1.303</td>
               <td class="mono">3.746</td>
               <td class="mono">68</td>
               <td></td>
+              <td><span class="muted">거래없음</span></td>
+              <td class="mono">-</td>
+              <td class="mono">0</td>
             </tr><tr>
               <td>DASH_MACD_DEEP_OPT</td>
               <td class="mono">1.222</td>
               <td class="mono">3.913</td>
               <td class="mono">46</td>
               <td></td>
+              <td><span class="muted">거래없음</span></td>
+              <td class="mono">-</td>
+              <td class="mono">0</td>
             </tr><tr>
               <td>DOT_MACD_DEEP_OPT</td>
               <td class="mono">1.215</td>
               <td class="mono">3.594</td>
               <td class="mono">49</td>
               <td></td>
+              <td><span class="muted">거래없음</span></td>
+              <td class="mono">-</td>
+              <td class="mono">0</td>
             </tr><tr>
               <td>VWAP_DEVIATION_V1</td>
               <td class="mono">1.105</td>
               <td class="mono">1.328</td>
               <td class="mono">972</td>
               <td></td>
+              <td><span class="muted">거래없음</span></td>
+              <td class="mono">-</td>
+              <td class="mono">0</td>
             </tr><tr>
               <td>WIDE_TRAIL_OPTIONALITY_V1</td>
               <td class="mono">1.091</td>
               <td class="mono">1.447</td>
               <td class="mono">448</td>
               <td><span class="rank-badge">donchian_channel_family +7</span></td>
+              <td><span class="muted">거래없음</span></td>
+              <td class="mono">-</td>
+              <td class="mono">1</td>
             </tr><tr>
               <td>BREAKOUT_RETEST_CONFIRMATION_V1</td>
               <td class="mono">1.070</td>
               <td class="mono">1.315</td>
               <td class="mono">821</td>
               <td></td>
+              <td><span class="muted">거래없음</span></td>
+              <td class="mono">-</td>
+              <td class="mono">2</td>
             </tr><tr>
               <td>AVAX_MACD_DEEP_OPT</td>
               <td class="mono">1.069</td>
               <td class="mono">4.596</td>
               <td class="mono">51</td>
               <td></td>
+              <td><span class="muted">거래없음</span></td>
+              <td class="mono">-</td>
+              <td class="mono">0</td>
             </tr><tr>
               <td>DAILY_MACD_ACCEL_TRAILING_V1</td>
               <td class="mono">1.026</td>
               <td class="mono">1.288</td>
               <td class="mono">502</td>
               <td></td>
+              <td><span class="muted">거래없음</span></td>
+              <td class="mono">-</td>
+              <td class="mono">4</td>
             </tr><tr>
               <td>OI_SURGE_FORWARD_V1</td>
               <td class="mono">-</td>
               <td class="mono">-</td>
               <td class="mono">-</td>
               <td></td>
+              <td><span class="muted">거래없음</span></td>
+              <td class="mono">-</td>
+              <td class="mono">2</td>
             </tr></tbody>
     </table>
     </div>
@@ -296,7 +353,7 @@
         </section>
         <section class="status-section">
           <h3><span class="badge" style="background:#16a34a">18</span> 페이퍼가동중 <code>(paper_running)</code></h3>
-          <div class="card-grid"><div class="card" style="--accent:#16a34a" title="BTC 자산전용 정밀최적화">
+          <div class="card-grid"><div class="card card-tall" style="--accent:#16a34a" title="BTC 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">BTC_MACD_DEEP_OPT</div>
             
@@ -306,8 +363,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">6.368</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.674, 15.757]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">56.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#16a34a" title="BNB 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#16a34a" title="BNB 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">BNB_MACD_DEEP_OPT</div>
             
@@ -317,8 +376,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">3.746</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.303, 8.394]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">68.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#16a34a" title="AVAX 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#16a34a" title="AVAX 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">AVAX_MACD_DEEP_OPT</div>
             
@@ -328,8 +389,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">4.596</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.069, 12.281]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">51.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#16a34a" title="DOT 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#16a34a" title="DOT 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">DOT_MACD_DEEP_OPT</div>
             
@@ -339,8 +402,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">3.594</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.215, 8.955]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">49.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#16a34a" title="돈치안브레이크아웃+트레일링스탑">
+        </div><div class="card card-tall" style="--accent:#16a34a" title="돈치안브레이크아웃+트레일링스탑">
           <div class="card-top">
             <div class="card-title">DONCHIAN_TRAILING_V1</div>
             <span class="card-badge" style="background:#16a34a22;color:#16a34a;border-color:#16a34a55">donchian_channel_family</span>
@@ -350,8 +415,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.415</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.164, 1.712]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">883.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 3건</span></div>
           </div>
-        </div><div class="card" style="--accent:#16a34a" title="ATR확장+트레일링스탑">
+        </div><div class="card card-tall" style="--accent:#16a34a" title="ATR확장+트레일링스탑">
           <div class="card-top">
             <div class="card-title">ATR_EXPANSION_TRAILING_V1</div>
             <span class="card-badge" style="background:#16a34a22;color:#16a34a;border-color:#16a34a55">donchian_channel_family</span>
@@ -361,8 +428,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.499</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.225, 1.811]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">812.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span style="color:#dc2626">0%</span>(n=1) <span class="insuff-badge">표본부족(n=1)</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">-13.68% · 7건</span></div>
           </div>
-        </div><div class="card" style="--accent:#16a34a" title="켈트너채널돌파+트레일링스탑">
+        </div><div class="card card-tall" style="--accent:#16a34a" title="켈트너채널돌파+트레일링스탑">
           <div class="card-top">
             <div class="card-title">KELTNER_TRAILING_V1</div>
             <span class="card-badge" style="background:#16a34a22;color:#16a34a;border-color:#16a34a55">donchian_channel_family</span>
@@ -372,8 +441,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.289</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.072, 1.537]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">946.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 8건</span></div>
           </div>
-        </div><div class="card" style="--accent:#16a34a" title="D142돈치안+트레일링(고변동성풀재적용)">
+        </div><div class="card card-tall" style="--accent:#16a34a" title="D142돈치안+트레일링(고변동성풀재적용)">
           <div class="card-top">
             <div class="card-title">DONCHIAN_TRAILING_HIGHVOL_V1</div>
             
@@ -383,8 +454,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.567</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.323, 1.843]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">1606.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span style="color:#16a34a">75%</span>(n=4) <span class="insuff-badge">표본부족(n=4)</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">+10.56% · 4건</span></div>
           </div>
-        </div><div class="card" style="--accent:#16a34a" title="D156ATR확장+트레일링(고변동성풀재적용)">
+        </div><div class="card card-tall" style="--accent:#16a34a" title="D156ATR확장+트레일링(고변동성풀재적용)">
           <div class="card-top">
             <div class="card-title">ATR_EXPANSION_TRAILING_HIGHVOL_V1</div>
             
@@ -394,8 +467,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.619</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.371, 1.904]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">1464.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span style="color:#16a34a">75%</span>(n=4) <span class="insuff-badge">표본부족(n=4)</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">+5.59% · 7건</span></div>
           </div>
-        </div><div class="card" style="--accent:#16a34a" title="D158켈트너+트레일링(고변동성풀재적용)">
+        </div><div class="card card-tall" style="--accent:#16a34a" title="D158켈트너+트레일링(고변동성풀재적용)">
           <div class="card-top">
             <div class="card-title">KELTNER_TRAILING_HIGHVOL_V1</div>
             
@@ -405,8 +480,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.376</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.192, 1.588]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">1842.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span style="color:#16a34a">50%</span>(n=6) <span class="insuff-badge">표본부족(n=6)</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">+0.92% · 10건</span></div>
           </div>
-        </div><div class="card" style="--accent:#16a34a" title="taker매수비율모멘텀+트레일링스탑">
+        </div><div class="card card-tall" style="--accent:#16a34a" title="taker매수비율모멘텀+트레일링스탑">
           <div class="card-top">
             <div class="card-title">TAKER_RATIO_TRAILING_V1</div>
             <span class="card-badge" style="background:#16a34a22;color:#16a34a;border-color:#16a34a55">taker_ratio_family</span>
@@ -416,8 +493,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.047</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.559, 2.646]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">636.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 3건</span></div>
           </div>
-        </div><div class="card" style="--accent:#16a34a" title="일봉MACD가속+1H트레일링스탑">
+        </div><div class="card card-tall" style="--accent:#16a34a" title="일봉MACD가속+1H트레일링스탑">
           <div class="card-top">
             <div class="card-title">DAILY_MACD_ACCEL_TRAILING_V1</div>
             
@@ -427,8 +506,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.288</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.026, 1.609]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">502.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 4건</span></div>
           </div>
-        </div><div class="card" style="--accent:#16a34a" title="돈치안+taker매수비율 컨플루언스+트레일링스탑">
+        </div><div class="card card-tall" style="--accent:#16a34a" title="돈치안+taker매수비율 컨플루언스+트레일링스탑">
           <div class="card-top">
             <div class="card-title">DONCHIAN_TAKER_CONFLUENCE_V1</div>
             <span class="card-badge" style="background:#16a34a22;color:#16a34a;border-color:#16a34a55">taker_ratio_family</span>
@@ -438,8 +519,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.979</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.072, 3.735]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">60.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#16a34a" title="ATR확장+taker매수비율 컨플루언스+트레일링스탑">
+        </div><div class="card card-tall" style="--accent:#16a34a" title="ATR확장+taker매수비율 컨플루언스+트레일링스탑">
           <div class="card-top">
             <div class="card-title">ATR_TAKER_CONFLUENCE_V1</div>
             <span class="card-badge" style="background:#16a34a22;color:#16a34a;border-color:#16a34a55">taker_ratio_family</span>
@@ -449,8 +532,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.949</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.524, 6.232]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">52.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#16a34a" title="켈트너+taker매수비율 컨플루언스+트레일링스탑">
+        </div><div class="card card-tall" style="--accent:#16a34a" title="켈트너+taker매수비율 컨플루언스+트레일링스탑">
           <div class="card-top">
             <div class="card-title">KELTNER_TAKER_CONFLUENCE_V1</div>
             <span class="card-badge" style="background:#16a34a22;color:#16a34a;border-color:#16a34a55">taker_ratio_family</span>
@@ -460,8 +545,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.018</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.269, 3.219]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">109.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 1건</span></div>
           </div>
-        </div><div class="card" style="--accent:#16a34a" title="일봉MACD가속+taker매수비율 컨플루언스+트레일링스탑">
+        </div><div class="card card-tall" style="--accent:#16a34a" title="일봉MACD가속+taker매수비율 컨플루언스+트레일링스탑">
           <div class="card-top">
             <div class="card-title">DAILY_MACD_TAKER_CONFLUENCE_V1</div>
             <span class="card-badge" style="background:#16a34a22;color:#16a34a;border-color:#16a34a55">taker_ratio_family</span>
@@ -471,8 +558,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.537</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.317, 5.175]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">54.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#16a34a" title="일봉MACD가속+taker컨플루언스 고변동성풀재적용">
+        </div><div class="card card-tall" style="--accent:#16a34a" title="일봉MACD가속+taker컨플루언스 고변동성풀재적용">
           <div class="card-top">
             <div class="card-title">DAILY_MACD_TAKER_CONFLUENCE_HIGHVOL_V1</div>
             <span class="card-badge" style="background:#16a34a22;color:#16a34a;border-color:#16a34a55">taker_ratio_family</span>
@@ -482,8 +571,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.616</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.161, 2.206]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">222.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 1건</span></div>
           </div>
-        </div><div class="card" style="--accent:#16a34a" title="돈치안브레이크아웃 리테스트확인진입+트레일링스탑">
+        </div><div class="card card-tall" style="--accent:#16a34a" title="돈치안브레이크아웃 리테스트확인진입+트레일링스탑">
           <div class="card-top">
             <div class="card-title">BREAKOUT_RETEST_CONFIRMATION_V1</div>
             
@@ -493,12 +584,14 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.315</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.07, 1.596]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">821.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 2건</span></div>
           </div>
         </div></div>
         </section>
         <section class="status-section">
           <h3><span class="badge" style="background:#65a30d">5</span> 페이퍼가동중(신호중복군) <code>(paper_running_correlated)</code></h3>
-          <div class="card-grid"><div class="card" style="--accent:#65a30d" title="돈치안브레이크아웃+펀딩비율변화율확인">
+          <div class="card-grid"><div class="card card-tall" style="--accent:#65a30d" title="돈치안브레이크아웃+펀딩비율변화율확인">
           <div class="card-top">
             <div class="card-title">FUNDING_MOMENTUM_CONFIRMATION_V1</div>
             <span class="card-badge" style="background:#65a30d22;color:#65a30d;border-color:#65a30d55">donchian_channel_family</span>
@@ -508,8 +601,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.41</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.146, 1.722]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">708.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 1건</span></div>
           </div>
-        </div><div class="card" style="--accent:#65a30d" title="멀티채널 브레이크아웃 합의(돈치안+ATR확장+켈트너 2-of-3)">
+        </div><div class="card card-tall" style="--accent:#65a30d" title="멀티채널 브레이크아웃 합의(돈치안+ATR확장+켈트너 2-of-3)">
           <div class="card-top">
             <div class="card-title">MULTICHANNEL_BREAKOUT_AGREEMENT_V1</div>
             <span class="card-badge" style="background:#65a30d22;color:#65a30d;border-color:#65a30d55">donchian_channel_family</span>
@@ -519,8 +614,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.415</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.18, 1.689]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">990.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 1건</span></div>
           </div>
-        </div><div class="card" style="--accent:#65a30d" title="멀티채널 브레이크아웃 합의(4채널: +볼린저돌파, 3-of-4)">
+        </div><div class="card card-tall" style="--accent:#65a30d" title="멀티채널 브레이크아웃 합의(4채널: +볼린저돌파, 3-of-4)">
           <div class="card-top">
             <div class="card-title">MULTICHANNEL_4CH_3OF4_V1</div>
             <span class="card-badge" style="background:#65a30d22;color:#65a30d;border-color:#65a30d55">donchian_channel_family</span>
@@ -530,8 +627,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.428</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.185, 1.705]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">963.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 1건</span></div>
           </div>
-        </div><div class="card" style="--accent:#65a30d" title="멀티채널합의+광폭트레일링(옵셔널리티/꼬리위험프리미엄 구조)">
+        </div><div class="card card-tall" style="--accent:#65a30d" title="멀티채널합의+광폭트레일링(옵셔널리티/꼬리위험프리미엄 구조)">
           <div class="card-top">
             <div class="card-title">WIDE_TRAIL_OPTIONALITY_V1</div>
             <span class="card-badge" style="background:#65a30d22;color:#65a30d;border-color:#65a30d55">donchian_channel_family</span>
@@ -541,8 +640,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.447</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.091, 1.884]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">448.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 1건</span></div>
           </div>
-        </div><div class="card" style="--accent:#65a30d" title="멀티타임프레임 브레이크아웃 합의(1H+4H 동시돈치안돌파)">
+        </div><div class="card card-tall" style="--accent:#65a30d" title="멀티타임프레임 브레이크아웃 합의(1H+4H 동시돈치안돌파)">
           <div class="card-top">
             <div class="card-title">MULTITIMEFRAME_BREAKOUT_AGREEMENT_V1</div>
             <span class="card-badge" style="background:#65a30d22;color:#65a30d;border-color:#65a30d55">donchian_channel_family</span>
@@ -552,12 +653,14 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.272</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.028, 1.558]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">783.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 1건</span></div>
           </div>
         </div></div>
         </section>
         <section class="status-section">
           <h3><span class="badge" style="background:#2563eb">4</span> 확정(페이퍼미가동) <code>(confirmed)</code></h3>
-          <div class="card-grid"><div class="card" style="--accent:#2563eb" title="ZEC MACD MTF Companion (원조 확정 스펙)">
+          <div class="card-grid"><div class="card card-tall" style="--accent:#2563eb" title="ZEC MACD MTF Companion (원조 확정 스펙)">
           <div class="card-top">
             <div class="card-title">ZEC_COMPANION_V1</div>
             
@@ -567,8 +670,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">6.142</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[2.081, 16.933]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">52.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#2563eb" title="VWAP괴리 모멘텀">
+        </div><div class="card card-tall" style="--accent:#2563eb" title="VWAP괴리 모멘텀">
           <div class="card-top">
             <div class="card-title">VWAP_DEVIATION_V1</div>
             
@@ -578,8 +683,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.328</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.105, 1.593]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">972.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#2563eb" title="돈치안브레이크아웃+횡단면모멘텀랭크필터">
+        </div><div class="card card-tall" style="--accent:#2563eb" title="돈치안브레이크아웃+횡단면모멘텀랭크필터">
           <div class="card-top">
             <div class="card-title">DONCHIAN_MOMENTUM_RANK_FILTER_V1</div>
             <span class="card-badge" style="background:#2563eb22;color:#2563eb;border-color:#2563eb55">donchian_channel_family</span>
@@ -589,8 +696,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.418</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.152, 1.727]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">735.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#2563eb" title="DASH 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#2563eb" title="DASH 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">DASH_MACD_DEEP_OPT</div>
             
@@ -600,12 +709,14 @@
             <div class="card-row"><span class="label">PF</span><span class="value">3.913</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.222, 11.602]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">46.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
         </div></div>
         </section>
         <section class="status-section">
           <h3><span class="badge" style="background:#0891b2">1</span> 포워드테스팅(미확정) <code>(forward_testing)</code></h3>
-          <div class="card-grid"><div class="card" style="--accent:#0891b2" title="OI급증+가격동행 momentum(라이브포워드테스팅)">
+          <div class="card-grid"><div class="card card-tall" style="--accent:#0891b2" title="OI급증+가격동행 momentum(라이브포워드테스팅)">
           <div class="card-top">
             <div class="card-title">OI_SURGE_FORWARD_V1</div>
             
@@ -615,6 +726,8 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">0.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 2건</span></div>
           </div>
         </div></div>
         </section>
@@ -3246,7 +3359,7 @@
 
         <section class="status-section">
           <h3><span class="badge" style="background:#d97706">20</span> 근접미확정 <code>(near_miss)</code></h3>
-          <div class="card-grid"><div class="card" style="--accent:#d97706" title="SOL 자산전용 정밀최적화">
+          <div class="card-grid"><div class="card card-tall" style="--accent:#d97706" title="SOL 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">SOL_MACD_DEEP_OPT</div>
             
@@ -3256,8 +3369,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.932</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.857, 7.286]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">63.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#d97706" title="LINK 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#d97706" title="LINK 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">LINK_MACD_DEEP_OPT</div>
             
@@ -3267,8 +3382,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.58</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.919, 5.815]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">64.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#d97706" title="XRP 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#d97706" title="XRP 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">XRP_MACD_DEEP_OPT</div>
             
@@ -3278,8 +3395,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.346</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.487, 7.498]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">53.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#d97706" title="DOGE 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#d97706" title="DOGE 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">DOGE_MACD_DEEP_OPT</div>
             
@@ -3289,8 +3408,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.69</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.822, 7.198]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">44.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#d97706" title="TRX 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#d97706" title="TRX 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">TRX_MACD_DEEP_OPT</div>
             
@@ -3300,8 +3421,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">4.248</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.46, 12.128]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">53.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#d97706" title="ATOM 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#d97706" title="ATOM 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">ATOM_MACD_DEEP_OPT</div>
             
@@ -3311,8 +3434,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.583</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.697, 7.337]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">50.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#d97706" title="NEAR 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#d97706" title="NEAR 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">NEAR_MACD_DEEP_OPT</div>
             
@@ -3322,8 +3447,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.647</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.572, 6.632]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">57.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#d97706" title="UNI 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#d97706" title="UNI 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">UNI_MACD_DEEP_OPT</div>
             
@@ -3333,8 +3460,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.118</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.765, 4.756]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">62.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#d97706" title="CHZ 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#d97706" title="CHZ 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">CHZ_MACD_DEEP_OPT</div>
             
@@ -3344,8 +3473,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.116</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.456, 5.834]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">52.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#d97706" title="CRV 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#d97706" title="CRV 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">CRV_MACD_DEEP_OPT</div>
             
@@ -3355,8 +3486,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.816</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.593, 3.966]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">73.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#d97706" title="LDO 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#d97706" title="LDO 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">LDO_MACD_DEEP_OPT</div>
             
@@ -3366,8 +3499,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.94</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.943, 9.416]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">45.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#d97706" title="SUSHI 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#d97706" title="SUSHI 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">SUSHI_MACD_DEEP_OPT</div>
             
@@ -3377,8 +3512,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.651</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.513, 3.861]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">80.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#d97706" title="CELR(Celer Network) 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#d97706" title="CELR(Celer Network) 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">CELR_MACD_DEEP_OPT</div>
             
@@ -3388,8 +3525,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.987</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.65, 5.175]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">62.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#d97706" title="청산캐스케이드 비대칭(Amihud방향분리) - 신규지표">
+        </div><div class="card card-tall" style="--accent:#d97706" title="청산캐스케이드 비대칭(Amihud방향분리) - 신규지표">
           <div class="card-top">
             <div class="card-title">LIQCASCADE_ASYMMETRY_V1</div>
             
@@ -3399,8 +3538,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.176</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.94, 1.465]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">753.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#d97706" title="ENA 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#d97706" title="ENA 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">ENA_MACD_DEEP_OPT</div>
             
@@ -3410,8 +3551,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">9.109</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.931, 45.74]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">16.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#d97706" title="BTC기준 상대가치스프레드(공적분단순화)">
+        </div><div class="card card-tall" style="--accent:#d97706" title="BTC기준 상대가치스프레드(공적분단순화)">
           <div class="card-top">
             <div class="card-title">BTC_RELVALUE_SPREAD_V1</div>
             
@@ -3421,8 +3564,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.156</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.994, 1.343]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">1366.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#d97706" title="확신캔들(body_ratio)연속+트레일링스탑">
+        </div><div class="card card-tall" style="--accent:#d97706" title="확신캔들(body_ratio)연속+트레일링스탑">
           <div class="card-top">
             <div class="card-title">CONVICTION_CANDLE_TRAILING_V1</div>
             
@@ -3432,8 +3577,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.677</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.985, 2.8]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">90.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#d97706" title="멀티채널 브레이크아웃 합의(3채널 만장일치, 3-of-3)">
+        </div><div class="card card-tall" style="--accent:#d97706" title="멀티채널 브레이크아웃 합의(3채널 만장일치, 3-of-3)">
           <div class="card-top">
             <div class="card-title">MULTICHANNEL_3CH_UNANIMOUS_V1</div>
             
@@ -3443,8 +3590,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.223</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.987, 1.499]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">680.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#d97706" title="고변동성풀 트레일폭확장 스윕(메타엔진)">
+        </div><div class="card card-tall" style="--accent:#d97706" title="고변동성풀 트레일폭확장 스윕(메타엔진)">
           <div class="card-top">
             <div class="card-title">HIGHVOL_TRAIL_WIDEN_SWEEP_V1</div>
             
@@ -3454,8 +3603,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.108</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.937, 1.301]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">1072.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#d97706" title="1000PEPE 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#d97706" title="1000PEPE 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">1000PEPE_MACD_DEEP_OPT</div>
             
@@ -3465,12 +3616,14 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.639</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.918, 2.661]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">122.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
         </div></div>
         </section>
         <section class="status-section">
           <h3><span class="badge" style="background:#6b7280">23</span> 판정불가 <code>(inconclusive)</code></h3>
-          <div class="card-grid"><div class="card" style="--accent:#6b7280" title="HYPE 자산전용 정밀최적화">
+          <div class="card-grid"><div class="card card-tall" style="--accent:#6b7280" title="HYPE 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">HYPE_MACD_DEEP_OPT</div>
             
@@ -3480,8 +3633,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="MATIC 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="MATIC 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">MATIC_MACD_DEEP_OPT</div>
             
@@ -3491,8 +3646,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.851</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 22.512]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">13.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="POL(MATIC 리브랜딩) 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="POL(MATIC 리브랜딩) 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">POL_MACD_DEEP_OPT</div>
             
@@ -3502,8 +3659,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="APT 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="APT 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">APT_MACD_DEEP_OPT</div>
             
@@ -3513,8 +3672,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="ARB 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="ARB 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">ARB_MACD_DEEP_OPT</div>
             
@@ -3524,8 +3685,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="WAVES 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="WAVES 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">WAVES_MACD_DEEP_OPT</div>
             
@@ -3535,8 +3698,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">9.267</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.283, 76.792]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">12.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="AKE 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="AKE 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">AKE_MACD_DEEP_OPT</div>
             
@@ -3546,8 +3711,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="T 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="T 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">T_MACD_DEEP_OPT</div>
             
@@ -3557,8 +3724,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="SUI 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="SUI 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">SUI_MACD_DEEP_OPT</div>
             
@@ -3568,8 +3737,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="MAGMA 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="MAGMA 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">MAGMA_MACD_DEEP_OPT</div>
             
@@ -3579,8 +3750,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="USELESS 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="USELESS 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">USELESS_MACD_DEEP_OPT</div>
             
@@ -3590,8 +3763,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="금(PAXG) 확정패턴재적용_GOLD_PAXG_DONCHIAN_V1">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="금(PAXG) 확정패턴재적용_GOLD_PAXG_DONCHIAN_V1">
           <div class="card-top">
             <div class="card-title">GOLD_PAXG_DONCHIAN_V1</div>
             
@@ -3601,8 +3776,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">4.898</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.769, 178.4]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">7.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="금(PAXG) 확정패턴재적용_GOLD_PAXG_ATR_V1">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="금(PAXG) 확정패턴재적용_GOLD_PAXG_ATR_V1">
           <div class="card-top">
             <div class="card-title">GOLD_PAXG_ATR_V1</div>
             
@@ -3612,8 +3789,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">0.699</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.062, 10.1]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">7.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="금(PAXG) 확정패턴재적용_GOLD_PAXG_KELTNER_V1">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="금(PAXG) 확정패턴재적용_GOLD_PAXG_KELTNER_V1">
           <div class="card-top">
             <div class="card-title">GOLD_PAXG_KELTNER_V1</div>
             
@@ -3623,8 +3802,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.189</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.229, 48.8]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">7.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="금(PAXG) 확정패턴재적용_GOLD_PAXG_TAKER_V1">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="금(PAXG) 확정패턴재적용_GOLD_PAXG_TAKER_V1">
           <div class="card-top">
             <div class="card-title">GOLD_PAXG_TAKER_V1</div>
             
@@ -3634,8 +3815,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">7.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="BULLA 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="BULLA 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">BULLA_MACD_DEEP_OPT</div>
             
@@ -3645,8 +3828,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="RAYSOL 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="RAYSOL 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">RAYSOL_MACD_DEEP_OPT</div>
             
@@ -3656,8 +3841,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="MARSCOIN 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="MARSCOIN 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">MARSCOIN_MACD_DEEP_OPT</div>
             
@@ -3667,8 +3854,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="PUMP 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="PUMP 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">PUMP_MACD_DEEP_OPT</div>
             
@@ -3678,8 +3867,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="PONS 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="PONS 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">PONS_MACD_DEEP_OPT</div>
             
@@ -3689,8 +3880,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="TRUMP 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="TRUMP 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">TRUMP_MACD_DEEP_OPT</div>
             
@@ -3700,8 +3893,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="UAI 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="UAI 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">UAI_MACD_DEEP_OPT</div>
             
@@ -3711,8 +3906,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#6b7280" title="牛来 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#6b7280" title="牛来 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">牛来_MACD_DEEP_OPT</div>
             
@@ -3722,12 +3919,14 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
         </div></div>
         </section>
         <section class="status-section">
           <h3><span class="badge" style="background:#dc2626">66</span> 기각 <code>(rejected)</code></h3>
-          <div class="card-grid"><div class="card" style="--accent:#dc2626" title="ETH 자산전용 정밀최적화">
+          <div class="card-grid"><div class="card card-tall" style="--accent:#dc2626" title="ETH 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">ETH_MACD_DEEP_OPT</div>
             
@@ -3737,8 +3936,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.473</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.41, 3.915]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">65.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="ADA 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="ADA 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">ADA_MACD_DEEP_OPT</div>
             
@@ -3748,8 +3949,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">0.719</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.168, 1.706]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">68.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="UTC 세션/시간대 계절성(raw drift)">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="UTC 세션/시간대 계절성(raw drift)">
           <div class="card-top">
             <div class="card-title">SESSION_HOUR_SEASONALITY</div>
             
@@ -3759,8 +3962,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="LTC 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="LTC 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">LTC_MACD_DEEP_OPT</div>
             
@@ -3770,8 +3975,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.238</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.369, 2.924]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">59.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="ETC 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="ETC 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">ETC_MACD_DEEP_OPT</div>
             
@@ -3781,8 +3988,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.753</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 6.885]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">49.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="FIL 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="FIL 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">FIL_MACD_DEEP_OPT</div>
             
@@ -3792,8 +4001,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.909</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.171, 6.551]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">57.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="XLM 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="XLM 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">XLM_MACD_DEEP_OPT</div>
             
@@ -3803,8 +4014,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.384</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.277, 7.043]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">62.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="EOS 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="EOS 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">EOS_MACD_DEEP_OPT</div>
             
@@ -3814,8 +4027,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.609</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.237, 7.297]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">21.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="VET 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="VET 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">VET_MACD_DEEP_OPT</div>
             
@@ -3825,8 +4040,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.523</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.034, 8.95]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">43.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="INJ 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="INJ 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">INJ_MACD_DEEP_OPT</div>
             
@@ -3836,8 +4053,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.117</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.265, 6.411]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">55.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="THETA 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="THETA 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">THETA_MACD_DEEP_OPT</div>
             
@@ -3847,8 +4066,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.25</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.329, 3.345]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">65.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="ALGO 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="ALGO 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">ALGO_MACD_DEEP_OPT</div>
             
@@ -3858,8 +4079,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.208</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.346, 3.187]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">54.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="SAND 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="SAND 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">SAND_MACD_DEEP_OPT</div>
             
@@ -3869,8 +4092,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.611</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.289, 6.728]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">64.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="GRT 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="GRT 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">GRT_MACD_DEEP_OPT</div>
             
@@ -3880,8 +4105,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.261</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.321, 6.942]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">56.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="ONE(Harmony) 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="ONE(Harmony) 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">ONE_MACD_DEEP_OPT</div>
             
@@ -3891,8 +4118,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.743</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.172, 12.853]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">37.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="KAVA 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="KAVA 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">KAVA_MACD_DEEP_OPT</div>
             
@@ -3902,8 +4131,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">0.507</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 2.312]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">46.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="ZIL 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="ZIL 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">ZIL_MACD_DEEP_OPT</div>
             
@@ -3913,8 +4144,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">0.457</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.062, 1.169]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">71.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="AAVE 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="AAVE 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">AAVE_MACD_DEEP_OPT</div>
             
@@ -3924,8 +4157,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.587</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.477, 3.656]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">70.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="RUNE 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="RUNE 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">RUNE_MACD_DEEP_OPT</div>
             
@@ -3935,8 +4170,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.05</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.385, 5.68]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">55.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="DYDX 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="DYDX 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">DYDX_MACD_DEEP_OPT</div>
             
@@ -3946,8 +4183,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.839</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.077, 5.623]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">57.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="GALA 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="GALA 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">GALA_MACD_DEEP_OPT</div>
             
@@ -3957,8 +4196,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.002</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.199, 2.809]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">46.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="ENJ 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="ENJ 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">ENJ_MACD_DEEP_OPT</div>
             
@@ -3968,8 +4209,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.902</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.503, 4.818]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">72.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="SNX 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="SNX 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">SNX_MACD_DEEP_OPT</div>
             
@@ -3979,8 +4222,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.532</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.238, 4.715]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">57.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="OMG(OMG Network) 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="OMG(OMG Network) 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">OMG_MACD_DEEP_OPT</div>
             
@@ -3990,8 +4235,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">4.493</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.224, 21.479]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">22.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="QTUM 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="QTUM 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">QTUM_MACD_DEEP_OPT</div>
             
@@ -4001,8 +4248,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.01</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.373, 2.371]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">67.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="IOTA(MIOTA) 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="IOTA(MIOTA) 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">IOTA_MACD_DEEP_OPT</div>
             
@@ -4012,8 +4261,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.566</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.239, 7.79]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">58.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="XTZ 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="XTZ 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">XTZ_MACD_DEEP_OPT</div>
             
@@ -4023,8 +4274,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.485</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.206, 4.027]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">67.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="OGN(Origin) 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="OGN(Origin) 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">OGN_MACD_DEEP_OPT</div>
             
@@ -4034,8 +4287,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">0.574</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.17, 1.317]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">76.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="IOST 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="IOST 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">IOST_MACD_DEEP_OPT</div>
             
@@ -4045,8 +4300,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.681</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.052, 5.953]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">51.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="STORJ 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="STORJ 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">STORJ_MACD_DEEP_OPT</div>
             
@@ -4056,8 +4313,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.328</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.174, 3.881]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">49.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="ANKR 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="ANKR 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">ANKR_MACD_DEEP_OPT</div>
             
@@ -4067,8 +4326,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">0.296</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 0.951]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">54.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="APE(ApeCoin) 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="APE(ApeCoin) 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">APE_MACD_DEEP_OPT</div>
             
@@ -4078,8 +4339,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">4.337</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.532, 20.484]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">47.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="FLOW 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="FLOW 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">FLOW_MACD_DEEP_OPT</div>
             
@@ -4089,8 +4352,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.564</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.232, 5.016]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">52.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="MASK(Mask Network) 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="MASK(Mask Network) 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">MASK_MACD_DEEP_OPT</div>
             
@@ -4100,8 +4365,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.543</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.301, 4.396]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">56.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="멀티TF장악캔들컨플루언스(dame_coi소스)">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="멀티TF장악캔들컨플루언스(dame_coi소스)">
           <div class="card-top">
             <div class="card-title">MTF_ENGULFING_CONFLUENCE_V1</div>
             
@@ -4111,8 +4378,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="dame_coi서브1 RSI극단+반전캔들(동적소폭타겟)">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="dame_coi서브1 RSI극단+반전캔들(동적소폭타겟)">
           <div class="card-top">
             <div class="card-title">DAME_COI_RSI_EXTREME_REVERSAL_V1</div>
             
@@ -4122,8 +4391,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="dame_coi서브2 숏바이어스 레짐필터">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="dame_coi서브2 숏바이어스 레짐필터">
           <div class="card-top">
             <div class="card-title">DAME_COI_SHORTBIAS_REGIME_V1</div>
             
@@ -4133,8 +4404,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="dame_coi서브3 깊은되돌림+유동성스윕">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="dame_coi서브3 깊은되돌림+유동성스윕">
           <div class="card-top">
             <div class="card-title">DAME_COI_SWEEP_REVERSAL_V1</div>
             
@@ -4144,8 +4417,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="dame_coi서브4 주봉vs일봉마감 반전필터">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="dame_coi서브4 주봉vs일봉마감 반전필터">
           <div class="card-top">
             <div class="card-title">DAME_COI_WEEKLY_FILTER_V1</div>
             
@@ -4155,8 +4430,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="dame_coi서브5 RSI+반전캔들 진입+비대칭1:N R:R청산">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="dame_coi서브5 RSI+반전캔들 진입+비대칭1:N R:R청산">
           <div class="card-top">
             <div class="card-title">DAME_COI_RSI_ASYM_RR_V1</div>
             
@@ -4166,8 +4443,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">0.81</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.404, 1.382]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">90.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="청산캐스케이드비대칭(D109)+트레일링스탑 재적용">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="청산캐스케이드비대칭(D109)+트레일링스탑 재적용">
           <div class="card-top">
             <div class="card-title">LIQCASCADE_TRAILING_V1</div>
             
@@ -4177,8 +4456,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.046</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.797, 1.346]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">407.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="taker매수비율다이버전스+트레일링스탑">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="taker매수비율다이버전스+트레일링스탑">
           <div class="card-top">
             <div class="card-title">TAKER_DIVERGENCE_TRAILING_V1</div>
             
@@ -4188,8 +4469,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">0.67</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 2.969]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">8.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="확신캔들+트레일링(21자산풀확장)">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="확신캔들+트레일링(21자산풀확장)">
           <div class="card-top">
             <div class="card-title">CONVICTION_CANDLE_BIGPOOL_V1</div>
             
@@ -4199,8 +4482,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.003</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.773, 1.274]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">423.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="평균체결규모급증+트레일링스탑">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="평균체결규모급증+트레일링스탑">
           <div class="card-top">
             <div class="card-title">AVG_TRADE_SIZE_TRAILING_V1</div>
             
@@ -4210,8 +4495,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.05</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.407, 2.197]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">46.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="BTC taker매수비율 알트스필오버+트레일링스탑">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="BTC taker매수비율 알트스필오버+트레일링스탑">
           <div class="card-top">
             <div class="card-title">BTC_TAKER_SPILLOVER_V1</div>
             
@@ -4221,8 +4508,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="taker매수비율 자산간상대순위+트레일링스탑">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="taker매수비율 자산간상대순위+트레일링스탑">
           <div class="card-top">
             <div class="card-title">TAKER_RATIO_CROSSSECTIONAL_V1</div>
             
@@ -4232,8 +4521,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="돈치안브레이크아웃 피라미딩+트레일링스탑">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="돈치안브레이크아웃 피라미딩+트레일링스탑">
           <div class="card-top">
             <div class="card-title">PYRAMID_BREAKOUT_TRAILING_V1</div>
             
@@ -4243,8 +4534,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="돈치안브레이크아웃 적응형2단계트레일링">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="돈치안브레이크아웃 적응형2단계트레일링">
           <div class="card-top">
             <div class="card-title">ADAPTIVE_TRAIL_OPTIONALITY_V1</div>
             
@@ -4254,8 +4547,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.14</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.921, 1.39]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">935.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="dame_coi RSI극단반전캔들+확정트레일링스탑재조합">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="dame_coi RSI극단반전캔들+확정트레일링스탑재조합">
           <div class="card-top">
             <div class="card-title">DAME_COI_RSI_TRAILING_V2</div>
             
@@ -4265,8 +4560,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">0.54</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.26, 0.995]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">57.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="hana_the_rich 4계층컨플루언스 재구성(FULL+ablation)">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="hana_the_rich 4계층컨플루언스 재구성(FULL+ablation)">
           <div class="card-top">
             <div class="card-title">HANA_CONFLUENCE_V1</div>
             
@@ -4276,8 +4573,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="돈치안+BTC상관관계레짐필터">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="돈치안+BTC상관관계레짐필터">
           <div class="card-top">
             <div class="card-title">CORRELATION_REGIME_DONCHIAN_V1</div>
             
@@ -4287,8 +4586,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.49</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.117, 6.852]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">9.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="업비트프리미엄스필오버+거래량급증+트레일링스탑">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="업비트프리미엄스필오버+거래량급증+트레일링스탑">
           <div class="card-top">
             <div class="card-title">UPBIT_PREMIUM_VOLUME_V1</div>
             
@@ -4298,8 +4599,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="횡단면 상대모멘텀 로테이션(시장중립)">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="횡단면 상대모멘텀 로테이션(시장중립)">
           <div class="card-top">
             <div class="card-title">CROSS_SECTIONAL_MOMENTUM_ROTATION_V1</div>
             
@@ -4309,8 +4612,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="돈치안브레이크아웃+펀딩비율(비극단정렬)이중확인+트레일링스탑">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="돈치안브레이크아웃+펀딩비율(비극단정렬)이중확인+트레일링스탑">
           <div class="card-top">
             <div class="card-title">DONCHIAN_FUNDING_CONFIRMATION_V1</div>
             
@@ -4320,8 +4625,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="무기한선물-현물 베이시스 극단역추세">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="무기한선물-현물 베이시스 극단역추세">
           <div class="card-top">
             <div class="card-title">PERP_SPOT_BASIS_REVERSAL_V1</div>
             
@@ -4331,8 +4638,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="라운드넘버(심리적가격대) 돌파 모멘텀/역추세">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="라운드넘버(심리적가격대) 돌파 모멘텀/역추세">
           <div class="card-top">
             <div class="card-title">ROUND_NUMBER_BREAKOUT_V1</div>
             
@@ -4342,8 +4651,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="TAO 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="TAO 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">TAO_MACD_DEEP_OPT</div>
             
@@ -4353,8 +4664,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">3.76</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 25.315]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">13.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="돈치안패밀리 합의붕괴청산(Exit-B)">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="돈치안패밀리 합의붕괴청산(Exit-B)">
           <div class="card-top">
             <div class="card-title">DONCHIAN_FAMILY_EXIT_B_CONSENSUS_BREAKDOWN</div>
             <span class="card-badge" style="background:#dc262622;color:#dc2626;border-color:#dc262655">donchian_channel_family</span>
@@ -4364,8 +4677,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">8334.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="돈치안패밀리 ATR동적청산(Exit-C)">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="돈치안패밀리 ATR동적청산(Exit-C)">
           <div class="card-top">
             <div class="card-title">DONCHIAN_FAMILY_EXIT_C_ATR_DYNAMIC</div>
             <span class="card-badge" style="background:#dc262622;color:#dc2626;border-color:#dc262655">donchian_channel_family</span>
@@ -4375,8 +4690,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">5288.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="FLOCK 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="FLOCK 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">FLOCK_MACD_DEEP_OPT</div>
             
@@ -4386,8 +4703,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="WLD 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="WLD 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">WLD_MACD_DEEP_OPT</div>
             
@@ -4397,8 +4716,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.944</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 11.592]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">23.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="JUP 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="JUP 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">JUP_MACD_DEEP_OPT</div>
             
@@ -4408,8 +4729,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.868</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 44.831]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">11.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="ASTER 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="ASTER 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">ASTER_MACD_DEEP_OPT</div>
             
@@ -4419,8 +4742,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">0.0</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 0.0]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">9.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="DOOD 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="DOOD 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">DOOD_MACD_DEEP_OPT</div>
             
@@ -4430,8 +4755,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">2.943</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 229.315]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">5.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="TIA 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="TIA 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">TIA_MACD_DEEP_OPT</div>
             
@@ -4441,8 +4768,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">0.552</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.143, 1.414]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">37.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#dc2626" title="ONDO 자산전용 정밀최적화(자율모드)">
+        </div><div class="card card-tall" style="--accent:#dc2626" title="ONDO 자산전용 정밀최적화(자율모드)">
           <div class="card-top">
             <div class="card-title">ONDO_MACD_DEEP_OPT</div>
             
@@ -4452,12 +4781,14 @@
             <div class="card-row"><span class="label">PF</span><span class="value">0.0</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[0.0, 0.0]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">17.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
         </div></div>
         </section>
         <section class="status-section">
           <h3><span class="badge" style="background:#991b1b">5</span> 철회 <code>(retracted)</code></h3>
-          <div class="card-grid"><div class="card" style="--accent:#991b1b" title="상하방 변동성 비대칭(vol-skew) 범용신호">
+          <div class="card-grid"><div class="card card-tall" style="--accent:#991b1b" title="상하방 변동성 비대칭(vol-skew) 범용신호">
           <div class="card-top">
             <div class="card-title">VOLSKEW_CROSSASSET</div>
             
@@ -4467,8 +4798,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">-</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">-</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#991b1b" title="FTM 자산전용 정밀최적화">
+        </div><div class="card card-tall" style="--accent:#991b1b" title="FTM 자산전용 정밀최적화">
           <div class="card-top">
             <div class="card-title">FTM_MACD_DEEP_OPT</div>
             
@@ -4478,8 +4811,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">5.532</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.387, 18.43]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">28.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#991b1b" title="수익률 왜도(skewness) 비대칭 - 신규지표">
+        </div><div class="card card-tall" style="--accent:#991b1b" title="수익률 왜도(skewness) 비대칭 - 신규지표">
           <div class="card-top">
             <div class="card-title">SKEWNESS_ASYMMETRY_V1</div>
             
@@ -4489,8 +4824,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.979</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.715, 2.28]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">1623.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#991b1b" title="첨도(kurtosis)극단+모멘텀 - 신규지표">
+        </div><div class="card card-tall" style="--accent:#991b1b" title="첨도(kurtosis)극단+모멘텀 - 신규지표">
           <div class="card-top">
             <div class="card-title">KURTOSIS_MOMENTUM_V1</div>
             
@@ -4500,8 +4837,10 @@
             <div class="card-row"><span class="label">PF</span><span class="value">3.446</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[2.724, 4.353]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">783.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
-        </div><div class="card" style="--accent:#991b1b" title="자기상관(autocorrelation)레짐 - 신규지표">
+        </div><div class="card card-tall" style="--accent:#991b1b" title="자기상관(autocorrelation)레짐 - 신규지표">
           <div class="card-top">
             <div class="card-title">AUTOCORR_REGIME_V1</div>
             
@@ -4511,6 +4850,8 @@
             <div class="card-row"><span class="label">PF</span><span class="value">1.788</span></div>
             <div class="card-row"><span class="label">CI</span><span class="value">[1.578, 2.028]</span></div>
             <div class="card-row"><span class="label">n</span><span class="value">2171.0</span></div>
+            <div class="card-row"><span class="label">페이퍼 승률</span><span class="value"><span class="muted">거래없음</span></span></div>
+            <div class="card-row"><span class="label">평균손익/오픈</span><span class="value">- · 0건</span></div>
           </div>
         </div></div>
         </section>
@@ -4519,7 +4860,7 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/7.9.0/d3.min.js"></script>
 <script>
 (function() {
-  var GRAPH_DATA = {"nodes": [{"id": "ZEC_COMPANION_V1", "type": "alpha", "name": "ZEC MACD MTF Companion (원조 확정 스펙)", "shortLabel": "ZEC_COM…", "status": "confirmed", "color": "#2563eb", "statusLabel": "확정(페이퍼미가동)", "hypothesis": "MACD MTF 크로스+SwitchLock+④필터+Breakeven50", "correlationGroup": "", "testPf": "6.142", "ciLow": "2.081", "ciHigh": "16.933", "testN": "52.0", "trainPf": "1.375", "notes": "세션 baseline. [정정 2026-09-04] test_n을 21로 잘못 기록했었음 - zec_final_confirmed_spec_report.md 원본 확인 결과 정확히 52건, 승률42.3%, MDD9.72%. [CAVEAT-2026-09-03] T5M_Research_Protocol.md(2026-08-26)에 의하면 ZEC TEST(2024-2026) 구간이 프로젝트 전역사에서 40-50회+ 재사용됨(researcher degrees of freedom) - 해당문서는 이 구간을 확정용 클린OOS로 더는 주장 안하기로 함. TRAIN(1.375)<TEST(6.142) 패턴은 전형적 과최적화 징후는 아니나 완전독립 최초검증이라는 강한주장은 자제. LF26 참고.", "rank": null, "r": 10}, {"id": "BTC_MACD_DEEP_OPT", "type": "alpha", "name": "BTC 자산전용 정밀최적화", "shortLabel": "BTC_MAC…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "ZEC와 동일 구조를 BTC 자체 파라미터로 재탐색", "correlationGroup": "", "testPf": "6.368", "ciLow": "1.674", "ciHigh": "15.757", "testN": "56.0", "trainPf": "4.468", "notes": "[D64 슬리피지버그수정 반영, 2026-09-03] 절대값->가격비례(0.05%) 슬리피지로 재검증, 여전히 확정(CI하한1.674). 원래수치(버그판): PF=7.139,CI=[1.876,18.329] - 방향/결론 불변, 크기만 소폭 하향(더 정확).", "rank": null, "r": 10}, {"id": "BNB_MACD_DEEP_OPT", "type": "alpha", "name": "BNB 자산전용 정밀최적화", "shortLabel": "BNB_MAC…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "BTC와 동일 파이프라인을 BNB에 적용", "correlationGroup": "", "testPf": "3.746", "ciLow": "1.303", "ciHigh": "8.394", "testN": "68.0", "trainPf": "5.971", "notes": "LF25: 방법론 2번째 재현 성공 - BTC/BNB 둘 다 시총최상위·최장상장", "rank": null, "r": 10}, {"id": "AVAX_MACD_DEEP_OPT", "type": "alpha", "name": "AVAX 자산전용 정밀최적화", "shortLabel": "AVAX_MA…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "동일 파이프라인을 AVAX에 적용", "correlationGroup": "", "testPf": "4.596", "ciLow": "1.069", "ciHigh": "12.281", "testN": "51.0", "trainPf": "5.799", "notes": "LF25 재검증 3번째 성공. 밈/중형주 계열도 확정 가능함을 보여줌(시총최상위 전용 가설 약화)", "rank": null, "r": 10}, {"id": "DOT_MACD_DEEP_OPT", "type": "alpha", "name": "DOT 자산전용 정밀최적화", "shortLabel": "DOT_MAC…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "동일 파이프라인을 DOT에 적용", "correlationGroup": "", "testPf": "3.594", "ciLow": "1.215", "ciHigh": "8.955", "testN": "49.0", "trainPf": "4.053", "notes": "5번째 확정. TP를 낮출수록(25%) 오히려 좋아진 유일한 사례 - 다른 확정자산(BTC/AVAX)과 반대패턴", "rank": null, "r": 10}, {"id": "DONCHIAN_TRAILING_V1", "type": "alpha", "name": "돈치안브레이크아웃+트레일링스탑", "shortLabel": "DONCHIA…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "200봉 최고/최저 이탈시 그 방향 진입, 극단값 대비 12% 트레일링스탑 청산(고정보유 아님) - 필터없는 순수추세추종", "correlationGroup": "donchian_channel_family", "testPf": "1.415", "ciLow": "1.164", "ciHigh": "1.712", "testN": "883.0", "trainPf": "1.346", "notes": "[2026-09-04] 페이퍼가동 시작(zec_donchian_trailing_paper_engine.py). 대상 6자산(SOL/ADA/XRP/LINK/DOGE/ZEC)만 - BTC/ETH/BNB는 개별PF<1이라 제외. 사이징: CI하한+PF점추정 반영 보수적고정비율(켈리아님), BASE_CAPITAL1000USDT x 6%=60USDT 총배정, 자산별 7~15USDT. 킬스위치 타이트화(연속손실3회, 포트폴리오4회) - MDD-94.71%경고 반영. 예약작업 ZEC_Donchian_Trailing_Paper_Poll 등록완료.", "rank": null, "r": 13}, {"id": "VWAP_DEVIATION_V1", "type": "alpha", "name": "VWAP괴리 모멘텀", "shortLabel": "VWAP_DE…", "status": "confirmed", "color": "#2563eb", "statusLabel": "확정(페이퍼미가동)", "hypothesis": "96봉 VWAP(거래량가중평균가) 대비 가격괴리의 z-score(192봉정규화)가 |z|>=2.5일때 그 방향 순응(모멘텀), 48봉 고정보유", "correlationGroup": "", "testPf": "1.328", "ciLow": "1.105", "ciHigh": "1.593", "testN": "972.0", "trainPf": "1.332", "notes": "D154. 8/9자산 개별PF>1(BNB만 PF<1=0.768). LF11 비용배수 2.25배(기준2~3배 충족하나 D142(5.71배)보다 훨씬 얇음). LF13 MAE평균-4.22%/14.3%가 MAE<=-8%. [LF2] 복리MDD -88.78%(위험). **경고: 비용스트레스 2x/3x 둘다 CI가 1을 포함(생존실패)** - D142(3x에서도 생존)와 대조적으로 매우 얇은 마진의 확정. 페이퍼전환 전 사용자 판단 필요.", "rank": null, "r": 10}, {"id": "ATR_EXPANSION_TRAILING_V1", "type": "alpha", "name": "ATR확장+트레일링스탑", "shortLabel": "ATR_EXP…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "ATR(14봉)이 최근70봉평균 대비 1.3배이상 확장시 직전6봉추세방향 순응, 극단값대비15%트레일링스탑 청산", "correlationGroup": "donchian_channel_family", "testPf": "1.499", "ciLow": "1.225", "ciHigh": "1.811", "testN": "812.0", "trainPf": "1.308", "notes": "[2026-09-04] 표준프로세스(확정->사이징->페이퍼콜드스타트, 승인대기없이 자동) 적용. 사이징: BASE_CAPITAL1000x6%=60USDT, 자산별 ETH6/SOL8/ADA8/XRP7/LINK7/DOGE9/ZEC15. BTC/BNB 제외(개별PF<1). 킬스위치 D142와 동일(연속손실3회/포트폴리오4회). 예약작업 ZEC_ATR_Trailing_Paper_Poll 등록완료, 7자산 콜드스타트 확인.", "rank": null, "r": 13}, {"id": "KELTNER_TRAILING_V1", "type": "alpha", "name": "켈트너채널돌파+트레일링스탑", "shortLabel": "KELTNER…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "close가 켈트너채널(EMA20중심+ATR20*1.5폭) 상단/하단 돌파시 그방향 진입, 15%트레일링스탑 청산", "correlationGroup": "donchian_channel_family", "testPf": "1.289", "ciLow": "1.072", "ciHigh": "1.537", "testN": "946.0", "trainPf": "1.381", "notes": "[2026-09-04] 표준프로세스 적용, 리스크반영해 보수적사이징(4%,40USDT: BTC4/SOL5/BNB4/ADA5/XRP6/LINK6/DOGE4/ZEC6)+타이트킬스위치(연속손실2회/포트폴리오3회). 예약작업 ZEC_Keltner_Trailing_Paper_Poll 등록, 8자산 콜드스타트 확인.", "rank": null, "r": 10}, {"id": "DONCHIAN_TRAILING_HIGHVOL_V1", "type": "alpha", "name": "D142돈치안+트레일링(고변동성풀재적용)", "shortLabel": "DONCHIA…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "고변동성 알트코인군에서 돈치안돌파+트레일링 신호가 원9자산풀보다 강하게 나타날 것", "correlationGroup": "", "testPf": "1.567", "ciLow": "1.323", "ciHigh": "1.843", "testN": "1606.0", "trainPf": "", "notes": "D161. 원판대비 PF/CI개선되었으나 MDD-99.54%(원판-94.71%보다 악화). 예외적으로 D158보다도 보수적 사이징(총3.3%,스트림당1USDT,연속손실2).", "rank": 3, "r": 13.2}, {"id": "ATR_EXPANSION_TRAILING_HIGHVOL_V1", "type": "alpha", "name": "D156ATR확장+트레일링(고변동성풀재적용)", "shortLabel": "ATR_EXP…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "고변동성 알트코인군에서 ATR확장+트레일링 신호가 원9자산풀보다 강하게 나타날 것", "correlationGroup": "", "testPf": "1.619", "ciLow": "1.371", "ciHigh": "1.904", "testN": "1464.0", "trainPf": "", "notes": "D161. 원판대비 PF/CI개선되었으나 MDD-99.44%(원판-94.03%보다 악화). 예외적으로 D158보다도 보수적 사이징(총3.3%,스트림당1USDT,연속손실2).", "rank": 2, "r": 13.9}, {"id": "KELTNER_TRAILING_HIGHVOL_V1", "type": "alpha", "name": "D158켈트너+트레일링(고변동성풀재적용)", "shortLabel": "KELTNER…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "고변동성 알트코인군에서 켈트너돌파+트레일링 신호가 원8자산풀보다 강하게 나타날 것", "correlationGroup": "", "testPf": "1.376", "ciLow": "1.192", "ciHigh": "1.588", "testN": "1842.0", "trainPf": "", "notes": "D161. 원판대비 PF/CI개선되었으나 MDD-99.94%(세션최악기록, 원판-98.66%보다도 악화). 예외적으로 D158보다도 보수적 사이징(총3.3%,스트림당1USDT,연속손실2).", "rank": 4, "r": 11.1}, {"id": "TAKER_RATIO_TRAILING_V1", "type": "alpha", "name": "taker매수비율모멘텀+트레일링스탑", "shortLabel": "TAKER_R…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "taker매수비율(적극적시장가매수비중) 지속우위=수요주도추세, momentum진입+트레일링스탑", "correlationGroup": "taker_ratio_family", "testPf": "2.047", "ciLow": "1.559", "ciHigh": "2.646", "testN": "636.0", "trainPf": "", "notes": "D166. 이 세션 완전신규데이터축(taker매수비율,OI/롱숏비율은 바이낸스30일제한으로 배제). PF/CI 트레일링스탑계열 최고기록, MDD-93.24%(계열최양호). 9자산풀 자체TEST에서 TRAIN게이트미달조합을 호기심에 본 PF2.30값은 rule5위반이라 확정근거미사용 - 고변동성풀 재적용이 진짜 confirmatory test.", "rank": 1, "r": 16.9}, {"id": "DAILY_MACD_ACCEL_TRAILING_V1", "type": "alpha", "name": "일봉MACD가속+1H트레일링스탑", "shortLabel": "DAILY_M…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "1D MACD히스토그램 가속(그자체증가)=일봉단위 추세압력강화, momentum진입", "correlationGroup": "", "testPf": "1.288", "ciLow": "1.026", "ciHigh": "1.609", "testN": "502.0", "trainPf": "1.305", "notes": "D170. 이 세션 첫 일봉시간축 확정. CI하한1.026로 확정계열중 가장 얇으나 TRAIN수치 정상(이상치無). MDD-99.33%(D161급 최악등급)이라 3.3%보수적사이징+연속손실2 킬스위치 적용.", "rank": null, "r": 10}, {"id": "DONCHIAN_TAKER_CONFLUENCE_V1", "type": "alpha", "name": "돈치안+taker매수비율 컨플루언스+트레일링스탑", "shortLabel": "DONCHIA…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "가격구조(돈치안돌파)+주문흐름(taker매수비율) 동시확인=이중확인 신호품질개선", "correlationGroup": "taker_ratio_family", "testPf": "1.979", "ciLow": "1.072", "ciHigh": "3.735", "testN": "60.0", "trainPf": "1.439", "notes": "D175. 이 세션 트레일링스탑계열 MDD 최고기록(-40.74%, 나머지 전부-93~99%대) - 이중확인이 신호빈도를 급감시켜(풀링60건) MDD문제 최초해결. 단, 자산별로는 극도로 희소(1-19건)해 개별배제 없이 9자산 균등5USDT씩 배포(4.5%총배정).", "rank": null, "r": 10}, {"id": "ATR_TAKER_CONFLUENCE_V1", "type": "alpha", "name": "ATR확장+taker매수비율 컨플루언스+트레일링스탑", "shortLabel": "ATR_TAK…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "D175원리(가격구조+주문흐름 이중확인) 일반화 - ATR확장에 적용", "correlationGroup": "taker_ratio_family", "testPf": "2.949", "ciLow": "1.524", "ciHigh": "6.232", "testN": "52.0", "trainPf": "1.184", "notes": "D183. D175원리 일반화 성공사례1 - MDD=-41.81%(원판D156-94.03%에서 극적개선, D175급). 자산별 극도로희소(0-33건)해 개별배제없이 9자산균등배분(5USDT,4.5%,연속손실3회).", "rank": null, "r": 10}, {"id": "KELTNER_TAKER_CONFLUENCE_V1", "type": "alpha", "name": "켈트너+taker매수비율 컨플루언스+트레일링스탑", "shortLabel": "KELTNER…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "D175원리(가격구조+주문흐름 이중확인) 일반화 - 켈트너에 적용", "correlationGroup": "taker_ratio_family", "testPf": "2.018", "ciLow": "1.269", "ciHigh": "3.219", "testN": "109.0", "trainPf": "1.338", "notes": "D183. D175원리 일반화 성공사례2 - MDD=-77.88%(원판D158-98.66%에서 개선, 완전은 아님). 자산별 희소해 개별배제없이 9자산균등배분(3.5USDT,3.15%,연속손실2회, D158급 보수적).", "rank": null, "r": 10}, {"id": "OI_SURGE_FORWARD_V1", "type": "alpha", "name": "OI급증+가격동행 momentum(라이브포워드테스팅)", "shortLabel": "OI_SURG…", "status": "forward_testing", "color": "#d97706", "statusLabel": "포워드테스팅(미확정)", "hypothesis": "OI(미결제약정) 급증+가격동행=신규포지션유입(청산/숏커버아님), momentum지속", "correlationGroup": "", "testPf": "", "ciLow": "", "ciHigh": "", "testN": "0.0", "trainPf": "", "notes": "D184. 사용자지시 신규방법론 - OI이력30일제한으로 TRAIN백테스트불가, 데이터관찰전 상식/문헌기반 파라미터 사전등록 후 라이브페이퍼로 포워드테스팅. n>=30 누적전까지 판정보류(zec_oi_surge_promotion_check.py로 수시확인). 확정(confirmed)과 명확히 구분되는 신규상태값.", "rank": null, "r": 10}, {"id": "DAILY_MACD_TAKER_CONFLUENCE_V1", "type": "alpha", "name": "일봉MACD가속+taker매수비율 컨플루언스+트레일링스탑", "shortLabel": "DAILY_M…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "D175원리(가격구조+주문흐름 이중확인) 4/4 완전일반화 - 일봉MACD가속에 적용", "correlationGroup": "taker_ratio_family", "testPf": "2.537", "ciLow": "1.317", "ciHigh": "5.175", "testN": "54.0", "trainPf": "1.231", "notes": "D185. D175원리 일반화 4/4 완성(최종) - MDD=-34.82%(이 세션 트레일링스탑계열 전체 최고기록). 자산별 극도로희소(0-20건)해 개별배제없이 9자산균등배분(5USDT,4.5%,연속손실3회). 기존 dual_confluence엔진에 3번째패턴으로 추가(27스트림).", "rank": null, "r": 10}, {"id": "DAILY_MACD_TAKER_CONFLUENCE_HIGHVOL_V1", "type": "alpha", "name": "일봉MACD가속+taker컨플루언스 고변동성풀재적용", "shortLabel": "DAILY_M…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "D185(일봉MACD가속+taker,원9자산풀,MDD최고기록)의 자산모집단 일반화 - D161(트레일링3종 고변동성풀 3/3성공)과 동일방법론", "correlationGroup": "taker_ratio_family", "testPf": "1.616", "ciLow": "1.161", "ciHigh": "2.206", "testN": "222.0", "trainPf": "1.347", "notes": "D191. D175(돈치안+taker)/D183(ATR확장+taker,켈트너+taker)/D185(일봉MACD가속+taker,원9자산풀)에 이어 이중확인원리의 5번째 확정이자 D161(트레일링3종 고변동성풀 3/3)과 합쳐 자산모집단 무관 일반화 완성. MDD=-89.87%(고변동성풀 특유의 높은MDD, D161계열과 유사수준) - 사이징은 D161과 동일하게 매우 보수적으로(정액소액) 설계 필요. 자산별 개별TEST: EGLD/DASH/CRV는 개별PF<1(표본도 작음,CRV n=3) - 개별제외 검토, 나머지 8자산은 개별PF>1.", "rank": null, "r": 10}, {"id": "BREAKOUT_RETEST_CONFIRMATION_V1", "type": "alpha", "name": "돈치안브레이크아웃 리테스트확인진입+트레일링스탑", "shortLabel": "BREAKOU…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "즉시진입형 브레이크아웃(D142)과 달리 돌파->되돌림(리테스트)->재돌파 3단계 확인 후 진입 - 가짜돌파 필터링", "correlationGroup": "", "testPf": "1.315", "ciLow": "1.07", "ciHigh": "1.596", "testN": "821.0", "trainPf": "1.351", "notes": "D193. 이 세션 최초의 이벤트기반 다단계 지연확인 진입구조(즉시진입 D142와 메커니즘 자체가 다름). D142(즉시진입) TEST PF=1.415 대비 PF점추정은 약간 낮으나(1.315) 유사한 CI(D142=[1.164,1.712] vs 이번=[1.070,1.596]) - 가짜돌파 필터링 가설의 명확한 개선효과는 확인 안 됐지만(오히려 지연으로 초입부 수익 일부 놓쳤을 가능성) 독립적으로 유의미한 별도 알파로 확정. 자산별 개별검증 미실시 - 페이퍼사이징 전 확인 필요.", "rank": null, "r": 10}, {"id": "DONCHIAN_MOMENTUM_RANK_FILTER_V1", "type": "alpha", "name": "돈치안브레이크아웃+횡단면모멘텀랭크필터", "shortLabel": "DONCHIA…", "status": "confirmed", "color": "#2563eb", "statusLabel": "확정(페이퍼미가동)", "hypothesis": "D188(횡단면로테이션,단독기각)의 랭킹정보를 D142(확정) 자산선별필터로 재사용 - 신호결합 아닌 자산품질결합 메타실험", "correlationGroup": "donchian_channel_family", "testPf": "1.418", "ciLow": "1.152", "ciHigh": "1.727", "testN": "735.0", "trainPf": "1.304", "notes": "D194. CI가 1 배제 - 통계적으로 확정. 그러나 D142와 사실상 동일한 브레이크아웃이벤트의 부분집합(필터로 거래수만 1609->1146(TRAIN)/883->735(TEST)로 축소, TRAIN/TEST PF는 D142원본과 거의 동일: D142 TRAIN1.346/TEST1.415 vs 이번 TRAIN1.304/TEST1.418) - 신규 알파라기보다 D142의 부분집합 재확인에 가까움. 페이퍼배포는 의도적으로 보류(문서화된 예외, 신호중복 사유): (1) D142와 동일 브레이크아웃이벤트를 재사용하므로 별도 엔진 가동시 같은 돌파에 두 페이퍼포지션이 중복체결되는 실질적 신호중복 위험, (2) D191/D193 연속확정으로 포트폴리오총노출액이 이미 가정기준자본의 94%(939.5/1000)에 도달해 추가배포 전 정책결정 필요(사용자에게 명시적으로 보고, 자동배포 강행 안 함).", "rank": null, "r": 13}, {"id": "FUNDING_MOMENTUM_CONFIRMATION_V1", "type": "alpha", "name": "돈치안브레이크아웃+펀딩비율변화율확인", "shortLabel": "FUNDING…", "status": "paper_running_correlated", "color": "#16a34a", "statusLabel": "페이퍼가동중(신호중복군)", "hypothesis": "D189(펀딩비율 레벨확인, 기각)와 달리 펀딩비율의 변화방향(1차미분)을 확인축으로 사용", "correlationGroup": "donchian_channel_family", "testPf": "1.41", "ciLow": "1.146", "ciHigh": "1.722", "testN": "708.0", "trainPf": "1.338", "notes": "D197. CI가 1 배제 - 통계적으로 확정. 그러나 D194(돈치안+횡단면모멘텀랭크필터)와 결과가 거의 동일(D194: TRAIN1.304/TEST1.418/CI[1.152,1.727] vs 이번: TRAIN1.338/TEST1.410/CI[1.146,1.722]) - D194와 마찬가지로 D142의 부분집합일 가능성이 높음(D194가 D142와 100% 부분집합, 켈트너 78.9%, ATR확장 40.7%와 겹치는 것으로 실증됨 - 배포 전 D197도 동일한 중복도 분석 필요, 미실시). 페이퍼배포는 D194와 동일 사유로 잠정 보류 - 별도 중복도 분석 결과 나올 때까지 판단 유보.", "rank": null, "r": 13}, {"id": "MULTICHANNEL_BREAKOUT_AGREEMENT_V1", "type": "alpha", "name": "멀티채널 브레이크아웃 합의(돈치안+ATR확장+켈트너 2-of-3)", "shortLabel": "MULTICH…", "status": "paper_running_correlated", "color": "#16a34a", "statusLabel": "페이퍼가동중(신호중복군)", "hypothesis": "D194 신호중복분석 발견(배타적 부분은 edge없음, 여러채널 동시동의 구간에 edge집중)을 역이용 - 처음부터 합의를 진입조건화", "correlationGroup": "donchian_channel_family", "testPf": "1.415", "ciLow": "1.18", "ciHigh": "1.689", "testN": "990.0", "trainPf": "1.333", "notes": "D198. 이 세션 브레이크아웃계열 전체 중 가장 높은 CI하한(1.180)+가장 큰 표본(n=990) - D142(1.164)/D194(1.152)/D197(1.146)보다 전부 우수. 배경: D194 신호중복분석에서 돈치안/켈트너/ATR확장이 78.9%/40.7% 겹치고, 안겹치는 배타적부분은 TRAIN PF1.243으로 게이트미달임을 실증 - edge가 \"여러채널 동시동의\" 구간에 집중된다는 사실을 이 알파가 명시적으로 포착. **배포 미결정**: 이미 개별배포된 D142/ATR_EXPANSION_TRAILING/KELTNER_TRAILING 3개 엔진과 병행배포하면 D194와 동일한 중복문제 재발(오히려 더 심함, 이 알파 자체가 그 3개의 교집합). 진짜 가치는 \"3개 개별엔진을 이걸로 통합/대체\"하는 구조개편인데, 이미 가동중인 엔진 3개를 retire하는 결정은 사용자 확인 필요 + 현재 노출액 94%>70% 배포동결 임계치 초과 상태(자체감사#2/2026-09-06 노출액상한룰)라 어느 쪽이든 즉시 자동배포 보류.", "rank": 5, "r": 10.9}, {"id": "MULTICHANNEL_4CH_3OF4_V1", "type": "alpha", "name": "멀티채널 브레이크아웃 합의(4채널: +볼린저돌파, 3-of-4)", "shortLabel": "MULTICH…", "status": "paper_running_correlated", "color": "#16a34a", "statusLabel": "페이퍼가동중(신호중복군)", "hypothesis": "D198 후속 민감도검증 - 4번째채널(볼린저20봉x2std 돌파, 이 세션 최초 돌파프레이밍) 추가 + 3-of-4 합의", "correlationGroup": "donchian_channel_family", "testPf": "1.428", "ciLow": "1.185", "ciHigh": "1.705", "testN": "963.0", "trainPf": "1.301", "notes": "D201-V3. CI가 1 배제 - 확정. D198(3채널,2-of-3,CI[1.180,1.689])과 거의 동일한 결과 - 채널4개 중 3개 공유(돈치안/ATR확장/켈트너)라 D198과 극도로 높은 중복 예상(추정, 별도 정량분석 안 했으나 D199 방법론상 자명함). **별도 페이퍼엔진으로 배포하지 않음** - D198과 사실상 같은 알파의 변주. 참고용 민감도검증 결과로만 기록.", "rank": null, "r": 13}, {"id": "WIDE_TRAIL_OPTIONALITY_V1", "type": "alpha", "name": "멀티채널합의+광폭트레일링(옵셔널리티/꼬리위험프리미엄 구조)", "shortLabel": "WIDE_TR…", "status": "paper_running_correlated", "color": "#16a34a", "statusLabel": "페이퍼가동중(신호중복군)", "hypothesis": "사용자 세션초반 제안 \"옵션적 페이오프\"(승률낮아도 소수 큰승리) - D198 진입+트레일링폭만 12%->30% 확대", "correlationGroup": "donchian_channel_family", "testPf": "1.447", "ciLow": "1.091", "ciHigh": "1.884", "testN": "448.0", "trainPf": "1.7", "notes": "D202. CI가 1 배제 - 확정. **진짜 옵셔널리티 시그니처 확인**: TEST 중앙값 pnl=-1.40%(음수!)인데 평균은 +3.01%, 최대승리 +199.1%(TRAIN최대는 +459.8%) - 전형적 \"다수 소액손실 + 극소수 대박\"구조, D198(트레일12%, 중앙값 양수 추정)과 payoff 형태 자체가 다름. **그러나 MDD=-99.96%(entry_time 인터리브 기준)** - 이 세션 전체 최악 수준(D161급조차 능가). 옵션프리미엄 매수와 유사한 리스크구조라 선형사이징(다른 확정알파들처럼 자본의 1~2%) 적용시 사실상 파산위험 - 실제 옵션처럼 \"베팅당 자본의 0.1~0.5%\" 극소액 사이징 철학이 필요함(다른 알파와 사이징 논리 자체가 다름). D198과 진입시점이 완전동일(같은 신호, 출구관리만 다름)이라 병행배포시 같은 이벤트에 대해 사실상 포지션관리방식만 다른 이중배팅 - 노출액상한(94%>70%, 배포동결중) 사유로도 지금은 배포 보류. 향후 실전전환시 검토할 \"전혀 다른 리스크버킷\"(선형전략들과 별도의 초소액 옵션성 배정)으로 취급 권장.", "rank": null, "r": 10}, {"id": "MULTITIMEFRAME_BREAKOUT_AGREEMENT_V1", "type": "alpha", "name": "멀티타임프레임 브레이크아웃 합의(1H+4H 동시돈치안돌파)", "shortLabel": "MULTITI…", "status": "paper_running_correlated", "color": "#16a34a", "statusLabel": "페이퍼가동중(신호중복군)", "hypothesis": "D198(멀티채널합의) 성공패턴을 지표축이 아닌 시간축으로 일반화 - 1H+4H 동일지표(돈치안) 동시돌파", "correlationGroup": "donchian_channel_family", "testPf": "1.272", "ciLow": "1.028", "ciHigh": "1.558", "testN": "783.0", "trainPf": "1.342", "notes": "D203. CI가 1 배제(하한1.028, 아슬아슬) - 확정이나 D198(CI하한1.180)보다 훨씬 약함. \"여러 관점 동시동의=edge\" 메타패턴이 지표축(D198)에서는 강하게 작동했지만 시간축에서는 효과가 뚜렷이 약함 - 1H와 4H 돈치안이 사실 거의 같은 정보를 다른 해상도로 보는것이라 진짜 독립적 확인이 아니었을 가능성(D194/D142처럼 4H신호 자체가 1H신호의 파생물에 가까움). D142와 상당히 겹칠것으로 예상(별도 정량분석 안 함). 배포 보류 - 노출액상한(94%>70%, 배포동결중) + CI가 다른 확정알파들보다 얇아 우선순위 낮음.", "rank": null, "r": 10}, {"id": "DASH_MACD_DEEP_OPT", "type": "alpha", "name": "DASH 자산전용 정밀최적화(자율모드)", "shortLabel": "DASH_MA…", "status": "confirmed", "color": "#2563eb", "statusLabel": "확정(페이퍼미가동)", "hypothesis": "동일 파이프라인을 자율모드로 적용", "correlationGroup": "", "testPf": "3.913", "ciLow": "1.222", "ciHigh": "11.602", "testN": "46.0", "trainPf": "4.53", "notes": "최선조합 TP25/SL15, 승률23.9%. CI하한=1.222 기준 판정.", "rank": null, "r": 10}, {"id": "hub::donchian_channel_family", "type": "hub", "name": "donchian_channel_family", "label": "donchian_channel_family", "r": 7, "color": "#e0b34d", "memberCount": 9}, {"id": "hub::taker_ratio_family", "type": "hub", "name": "taker_ratio_family", "label": "taker_ratio_family", "r": 7, "color": "#e0b34d", "memberCount": 6}], "edges": [{"source": "DONCHIAN_TRAILING_V1", "target": "hub::donchian_channel_family"}, {"source": "ATR_EXPANSION_TRAILING_V1", "target": "hub::donchian_channel_family"}, {"source": "KELTNER_TRAILING_V1", "target": "hub::donchian_channel_family"}, {"source": "DONCHIAN_MOMENTUM_RANK_FILTER_V1", "target": "hub::donchian_channel_family"}, {"source": "FUNDING_MOMENTUM_CONFIRMATION_V1", "target": "hub::donchian_channel_family"}, {"source": "MULTICHANNEL_BREAKOUT_AGREEMENT_V1", "target": "hub::donchian_channel_family"}, {"source": "MULTICHANNEL_4CH_3OF4_V1", "target": "hub::donchian_channel_family"}, {"source": "WIDE_TRAIL_OPTIONALITY_V1", "target": "hub::donchian_channel_family"}, {"source": "MULTITIMEFRAME_BREAKOUT_AGREEMENT_V1", "target": "hub::donchian_channel_family"}, {"source": "TAKER_RATIO_TRAILING_V1", "target": "hub::taker_ratio_family"}, {"source": "DONCHIAN_TAKER_CONFLUENCE_V1", "target": "hub::taker_ratio_family"}, {"source": "ATR_TAKER_CONFLUENCE_V1", "target": "hub::taker_ratio_family"}, {"source": "KELTNER_TAKER_CONFLUENCE_V1", "target": "hub::taker_ratio_family"}, {"source": "DAILY_MACD_TAKER_CONFLUENCE_V1", "target": "hub::taker_ratio_family"}, {"source": "DAILY_MACD_TAKER_CONFLUENCE_HIGHVOL_V1", "target": "hub::taker_ratio_family"}]};
+  var GRAPH_DATA = {"nodes": [{"id": "ZEC_COMPANION_V1", "type": "alpha", "name": "ZEC MACD MTF Companion (원조 확정 스펙)", "shortLabel": "ZEC_COM…", "status": "confirmed", "color": "#2563eb", "statusLabel": "확정(페이퍼미가동)", "hypothesis": "MACD MTF 크로스+SwitchLock+④필터+Breakeven50", "correlationGroup": "", "testPf": "6.142", "ciLow": "2.081", "ciHigh": "16.933", "testN": "52.0", "trainPf": "1.375", "notes": "세션 baseline. [정정 2026-09-04] test_n을 21로 잘못 기록했었음 - zec_final_confirmed_spec_report.md 원본 확인 결과 정확히 52건, 승률42.3%, MDD9.72%. [CAVEAT-2026-09-03] T5M_Research_Protocol.md(2026-08-26)에 의하면 ZEC TEST(2024-2026) 구간이 프로젝트 전역사에서 40-50회+ 재사용됨(researcher degrees of freedom) - 해당문서는 이 구간을 확정용 클린OOS로 더는 주장 안하기로 함. TRAIN(1.375)<TEST(6.142) 패턴은 전형적 과최적화 징후는 아니나 완전독립 최초검증이라는 강한주장은 자제. LF26 참고.", "rank": null, "r": 10, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 0, "paperInsufficient": true}, {"id": "BTC_MACD_DEEP_OPT", "type": "alpha", "name": "BTC 자산전용 정밀최적화", "shortLabel": "BTC_MAC…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "ZEC와 동일 구조를 BTC 자체 파라미터로 재탐색", "correlationGroup": "", "testPf": "6.368", "ciLow": "1.674", "ciHigh": "15.757", "testN": "56.0", "trainPf": "4.468", "notes": "[D64 슬리피지버그수정 반영, 2026-09-03] 절대값->가격비례(0.05%) 슬리피지로 재검증, 여전히 확정(CI하한1.674). 원래수치(버그판): PF=7.139,CI=[1.876,18.329] - 방향/결론 불변, 크기만 소폭 하향(더 정확).", "rank": null, "r": 10, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 0, "paperInsufficient": true}, {"id": "BNB_MACD_DEEP_OPT", "type": "alpha", "name": "BNB 자산전용 정밀최적화", "shortLabel": "BNB_MAC…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "BTC와 동일 파이프라인을 BNB에 적용", "correlationGroup": "", "testPf": "3.746", "ciLow": "1.303", "ciHigh": "8.394", "testN": "68.0", "trainPf": "5.971", "notes": "LF25: 방법론 2번째 재현 성공 - BTC/BNB 둘 다 시총최상위·최장상장", "rank": null, "r": 10, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 0, "paperInsufficient": true}, {"id": "AVAX_MACD_DEEP_OPT", "type": "alpha", "name": "AVAX 자산전용 정밀최적화", "shortLabel": "AVAX_MA…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "동일 파이프라인을 AVAX에 적용", "correlationGroup": "", "testPf": "4.596", "ciLow": "1.069", "ciHigh": "12.281", "testN": "51.0", "trainPf": "5.799", "notes": "LF25 재검증 3번째 성공. 밈/중형주 계열도 확정 가능함을 보여줌(시총최상위 전용 가설 약화)", "rank": null, "r": 10, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 0, "paperInsufficient": true}, {"id": "DOT_MACD_DEEP_OPT", "type": "alpha", "name": "DOT 자산전용 정밀최적화", "shortLabel": "DOT_MAC…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "동일 파이프라인을 DOT에 적용", "correlationGroup": "", "testPf": "3.594", "ciLow": "1.215", "ciHigh": "8.955", "testN": "49.0", "trainPf": "4.053", "notes": "5번째 확정. TP를 낮출수록(25%) 오히려 좋아진 유일한 사례 - 다른 확정자산(BTC/AVAX)과 반대패턴", "rank": null, "r": 10, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 0, "paperInsufficient": true}, {"id": "DONCHIAN_TRAILING_V1", "type": "alpha", "name": "돈치안브레이크아웃+트레일링스탑", "shortLabel": "DONCHIA…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "200봉 최고/최저 이탈시 그 방향 진입, 극단값 대비 12% 트레일링스탑 청산(고정보유 아님) - 필터없는 순수추세추종", "correlationGroup": "donchian_channel_family", "testPf": "1.415", "ciLow": "1.164", "ciHigh": "1.712", "testN": "883.0", "trainPf": "1.346", "notes": "[2026-09-04] 페이퍼가동 시작(zec_donchian_trailing_paper_engine.py). 대상 6자산(SOL/ADA/XRP/LINK/DOGE/ZEC)만 - BTC/ETH/BNB는 개별PF<1이라 제외. 사이징: CI하한+PF점추정 반영 보수적고정비율(켈리아님), BASE_CAPITAL1000USDT x 6%=60USDT 총배정, 자산별 7~15USDT. 킬스위치 타이트화(연속손실3회, 포트폴리오4회) - MDD-94.71%경고 반영. 예약작업 ZEC_Donchian_Trailing_Paper_Poll 등록완료.", "rank": null, "r": 13, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 3, "paperInsufficient": true}, {"id": "VWAP_DEVIATION_V1", "type": "alpha", "name": "VWAP괴리 모멘텀", "shortLabel": "VWAP_DE…", "status": "confirmed", "color": "#2563eb", "statusLabel": "확정(페이퍼미가동)", "hypothesis": "96봉 VWAP(거래량가중평균가) 대비 가격괴리의 z-score(192봉정규화)가 |z|>=2.5일때 그 방향 순응(모멘텀), 48봉 고정보유", "correlationGroup": "", "testPf": "1.328", "ciLow": "1.105", "ciHigh": "1.593", "testN": "972.0", "trainPf": "1.332", "notes": "D154. 8/9자산 개별PF>1(BNB만 PF<1=0.768). LF11 비용배수 2.25배(기준2~3배 충족하나 D142(5.71배)보다 훨씬 얇음). LF13 MAE평균-4.22%/14.3%가 MAE<=-8%. [LF2] 복리MDD -88.78%(위험). **경고: 비용스트레스 2x/3x 둘다 CI가 1을 포함(생존실패)** - D142(3x에서도 생존)와 대조적으로 매우 얇은 마진의 확정. 페이퍼전환 전 사용자 판단 필요.", "rank": null, "r": 10, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 0, "paperInsufficient": true}, {"id": "ATR_EXPANSION_TRAILING_V1", "type": "alpha", "name": "ATR확장+트레일링스탑", "shortLabel": "ATR_EXP…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "ATR(14봉)이 최근70봉평균 대비 1.3배이상 확장시 직전6봉추세방향 순응, 극단값대비15%트레일링스탑 청산", "correlationGroup": "donchian_channel_family", "testPf": "1.499", "ciLow": "1.225", "ciHigh": "1.811", "testN": "812.0", "trainPf": "1.308", "notes": "[2026-09-04] 표준프로세스(확정->사이징->페이퍼콜드스타트, 승인대기없이 자동) 적용. 사이징: BASE_CAPITAL1000x6%=60USDT, 자산별 ETH6/SOL8/ADA8/XRP7/LINK7/DOGE9/ZEC15. BTC/BNB 제외(개별PF<1). 킬스위치 D142와 동일(연속손실3회/포트폴리오4회). 예약작업 ZEC_ATR_Trailing_Paper_Poll 등록완료, 7자산 콜드스타트 확인.", "rank": null, "r": 13, "paperN": 1, "paperWinRate": 0.0, "paperAvgPnl": -13.678279410699673, "paperOpen": 7, "paperInsufficient": true}, {"id": "KELTNER_TRAILING_V1", "type": "alpha", "name": "켈트너채널돌파+트레일링스탑", "shortLabel": "KELTNER…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "close가 켈트너채널(EMA20중심+ATR20*1.5폭) 상단/하단 돌파시 그방향 진입, 15%트레일링스탑 청산", "correlationGroup": "donchian_channel_family", "testPf": "1.289", "ciLow": "1.072", "ciHigh": "1.537", "testN": "946.0", "trainPf": "1.381", "notes": "[2026-09-04] 표준프로세스 적용, 리스크반영해 보수적사이징(4%,40USDT: BTC4/SOL5/BNB4/ADA5/XRP6/LINK6/DOGE4/ZEC6)+타이트킬스위치(연속손실2회/포트폴리오3회). 예약작업 ZEC_Keltner_Trailing_Paper_Poll 등록, 8자산 콜드스타트 확인.", "rank": null, "r": 10, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 8, "paperInsufficient": true}, {"id": "DONCHIAN_TRAILING_HIGHVOL_V1", "type": "alpha", "name": "D142돈치안+트레일링(고변동성풀재적용)", "shortLabel": "DONCHIA…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "고변동성 알트코인군에서 돈치안돌파+트레일링 신호가 원9자산풀보다 강하게 나타날 것", "correlationGroup": "", "testPf": "1.567", "ciLow": "1.323", "ciHigh": "1.843", "testN": "1606.0", "trainPf": "", "notes": "D161. 원판대비 PF/CI개선되었으나 MDD-99.54%(원판-94.71%보다 악화). 예외적으로 D158보다도 보수적 사이징(총3.3%,스트림당1USDT,연속손실2).", "rank": 3, "r": 13.2, "paperN": 4, "paperWinRate": 75.0, "paperAvgPnl": 10.561877009951806, "paperOpen": 4, "paperInsufficient": true}, {"id": "ATR_EXPANSION_TRAILING_HIGHVOL_V1", "type": "alpha", "name": "D156ATR확장+트레일링(고변동성풀재적용)", "shortLabel": "ATR_EXP…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "고변동성 알트코인군에서 ATR확장+트레일링 신호가 원9자산풀보다 강하게 나타날 것", "correlationGroup": "", "testPf": "1.619", "ciLow": "1.371", "ciHigh": "1.904", "testN": "1464.0", "trainPf": "", "notes": "D161. 원판대비 PF/CI개선되었으나 MDD-99.44%(원판-94.03%보다 악화). 예외적으로 D158보다도 보수적 사이징(총3.3%,스트림당1USDT,연속손실2).", "rank": 2, "r": 13.9, "paperN": 4, "paperWinRate": 75.0, "paperAvgPnl": 5.590159098694522, "paperOpen": 7, "paperInsufficient": true}, {"id": "KELTNER_TRAILING_HIGHVOL_V1", "type": "alpha", "name": "D158켈트너+트레일링(고변동성풀재적용)", "shortLabel": "KELTNER…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "고변동성 알트코인군에서 켈트너돌파+트레일링 신호가 원8자산풀보다 강하게 나타날 것", "correlationGroup": "", "testPf": "1.376", "ciLow": "1.192", "ciHigh": "1.588", "testN": "1842.0", "trainPf": "", "notes": "D161. 원판대비 PF/CI개선되었으나 MDD-99.94%(세션최악기록, 원판-98.66%보다도 악화). 예외적으로 D158보다도 보수적 사이징(총3.3%,스트림당1USDT,연속손실2).", "rank": 4, "r": 11.1, "paperN": 6, "paperWinRate": 50.0, "paperAvgPnl": 0.9157476929759637, "paperOpen": 10, "paperInsufficient": true}, {"id": "TAKER_RATIO_TRAILING_V1", "type": "alpha", "name": "taker매수비율모멘텀+트레일링스탑", "shortLabel": "TAKER_R…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "taker매수비율(적극적시장가매수비중) 지속우위=수요주도추세, momentum진입+트레일링스탑", "correlationGroup": "taker_ratio_family", "testPf": "2.047", "ciLow": "1.559", "ciHigh": "2.646", "testN": "636.0", "trainPf": "", "notes": "D166. 이 세션 완전신규데이터축(taker매수비율,OI/롱숏비율은 바이낸스30일제한으로 배제). PF/CI 트레일링스탑계열 최고기록, MDD-93.24%(계열최양호). 9자산풀 자체TEST에서 TRAIN게이트미달조합을 호기심에 본 PF2.30값은 rule5위반이라 확정근거미사용 - 고변동성풀 재적용이 진짜 confirmatory test.", "rank": 1, "r": 16.9, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 3, "paperInsufficient": true}, {"id": "DAILY_MACD_ACCEL_TRAILING_V1", "type": "alpha", "name": "일봉MACD가속+1H트레일링스탑", "shortLabel": "DAILY_M…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "1D MACD히스토그램 가속(그자체증가)=일봉단위 추세압력강화, momentum진입", "correlationGroup": "", "testPf": "1.288", "ciLow": "1.026", "ciHigh": "1.609", "testN": "502.0", "trainPf": "1.305", "notes": "D170. 이 세션 첫 일봉시간축 확정. CI하한1.026로 확정계열중 가장 얇으나 TRAIN수치 정상(이상치無). MDD-99.33%(D161급 최악등급)이라 3.3%보수적사이징+연속손실2 킬스위치 적용.", "rank": null, "r": 10, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 4, "paperInsufficient": true}, {"id": "DONCHIAN_TAKER_CONFLUENCE_V1", "type": "alpha", "name": "돈치안+taker매수비율 컨플루언스+트레일링스탑", "shortLabel": "DONCHIA…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "가격구조(돈치안돌파)+주문흐름(taker매수비율) 동시확인=이중확인 신호품질개선", "correlationGroup": "taker_ratio_family", "testPf": "1.979", "ciLow": "1.072", "ciHigh": "3.735", "testN": "60.0", "trainPf": "1.439", "notes": "D175. 이 세션 트레일링스탑계열 MDD 최고기록(-40.74%, 나머지 전부-93~99%대) - 이중확인이 신호빈도를 급감시켜(풀링60건) MDD문제 최초해결. 단, 자산별로는 극도로 희소(1-19건)해 개별배제 없이 9자산 균등5USDT씩 배포(4.5%총배정).", "rank": null, "r": 10, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 0, "paperInsufficient": true}, {"id": "ATR_TAKER_CONFLUENCE_V1", "type": "alpha", "name": "ATR확장+taker매수비율 컨플루언스+트레일링스탑", "shortLabel": "ATR_TAK…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "D175원리(가격구조+주문흐름 이중확인) 일반화 - ATR확장에 적용", "correlationGroup": "taker_ratio_family", "testPf": "2.949", "ciLow": "1.524", "ciHigh": "6.232", "testN": "52.0", "trainPf": "1.184", "notes": "D183. D175원리 일반화 성공사례1 - MDD=-41.81%(원판D156-94.03%에서 극적개선, D175급). 자산별 극도로희소(0-33건)해 개별배제없이 9자산균등배분(5USDT,4.5%,연속손실3회).", "rank": null, "r": 10, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 0, "paperInsufficient": true}, {"id": "KELTNER_TAKER_CONFLUENCE_V1", "type": "alpha", "name": "켈트너+taker매수비율 컨플루언스+트레일링스탑", "shortLabel": "KELTNER…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "D175원리(가격구조+주문흐름 이중확인) 일반화 - 켈트너에 적용", "correlationGroup": "taker_ratio_family", "testPf": "2.018", "ciLow": "1.269", "ciHigh": "3.219", "testN": "109.0", "trainPf": "1.338", "notes": "D183. D175원리 일반화 성공사례2 - MDD=-77.88%(원판D158-98.66%에서 개선, 완전은 아님). 자산별 희소해 개별배제없이 9자산균등배분(3.5USDT,3.15%,연속손실2회, D158급 보수적).", "rank": null, "r": 10, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 1, "paperInsufficient": true}, {"id": "OI_SURGE_FORWARD_V1", "type": "alpha", "name": "OI급증+가격동행 momentum(라이브포워드테스팅)", "shortLabel": "OI_SURG…", "status": "forward_testing", "color": "#d97706", "statusLabel": "포워드테스팅(미확정)", "hypothesis": "OI(미결제약정) 급증+가격동행=신규포지션유입(청산/숏커버아님), momentum지속", "correlationGroup": "", "testPf": "", "ciLow": "", "ciHigh": "", "testN": "0.0", "trainPf": "", "notes": "D184. 사용자지시 신규방법론 - OI이력30일제한으로 TRAIN백테스트불가, 데이터관찰전 상식/문헌기반 파라미터 사전등록 후 라이브페이퍼로 포워드테스팅. n>=30 누적전까지 판정보류(zec_oi_surge_promotion_check.py로 수시확인). 확정(confirmed)과 명확히 구분되는 신규상태값.", "rank": null, "r": 10, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 2, "paperInsufficient": true}, {"id": "DAILY_MACD_TAKER_CONFLUENCE_V1", "type": "alpha", "name": "일봉MACD가속+taker매수비율 컨플루언스+트레일링스탑", "shortLabel": "DAILY_M…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "D175원리(가격구조+주문흐름 이중확인) 4/4 완전일반화 - 일봉MACD가속에 적용", "correlationGroup": "taker_ratio_family", "testPf": "2.537", "ciLow": "1.317", "ciHigh": "5.175", "testN": "54.0", "trainPf": "1.231", "notes": "D185. D175원리 일반화 4/4 완성(최종) - MDD=-34.82%(이 세션 트레일링스탑계열 전체 최고기록). 자산별 극도로희소(0-20건)해 개별배제없이 9자산균등배분(5USDT,4.5%,연속손실3회). 기존 dual_confluence엔진에 3번째패턴으로 추가(27스트림).", "rank": null, "r": 10, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 0, "paperInsufficient": true}, {"id": "DAILY_MACD_TAKER_CONFLUENCE_HIGHVOL_V1", "type": "alpha", "name": "일봉MACD가속+taker컨플루언스 고변동성풀재적용", "shortLabel": "DAILY_M…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "D185(일봉MACD가속+taker,원9자산풀,MDD최고기록)의 자산모집단 일반화 - D161(트레일링3종 고변동성풀 3/3성공)과 동일방법론", "correlationGroup": "taker_ratio_family", "testPf": "1.616", "ciLow": "1.161", "ciHigh": "2.206", "testN": "222.0", "trainPf": "1.347", "notes": "D191. D175(돈치안+taker)/D183(ATR확장+taker,켈트너+taker)/D185(일봉MACD가속+taker,원9자산풀)에 이어 이중확인원리의 5번째 확정이자 D161(트레일링3종 고변동성풀 3/3)과 합쳐 자산모집단 무관 일반화 완성. MDD=-89.87%(고변동성풀 특유의 높은MDD, D161계열과 유사수준) - 사이징은 D161과 동일하게 매우 보수적으로(정액소액) 설계 필요. 자산별 개별TEST: EGLD/DASH/CRV는 개별PF<1(표본도 작음,CRV n=3) - 개별제외 검토, 나머지 8자산은 개별PF>1.", "rank": null, "r": 10, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 1, "paperInsufficient": true}, {"id": "BREAKOUT_RETEST_CONFIRMATION_V1", "type": "alpha", "name": "돈치안브레이크아웃 리테스트확인진입+트레일링스탑", "shortLabel": "BREAKOU…", "status": "paper_running", "color": "#16a34a", "statusLabel": "페이퍼가동중", "hypothesis": "즉시진입형 브레이크아웃(D142)과 달리 돌파->되돌림(리테스트)->재돌파 3단계 확인 후 진입 - 가짜돌파 필터링", "correlationGroup": "", "testPf": "1.315", "ciLow": "1.07", "ciHigh": "1.596", "testN": "821.0", "trainPf": "1.351", "notes": "D193. 이 세션 최초의 이벤트기반 다단계 지연확인 진입구조(즉시진입 D142와 메커니즘 자체가 다름). D142(즉시진입) TEST PF=1.415 대비 PF점추정은 약간 낮으나(1.315) 유사한 CI(D142=[1.164,1.712] vs 이번=[1.070,1.596]) - 가짜돌파 필터링 가설의 명확한 개선효과는 확인 안 됐지만(오히려 지연으로 초입부 수익 일부 놓쳤을 가능성) 독립적으로 유의미한 별도 알파로 확정. 자산별 개별검증 미실시 - 페이퍼사이징 전 확인 필요.", "rank": null, "r": 10, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 2, "paperInsufficient": true}, {"id": "DONCHIAN_MOMENTUM_RANK_FILTER_V1", "type": "alpha", "name": "돈치안브레이크아웃+횡단면모멘텀랭크필터", "shortLabel": "DONCHIA…", "status": "confirmed", "color": "#2563eb", "statusLabel": "확정(페이퍼미가동)", "hypothesis": "D188(횡단면로테이션,단독기각)의 랭킹정보를 D142(확정) 자산선별필터로 재사용 - 신호결합 아닌 자산품질결합 메타실험", "correlationGroup": "donchian_channel_family", "testPf": "1.418", "ciLow": "1.152", "ciHigh": "1.727", "testN": "735.0", "trainPf": "1.304", "notes": "D194. CI가 1 배제 - 통계적으로 확정. 그러나 D142와 사실상 동일한 브레이크아웃이벤트의 부분집합(필터로 거래수만 1609->1146(TRAIN)/883->735(TEST)로 축소, TRAIN/TEST PF는 D142원본과 거의 동일: D142 TRAIN1.346/TEST1.415 vs 이번 TRAIN1.304/TEST1.418) - 신규 알파라기보다 D142의 부분집합 재확인에 가까움. 페이퍼배포는 의도적으로 보류(문서화된 예외, 신호중복 사유): (1) D142와 동일 브레이크아웃이벤트를 재사용하므로 별도 엔진 가동시 같은 돌파에 두 페이퍼포지션이 중복체결되는 실질적 신호중복 위험, (2) D191/D193 연속확정으로 포트폴리오총노출액이 이미 가정기준자본의 94%(939.5/1000)에 도달해 추가배포 전 정책결정 필요(사용자에게 명시적으로 보고, 자동배포 강행 안 함).", "rank": null, "r": 13, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 0, "paperInsufficient": true}, {"id": "FUNDING_MOMENTUM_CONFIRMATION_V1", "type": "alpha", "name": "돈치안브레이크아웃+펀딩비율변화율확인", "shortLabel": "FUNDING…", "status": "paper_running_correlated", "color": "#16a34a", "statusLabel": "페이퍼가동중(신호중복군)", "hypothesis": "D189(펀딩비율 레벨확인, 기각)와 달리 펀딩비율의 변화방향(1차미분)을 확인축으로 사용", "correlationGroup": "donchian_channel_family", "testPf": "1.41", "ciLow": "1.146", "ciHigh": "1.722", "testN": "708.0", "trainPf": "1.338", "notes": "D197. CI가 1 배제 - 통계적으로 확정. 그러나 D194(돈치안+횡단면모멘텀랭크필터)와 결과가 거의 동일(D194: TRAIN1.304/TEST1.418/CI[1.152,1.727] vs 이번: TRAIN1.338/TEST1.410/CI[1.146,1.722]) - D194와 마찬가지로 D142의 부분집합일 가능성이 높음(D194가 D142와 100% 부분집합, 켈트너 78.9%, ATR확장 40.7%와 겹치는 것으로 실증됨 - 배포 전 D197도 동일한 중복도 분석 필요, 미실시). 페이퍼배포는 D194와 동일 사유로 잠정 보류 - 별도 중복도 분석 결과 나올 때까지 판단 유보.", "rank": null, "r": 13, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 1, "paperInsufficient": true}, {"id": "MULTICHANNEL_BREAKOUT_AGREEMENT_V1", "type": "alpha", "name": "멀티채널 브레이크아웃 합의(돈치안+ATR확장+켈트너 2-of-3)", "shortLabel": "MULTICH…", "status": "paper_running_correlated", "color": "#16a34a", "statusLabel": "페이퍼가동중(신호중복군)", "hypothesis": "D194 신호중복분석 발견(배타적 부분은 edge없음, 여러채널 동시동의 구간에 edge집중)을 역이용 - 처음부터 합의를 진입조건화", "correlationGroup": "donchian_channel_family", "testPf": "1.415", "ciLow": "1.18", "ciHigh": "1.689", "testN": "990.0", "trainPf": "1.333", "notes": "D198. 이 세션 브레이크아웃계열 전체 중 가장 높은 CI하한(1.180)+가장 큰 표본(n=990) - D142(1.164)/D194(1.152)/D197(1.146)보다 전부 우수. 배경: D194 신호중복분석에서 돈치안/켈트너/ATR확장이 78.9%/40.7% 겹치고, 안겹치는 배타적부분은 TRAIN PF1.243으로 게이트미달임을 실증 - edge가 \"여러채널 동시동의\" 구간에 집중된다는 사실을 이 알파가 명시적으로 포착. **배포 미결정**: 이미 개별배포된 D142/ATR_EXPANSION_TRAILING/KELTNER_TRAILING 3개 엔진과 병행배포하면 D194와 동일한 중복문제 재발(오히려 더 심함, 이 알파 자체가 그 3개의 교집합). 진짜 가치는 \"3개 개별엔진을 이걸로 통합/대체\"하는 구조개편인데, 이미 가동중인 엔진 3개를 retire하는 결정은 사용자 확인 필요 + 현재 노출액 94%>70% 배포동결 임계치 초과 상태(자체감사#2/2026-09-06 노출액상한룰)라 어느 쪽이든 즉시 자동배포 보류.", "rank": 5, "r": 10.9, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 1, "paperInsufficient": true}, {"id": "MULTICHANNEL_4CH_3OF4_V1", "type": "alpha", "name": "멀티채널 브레이크아웃 합의(4채널: +볼린저돌파, 3-of-4)", "shortLabel": "MULTICH…", "status": "paper_running_correlated", "color": "#16a34a", "statusLabel": "페이퍼가동중(신호중복군)", "hypothesis": "D198 후속 민감도검증 - 4번째채널(볼린저20봉x2std 돌파, 이 세션 최초 돌파프레이밍) 추가 + 3-of-4 합의", "correlationGroup": "donchian_channel_family", "testPf": "1.428", "ciLow": "1.185", "ciHigh": "1.705", "testN": "963.0", "trainPf": "1.301", "notes": "D201-V3. CI가 1 배제 - 확정. D198(3채널,2-of-3,CI[1.180,1.689])과 거의 동일한 결과 - 채널4개 중 3개 공유(돈치안/ATR확장/켈트너)라 D198과 극도로 높은 중복 예상(추정, 별도 정량분석 안 했으나 D199 방법론상 자명함). **별도 페이퍼엔진으로 배포하지 않음** - D198과 사실상 같은 알파의 변주. 참고용 민감도검증 결과로만 기록.", "rank": null, "r": 13, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 1, "paperInsufficient": true}, {"id": "WIDE_TRAIL_OPTIONALITY_V1", "type": "alpha", "name": "멀티채널합의+광폭트레일링(옵셔널리티/꼬리위험프리미엄 구조)", "shortLabel": "WIDE_TR…", "status": "paper_running_correlated", "color": "#16a34a", "statusLabel": "페이퍼가동중(신호중복군)", "hypothesis": "사용자 세션초반 제안 \"옵션적 페이오프\"(승률낮아도 소수 큰승리) - D198 진입+트레일링폭만 12%->30% 확대", "correlationGroup": "donchian_channel_family", "testPf": "1.447", "ciLow": "1.091", "ciHigh": "1.884", "testN": "448.0", "trainPf": "1.7", "notes": "D202. CI가 1 배제 - 확정. **진짜 옵셔널리티 시그니처 확인**: TEST 중앙값 pnl=-1.40%(음수!)인데 평균은 +3.01%, 최대승리 +199.1%(TRAIN최대는 +459.8%) - 전형적 \"다수 소액손실 + 극소수 대박\"구조, D198(트레일12%, 중앙값 양수 추정)과 payoff 형태 자체가 다름. **그러나 MDD=-99.96%(entry_time 인터리브 기준)** - 이 세션 전체 최악 수준(D161급조차 능가). 옵션프리미엄 매수와 유사한 리스크구조라 선형사이징(다른 확정알파들처럼 자본의 1~2%) 적용시 사실상 파산위험 - 실제 옵션처럼 \"베팅당 자본의 0.1~0.5%\" 극소액 사이징 철학이 필요함(다른 알파와 사이징 논리 자체가 다름). D198과 진입시점이 완전동일(같은 신호, 출구관리만 다름)이라 병행배포시 같은 이벤트에 대해 사실상 포지션관리방식만 다른 이중배팅 - 노출액상한(94%>70%, 배포동결중) 사유로도 지금은 배포 보류. 향후 실전전환시 검토할 \"전혀 다른 리스크버킷\"(선형전략들과 별도의 초소액 옵션성 배정)으로 취급 권장.", "rank": null, "r": 10, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 1, "paperInsufficient": true}, {"id": "MULTITIMEFRAME_BREAKOUT_AGREEMENT_V1", "type": "alpha", "name": "멀티타임프레임 브레이크아웃 합의(1H+4H 동시돈치안돌파)", "shortLabel": "MULTITI…", "status": "paper_running_correlated", "color": "#16a34a", "statusLabel": "페이퍼가동중(신호중복군)", "hypothesis": "D198(멀티채널합의) 성공패턴을 지표축이 아닌 시간축으로 일반화 - 1H+4H 동일지표(돈치안) 동시돌파", "correlationGroup": "donchian_channel_family", "testPf": "1.272", "ciLow": "1.028", "ciHigh": "1.558", "testN": "783.0", "trainPf": "1.342", "notes": "D203. CI가 1 배제(하한1.028, 아슬아슬) - 확정이나 D198(CI하한1.180)보다 훨씬 약함. \"여러 관점 동시동의=edge\" 메타패턴이 지표축(D198)에서는 강하게 작동했지만 시간축에서는 효과가 뚜렷이 약함 - 1H와 4H 돈치안이 사실 거의 같은 정보를 다른 해상도로 보는것이라 진짜 독립적 확인이 아니었을 가능성(D194/D142처럼 4H신호 자체가 1H신호의 파생물에 가까움). D142와 상당히 겹칠것으로 예상(별도 정량분석 안 함). 배포 보류 - 노출액상한(94%>70%, 배포동결중) + CI가 다른 확정알파들보다 얇아 우선순위 낮음.", "rank": null, "r": 10, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 1, "paperInsufficient": true}, {"id": "DASH_MACD_DEEP_OPT", "type": "alpha", "name": "DASH 자산전용 정밀최적화(자율모드)", "shortLabel": "DASH_MA…", "status": "confirmed", "color": "#2563eb", "statusLabel": "확정(페이퍼미가동)", "hypothesis": "동일 파이프라인을 자율모드로 적용", "correlationGroup": "", "testPf": "3.913", "ciLow": "1.222", "ciHigh": "11.602", "testN": "46.0", "trainPf": "4.53", "notes": "최선조합 TP25/SL15, 승률23.9%. CI하한=1.222 기준 판정.", "rank": null, "r": 10, "paperN": 0, "paperWinRate": null, "paperAvgPnl": null, "paperOpen": 0, "paperInsufficient": true}, {"id": "hub::donchian_channel_family", "type": "hub", "name": "donchian_channel_family", "label": "donchian_channel_family", "r": 7, "color": "#e0b34d", "memberCount": 9}, {"id": "hub::taker_ratio_family", "type": "hub", "name": "taker_ratio_family", "label": "taker_ratio_family", "r": 7, "color": "#e0b34d", "memberCount": 6}], "edges": [{"source": "DONCHIAN_TRAILING_V1", "target": "hub::donchian_channel_family"}, {"source": "ATR_EXPANSION_TRAILING_V1", "target": "hub::donchian_channel_family"}, {"source": "KELTNER_TRAILING_V1", "target": "hub::donchian_channel_family"}, {"source": "DONCHIAN_MOMENTUM_RANK_FILTER_V1", "target": "hub::donchian_channel_family"}, {"source": "FUNDING_MOMENTUM_CONFIRMATION_V1", "target": "hub::donchian_channel_family"}, {"source": "MULTICHANNEL_BREAKOUT_AGREEMENT_V1", "target": "hub::donchian_channel_family"}, {"source": "MULTICHANNEL_4CH_3OF4_V1", "target": "hub::donchian_channel_family"}, {"source": "WIDE_TRAIL_OPTIONALITY_V1", "target": "hub::donchian_channel_family"}, {"source": "MULTITIMEFRAME_BREAKOUT_AGREEMENT_V1", "target": "hub::donchian_channel_family"}, {"source": "TAKER_RATIO_TRAILING_V1", "target": "hub::taker_ratio_family"}, {"source": "DONCHIAN_TAKER_CONFLUENCE_V1", "target": "hub::taker_ratio_family"}, {"source": "ATR_TAKER_CONFLUENCE_V1", "target": "hub::taker_ratio_family"}, {"source": "KELTNER_TAKER_CONFLUENCE_V1", "target": "hub::taker_ratio_family"}, {"source": "DAILY_MACD_TAKER_CONFLUENCE_V1", "target": "hub::taker_ratio_family"}, {"source": "DAILY_MACD_TAKER_CONFLUENCE_HIGHVOL_V1", "target": "hub::taker_ratio_family"}]};
 
   // --- 탭 전환 ---
   var tabBtns = document.querySelectorAll(".tab-btn");
@@ -4614,6 +4955,13 @@
         '<div class="card-row"><span class="label">CI</span><span class="value">' + ci + '</span></div>' +
         '<div class="card-row"><span class="label">n</span><span class="value">' + (d.testN || '-') + '</span></div>' +
         (d.correlationGroup ? '<div class="card-row"><span class="label">correlation_group</span><span class="value">' + d.correlationGroup + '</span></div>' : '') +
+        '<div class="gd-hypo" style="border-top:1px solid var(--border);padding-top:10px;margin-top:10px;font-style:normal;">' +
+        '<b style="color:var(--text);">페이퍼 실거래 실적</b><br>' +
+        (d.paperN > 0
+          ? ('승률 ' + d.paperWinRate.toFixed(0) + '% (n=' + d.paperN + ')' + (d.paperInsufficient ? ' <span class="insuff-badge">표본부족</span>' : '') + '<br>' +
+             '평균손익 ' + (d.paperAvgPnl >= 0 ? '+' : '') + d.paperAvgPnl.toFixed(2) + '% · 오픈포지션 ' + d.paperOpen + '건')
+          : '거래없음(완료건 0)') +
+        '</div>' +
         '<div class="gd-hypo">' + (d.hypothesis || d.notes || d.name || '') + '</div>';
     }
     panel.hidden = false;
