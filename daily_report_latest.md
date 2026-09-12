@@ -1,28 +1,30 @@
-# 알파랩 일간 리포트 — 2026-09-12
-*생성: 2026-09-12 09:15 KST*
+# 알파랩 일간 리포트 — 2026-09-13
+*생성: 2026-09-13 08:50 KST*
 
 ## 📌 헤드라인
-🎉 신규 확정/승격 1건 - PUMP_EXHAUSTION_SHORT_V1
+⚠️ 알파 1건 재등급 하향 발생 - PUMP_EXHAUSTION_SHORT_V1
 
 ## 📋 레지스트리 현황
 | 상태 | 오늘 | 전날대비 |
 |---|---|---|
-| confirmed | 7 | (+1)
+| confirmed | 7 | (변화없음)
 | consolidated | 3 | (변화없음)
 | forward_testing | 2 | (변화없음)
 | inconclusive | 107 | (변화없음)
 | info_only | 1 | (변화없음)
-| near_miss | 91 | (-1)
+| near_miss | 93 | (+2)
 | paper_running | 9 | (변화없음)
 | paper_running_correlated | 5 | (변화없음)
-| rejected | 239 | (변화없음)
+| rejected | 242 | (+3)
 | retracted | 5 | (변화없음)
 
-최신 discovery_log: **D551** (전날 D551, +0건)
+최신 discovery_log: **D562** (전날 D551, +11건)
 
 ## 🆕 신규확정/강등
 **신규확정/승격**:
-- PUMP_EXHAUSTION_SHORT_V1: near_miss → **confirmed**
+- TRAITCOMBO_ZEC_COMPANION_V1_D175183185191_V1: (신규) → **confirmed**
+**강등**:
+- PUMP_EXHAUSTION_SHORT_V1: confirmed → **rejected**
 
 ## 📍 페이퍼트레이딩
 - 완료거래: 45건 (변화없음)
@@ -31,13 +33,13 @@
 
 ## 🚦 파이프라인
 - explore: 3 (변화없음)
-- ci: 7 (+1)
+- ci: 7 (변화없음)
 - paper_new: 16 (변화없음) 🔴병목
 - paper_watch: 0 (변화없음)
 - paper_healthy: 0 (변화없음)
 - promote: 0 (변화없음)
 - live: 0 (변화없음)
-- exit: 442 (-1)
+- exit: 447 (+5)
 
 ## 🌳 컴포넌트 조합 (테크트리 관점)
 *discovery건수/confirmed개수 자체가 아니라, 검증된 컴포넌트를 몇 개 조합했는지 · 조합이 실제로 부모(단일요소)보다 강한지가 진짜 진척 - 사용자 직접지시 반영.*
@@ -54,7 +56,7 @@
 **인프라 경고 있음**:
 # ⚠️ 인프라 자체점검 - 이상 10건 발견
 
-마지막 점검: 2026-09-11 23:44:34 UTC
+마지막 점검: 2026-09-12 23:44:34 UTC
 
 ## 🟡 경고 (9건)
 - **[backtest_outlier]** CAKE_MACD_DEEP_OPT: TRAIN PF=16.34(이상치 수준, >10.0) + CI하한=0.000(0근접) - DASHUSDT 이상틱과 동일 시그니처(대개 자산 자체가 극단적 신규상장/저유동성일 때 발생, 단일봉 데이터오류 가능성도 배제말고 kline_cache 스팟체크 권장)
