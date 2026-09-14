@@ -1,47 +1,42 @@
-# 알파랩 일간 리포트 — 2026-09-14
-*생성: 2026-09-14 08:50 KST*
+# 알파랩 일간 리포트 — 2026-09-15
+*생성: 2026-09-15 08:50 KST*
 
 ## 📌 헤드라인
-⚠️ 알파 5건 재등급 하향 발생 - DAILY_MACD_TAKER_CONFLUENCE_HIGHVOL_V1, DONCHIAN_MOMENTUM_RANK_FILTER_V1, DOGE_DONCHIAN_REAPPLY_V1
+🔴 인프라 경고 발생중 (zec_infra_alert.md 확인 필요)
 
 ## 📋 레지스트리 현황
 | 상태 | 오늘 | 전날대비 |
 |---|---|---|
-| confirmed | 3 | (-4)
+| confirmed | 3 | (변화없음)
 | consolidated | 3 | (변화없음)
 | forward_testing | 2 | (변화없음)
 | inconclusive | 107 | (변화없음)
 | info_only | 1 | (변화없음)
-| near_miss | 104 | (+11)
-| paper_running | 8 | (-1)
+| near_miss | 105 | (+1)
+| paper_running | 8 | (변화없음)
 | paper_running_correlated | 5 | (변화없음)
-| rejected | 247 | (+5)
+| rejected | 250 | (+3)
 | retracted | 5 | (변화없음)
 
-최신 discovery_log: **D613** (전날 D562, +51건)
+최신 discovery_log: **D639** (전날 D613, +26건)
 
 ## 🆕 신규확정/강등
-**강등**:
-- DAILY_MACD_TAKER_CONFLUENCE_HIGHVOL_V1: paper_running → **near_miss**
-- DONCHIAN_MOMENTUM_RANK_FILTER_V1: confirmed → **near_miss**
-- DOGE_DONCHIAN_REAPPLY_V1: confirmed → **near_miss**
-- ADA_DONCHIAN_REAPPLY_V1: confirmed → **near_miss**
-- TRAITCOMBO_ZEC_COMPANION_V1_D175183185191_V1: confirmed → **near_miss**
+없음
 
 ## 📍 페이퍼트레이딩
-- 완료거래: 48건 (+3)
-- 오픈포지션: 64건 (+3)
+- 완료거래: 70건 (+22)
+- 오픈포지션: 62건 (-2)
 - 승격기준 근접 알파 없음
 
 ## 🚦 파이프라인
 - explore: 3 (변화없음)
-- ci: 3 (-4)
-- paper_new: 15 (-1) 🔴병목
-- paper_watch: 0 (변화없음)
+- ci: 3 (변화없음)
+- paper_new: 14 (-1) 🔴병목
+- paper_watch: 1 (+1)
 - paper_healthy: 0 (변화없음)
 - promote: 0 (변화없음)
 - live: 0 (변화없음)
-- exit: 463 (+16)
+- exit: 467 (+4)
 
 ## 🌳 컴포넌트 조합 (테크트리 관점)
 *discovery건수/confirmed개수 자체가 아니라, 검증된 컴포넌트를 몇 개 조합했는지 · 조합이 실제로 부모(단일요소)보다 강한지가 진짜 진척 - 사용자 직접지시 반영.*
@@ -56,20 +51,14 @@
 
 ## 🐛 버그/인프라
 **인프라 경고 있음**:
-# ⚠️ 인프라 자체점검 - 이상 20건 발견
+# ⚠️ 인프라 자체점검 - 이상 18건 발견
 
-마지막 점검: 2026-09-13 23:44:35 UTC
+마지막 점검: 2026-09-14 23:44:34 UTC
 
-## 🔴 심각 (7건)
-- **[scheduled_task]** ZEC_DonchianTakerConfluence_Paper_Poll: 마지막 실행결과 오류(LastTaskResult=2147946720)
-- **[scheduled_task]** ZEC_FundingMomentumConfirmation_Paper_Poll: 마지막 실행결과 오류(LastTaskResult=2147946720)
-- **[scheduled_task]** ZEC_Multichannel4ch_Paper_Poll: 마지막 실행결과 오류(LastTaskResult=2147946720)
-- **[scheduled_task]** ZEC_MultichannelAgreement_Paper_Poll: 마지막 실행결과 오류(LastTaskResult=2147946720)
-- **[scheduled_task]** ZEC_MultitimeframeAgreement_Paper_Poll: 마지막 실행결과 오류(LastTaskResult=2147946720)
-- **[scheduled_task]** ZEC_TakerRatio_Trailing_Paper_Poll: 마지막 실행결과 오류(LastTaskResult=2147946720)
-- **[scheduled_task]** ZEC_WideTrailOptionality_Paper_Poll: 마지막 실행결과 오류(LastTaskResult=2147946720)
-
-## 🟡 경고 (11건)
+## 🔴 심각 (5건)
+- **[alive_alpha_terrible_performance]** TAKER_RATIO_TRAILING_V1(status=paper_running) 완료거래 3건, 승률0%, 평균-13.01% - status는 alive지만 실적이 명백히 나쁨. 자동정지는 안 함(status 재분류는 검토 몫), 강력경고만.
+- **[alive_alpha_terrible_performance]** FUNDING_MOMENTUM_CONFIRMATION_V1(status=paper_running_correlated) 완료거래 4건, 승률0%, 평균-10.76% - status는 alive지만 실적이 명백히 나쁨. 자동정지는 안 함(status 재분류는 검토 몫), 강력경고만.
+- **[alive_alpha_terrible_performance]** MULTICHANNEL_BREAKOUT_AGREEMENT_V1(status=paper_running_correlated) 완료거래 4건, 승률0%, 평균-10.76% - status는 alive지만 실적이 명백히 나쁨. 자동정지는 안 함(status 재분류는 검토 몫), 강력경고만.
 
 *(전문은 zec_infra_alert.md 참조)*
 
