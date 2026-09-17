@@ -1,5 +1,5 @@
-# 알파랩 일간 리포트 — 2026-09-17
-*생성: 2026-09-17 08:50 KST*
+# 알파랩 일간 리포트 — 2026-09-18
+*생성: 2026-09-18 08:50 KST*
 
 ## 📌 헤드라인
 🔴 인프라 경고 발생중 (zec_infra_alert.md 확인 필요)
@@ -24,15 +24,15 @@
 없음
 
 ## 📍 페이퍼트레이딩
-- 완료거래: 77건 (+1)
-- 오픈포지션: 72건 (변화없음)
+- 완료거래: 80건 (+3)
+- 오픈포지션: 71건 (-1)
 - 승격기준 근접 알파 없음
 
 ## 🚦 파이프라인
 - explore: 3 (변화없음)
 - ci: 3 (변화없음)
-- paper_new: 15 (변화없음) 🔴병목
-- paper_watch: 2 (변화없음)
+- paper_new: 14 (-1) 🔴병목
+- paper_watch: 3 (+1)
 - paper_healthy: 0 (변화없음)
 - promote: 0 (변화없음)
 - live: 0 (변화없음)
@@ -53,10 +53,10 @@
 **인프라 경고 있음**:
 # ⚠️ 인프라 자체점검 - 이상 19건 발견
 
-마지막 점검: 2026-09-16 23:44:34 UTC
+마지막 점검: 2026-09-17 23:44:34 UTC
 
 ## 🔴 심각 (6건)
-- **[alive_alpha_terrible_performance]** TAKER_RATIO_TRAILING_V1(status=paper_running) 완료거래 3건, 승률0%, 평균-13.01% - status는 alive지만 실적이 명백히 나쁨. 자동정지는 안 함(status 재분류는 검토 몫), 강력경고만.
+- **[alive_alpha_terrible_performance]** TAKER_RATIO_TRAILING_V1(status=paper_running) 완료거래 6건, 승률33%, 평균-5.65% - status는 alive지만 실적이 명백히 나쁨. 자동정지는 안 함(status 재분류는 검토 몫), 강력경고만.
 - **[alive_alpha_terrible_performance]** BREAKOUT_RETEST_CONFIRMATION_V1(status=paper_running) 완료거래 5건, 승률20%, 평균-8.04% - status는 alive지만 실적이 명백히 나쁨. 자동정지는 안 함(status 재분류는 검토 몫), 강력경고만.
 - **[alive_alpha_terrible_performance]** FUNDING_MOMENTUM_CONFIRMATION_V1(status=paper_running_correlated) 완료거래 4건, 승률0%, 평균-10.76% - status는 alive지만 실적이 명백히 나쁨. 자동정지는 안 함(status 재분류는 검토 몫), 강력경고만.
 
