@@ -1,37 +1,43 @@
-# 알파랩 주간 리포트 — 2026-09-12
-*생성: 2026-09-12 16:33 KST (최근 7일 집계, 일간리포트 4건 확인됨)*
+# 알파랩 주간 리포트 — 2026-09-19
+*생성: 2026-09-19 08:50 KST (최근 7일 집계, 일간리포트 6건 확인됨)*
 
 ## 📌 주간 헤드라인
-이번주 신규시도 25건 중 확정 2건(수율 8.0%)
+이번주 신규시도 16건 중 확정 3건(수율 18.8%)
 
 ## 📊 주간누적
-- 신규시도: 25건
-- 확정: 2건 / 근접미확정: 9건 / 기각: 6건 / 판정불가: 0건
-- 수율(확정/전체시도): 8.0%
+- 신규시도: 16건
+- 확정: 3건 / 근접미확정: 9건 / 기각: 1건 / 판정불가: 0건
+- 수율(확정/전체시도): 18.8%
 
 ## ⭐ 이번주 하이라이트
-- [20260911] **신규확정/승격**:
-- TRAITCOMBO_D158_D203_V1: (신규) → **confirmed**
+- [20260913] **신규확정/승격**:
+- TRAITCOMBO_ZEC_COMPANION_V1_D175183185191_V1: (신규) → **confirmed**
 **강등**:
-- DONCHIAN_TRAILING_V1: paper_running → **consolidated**
-- ATR_EXPANSION_TRAILING_V1: paper_running → **consolidated**
-- KELTNER_TRAILING_V1: paper_running → **consolidated**
-- DONCHIAN_TRAILING_HIGHVOL_V1: paper_running → **near_miss**
-- ATR_EXPANSION_TRAILING_HIGHVOL_V1: paper_running → **near_miss**
-- KELTNER_TRAILING_HIGHVOL_V1: paper_running → **near_miss**
-- [20260912] **신규확정/승격**:
-- PUMP_EXHAUSTION_SHORT_V1: near_miss → **confirmed**
+- PUMP_EXHAUSTION_SHORT_V1: confirmed → **rejected**
+- [20260914] **강등**:
+- DAILY_MACD_TAKER_CONFLUENCE_HIGHVOL_V1: paper_running → **near_miss**
+- DONCHIAN_MOMENTUM_RANK_FILTER_V1: confirmed → **near_miss**
+- DOGE_DONCHIAN_REAPPLY_V1: confirmed → **near_miss**
+- ADA_DONCHIAN_REAPPLY_V1: confirmed → **near_miss**
+- TRAITCOMBO_ZEC_COMPANION_V1_D175183185191_V1: confirmed → **near_miss**
+- [20260916] **신규확정/승격**:
+- INTRABAR_ORDERFLOW_CONFIRM_FORWARD_SOLADABNB_V1: (신규) → **forward_testing**
+- TAKER_RATIO_TRAILING_TRAIL_BANDIT_PILOT_V1: (신규) → **forward_testing**
 
 ## 🔧 이번주 추가된 시스템/인프라
-- D186: 자체감사(2026-09-05) 5개 지적사항 후속조치 완료 — 인프라수정/포트폴리오킬스위치/노출액문서화/상관위험태깅/다중비교보정
-- D196: 포트폴리오 노출액 상한 룰(신규배포/사이징증대 자동보류) 신설
-- D310: DASH_MACD_DEEP_OPT / ZEN_MACD_DEEP_OPT 페이퍼배포 누락 발견 + 즉시배포
-- D539: 초고변동성 서브시스템 - 진행상태 정리 + BL-1/BL-2/BL-3 착수 (2026-09-10)
+- D564 [번호정정, 원래 D545과 충돌 - 2026-09-13 수정]: 트레잇조합 이중확인(entry_vol_regime_transition+confirm_funding_momentum) — **근접미확정**
+- D565 [번호정정, 원래 D546과 충돌 - 2026-09-13 수정]: 트레잇조합 이중확인(entry_atr_expansion_momentum+confirm_funding_momentum) — **기각(TRAIN게이트 미달)**
+- D566 [번호정정, 원래 D547과 충돌 - 2026-09-13 수정]: 트레잇조합 이중확인(entry_daily_macd_accel+confirm_multichannel_kofn) — **근접미확정**
+- D567 [번호정정, 원래 D548과 충돌 - 2026-09-13 수정]: 트레잇조합 이중확인(entry_daily_macd_accel+confirm_multitimeframe) — **근접미확정**
+- D568 [번호정정, 원래 D549와 충돌 - 2026-09-13 수정]: 트레잇조합 이중확인(entry_taker_ratio_momentum+confirm_multichannel_kofn) — **근접미확정**
+- D569 [번호정정, 원래 D550과 충돌 - 2026-09-13 수정]: 트레잇조합 이중확인(entry_taker_ratio_momentum+confirm_multitimeframe) — **근접미확정**
+- D570 [번호정정, 원래 D551과 충돌 - 2026-09-13 수정]: 확인지연 진입타이밍(entry_donchian_breakout@N=3봉) — **근접미확정**
+- D577 [번호정정, 원래 D575과 충돌(제 수정보고서 D575와 동시적재) - 2026-09-13 수정]: donchian_channel_family 6건 적대적재검토(배치B) - 전원 실패판정, 독립증거가치 재평가 필요
 
 ## 🌳 컴포넌트 조합 (테크트리 관점)
 *"discovery 몇건, confirmed 몇건"보다 "뭐랑 뭐가 합쳐져서 뭐가 나왔고, 이게 이전 세대보다 강한지"가 사용자가 지정한 진짜 목표 - 이 관점으로 이번주 정리.*
-- 현재 트레잇매핑된 살아있는 알파: 22건, 평균 조합다양성 2.5종
-- 단순자산확장(breadth-only): 5건 - 조합력 증가 없이 자산만 늘린 것
+- 현재 트레잇매핑된 살아있는 알파: 20건, 평균 조합다양성 2.4종
+- 단순자산확장(breadth-only): 4건 - 조합력 증가 없이 자산만 늘린 것
 - 부모(단일요소)보다 강한 조합: 1건 / 약한 조합: **12건**
   - 약한 조합 목록: MULTICHANNEL_BREAKOUT_AGREEMENT_V1, WIDE_TRAIL_OPTIONALITY_V1, MULTITIMEFRAME_BREAKOUT_AGREEMENT_V1, DONCHIAN_TAKER_CONFLUENCE_V1, ATR_TAKER_CONFLUENCE_V1, KELTNER_TAKER_CONFLUENCE_V1, DAILY_MACD_TAKER_CONFLUENCE_V1, DAILY_MACD_TAKER_CONFLUENCE_HIGHVOL_V1, FUNDING_MOMENTUM_CONFIRMATION_V1, DONCHIAN_MOMENTUM_RANK_FILTER_V1, WHALE_DONCHIAN_CONFLUENCE_V1, DONCHIAN_EXIT_SWING_RR_V1
   - **솔직한 평가**: 지금까지 시도된 조합 대부분이 부모 단일요소보다 통계적으로 약함(k-of-n 합의류가 신호빈도를 줄여 표본이 희석되는 패턴 반복) - "조합하면 강해진다"는 가설이 아직 실증적으로 확인되지 않음, 다음주 다른 조합방식(예: 신호레벨 AND가 아니라 포트폴리오레벨 분산) 검토 필요.
@@ -91,13 +97,15 @@
 3. 예약작업: 즉시등록해제 대신 우선 비활성화 요청만 등록, 14일 유예 후 완전삭제 재검토
 4. 아카이브 폴더 자체도 30일+ 지난 것은 검토대상으로만 나열(자동삭제 없음)
 
-**1) 고아 스크립트 후보** (전체 .py 203개 중 run_*.bat(34개)/다른스크립트import 어디서도 미참조)
-- 133개 발견(일부는 의도적 수동실행/1회성 분석스크립트일 수 있음 - 검토 필요, 자동삭제 안 함):
+**1) 고아 스크립트 후보** (전체 .py 283개 중 run_*.bat(38개)/다른스크립트import 어디서도 미참조)
+- 191개 발견(일부는 의도적 수동실행/1회성 분석스크립트일 수 있음 - 검토 필요, 자동삭제 안 함):
   - `bb_supertrend_reversal.py`
   - `cross_asset_param_lab.py`
   - `leverage_ev_search.py`
   - `leverage_scale_extended_grid.py`
   - `mtf_macd_hardlocked_backtest.py`
+  - `scratch_cvd_append_persymbol.py`
+  - `scratch_cvd_persymbol.py`
   - `symbol_full_discovery.py`
   - `symbol_full_discovery_v3.py`
   - `t5m_native_off_engine.py`
@@ -107,29 +115,27 @@
   - `zec_asset_specific_optimizer.py`
   - `zec_atr_expansion_trailing_robustness_lf.py`
   - `zec_atr_expansion_trailing_strategy.py`
+  - `zec_atr_percentile_regime_switch_strategy.py`
   - `zec_autocorr_regime_strategy.py`
   - `zec_autocorr_robustness.py`
   - `zec_avg_trade_size_strategy.py`
   - `zec_breakout_retest_confirmation_strategy.py`
+  - `zec_btc_correlation_regime_filter_strategy.py`
   - `zec_btc_taker_spillover_strategy.py`
+  - `zec_candle_boundary_transition_1d_strategy.py`
+  - `zec_candle_boundary_transition_1h2h3h8h.py`
+  - `zec_candle_boundary_transition_subday.py`
+  - `zec_candle_streak_exhaustion_strategy.py`
   - `zec_cointegration_spread_strategy.py`
   - `zec_confirmed_recipe_crossasset.py`
   - `zec_confluence_generalization_strategy.py`
-  - `zec_conviction_candle_bigpool_strategy.py`
-  - `zec_conviction_candle_strategy.py`
-  - `zec_correlation_regime_strategy.py`
-  - `zec_cross_exchange_basis_confirmation_strategy.py`
-  - `zec_cross_sectional_momentum_rotation_strategy.py`
-  - `zec_cross_sectional_momentum_strategy.py`
-  - `zec_crossasset_paradigm_driver.py`
-  - `zec_crosssectional_pool_split_strategy.py`
-  - ...외 103개
+  - ...외 161개
 
 **2) 예약작업(run_*.bat) 이슈** *(파일시스템 기반 근사 - 실제 Task Scheduler 등록/활성상태(Ready/Disabled)는 이 자동점검이 확인 못 함, PowerShell을 이 스크립트 내부에서 호출하면 이 환경에서 행(hang)이 걸리는 제약 있음 - 등록상태 확인은 Claude가 별도로 주기적 수동점검 권장)*
 - ⚠️ run_interactive_backtest_app.bat: 대상 스크립트 없음: zec_interactive_backtest_app.py
 
 **3) 오래된 캐시파일**(30일+ 미수정)
-- kline_cache: 전체 1141개/388.4MB, 오래된것 0개/0.0MB
+- kline_cache: 전체 1233개/474.5MB, 오래된것 0개/0.0MB
 - kline_cache_takerbuy: 전체 1개/2.2MB, 오래된것 0개/0.0MB
 - bybit_kline_cache: 전체 18개/13.9MB, 오래된것 0개/0.0MB
 - leadtrader_cache: 전체 44개/1.9MB, 오래된것 0개/0.0MB
