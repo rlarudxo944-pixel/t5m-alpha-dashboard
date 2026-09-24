@@ -72,7 +72,7 @@
 </head>
 <body>
 <h1>3단 레이더 대시보드 (초고변동 알트 스크리너)</h1>
-<div class="meta">Tier1 갱신: 2026-09-23 16:02:23.124293+00:00 · Tier2/3 갱신: 2026-09-24 00:35:04.942752+00:00 ·
+<div class="meta">Tier1 갱신: 2026-09-24 04:57:21.179374+00:00 · Tier2/3 갱신: 2026-09-24 04:35:00.799188+00:00 ·
   Tier1 스캔 521/654심볼</div>
 <div class="disclaimer">
   이 대시보드는 <b>순수 스크리너</b>입니다 - 매매신호/추천이 아니라 케이스스터디(진행상황1-11)에서
@@ -82,8 +82,105 @@
 
 <div id="hbBanner" class="hb-banner">⚠️ 아래 작업 중 최소 하나가 기대 주기보다 오래 갱신되지 않았습니다 - 멈췄을 가능성이 있습니다. 상세는 하트비트 표 참고.</div>
 
-<div class="hero">
-<h2>🎯 지금 액션 가능한 후보 (심볼당 1줄만 · 해소 안 됐고 · 아직 신선한 신호만)</h2>
+<div class="hero" style="border-left-color:#6ac2ff;">
+<h2 style="border-left-color:#6ac2ff;">🔭 Tier1 관심목록 - 사전예측(임박점수, 방향무관)</h2>
+<div class="n">
+  <b>이 시스템에서 유일하게 "아직 안 움직인 시점"에 미리 보는 층위</b>입니다(아래 🟢진입후보/
+  ⭐최우선후보는 τ=25~30%, 즉 이미 무브가 상당 부분 진행돼야만 뜨는 구조라 원천적으로 "터지기
+  전"을 잡을 수 없음 - 진행상황16에서 직접 확인, 아래 섹션 안내문 참고). 매일 전체 654개 심볼을
+  스캔해 "향후 14일 내 50%+ 무브 시작 확률"을 방향무관으로 점수화(TEST 구간 ROC-AUC 0.6627,
+  상위10%/베이스레이트 실제발생률 비율 <b>1.52배</b> CI[1.29,1.77] - 0을 배제해 통계적으로
+  유의, look-ahead 누수 없음을 perturbation감사로 확인·진행상황5).
+</div>
+<div class="audit-note" style="margin-top:8px;">
+  <b>실제 검증사례(BTRUSDT, 2026-09-24 재구성확인)</b>: 이 코인이 08-27부터 겪은 대붕괴(-80%대)
+  <b>최소 1주일 전인 08-20~08-26 내내</b> 이 임박점수 관심목록 상위10%(전체 525개 중 27~30위,
+  상위 5.5~6%) 안에 계속 들어있었습니다 - 모델 자체의 사후라벨(향후14일내 실제무브 발생)도
+  08-25부터 1로 전환돼 정확히 일치. <b>단, 이건 지금 과거데이터로 재구성해 확인한 것</b>이지
+  그 당시 실제로 관심목록을 라이브로 지켜보고 있었다는 뜻은 아닙니다(이 시스템 자체가
+  2026-09-24에야 처음 가동돼 그때는 존재하지 않았음).
+</div>
+<div class="n" style="margin-top:8px;">
+  <b>그래서 오늘부터 진짜 전향적(prospective) 추적을 시작합니다</b> - 매일 그날의 관심목록을
+  영구기록하고, 14일 뒤 그 심볼들에 실제 50%+ 무브가 났는지 미래시점 가격데이터로 직접
+  판정해 누적 적중률을 쌓습니다(사후재구성이 아니라 진짜 "아직 결과를 모르는 채로 기록 →
+  나중에 확인").
+</div>
+<div class='audit-note'><b>아직 판단하기엔 이릅니다</b> - 첫 스냅샷(2026-09-24)으로부터 14일이 지나야 첫 판정이 나옵니다(예정: 2026-10-08). 현재 53건이 판정 대기중.</div>
+<div class="n" style="margin-top:10px;">상위10% 컷=0.834 이상 53개 심볼 (오늘 스캔 521개 중)</div>
+<div class="tablewrap"><table id="t1">
+<thead><tr><th>순위</th><th class="sym">심볼</th><th>임박점수</th><th>vol_ratio</th>
+<th>ATH대비</th><th>ATL대비</th><th>과거이동횟수</th></tr></thead>
+<tbody>
+<tr><td>1</td><td class='sym'>SUNUSDT</td><td>0.994</td><td>1.33</td><td>-46.85%</td><td>+15.44%</td><td>1</td></tr>
+<tr><td>2</td><td class='sym'>PAXGUSDT</td><td>0.985</td><td>0.98</td><td>-21.28%</td><td>+33.07%</td><td>1</td></tr>
+<tr><td>3</td><td class='sym'>ASTERUSDT</td><td>0.964</td><td>3.14</td><td>-68.43%</td><td>+56.08%</td><td>5</td></tr>
+<tr><td>4</td><td class='sym'>QNTUSDT</td><td>0.963</td><td>2.06</td><td>-45.36%</td><td>+32.14%</td><td>2</td></tr>
+<tr><td>5</td><td class='sym'>LSKUSDT</td><td>0.956</td><td>266.42</td><td>-59.37%</td><td>+344.60%</td><td>6</td></tr>
+<tr><td>6</td><td class='sym'>AKEUSDT</td><td>0.949</td><td>4.41</td><td>-21.07%</td><td>+27184.95%</td><td>17</td></tr>
+<tr><td>7</td><td class='sym'>NMRUSDT</td><td>0.946</td><td>1.18</td><td>-53.88%</td><td>+56.25%</td><td>5</td></tr>
+<tr><td>8</td><td class='sym'>RENDERUSDT</td><td>0.924</td><td>2.85</td><td>-59.68%</td><td>+53.31%</td><td>4</td></tr>
+<tr><td>9</td><td class='sym'>LYNUSDT</td><td>0.920</td><td>2.19</td><td>-88.34%</td><td>+25.55%</td><td>12</td></tr>
+<tr><td>10</td><td class='sym'>BANANAUSDT</td><td>0.911</td><td>1.24</td><td>-86.02%</td><td>+62.05%</td><td>5</td></tr>
+<tr><td>11</td><td class='sym'>MAVIAUSDT</td><td>0.909</td><td>1.31</td><td>-86.96%</td><td>+37.79%</td><td>7</td></tr>
+<tr><td>12</td><td class='sym'>GUSDT</td><td>0.898</td><td>185.38</td><td>-58.70%</td><td>+134.64%</td><td>7</td></tr>
+<tr><td>13</td><td class='sym'>PUMPUSDT</td><td>0.892</td><td>1.12</td><td>-48.03%</td><td>+273.98%</td><td>8</td></tr>
+<tr><td>14</td><td class='sym'>OGUSDT</td><td>0.892</td><td>1.25</td><td>-87.77%</td><td>+21.94%</td><td>4</td></tr>
+<tr><td>15</td><td class='sym'>BRUSDT</td><td>0.889</td><td>107.49</td><td>-3.60%</td><td>+2627.79%</td><td>9</td></tr>
+<tr><td>16</td><td class='sym'>IOTXUSDT</td><td>0.889</td><td>2.54</td><td>-87.57%</td><td>+88.22%</td><td>2</td></tr>
+<tr><td>17</td><td class='sym'>TURTLEUSDT</td><td>0.881</td><td>0.92</td><td>-77.89%</td><td>+36.29%</td><td>3</td></tr>
+<tr><td>18</td><td class='sym'>ALLUSDT</td><td>0.879</td><td>1.79</td><td>-45.20%</td><td>+57.23%</td><td>3</td></tr>
+<tr><td>19</td><td class='sym'>ARCUSDT</td><td>0.877</td><td>1.78</td><td>-23.94%</td><td>+590.18%</td><td>17</td></tr>
+<tr><td>20</td><td class='sym'>IRYSUSDT</td><td>0.876</td><td>0.90</td><td>-72.62%</td><td>+31.46%</td><td>7</td></tr>
+<tr><td>21</td><td class='sym'>BANUSDT</td><td>0.876</td><td>0.60</td><td>-59.09%</td><td>+35.59%</td><td>10</td></tr>
+<tr><td>22</td><td class='sym'>CLOUSDT</td><td>0.875</td><td>0.79</td><td>-92.10%</td><td>+8.45%</td><td>18</td></tr>
+<tr><td>23</td><td class='sym'>TRUSTUSDT</td><td>0.874</td><td>0.99</td><td>-81.75%</td><td>+35.06%</td><td>3</td></tr>
+<tr><td>24</td><td class='sym'>USELESSUSDT</td><td>0.870</td><td>15.28</td><td>-16.87%</td><td>+1040.57%</td><td>18</td></tr>
+<tr><td>25</td><td class='sym'>XNYUSDT</td><td>0.868</td><td>0.60</td><td>-75.05%</td><td>+115.25%</td><td>15</td></tr>
+<tr><td>26</td><td class='sym'>SAPIENUSDT</td><td>0.867</td><td>0.80</td><td>-76.95%</td><td>+25.76%</td><td>8</td></tr>
+<tr><td>27</td><td class='sym'>STBLUSDT</td><td>0.867</td><td>1.12</td><td>-95.09%</td><td>+37.06%</td><td>7</td></tr>
+<tr><td>28</td><td class='sym'>RESOLVUSDT</td><td>0.866</td><td>1.24</td><td>-94.59%</td><td>+29.71%</td><td>13</td></tr>
+<tr><td>29</td><td class='sym'>DOODUSDT</td><td>0.866</td><td>1.38</td><td>-83.75%</td><td>+72.52%</td><td>7</td></tr>
+<tr><td>30</td><td class='sym'>QUSDT</td><td>0.865</td><td>1.50</td><td>-42.51%</td><td>+242.17%</td><td>12</td></tr>
+<tr><td>31</td><td class='sym'>ASRUSDT</td><td>0.865</td><td>1.82</td><td>-88.84%</td><td>+7.50%</td><td>5</td></tr>
+<tr><td>32</td><td class='sym'>MOVEUSDT</td><td>0.864</td><td>1.01</td><td>-94.83%</td><td>+65.90%</td><td>5</td></tr>
+<tr><td>33</td><td class='sym'>1000000MOGUSDT</td><td>0.859</td><td>1.88</td><td>-93.48%</td><td>+32.62%</td><td>6</td></tr>
+<tr><td>34</td><td class='sym'>SAFEUSDT</td><td>0.859</td><td>1.37</td><td>-79.65%</td><td>+44.30%</td><td>3</td></tr>
+<tr><td>35</td><td class='sym'>AGTUSDT</td><td>0.856</td><td>6.56</td><td>-42.92%</td><td>+598.16%</td><td>15</td></tr>
+<tr><td>36</td><td class='sym'>AIOTUSDT</td><td>0.854</td><td>0.77</td><td>-97.20%</td><td>+418.30%</td><td>17</td></tr>
+<tr><td>37</td><td class='sym'>AIXBTUSDT</td><td>0.853</td><td>1.19</td><td>-87.81%</td><td>+45.21%</td><td>7</td></tr>
+<tr><td>38</td><td class='sym'>BNBUSDT</td><td>0.852</td><td>2.06</td><td>-39.64%</td><td>+44.26%</td><td>2</td></tr>
+<tr><td>39</td><td class='sym'>HUSDT</td><td>0.849</td><td>1.46</td><td>-90.87%</td><td>+219.75%</td><td>16</td></tr>
+<tr><td>40</td><td class='sym'>SKYAIUSDT</td><td>0.849</td><td>1.20</td><td>-93.17%</td><td>+216.77%</td><td>17</td></tr>
+<tr><td>41</td><td class='sym'>1000CHEEMSUSDT</td><td>0.849</td><td>0.93</td><td>-71.30%</td><td>+45.33%</td><td>3</td></tr>
+<tr><td>42</td><td class='sym'>BLESSUSDT</td><td>0.847</td><td>0.34</td><td>-95.31%</td><td>+122.91%</td><td>17</td></tr>
+<tr><td>43</td><td class='sym'>PLAYUSDT</td><td>0.844</td><td>3.05</td><td>-82.40%</td><td>+73.54%</td><td>12</td></tr>
+<tr><td>44</td><td class='sym'>SKYUSDT</td><td>0.842</td><td>2.83</td><td>-22.34%</td><td>+66.28%</td><td>4</td></tr>
+<tr><td>45</td><td class='sym'>CVXUSDT</td><td>0.841</td><td>1.25</td><td>-65.07%</td><td>+95.37%</td><td>5</td></tr>
+<tr><td>46</td><td class='sym'>VIRTUALUSDT</td><td>0.840</td><td>1.55</td><td>-64.38%</td><td>+45.22%</td><td>3</td></tr>
+<tr><td>47</td><td class='sym'>CVCUSDT</td><td>0.840</td><td>19.88</td><td>-78.82%</td><td>+73.14%</td><td>4</td></tr>
+<tr><td>48</td><td class='sym'>SOONUSDT</td><td>0.840</td><td>0.59</td><td>-92.52%</td><td>+97.25%</td><td>8</td></tr>
+<tr><td>49</td><td class='sym'>TACUSDT</td><td>0.835</td><td>0.79</td><td>-97.38%</td><td>+4.40%</td><td>10</td></tr>
+<tr><td>50</td><td class='sym'>AEROUSDT</td><td>0.835</td><td>2.07</td><td>-54.49%</td><td>+145.04%</td><td>7</td></tr>
+<tr><td>51</td><td class='sym'>TOSHIUSDT</td><td>0.834</td><td>1.59</td><td>-87.11%</td><td>+38.00%</td><td>5</td></tr>
+<tr><td>52</td><td class='sym'>BEATUSDT</td><td>0.834</td><td>0.22</td><td>-98.92%</td><td>+20.50%</td><td>13</td></tr>
+<tr><td>53</td><td class='sym'>PIPPINUSDT</td><td>0.834</td><td>0.85</td><td>-97.58%</td><td>+95.92%</td><td>14</td></tr>
+</tbody></table></div>
+</div>
+
+<div class="hero" style="border-color:#3a3d45;background:linear-gradient(180deg, #1a1c22 0%, #0f1115 140px);">
+<h2 style="font-size:1.05rem;border-left-color:#7d8290;">🟢 진입후보 / ⭐ 최우선후보 (참고용 - 대부분 사후발견, 아래 안내 필독)</h2>
+<div class="audit-note">
+  <b>[2026-09-24 진단결과] 지금 아래에 뜨는 항목의 99.3%(진입후보)~100%(최우선후보)는 이
+  시스템이 가동된 2026-09-24 00:30 이전에 이미 일어난 일을 과거130일 백필로 사후발견한
+  것입니다</b>(실시간으로 그 순간 잡은 건 1건뿐 - USUSDT). 게다가 구조적으로도 τ=25~30%
+  (무브가 이미 상당 부분 진행된 시점)를 기다려야만 신호가 뜨게 설계돼 있어, 완벽하게
+  라이브로 돌아가도 "터지기 전"을 잡을 수는 없습니다(잡아도 "이미 상당히 진행된 초입"이
+  최선). 지금 당장 "터지기 전" 후보를 찾으려면 위쪽 <b>Tier1 관심목록</b>을 보세요 - 아래는
+  이미 시작된/시작됐던 무브의 진행상황 참고용이자, 실제 페이퍼엔진 포지션과의 대조용으로만
+  쓰세요. 상세 근거는 zec_extreme_volatility_case_study_log.md 진행상황16 참고.
+</div>
+<h3 style="font-size:.95rem;margin:12px 0 6px;color:#9aa0ac;">지금 액션 가능한 후보 (심볼당 1줄만 · 해소 안 됐고 · 아직 신선한 신호만)</h3>
 <div class="n">
   707개 (심볼,방향) 쌍 · 🟢진입후보 = 모멘텀점수≥0.81 AND 지속성점수≥0.72(GRADUAL) 또는
   FAST세분화점수≥0.88(FAST) - 진행상황11/12 TEST 상위10%컷 기반 사전등록 진입게이트 ·
@@ -1662,72 +1759,10 @@
 <div class="tablewrap"><table id="hb">
 <thead><tr><th class="sym">작업</th><th>마지막 실행(UTC)</th><th>경과</th><th>상태</th><th>처리건수</th></tr></thead>
 <tbody>
-<tr class='hb-row' data-last-run='2026-09-23 16:02:23.186846+00:00' data-max-hours='26'><td class='sym'>1단 관심목록 스캔</td><td class='hb-lastrun'>2026-09-23 16:02:23.186846+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 521 / 스킵 133</td></tr>
-<tr class='hb-row' data-last-run='2026-09-24 00:35:06.941526+00:00' data-max-hours='1'><td class='sym'>2/3단 실시간스캐너</td><td class='hb-lastrun'>2026-09-24 00:35:06.941526+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 647 / 스킵 7 · 신규 Tier2 0건 / Tier3 0건</td></tr>
-<tr class='hb-row' data-last-run='2026-09-24 00:35:21.252866+00:00' data-max-hours='1'><td class='sym'>신규 페이퍼엔진</td><td class='hb-lastrun'>2026-09-24 00:35:21.252866+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 10 / 스킵 N/A · 이번폴 진입 0건 / 청산 0건</td></tr>
-</tbody></table></div>
-</details>
-
-<details class="collapsible">
-<summary>1단 관심목록 (Tier 1 · 방향무관 임박점수 · 일간갱신)</summary>
-<div class="n">상위10% 컷=0.834 이상 53개 심볼</div>
-<div class="tablewrap"><table id="t1">
-<thead><tr><th>순위</th><th class="sym">심볼</th><th>임박점수</th><th>vol_ratio</th>
-<th>ATH대비</th><th>ATL대비</th><th>과거이동횟수</th></tr></thead>
-<tbody>
-<tr><td>1</td><td class='sym'>SUNUSDT</td><td>0.994</td><td>1.33</td><td>-46.85%</td><td>+15.44%</td><td>1</td></tr>
-<tr><td>2</td><td class='sym'>PAXGUSDT</td><td>0.985</td><td>0.98</td><td>-21.28%</td><td>+33.07%</td><td>1</td></tr>
-<tr><td>3</td><td class='sym'>ASTERUSDT</td><td>0.964</td><td>3.14</td><td>-68.43%</td><td>+56.08%</td><td>5</td></tr>
-<tr><td>4</td><td class='sym'>QNTUSDT</td><td>0.963</td><td>2.06</td><td>-45.36%</td><td>+32.14%</td><td>2</td></tr>
-<tr><td>5</td><td class='sym'>LSKUSDT</td><td>0.956</td><td>266.42</td><td>-59.37%</td><td>+344.60%</td><td>6</td></tr>
-<tr><td>6</td><td class='sym'>AKEUSDT</td><td>0.949</td><td>4.41</td><td>-21.07%</td><td>+27184.95%</td><td>17</td></tr>
-<tr><td>7</td><td class='sym'>NMRUSDT</td><td>0.946</td><td>1.18</td><td>-53.88%</td><td>+56.25%</td><td>5</td></tr>
-<tr><td>8</td><td class='sym'>RENDERUSDT</td><td>0.924</td><td>2.85</td><td>-59.68%</td><td>+53.31%</td><td>4</td></tr>
-<tr><td>9</td><td class='sym'>LYNUSDT</td><td>0.920</td><td>2.19</td><td>-88.34%</td><td>+25.55%</td><td>12</td></tr>
-<tr><td>10</td><td class='sym'>BANANAUSDT</td><td>0.911</td><td>1.24</td><td>-86.02%</td><td>+62.05%</td><td>5</td></tr>
-<tr><td>11</td><td class='sym'>MAVIAUSDT</td><td>0.909</td><td>1.31</td><td>-86.96%</td><td>+37.79%</td><td>7</td></tr>
-<tr><td>12</td><td class='sym'>GUSDT</td><td>0.898</td><td>185.38</td><td>-58.70%</td><td>+134.64%</td><td>7</td></tr>
-<tr><td>13</td><td class='sym'>PUMPUSDT</td><td>0.892</td><td>1.12</td><td>-48.03%</td><td>+273.98%</td><td>8</td></tr>
-<tr><td>14</td><td class='sym'>OGUSDT</td><td>0.892</td><td>1.25</td><td>-87.77%</td><td>+21.94%</td><td>4</td></tr>
-<tr><td>15</td><td class='sym'>BRUSDT</td><td>0.889</td><td>107.49</td><td>-3.60%</td><td>+2627.79%</td><td>9</td></tr>
-<tr><td>16</td><td class='sym'>IOTXUSDT</td><td>0.889</td><td>2.54</td><td>-87.57%</td><td>+88.22%</td><td>2</td></tr>
-<tr><td>17</td><td class='sym'>TURTLEUSDT</td><td>0.881</td><td>0.92</td><td>-77.89%</td><td>+36.29%</td><td>3</td></tr>
-<tr><td>18</td><td class='sym'>ALLUSDT</td><td>0.879</td><td>1.79</td><td>-45.20%</td><td>+57.23%</td><td>3</td></tr>
-<tr><td>19</td><td class='sym'>ARCUSDT</td><td>0.877</td><td>1.78</td><td>-23.94%</td><td>+590.18%</td><td>17</td></tr>
-<tr><td>20</td><td class='sym'>IRYSUSDT</td><td>0.876</td><td>0.90</td><td>-72.62%</td><td>+31.46%</td><td>7</td></tr>
-<tr><td>21</td><td class='sym'>BANUSDT</td><td>0.876</td><td>0.60</td><td>-59.09%</td><td>+35.59%</td><td>10</td></tr>
-<tr><td>22</td><td class='sym'>CLOUSDT</td><td>0.875</td><td>0.79</td><td>-92.10%</td><td>+8.45%</td><td>18</td></tr>
-<tr><td>23</td><td class='sym'>TRUSTUSDT</td><td>0.874</td><td>0.99</td><td>-81.75%</td><td>+35.06%</td><td>3</td></tr>
-<tr><td>24</td><td class='sym'>USELESSUSDT</td><td>0.870</td><td>15.28</td><td>-16.87%</td><td>+1040.57%</td><td>18</td></tr>
-<tr><td>25</td><td class='sym'>XNYUSDT</td><td>0.868</td><td>0.60</td><td>-75.05%</td><td>+115.25%</td><td>15</td></tr>
-<tr><td>26</td><td class='sym'>SAPIENUSDT</td><td>0.867</td><td>0.80</td><td>-76.95%</td><td>+25.76%</td><td>8</td></tr>
-<tr><td>27</td><td class='sym'>STBLUSDT</td><td>0.867</td><td>1.12</td><td>-95.09%</td><td>+37.06%</td><td>7</td></tr>
-<tr><td>28</td><td class='sym'>RESOLVUSDT</td><td>0.866</td><td>1.24</td><td>-94.59%</td><td>+29.71%</td><td>13</td></tr>
-<tr><td>29</td><td class='sym'>DOODUSDT</td><td>0.866</td><td>1.38</td><td>-83.75%</td><td>+72.52%</td><td>7</td></tr>
-<tr><td>30</td><td class='sym'>QUSDT</td><td>0.865</td><td>1.50</td><td>-42.51%</td><td>+242.17%</td><td>12</td></tr>
-<tr><td>31</td><td class='sym'>ASRUSDT</td><td>0.865</td><td>1.82</td><td>-88.84%</td><td>+7.50%</td><td>5</td></tr>
-<tr><td>32</td><td class='sym'>MOVEUSDT</td><td>0.864</td><td>1.01</td><td>-94.83%</td><td>+65.90%</td><td>5</td></tr>
-<tr><td>33</td><td class='sym'>1000000MOGUSDT</td><td>0.859</td><td>1.88</td><td>-93.48%</td><td>+32.62%</td><td>6</td></tr>
-<tr><td>34</td><td class='sym'>SAFEUSDT</td><td>0.859</td><td>1.37</td><td>-79.65%</td><td>+44.30%</td><td>3</td></tr>
-<tr><td>35</td><td class='sym'>AGTUSDT</td><td>0.856</td><td>6.56</td><td>-42.92%</td><td>+598.16%</td><td>15</td></tr>
-<tr><td>36</td><td class='sym'>AIOTUSDT</td><td>0.854</td><td>0.77</td><td>-97.20%</td><td>+418.30%</td><td>17</td></tr>
-<tr><td>37</td><td class='sym'>AIXBTUSDT</td><td>0.853</td><td>1.19</td><td>-87.81%</td><td>+45.21%</td><td>7</td></tr>
-<tr><td>38</td><td class='sym'>BNBUSDT</td><td>0.852</td><td>2.06</td><td>-39.64%</td><td>+44.26%</td><td>2</td></tr>
-<tr><td>39</td><td class='sym'>HUSDT</td><td>0.849</td><td>1.46</td><td>-90.87%</td><td>+219.75%</td><td>16</td></tr>
-<tr><td>40</td><td class='sym'>SKYAIUSDT</td><td>0.849</td><td>1.20</td><td>-93.17%</td><td>+216.77%</td><td>17</td></tr>
-<tr><td>41</td><td class='sym'>1000CHEEMSUSDT</td><td>0.849</td><td>0.93</td><td>-71.30%</td><td>+45.33%</td><td>3</td></tr>
-<tr><td>42</td><td class='sym'>BLESSUSDT</td><td>0.847</td><td>0.34</td><td>-95.31%</td><td>+122.91%</td><td>17</td></tr>
-<tr><td>43</td><td class='sym'>PLAYUSDT</td><td>0.844</td><td>3.05</td><td>-82.40%</td><td>+73.54%</td><td>12</td></tr>
-<tr><td>44</td><td class='sym'>SKYUSDT</td><td>0.842</td><td>2.83</td><td>-22.34%</td><td>+66.28%</td><td>4</td></tr>
-<tr><td>45</td><td class='sym'>CVXUSDT</td><td>0.841</td><td>1.25</td><td>-65.07%</td><td>+95.37%</td><td>5</td></tr>
-<tr><td>46</td><td class='sym'>VIRTUALUSDT</td><td>0.840</td><td>1.55</td><td>-64.38%</td><td>+45.22%</td><td>3</td></tr>
-<tr><td>47</td><td class='sym'>CVCUSDT</td><td>0.840</td><td>19.88</td><td>-78.82%</td><td>+73.14%</td><td>4</td></tr>
-<tr><td>48</td><td class='sym'>SOONUSDT</td><td>0.840</td><td>0.59</td><td>-92.52%</td><td>+97.25%</td><td>8</td></tr>
-<tr><td>49</td><td class='sym'>TACUSDT</td><td>0.835</td><td>0.79</td><td>-97.38%</td><td>+4.40%</td><td>10</td></tr>
-<tr><td>50</td><td class='sym'>AEROUSDT</td><td>0.835</td><td>2.07</td><td>-54.49%</td><td>+145.04%</td><td>7</td></tr>
-<tr><td>51</td><td class='sym'>TOSHIUSDT</td><td>0.834</td><td>1.59</td><td>-87.11%</td><td>+38.00%</td><td>5</td></tr>
-<tr><td>52</td><td class='sym'>BEATUSDT</td><td>0.834</td><td>0.22</td><td>-98.92%</td><td>+20.50%</td><td>13</td></tr>
-<tr><td>53</td><td class='sym'>PIPPINUSDT</td><td>0.834</td><td>0.85</td><td>-97.58%</td><td>+95.92%</td><td>14</td></tr>
+<tr class='hb-row' data-last-run='2026-09-24 04:57:21.238374+00:00' data-max-hours='26'><td class='sym'>1단 관심목록 스캔</td><td class='hb-lastrun'>2026-09-24 04:57:21.238374+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 521 / 스킵 133</td></tr>
+<tr class='hb-row' data-last-run='2026-09-24 04:57:21.353431+00:00' data-max-hours='26'><td class='sym'>1단 라이브 선행성 추적기</td><td class='hb-lastrun'>2026-09-24 04:57:21.353431+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 53 / 스킵 0</td></tr>
+<tr class='hb-row' data-last-run='2026-09-24 04:35:02.975227+00:00' data-max-hours='1'><td class='sym'>2/3단 실시간스캐너</td><td class='hb-lastrun'>2026-09-24 04:35:02.975227+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 647 / 스킵 7 · 신규 Tier2 0건 / Tier3 0건</td></tr>
+<tr class='hb-row' data-last-run='2026-09-24 04:35:16.787483+00:00' data-max-hours='1'><td class='sym'>신규 페이퍼엔진</td><td class='hb-lastrun'>2026-09-24 04:35:16.787483+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 10 / 스킵 N/A · 이번폴 진입 0건 / 청산 0건</td></tr>
 </tbody></table></div>
 </details>
 
