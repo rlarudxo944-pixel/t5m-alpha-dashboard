@@ -48,6 +48,8 @@
   .hero h2 { border-left-color: #6ad98a; font-size: 1.25rem; }
   tr.t3-flagged { background: #16301f !important; }
   tr.t3-flagged:hover { background: #1c4028 !important; }
+  tr.t3-priority { background: #3a2f0e !important; box-shadow: inset 3px 0 0 #ffd166; }
+  tr.t3-priority:hover { background: #473a12 !important; }
   .chart-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 12px;
                  margin: 10px 0 22px; }
   .chart-card { border: 1px solid #2a2d35; border-radius: 8px; background: #161920; overflow: hidden; }
@@ -70,7 +72,7 @@
 </head>
 <body>
 <h1>3단 레이더 대시보드 (초고변동 알트 스크리너)</h1>
-<div class="meta">Tier1 갱신: 2026-09-23 16:02:23.124293+00:00 · Tier2/3 갱신: 2026-09-24 00:28:23.541608+00:00 ·
+<div class="meta">Tier1 갱신: 2026-09-23 16:02:23.124293+00:00 · Tier2/3 갱신: 2026-09-24 00:35:04.942752+00:00 ·
   Tier1 스캔 521/654심볼</div>
 <div class="disclaimer">
   이 대시보드는 <b>순수 스크리너</b>입니다 - 매매신호/추천이 아니라 케이스스터디(진행상황1-11)에서
@@ -83,18 +85,27 @@
 <div class="hero">
 <h2>🎯 지금 액션 가능한 후보 (심볼당 1줄만 · 해소 안 됐고 · 아직 신선한 신호만)</h2>
 <div class="n">
-  707개 (심볼,방향) 쌍 · 🟢 = 모멘텀점수≥0.81 AND 지속성점수≥0.72(GRADUAL) 또는
+  707개 (심볼,방향) 쌍 · 🟢진입후보 = 모멘텀점수≥0.81 AND 지속성점수≥0.72(GRADUAL) 또는
   FAST세분화점수≥0.88(FAST) - 진행상황11/12 TEST 상위10%컷 기반 사전등록 진입게이트 ·
-  <b>같은 심볼이 과거에 여러 번 조건에 걸렸어도 지금 시점 기준 가장 최근의 미해소 신호만
-  1줄로 표시</b>(과거 반복이력은 아래 "과거 이력 전체"에서 확인). <b>"해소"(status)와
-  "신선도"는 서로 다른 기준</b>입니다 - 해소는 실제 지속확정/반전확정 여부(최대 120일
-  관찰, 연구용 라벨), 신선도는 GRADUAL 확정케이스들의 실측 해소소요일(중앙값13일·p75=35일)
-  기반 35일 컷 - 35일 넘은 미해소 신호는 여기서 빠지고 아래 "오래된 미해소 신호"로
-  이동합니다(단, 이미 보유중인 포지션은 신선도와 무관하게 계속 표시 - 청산은 별도 로직 담당).
+  <b>⭐최우선후보</b> = 그중에서도 min(모멘텀,지속성)≥0.887 (TEST에서 실제 이
+  게이트를 통과한 n=257 모집단의 상위20% 컷, 그 구간 실제지속률94.2% vs 전체게이트89.1% -
+  표본이 작아(n=52) 통계적으로 확실히 우월하다는 뜻은 아니고 어디까지나 우선순위 강조표시).
+  <b>🟢진입후보 ≠ 실제 보유중 포지션</b> - 맨 오른쪽 "포지션상태" 컬럼에서 "포지션 보유중"과
+  "진입후보(게이트통과)"를 반드시 구분해서 보세요(동시보유상한 때문에 게이트를 통과해도
+  실제 진입 전일 수 있음). <b>같은 심볼이 과거에 여러 번 조건에 걸렸어도 지금 시점 기준
+  가장 최근의 미해소 신호만 1줄로 표시</b>(과거 반복이력은 아래 "과거 이력 전체"에서 확인).
+  <b>"해소"(status)와 "신선도"는 서로 다른 기준</b>입니다 - 해소는 실제 지속확정/반전확정
+  여부(최대 120일 관찰, 연구용 라벨), 신선도는 GRADUAL 확정케이스들의 실측 해소소요일
+  (중앙값13일·p75=35일) 기반 35일 컷 - 35일 넘은 미해소 신호는 여기서 빠지고 아래 "오래된
+  미해소 신호"로 이동합니다(단, 이미 보유중인 포지션은 신선도와 무관하게 계속 표시 - 청산은
+  별도 로직 담당).
 </div>
 
-<h3 style="font-size:1rem;margin:14px 0 6px;">🟢 진입후보 라이브 차트 (147개 심볼 · 15분봉 · 60초마다 자동갱신 · Binance 선물 공개데이터)</h3>
-<div class="n" style="margin-bottom:8px;">차트는 화면에 보일 때만 로드/갱신됨(스크롤해서 확인).</div>
+<h3 style="font-size:1rem;margin:14px 0 6px;">⭐ 최우선후보 라이브 차트 (35개 심볼 · 15분봉 · 60초마다 자동갱신 · Binance 선물 공개데이터)</h3>
+<div class="n" style="margin-bottom:8px;">
+  차트 노출을 줄이기 위해 🟢진입후보 전체가 아니라 ⭐최우선후보에만 표시(나머지 진입후보는
+  아래 표에 텍스트로만 남음). 차트는 화면에 보일 때만 로드/갱신됨(스크롤해서 확인).
+</div>
 <div class='chart-grid' id='chartGrid'><div class="chart-card" data-symbol="LSKUSDT" data-chart-idx="0">
   <div class="chart-card-head">
     <span class="chart-sym">LSKUSDT</span>
@@ -212,20 +223,7 @@
     <div class="chart-msg" id="chart-msg-8">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="BRUSDT" data-chart-idx="9">
-  <div class="chart-card-head">
-    <span class="chart-sym">BRUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.945 · 지속성 0.831</span>
-    <span class="chart-gate-timing">T_early 2026-09-13 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early+10일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-9"></div>
-    <div class="chart-msg" id="chart-msg-9">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="SKYAIUSDT" data-chart-idx="10">
+<div class="chart-card" data-symbol="SKYAIUSDT" data-chart-idx="9">
   <div class="chart-card-head">
     <span class="chart-sym">SKYAIUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -234,11 +232,11 @@
     <span class="chart-gate-timing">T_early 2026-09-16 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-16 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-10"></div>
-    <div class="chart-msg" id="chart-msg-10">대기중...</div>
+    <div class="chart-canvas" id="chart-9"></div>
+    <div class="chart-msg" id="chart-msg-9">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="STRKUSDT" data-chart-idx="11">
+<div class="chart-card" data-symbol="STRKUSDT" data-chart-idx="10">
   <div class="chart-card-head">
     <span class="chart-sym">STRKUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -247,11 +245,11 @@
     <span class="chart-gate-timing">T_early 2026-09-18 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-18 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-11"></div>
-    <div class="chart-msg" id="chart-msg-11">대기중...</div>
+    <div class="chart-canvas" id="chart-10"></div>
+    <div class="chart-msg" id="chart-msg-10">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="AIOTUSDT" data-chart-idx="12">
+<div class="chart-card" data-symbol="AIOTUSDT" data-chart-idx="11">
   <div class="chart-card-head">
     <span class="chart-sym">AIOTUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -260,24 +258,11 @@
     <span class="chart-gate-timing">T_early 2026-09-14 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-14 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-12"></div>
-    <div class="chart-msg" id="chart-msg-12">대기중...</div>
+    <div class="chart-canvas" id="chart-11"></div>
+    <div class="chart-msg" id="chart-msg-11">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="ZECUSDT" data-chart-idx="13">
-  <div class="chart-card-head">
-    <span class="chart-sym">ZECUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.939 · 지속성 0.826</span>
-    <span class="chart-gate-timing">T_early 2026-09-16 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early+7일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-13"></div>
-    <div class="chart-msg" id="chart-msg-13">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="BEATUSDT" data-chart-idx="14">
+<div class="chart-card" data-symbol="BEATUSDT" data-chart-idx="12">
   <div class="chart-card-head">
     <span class="chart-sym">BEATUSDT</span>
     <span class="chart-badge dir-down">하락</span>
@@ -286,11 +271,11 @@
     <span class="chart-gate-timing">T_early 2026-09-09 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-09 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-14"></div>
-    <div class="chart-msg" id="chart-msg-14">대기중...</div>
+    <div class="chart-canvas" id="chart-12"></div>
+    <div class="chart-msg" id="chart-msg-12">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="VVVUSDT" data-chart-idx="15">
+<div class="chart-card" data-symbol="VVVUSDT" data-chart-idx="13">
   <div class="chart-card-head">
     <span class="chart-sym">VVVUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -299,11 +284,11 @@
     <span class="chart-gate-timing">T_early 2026-09-18 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-18 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-15"></div>
-    <div class="chart-msg" id="chart-msg-15">대기중...</div>
+    <div class="chart-canvas" id="chart-13"></div>
+    <div class="chart-msg" id="chart-msg-13">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="NEWTUSDT" data-chart-idx="16">
+<div class="chart-card" data-symbol="NEWTUSDT" data-chart-idx="14">
   <div class="chart-card-head">
     <span class="chart-sym">NEWTUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -312,11 +297,11 @@
     <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-16"></div>
-    <div class="chart-msg" id="chart-msg-16">대기중...</div>
+    <div class="chart-canvas" id="chart-14"></div>
+    <div class="chart-msg" id="chart-msg-14">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="GALAUSDT" data-chart-idx="17">
+<div class="chart-card" data-symbol="GALAUSDT" data-chart-idx="15">
   <div class="chart-card-head">
     <span class="chart-sym">GALAUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -325,24 +310,11 @@
     <span class="chart-gate-timing">T_early 2026-09-21 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-21 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-17"></div>
-    <div class="chart-msg" id="chart-msg-17">대기중...</div>
+    <div class="chart-canvas" id="chart-15"></div>
+    <div class="chart-msg" id="chart-msg-15">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="BRUSDT" data-chart-idx="18">
-  <div class="chart-card-head">
-    <span class="chart-sym">BRUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.931 · 지속성 0.822</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-18"></div>
-    <div class="chart-msg" id="chart-msg-18">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="ASTERUSDT" data-chart-idx="19">
+<div class="chart-card" data-symbol="ASTERUSDT" data-chart-idx="16">
   <div class="chart-card-head">
     <span class="chart-sym">ASTERUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -351,11 +323,11 @@
     <span class="chart-gate-timing">T_early 2026-09-05 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-05 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-19"></div>
-    <div class="chart-msg" id="chart-msg-19">대기중...</div>
+    <div class="chart-canvas" id="chart-16"></div>
+    <div class="chart-msg" id="chart-msg-16">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="ERAUSDT" data-chart-idx="20">
+<div class="chart-card" data-symbol="ERAUSDT" data-chart-idx="17">
   <div class="chart-card-head">
     <span class="chart-sym">ERAUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -364,11 +336,11 @@
     <span class="chart-gate-timing">T_early 2026-09-23 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-20"></div>
-    <div class="chart-msg" id="chart-msg-20">대기중...</div>
+    <div class="chart-canvas" id="chart-17"></div>
+    <div class="chart-msg" id="chart-msg-17">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="WCTUSDT" data-chart-idx="21">
+<div class="chart-card" data-symbol="WCTUSDT" data-chart-idx="18">
   <div class="chart-card-head">
     <span class="chart-sym">WCTUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -377,11 +349,11 @@
     <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-21"></div>
-    <div class="chart-msg" id="chart-msg-21">대기중...</div>
+    <div class="chart-canvas" id="chart-18"></div>
+    <div class="chart-msg" id="chart-msg-18">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="OGUSDT" data-chart-idx="22">
+<div class="chart-card" data-symbol="OGUSDT" data-chart-idx="19">
   <div class="chart-card-head">
     <span class="chart-sym">OGUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -390,24 +362,11 @@
     <span class="chart-gate-timing">T_early 2026-08-23 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-08-23 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-22"></div>
-    <div class="chart-msg" id="chart-msg-22">대기중...</div>
+    <div class="chart-canvas" id="chart-19"></div>
+    <div class="chart-msg" id="chart-msg-19">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="DOODUSDT" data-chart-idx="23">
-  <div class="chart-card-head">
-    <span class="chart-sym">DOODUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.924 · 지속성 0.886</span>
-    <span class="chart-gate-timing">T_early 2026-09-08 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-08 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-23"></div>
-    <div class="chart-msg" id="chart-msg-23">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="DOODUSDT" data-chart-idx="24">
+<div class="chart-card" data-symbol="DOODUSDT" data-chart-idx="20">
   <div class="chart-card-head">
     <span class="chart-sym">DOODUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -416,11 +375,11 @@
     <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-24"></div>
-    <div class="chart-msg" id="chart-msg-24">대기중...</div>
+    <div class="chart-canvas" id="chart-20"></div>
+    <div class="chart-msg" id="chart-msg-20">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="TOSHIUSDT" data-chart-idx="25">
+<div class="chart-card" data-symbol="TOSHIUSDT" data-chart-idx="21">
   <div class="chart-card-head">
     <span class="chart-sym">TOSHIUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -429,11 +388,11 @@
     <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-25"></div>
-    <div class="chart-msg" id="chart-msg-25">대기중...</div>
+    <div class="chart-canvas" id="chart-21"></div>
+    <div class="chart-msg" id="chart-msg-21">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="TACUSDT" data-chart-idx="26">
+<div class="chart-card" data-symbol="TACUSDT" data-chart-idx="22">
   <div class="chart-card-head">
     <span class="chart-sym">TACUSDT</span>
     <span class="chart-badge dir-down">하락</span>
@@ -442,11 +401,11 @@
     <span class="chart-gate-timing">T_early 2026-09-08 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-08 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-26"></div>
-    <div class="chart-msg" id="chart-msg-26">대기중...</div>
+    <div class="chart-canvas" id="chart-22"></div>
+    <div class="chart-msg" id="chart-msg-22">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="PTBUSDT" data-chart-idx="27">
+<div class="chart-card" data-symbol="PTBUSDT" data-chart-idx="23">
   <div class="chart-card-head">
     <span class="chart-sym">PTBUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -455,11 +414,11 @@
     <span class="chart-gate-timing">T_early 2026-09-20 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-20 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-27"></div>
-    <div class="chart-msg" id="chart-msg-27">대기중...</div>
+    <div class="chart-canvas" id="chart-23"></div>
+    <div class="chart-msg" id="chart-msg-23">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="MAGICUSDT" data-chart-idx="28">
+<div class="chart-card" data-symbol="MAGICUSDT" data-chart-idx="24">
   <div class="chart-card-head">
     <span class="chart-sym">MAGICUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -468,11 +427,11 @@
     <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-28"></div>
-    <div class="chart-msg" id="chart-msg-28">대기중...</div>
+    <div class="chart-canvas" id="chart-24"></div>
+    <div class="chart-msg" id="chart-msg-24">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="AEROUSDT" data-chart-idx="29">
+<div class="chart-card" data-symbol="AEROUSDT" data-chart-idx="25">
   <div class="chart-card-head">
     <span class="chart-sym">AEROUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -481,11 +440,11 @@
     <span class="chart-gate-timing">T_early 2026-09-18 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-18 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-29"></div>
-    <div class="chart-msg" id="chart-msg-29">대기중...</div>
+    <div class="chart-canvas" id="chart-25"></div>
+    <div class="chart-msg" id="chart-msg-25">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="ARCUSDT" data-chart-idx="30">
+<div class="chart-card" data-symbol="ARCUSDT" data-chart-idx="26">
   <div class="chart-card-head">
     <span class="chart-sym">ARCUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -494,24 +453,11 @@
     <span class="chart-gate-timing">T_early 2026-09-21 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-21 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-30"></div>
-    <div class="chart-msg" id="chart-msg-30">대기중...</div>
+    <div class="chart-canvas" id="chart-26"></div>
+    <div class="chart-msg" id="chart-msg-26">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="BTRUSDT" data-chart-idx="31">
-  <div class="chart-card-head">
-    <span class="chart-sym">BTRUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.916 · 지속성 0.866</span>
-    <span class="chart-gate-timing">T_early 2026-09-09 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-09 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-31"></div>
-    <div class="chart-msg" id="chart-msg-31">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="MYXUSDT" data-chart-idx="32">
+<div class="chart-card" data-symbol="MYXUSDT" data-chart-idx="27">
   <div class="chart-card-head">
     <span class="chart-sym">MYXUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -520,11 +466,11 @@
     <span class="chart-gate-timing">T_early 2026-09-18 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-18 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-32"></div>
-    <div class="chart-msg" id="chart-msg-32">대기중...</div>
+    <div class="chart-canvas" id="chart-27"></div>
+    <div class="chart-msg" id="chart-msg-27">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="XNYUSDT" data-chart-idx="33">
+<div class="chart-card" data-symbol="XNYUSDT" data-chart-idx="28">
   <div class="chart-card-head">
     <span class="chart-sym">XNYUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -533,11 +479,11 @@
     <span class="chart-gate-timing">T_early 2026-09-23 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-33"></div>
-    <div class="chart-msg" id="chart-msg-33">대기중...</div>
+    <div class="chart-canvas" id="chart-28"></div>
+    <div class="chart-msg" id="chart-msg-28">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="ELSAUSDT" data-chart-idx="34">
+<div class="chart-card" data-symbol="ELSAUSDT" data-chart-idx="29">
   <div class="chart-card-head">
     <span class="chart-sym">ELSAUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -546,11 +492,11 @@
     <span class="chart-gate-timing">T_early 2026-09-05 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-05 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-34"></div>
-    <div class="chart-msg" id="chart-msg-34">대기중...</div>
+    <div class="chart-canvas" id="chart-29"></div>
+    <div class="chart-msg" id="chart-msg-29">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="PLUMEUSDT" data-chart-idx="35">
+<div class="chart-card" data-symbol="PLUMEUSDT" data-chart-idx="30">
   <div class="chart-card-head">
     <span class="chart-sym">PLUMEUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -559,11 +505,11 @@
     <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-35"></div>
-    <div class="chart-msg" id="chart-msg-35">대기중...</div>
+    <div class="chart-canvas" id="chart-30"></div>
+    <div class="chart-msg" id="chart-msg-30">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="BNBUSDT" data-chart-idx="36">
+<div class="chart-card" data-symbol="BNBUSDT" data-chart-idx="31">
   <div class="chart-card-head">
     <span class="chart-sym">BNBUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -572,11 +518,11 @@
     <span class="chart-gate-timing">T_early 2026-09-05 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-05 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-36"></div>
-    <div class="chart-msg" id="chart-msg-36">대기중...</div>
+    <div class="chart-canvas" id="chart-31"></div>
+    <div class="chart-msg" id="chart-msg-31">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="RAVEUSDT" data-chart-idx="37">
+<div class="chart-card" data-symbol="RAVEUSDT" data-chart-idx="32">
   <div class="chart-card-head">
     <span class="chart-sym">RAVEUSDT</span>
     <span class="chart-badge dir-down">하락</span>
@@ -585,63 +531,11 @@
     <span class="chart-gate-timing">T_early 2026-09-09 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-09 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-37"></div>
-    <div class="chart-msg" id="chart-msg-37">대기중...</div>
+    <div class="chart-canvas" id="chart-32"></div>
+    <div class="chart-msg" id="chart-msg-32">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="ICXUSDT" data-chart-idx="38">
-  <div class="chart-card-head">
-    <span class="chart-sym">ICXUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.901 · 지속성 0.844</span>
-    <span class="chart-gate-timing">T_early 2026-08-20 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early+34일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-38"></div>
-    <div class="chart-msg" id="chart-msg-38">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="ESPORTSUSDT" data-chart-idx="39">
-  <div class="chart-card-head">
-    <span class="chart-sym">ESPORTSUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.898 · 지속성 0.879</span>
-    <span class="chart-gate-timing">T_early 2026-09-09 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-09 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-39"></div>
-    <div class="chart-msg" id="chart-msg-39">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="USUSDT" data-chart-idx="40">
-  <div class="chart-card-head">
-    <span class="chart-sym">USUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.896 · 지속성 0.886</span>
-    <span class="chart-gate-timing">T_early 2026-09-23 (감지: 2026-09-23 23:04 UTC) → 게이트통과 2026-09-23 (감지: 2026-09-23 23:04 UTC) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-40"></div>
-    <div class="chart-msg" id="chart-msg-40">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="CVCUSDT" data-chart-idx="41">
-  <div class="chart-card-head">
-    <span class="chart-sym">CVCUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.895 · 지속성 0.864</span>
-    <span class="chart-gate-timing">T_early 2026-09-13 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-13 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-41"></div>
-    <div class="chart-msg" id="chart-msg-41">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="NMRUSDT" data-chart-idx="42">
+<div class="chart-card" data-symbol="NMRUSDT" data-chart-idx="33">
   <div class="chart-card-head">
     <span class="chart-sym">NMRUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -650,37 +544,11 @@
     <span class="chart-gate-timing">T_early 2026-09-05 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-05 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-42"></div>
-    <div class="chart-msg" id="chart-msg-42">대기중...</div>
+    <div class="chart-canvas" id="chart-33"></div>
+    <div class="chart-msg" id="chart-msg-33">대기중...</div>
   </div>
 </div>
-<div class="chart-card" data-symbol="ALTUSDT" data-chart-idx="43">
-  <div class="chart-card-head">
-    <span class="chart-sym">ALTUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.893 · 지속성 0.880</span>
-    <span class="chart-gate-timing">T_early 2026-09-23 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-43"></div>
-    <div class="chart-msg" id="chart-msg-43">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="RAYSOLUSDT" data-chart-idx="44">
-  <div class="chart-card-head">
-    <span class="chart-sym">RAYSOLUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.892 · 지속성 0.761</span>
-    <span class="chart-gate-timing">T_early 2026-09-18 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-18 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-44"></div>
-    <div class="chart-msg" id="chart-msg-44">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="NXPCUSDT" data-chart-idx="45">
+<div class="chart-card" data-symbol="NXPCUSDT" data-chart-idx="34">
   <div class="chart-card-head">
     <span class="chart-sym">NXPCUSDT</span>
     <span class="chart-badge dir-up">상승</span>
@@ -689,1321 +557,8 @@
     <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
   </div>
   <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-45"></div>
-    <div class="chart-msg" id="chart-msg-45">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="SWARMSUSDT" data-chart-idx="46">
-  <div class="chart-card-head">
-    <span class="chart-sym">SWARMSUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.890 · 지속성 0.882</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-46"></div>
-    <div class="chart-msg" id="chart-msg-46">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="EPICUSDT" data-chart-idx="47">
-  <div class="chart-card-head">
-    <span class="chart-sym">EPICUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.889 · 지속성 0.876</span>
-    <span class="chart-gate-timing">T_early 2026-09-18 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-18 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-47"></div>
-    <div class="chart-msg" id="chart-msg-47">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="LABUSDT" data-chart-idx="48">
-  <div class="chart-card-head">
-    <span class="chart-sym">LABUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.888 · 지속성 0.848</span>
-    <span class="chart-gate-timing">T_early 2026-09-13 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-13 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-48"></div>
-    <div class="chart-msg" id="chart-msg-48">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="LABUSDT" data-chart-idx="49">
-  <div class="chart-card-head">
-    <span class="chart-sym">LABUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.888 · 지속성 0.858</span>
-    <span class="chart-gate-timing">T_early 2026-09-19 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-19 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-49"></div>
-    <div class="chart-msg" id="chart-msg-49">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="IOTXUSDT" data-chart-idx="50">
-  <div class="chart-card-head">
-    <span class="chart-sym">IOTXUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.887 · 지속성 0.722</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-50"></div>
-    <div class="chart-msg" id="chart-msg-50">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="MERLUSDT" data-chart-idx="51">
-  <div class="chart-card-head">
-    <span class="chart-sym">MERLUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.886 · 지속성 0.855</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-51"></div>
-    <div class="chart-msg" id="chart-msg-51">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="CLANKERUSDT" data-chart-idx="52">
-  <div class="chart-card-head">
-    <span class="chart-sym">CLANKERUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.885 · 지속성 0.876</span>
-    <span class="chart-gate-timing">T_early 2026-09-21 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-21 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-52"></div>
-    <div class="chart-msg" id="chart-msg-52">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="CLOUSDT" data-chart-idx="53">
-  <div class="chart-card-head">
-    <span class="chart-sym">CLOUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.885 · 지속성 0.862</span>
-    <span class="chart-gate-timing">T_early 2026-08-27 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-08-27 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-53"></div>
-    <div class="chart-msg" id="chart-msg-53">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="CVXUSDT" data-chart-idx="54">
-  <div class="chart-card-head">
-    <span class="chart-sym">CVXUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.884 · 지속성 0.884</span>
-    <span class="chart-gate-timing">T_early 2026-08-21 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-08-21 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-54"></div>
-    <div class="chart-msg" id="chart-msg-54">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="GOATUSDT" data-chart-idx="55">
-  <div class="chart-card-head">
-    <span class="chart-sym">GOATUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.883 · 지속성 0.862</span>
-    <span class="chart-gate-timing">T_early 2026-09-21 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-21 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-55"></div>
-    <div class="chart-msg" id="chart-msg-55">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="BANKUSDT" data-chart-idx="56">
-  <div class="chart-card-head">
-    <span class="chart-sym">BANKUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.882 · 지속성 0.873</span>
-    <span class="chart-gate-timing">T_early 2026-09-19 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-19 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-56"></div>
-    <div class="chart-msg" id="chart-msg-56">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="BOMEUSDT" data-chart-idx="57">
-  <div class="chart-card-head">
-    <span class="chart-sym">BOMEUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.880 · 지속성 0.880</span>
-    <span class="chart-gate-timing">T_early 2026-09-23 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-57"></div>
-    <div class="chart-msg" id="chart-msg-57">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="AEVOUSDT" data-chart-idx="58">
-  <div class="chart-card-head">
-    <span class="chart-sym">AEVOUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.880 · 지속성 0.873</span>
-    <span class="chart-gate-timing">T_early 2026-09-23 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-58"></div>
-    <div class="chart-msg" id="chart-msg-58">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="MOVEUSDT" data-chart-idx="59">
-  <div class="chart-card-head">
-    <span class="chart-sym">MOVEUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.876 · 지속성 0.873</span>
-    <span class="chart-gate-timing">T_early 2026-09-23 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-59"></div>
-    <div class="chart-msg" id="chart-msg-59">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="PIXELUSDT" data-chart-idx="60">
-  <div class="chart-card-head">
-    <span class="chart-sym">PIXELUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.874 · 지속성 0.854</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-60"></div>
-    <div class="chart-msg" id="chart-msg-60">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="USELESSUSDT" data-chart-idx="61">
-  <div class="chart-card-head">
-    <span class="chart-sym">USELESSUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.874 · 지속성 0.830</span>
-    <span class="chart-gate-timing">T_early 2026-09-16 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-16 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-61"></div>
-    <div class="chart-msg" id="chart-msg-61">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="BSVUSDT" data-chart-idx="62">
-  <div class="chart-card-head">
-    <span class="chart-sym">BSVUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.874 · 지속성 0.875</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-62"></div>
-    <div class="chart-msg" id="chart-msg-62">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="POWERUSDT" data-chart-idx="63">
-  <div class="chart-card-head">
-    <span class="chart-sym">POWERUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.872 · 지속성 0.857</span>
-    <span class="chart-gate-timing">T_early 2026-09-13 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-13 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-63"></div>
-    <div class="chart-msg" id="chart-msg-63">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="JCTUSDT" data-chart-idx="64">
-  <div class="chart-card-head">
-    <span class="chart-sym">JCTUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.872 · 지속성 0.864</span>
-    <span class="chart-gate-timing">T_early 2026-09-09 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-09 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-64"></div>
-    <div class="chart-msg" id="chart-msg-64">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="FHEUSDT" data-chart-idx="65">
-  <div class="chart-card-head">
-    <span class="chart-sym">FHEUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.870 · 지속성 0.854</span>
-    <span class="chart-gate-timing">T_early 2026-09-23 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-65"></div>
-    <div class="chart-msg" id="chart-msg-65">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="1000SHIBUSDT" data-chart-idx="66">
-  <div class="chart-card-head">
-    <span class="chart-sym">1000SHIBUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.870 · 지속성 0.848</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-66"></div>
-    <div class="chart-msg" id="chart-msg-66">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="BLESSUSDT" data-chart-idx="67">
-  <div class="chart-card-head">
-    <span class="chart-sym">BLESSUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.868 · 지속성 0.833</span>
-    <span class="chart-gate-timing">T_early 2026-09-01 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-01 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-67"></div>
-    <div class="chart-msg" id="chart-msg-67">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="WETUSDT" data-chart-idx="68">
-  <div class="chart-card-head">
-    <span class="chart-sym">WETUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.868 · 지속성 0.871</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-68"></div>
-    <div class="chart-msg" id="chart-msg-68">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="HOTUSDT" data-chart-idx="69">
-  <div class="chart-card-head">
-    <span class="chart-sym">HOTUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.868 · 지속성 0.839</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-69"></div>
-    <div class="chart-msg" id="chart-msg-69">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="BABYUSDT" data-chart-idx="70">
-  <div class="chart-card-head">
-    <span class="chart-sym">BABYUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.868 · 지속성 0.856</span>
-    <span class="chart-gate-timing">T_early 2026-08-21 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-08-21 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-70"></div>
-    <div class="chart-msg" id="chart-msg-70">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="MUSDT" data-chart-idx="71">
-  <div class="chart-card-head">
-    <span class="chart-sym">MUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.868 · 지속성 0.833</span>
-    <span class="chart-gate-timing">T_early 2026-09-19 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-19 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-71"></div>
-    <div class="chart-msg" id="chart-msg-71">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="LIGHTUSDT" data-chart-idx="72">
-  <div class="chart-card-head">
-    <span class="chart-sym">LIGHTUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.868 · 지속성 0.849</span>
-    <span class="chart-gate-timing">T_early 2026-09-23 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-72"></div>
-    <div class="chart-msg" id="chart-msg-72">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="CHILLGUYUSDT" data-chart-idx="73">
-  <div class="chart-card-head">
-    <span class="chart-sym">CHILLGUYUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.867 · 지속성 0.848</span>
-    <span class="chart-gate-timing">T_early 2026-09-19 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-19 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-73"></div>
-    <div class="chart-msg" id="chart-msg-73">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="BROCCOLIF3BUSDT" data-chart-idx="74">
-  <div class="chart-card-head">
-    <span class="chart-sym">BROCCOLIF3BUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.867 · 지속성 0.856</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-74"></div>
-    <div class="chart-msg" id="chart-msg-74">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="TOWNSUSDT" data-chart-idx="75">
-  <div class="chart-card-head">
-    <span class="chart-sym">TOWNSUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.866 · 지속성 0.872</span>
-    <span class="chart-gate-timing">T_early 2026-09-23 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-75"></div>
-    <div class="chart-msg" id="chart-msg-75">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="GMTUSDT" data-chart-idx="76">
-  <div class="chart-card-head">
-    <span class="chart-sym">GMTUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.866 · 지속성 0.831</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-76"></div>
-    <div class="chart-msg" id="chart-msg-76">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="SNXUSDT" data-chart-idx="77">
-  <div class="chart-card-head">
-    <span class="chart-sym">SNXUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.866 · 지속성 0.817</span>
-    <span class="chart-gate-timing">T_early 2026-09-23 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-77"></div>
-    <div class="chart-msg" id="chart-msg-77">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="SENTUSDT" data-chart-idx="78">
-  <div class="chart-card-head">
-    <span class="chart-sym">SENTUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.865 · 지속성 0.860</span>
-    <span class="chart-gate-timing">T_early 2026-09-14 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-14 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-78"></div>
-    <div class="chart-msg" id="chart-msg-78">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="XPINUSDT" data-chart-idx="79">
-  <div class="chart-card-head">
-    <span class="chart-sym">XPINUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.865 · 지속성 0.841</span>
-    <span class="chart-gate-timing">T_early 2026-09-13 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-13 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-79"></div>
-    <div class="chart-msg" id="chart-msg-79">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="PNUTUSDT" data-chart-idx="80">
-  <div class="chart-card-head">
-    <span class="chart-sym">PNUTUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.864 · 지속성 0.846</span>
-    <span class="chart-gate-timing">T_early 2026-09-21 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-21 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-80"></div>
-    <div class="chart-msg" id="chart-msg-80">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="VELVETUSDT" data-chart-idx="81">
-  <div class="chart-card-head">
-    <span class="chart-sym">VELVETUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.864 · 지속성 0.838</span>
-    <span class="chart-gate-timing">T_early 2026-09-09 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-09 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-81"></div>
-    <div class="chart-msg" id="chart-msg-81">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="MONUSDT" data-chart-idx="82">
-  <div class="chart-card-head">
-    <span class="chart-sym">MONUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.863 · 지속성 0.852</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-82"></div>
-    <div class="chart-msg" id="chart-msg-82">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="TOWNSUSDT" data-chart-idx="83">
-  <div class="chart-card-head">
-    <span class="chart-sym">TOWNSUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.862 · 지속성 0.854</span>
-    <span class="chart-gate-timing">T_early 2026-09-09 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-09 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-83"></div>
-    <div class="chart-msg" id="chart-msg-83">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="RAVEUSDT" data-chart-idx="84">
-  <div class="chart-card-head">
-    <span class="chart-sym">RAVEUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.862 · 지속성 0.830</span>
-    <span class="chart-gate-timing">T_early 2026-09-18 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-18 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-84"></div>
-    <div class="chart-msg" id="chart-msg-84">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="BANDUSDT" data-chart-idx="85">
-  <div class="chart-card-head">
-    <span class="chart-sym">BANDUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.861 · 지속성 0.826</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-85"></div>
-    <div class="chart-msg" id="chart-msg-85">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="AVNTUSDT" data-chart-idx="86">
-  <div class="chart-card-head">
-    <span class="chart-sym">AVNTUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.861 · 지속성 0.837</span>
-    <span class="chart-gate-timing">T_early 2026-09-21 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-21 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-86"></div>
-    <div class="chart-msg" id="chart-msg-86">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="CUSDT" data-chart-idx="87">
-  <div class="chart-card-head">
-    <span class="chart-sym">CUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.860 · 지속성 0.845</span>
-    <span class="chart-gate-timing">T_early 2026-09-18 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-18 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-87"></div>
-    <div class="chart-msg" id="chart-msg-87">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="ARIAUSDT" data-chart-idx="88">
-  <div class="chart-card-head">
-    <span class="chart-sym">ARIAUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.860 · 지속성 0.846</span>
-    <span class="chart-gate-timing">T_early 2026-09-23 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-88"></div>
-    <div class="chart-msg" id="chart-msg-88">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="GUSDT" data-chart-idx="89">
-  <div class="chart-card-head">
-    <span class="chart-sym">GUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.859 · 지속성 0.836</span>
-    <span class="chart-gate-timing">T_early 2026-09-17 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-17 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-89"></div>
-    <div class="chart-msg" id="chart-msg-89">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="GUAUSDT" data-chart-idx="90">
-  <div class="chart-card-head">
-    <span class="chart-sym">GUAUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.858 · 지속성 0.840</span>
-    <span class="chart-gate-timing">T_early 2026-09-09 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-09 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-90"></div>
-    <div class="chart-msg" id="chart-msg-90">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="INUSDT" data-chart-idx="91">
-  <div class="chart-card-head">
-    <span class="chart-sym">INUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.857 · 지속성 0.846</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-91"></div>
-    <div class="chart-msg" id="chart-msg-91">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="BTWUSDT" data-chart-idx="92">
-  <div class="chart-card-head">
-    <span class="chart-sym">BTWUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.857 · 지속성 0.825</span>
-    <span class="chart-gate-timing">T_early 2026-09-20 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early+3일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-92"></div>
-    <div class="chart-msg" id="chart-msg-92">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="FORMUSDT" data-chart-idx="93">
-  <div class="chart-card-head">
-    <span class="chart-sym">FORMUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.856 · 지속성 0.837</span>
-    <span class="chart-gate-timing">T_early 2026-09-21 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-21 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-93"></div>
-    <div class="chart-msg" id="chart-msg-93">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="DIAUSDT" data-chart-idx="94">
-  <div class="chart-card-head">
-    <span class="chart-sym">DIAUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.855 · 지속성 0.856</span>
-    <span class="chart-gate-timing">T_early 2026-09-23 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-94"></div>
-    <div class="chart-msg" id="chart-msg-94">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="XPINUSDT" data-chart-idx="95">
-  <div class="chart-card-head">
-    <span class="chart-sym">XPINUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.854 · 지속성 0.830</span>
-    <span class="chart-gate-timing">T_early 2026-09-14 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-14 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-95"></div>
-    <div class="chart-msg" id="chart-msg-95">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="0GUSDT" data-chart-idx="96">
-  <div class="chart-card-head">
-    <span class="chart-sym">0GUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.854 · 지속성 0.838</span>
-    <span class="chart-gate-timing">T_early 2026-09-20 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-20 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-96"></div>
-    <div class="chart-msg" id="chart-msg-96">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="ESPUSDT" data-chart-idx="97">
-  <div class="chart-card-head">
-    <span class="chart-sym">ESPUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.853 · 지속성 0.878</span>
-    <span class="chart-gate-timing">T_early 2026-09-19 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-19 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-97"></div>
-    <div class="chart-msg" id="chart-msg-97">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="FLUIDUSDT" data-chart-idx="98">
-  <div class="chart-card-head">
-    <span class="chart-sym">FLUIDUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.853 · 지속성 0.849</span>
-    <span class="chart-gate-timing">T_early 2026-09-10 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-10 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-98"></div>
-    <div class="chart-msg" id="chart-msg-98">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="WLDUSDT" data-chart-idx="99">
-  <div class="chart-card-head">
-    <span class="chart-sym">WLDUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.853 · 지속성 0.826</span>
-    <span class="chart-gate-timing">T_early 2026-09-21 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-21 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-99"></div>
-    <div class="chart-msg" id="chart-msg-99">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="PIEVERSEUSDT" data-chart-idx="100">
-  <div class="chart-card-head">
-    <span class="chart-sym">PIEVERSEUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.852 · 지속성 0.866</span>
-    <span class="chart-gate-timing">T_early 2026-09-18 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-18 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-100"></div>
-    <div class="chart-msg" id="chart-msg-100">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="GIGGLEUSDT" data-chart-idx="101">
-  <div class="chart-card-head">
-    <span class="chart-sym">GIGGLEUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.851 · 지속성 0.842</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-101"></div>
-    <div class="chart-msg" id="chart-msg-101">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="MUBARAKUSDT" data-chart-idx="102">
-  <div class="chart-card-head">
-    <span class="chart-sym">MUBARAKUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.849 · 지속성 0.867</span>
-    <span class="chart-gate-timing">T_early 2026-09-21 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-21 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-102"></div>
-    <div class="chart-msg" id="chart-msg-102">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="RVNUSDT" data-chart-idx="103">
-  <div class="chart-card-head">
-    <span class="chart-sym">RVNUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.849 · 지속성 0.786</span>
-    <span class="chart-gate-timing">T_early 2026-09-11 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-11 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-103"></div>
-    <div class="chart-msg" id="chart-msg-103">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="TRIAUSDT" data-chart-idx="104">
-  <div class="chart-card-head">
-    <span class="chart-sym">TRIAUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.846 · 지속성 0.816</span>
-    <span class="chart-gate-timing">T_early 2026-09-07 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-07 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-104"></div>
-    <div class="chart-msg" id="chart-msg-104">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="0GUSDT" data-chart-idx="105">
-  <div class="chart-card-head">
-    <span class="chart-sym">0GUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.846 · 지속성 0.779</span>
-    <span class="chart-gate-timing">T_early 2026-09-02 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-02 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-105"></div>
-    <div class="chart-msg" id="chart-msg-105">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="EVAAUSDT" data-chart-idx="106">
-  <div class="chart-card-head">
-    <span class="chart-sym">EVAAUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.845 · 지속성 0.808</span>
-    <span class="chart-gate-timing">T_early 2026-09-18 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-18 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-106"></div>
-    <div class="chart-msg" id="chart-msg-106">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="ACEUSDT" data-chart-idx="107">
-  <div class="chart-card-head">
-    <span class="chart-sym">ACEUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.844 · 지속성 0.821</span>
-    <span class="chart-gate-timing">T_early 2026-09-23 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-107"></div>
-    <div class="chart-msg" id="chart-msg-107">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="DRIFTUSDT" data-chart-idx="108">
-  <div class="chart-card-head">
-    <span class="chart-sym">DRIFTUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.844 · 지속성 0.808</span>
-    <span class="chart-gate-timing">T_early 2026-09-17 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-17 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-108"></div>
-    <div class="chart-msg" id="chart-msg-108">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="VELVETUSDT" data-chart-idx="109">
-  <div class="chart-card-head">
-    <span class="chart-sym">VELVETUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.843 · 지속성 0.827</span>
-    <span class="chart-gate-timing">T_early 2026-09-19 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-19 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-109"></div>
-    <div class="chart-msg" id="chart-msg-109">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="BANANAUSDT" data-chart-idx="110">
-  <div class="chart-card-head">
-    <span class="chart-sym">BANANAUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.841 · 지속성 0.751</span>
-    <span class="chart-gate-timing">T_early 2026-08-15 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early+39일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-110"></div>
-    <div class="chart-msg" id="chart-msg-110">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="DOLOUSDT" data-chart-idx="111">
-  <div class="chart-card-head">
-    <span class="chart-sym">DOLOUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.840 · 지속성 0.812</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-111"></div>
-    <div class="chart-msg" id="chart-msg-111">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="SXTUSDT" data-chart-idx="112">
-  <div class="chart-card-head">
-    <span class="chart-sym">SXTUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.838 · 지속성 0.820</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-112"></div>
-    <div class="chart-msg" id="chart-msg-112">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="APEUSDT" data-chart-idx="113">
-  <div class="chart-card-head">
-    <span class="chart-sym">APEUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.836 · 지속성 0.794</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-113"></div>
-    <div class="chart-msg" id="chart-msg-113">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="ALCHUSDT" data-chart-idx="114">
-  <div class="chart-card-head">
-    <span class="chart-sym">ALCHUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.836 · 지속성 0.812</span>
-    <span class="chart-gate-timing">T_early 2026-09-12 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-12 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-114"></div>
-    <div class="chart-msg" id="chart-msg-114">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="TAUSDT" data-chart-idx="115">
-  <div class="chart-card-head">
-    <span class="chart-sym">TAUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.836 · 지속성 0.814</span>
-    <span class="chart-gate-timing">T_early 2026-09-12 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-12 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-115"></div>
-    <div class="chart-msg" id="chart-msg-115">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="HAEDALUSDT" data-chart-idx="116">
-  <div class="chart-card-head">
-    <span class="chart-sym">HAEDALUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.832 · 지속성 0.798</span>
-    <span class="chart-gate-timing">T_early 2026-09-09 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-09 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-116"></div>
-    <div class="chart-msg" id="chart-msg-116">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="LISTAUSDT" data-chart-idx="117">
-  <div class="chart-card-head">
-    <span class="chart-sym">LISTAUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.831 · 지속성 0.806</span>
-    <span class="chart-gate-timing">T_early 2026-09-21 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-21 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-117"></div>
-    <div class="chart-msg" id="chart-msg-117">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="ZETAUSDT" data-chart-idx="118">
-  <div class="chart-card-head">
-    <span class="chart-sym">ZETAUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.830 · 지속성 0.774</span>
-    <span class="chart-gate-timing">T_early 2026-09-21 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-21 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-118"></div>
-    <div class="chart-msg" id="chart-msg-118">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="1000SATSUSDT" data-chart-idx="119">
-  <div class="chart-card-head">
-    <span class="chart-sym">1000SATSUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.829 · 지속성 0.815</span>
-    <span class="chart-gate-timing">T_early 2026-09-21 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-21 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-119"></div>
-    <div class="chart-msg" id="chart-msg-119">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="BICOUSDT" data-chart-idx="120">
-  <div class="chart-card-head">
-    <span class="chart-sym">BICOUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.829 · 지속성 0.807</span>
-    <span class="chart-gate-timing">T_early 2026-09-21 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-21 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-120"></div>
-    <div class="chart-msg" id="chart-msg-120">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="SLXUSDT" data-chart-idx="121">
-  <div class="chart-card-head">
-    <span class="chart-sym">SLXUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.828 · 지속성 0.835</span>
-    <span class="chart-gate-timing">T_early 2026-09-23 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-121"></div>
-    <div class="chart-msg" id="chart-msg-121">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="ORDERUSDT" data-chart-idx="122">
-  <div class="chart-card-head">
-    <span class="chart-sym">ORDERUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.828 · 지속성 0.794</span>
-    <span class="chart-gate-timing">T_early 2026-09-19 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-19 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-122"></div>
-    <div class="chart-msg" id="chart-msg-122">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="DEXEUSDT" data-chart-idx="123">
-  <div class="chart-card-head">
-    <span class="chart-sym">DEXEUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.828 · 지속성 0.784</span>
-    <span class="chart-gate-timing">T_early 2026-09-02 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-02 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-123"></div>
-    <div class="chart-msg" id="chart-msg-123">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="MORPHOUSDT" data-chart-idx="124">
-  <div class="chart-card-head">
-    <span class="chart-sym">MORPHOUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.827 · 지속성 0.857</span>
-    <span class="chart-gate-timing">T_early 2026-09-19 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-19 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-124"></div>
-    <div class="chart-msg" id="chart-msg-124">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="ZORAUSDT" data-chart-idx="125">
-  <div class="chart-card-head">
-    <span class="chart-sym">ZORAUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.826 · 지속성 0.793</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-125"></div>
-    <div class="chart-msg" id="chart-msg-125">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="BATUSDT" data-chart-idx="126">
-  <div class="chart-card-head">
-    <span class="chart-sym">BATUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.824 · 지속성 0.768</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-126"></div>
-    <div class="chart-msg" id="chart-msg-126">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="MITOUSDT" data-chart-idx="127">
-  <div class="chart-card-head">
-    <span class="chart-sym">MITOUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.823 · 지속성 0.793</span>
-    <span class="chart-gate-timing">T_early 2026-09-20 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-20 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-127"></div>
-    <div class="chart-msg" id="chart-msg-127">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="MANTAUSDT" data-chart-idx="128">
-  <div class="chart-card-head">
-    <span class="chart-sym">MANTAUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.822 · 지속성 0.785</span>
-    <span class="chart-gate-timing">T_early 2026-09-21 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-21 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-128"></div>
-    <div class="chart-msg" id="chart-msg-128">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="FLOWUSDT" data-chart-idx="129">
-  <div class="chart-card-head">
-    <span class="chart-sym">FLOWUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.821 · 지속성 0.783</span>
-    <span class="chart-gate-timing">T_early 2026-09-23 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-129"></div>
-    <div class="chart-msg" id="chart-msg-129">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="GRASSUSDT" data-chart-idx="130">
-  <div class="chart-card-head">
-    <span class="chart-sym">GRASSUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.821 · 지속성 0.785</span>
-    <span class="chart-gate-timing">T_early 2026-09-21 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-21 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-130"></div>
-    <div class="chart-msg" id="chart-msg-130">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="MIRAUSDT" data-chart-idx="131">
-  <div class="chart-card-head">
-    <span class="chart-sym">MIRAUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.820 · 지속성 0.784</span>
-    <span class="chart-gate-timing">T_early 2026-09-21 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-21 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-131"></div>
-    <div class="chart-msg" id="chart-msg-131">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="HYPEUSDT" data-chart-idx="132">
-  <div class="chart-card-head">
-    <span class="chart-sym">HYPEUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.819 · 지속성 0.852</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-132"></div>
-    <div class="chart-msg" id="chart-msg-132">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="NILUSDT" data-chart-idx="133">
-  <div class="chart-card-head">
-    <span class="chart-sym">NILUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.818 · 지속성 0.789</span>
-    <span class="chart-gate-timing">T_early 2026-09-19 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-19 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-133"></div>
-    <div class="chart-msg" id="chart-msg-133">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="IDOLUSDT" data-chart-idx="134">
-  <div class="chart-card-head">
-    <span class="chart-sym">IDOLUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.818 · 지속성 0.797</span>
-    <span class="chart-gate-timing">T_early 2026-09-15 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-15 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-134"></div>
-    <div class="chart-msg" id="chart-msg-134">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="ROBOUSDT" data-chart-idx="135">
-  <div class="chart-card-head">
-    <span class="chart-sym">ROBOUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.817 · 지속성 0.818</span>
-    <span class="chart-gate-timing">T_early 2026-09-18 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-18 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-135"></div>
-    <div class="chart-msg" id="chart-msg-135">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="KAITOUSDT" data-chart-idx="136">
-  <div class="chart-card-head">
-    <span class="chart-sym">KAITOUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.817 · 지속성 0.803</span>
-    <span class="chart-gate-timing">T_early 2026-08-30 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-08-30 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-136"></div>
-    <div class="chart-msg" id="chart-msg-136">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="MAVIAUSDT" data-chart-idx="137">
-  <div class="chart-card-head">
-    <span class="chart-sym">MAVIAUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.816 · 지속성 0.777</span>
-    <span class="chart-gate-timing">T_early 2026-08-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early+32일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-137"></div>
-    <div class="chart-msg" id="chart-msg-137">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="CYSUSDT" data-chart-idx="138">
-  <div class="chart-card-head">
-    <span class="chart-sym">CYSUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.815 · 지속성 0.797</span>
-    <span class="chart-gate-timing">T_early 2026-09-14 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-14 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-138"></div>
-    <div class="chart-msg" id="chart-msg-138">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="FLUIDUSDT" data-chart-idx="139">
-  <div class="chart-card-head">
-    <span class="chart-sym">FLUIDUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.814 · 지속성 0.806</span>
-    <span class="chart-gate-timing">T_early 2026-09-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early+1일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-139"></div>
-    <div class="chart-msg" id="chart-msg-139">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="ICNTUSDT" data-chart-idx="140">
-  <div class="chart-card-head">
-    <span class="chart-sym">ICNTUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.812 · 지속성 0.799</span>
-    <span class="chart-gate-timing">T_early 2026-09-23 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-140"></div>
-    <div class="chart-msg" id="chart-msg-140">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="CETUSUSDT" data-chart-idx="141">
-  <div class="chart-card-head">
-    <span class="chart-sym">CETUSUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.812 · 지속성 0.784</span>
-    <span class="chart-gate-timing">T_early 2026-09-21 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-21 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-141"></div>
-    <div class="chart-msg" id="chart-msg-141">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="ENAUSDT" data-chart-idx="142">
-  <div class="chart-card-head">
-    <span class="chart-sym">ENAUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.811 · 지속성 0.779</span>
-    <span class="chart-gate-timing">T_early 2026-09-19 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-19 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-142"></div>
-    <div class="chart-msg" id="chart-msg-142">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="LYNUSDT" data-chart-idx="143">
-  <div class="chart-card-head">
-    <span class="chart-sym">LYNUSDT</span>
-    <span class="chart-badge dir-down">하락</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.811 · 지속성 0.769</span>
-    <span class="chart-gate-timing">T_early 2026-08-22 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-08-22 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-143"></div>
-    <div class="chart-msg" id="chart-msg-143">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="PARTIUSDT" data-chart-idx="144">
-  <div class="chart-card-head">
-    <span class="chart-sym">PARTIUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.811 · 지속성 0.792</span>
-    <span class="chart-gate-timing">T_early 2026-09-23 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-144"></div>
-    <div class="chart-msg" id="chart-msg-144">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="TURTLEUSDT" data-chart-idx="145">
-  <div class="chart-card-head">
-    <span class="chart-sym">TURTLEUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.810 · 지속성 0.728</span>
-    <span class="chart-gate-timing">T_early 2026-07-27 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early+58일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-145"></div>
-    <div class="chart-msg" id="chart-msg-145">대기중...</div>
-  </div>
-</div>
-<div class="chart-card" data-symbol="TRUSTUSDT" data-chart-idx="146">
-  <div class="chart-card-head">
-    <span class="chart-sym">TRUSTUSDT</span>
-    <span class="chart-badge dir-up">상승</span>
-    <span class="chart-badge">GRADUAL</span>
-    <span class="chart-scores">모멘텀 0.810 · 지속성 0.802</span>
-    <span class="chart-gate-timing">T_early 2026-09-23 (감지: 감지시각 미기록(과거데이터)) → 게이트통과 2026-09-23 (감지: 감지시각 미기록(과거데이터)) (T_early당일)</span>
-  </div>
-  <div class="chart-canvas-wrap">
-    <div class="chart-canvas" id="chart-146"></div>
-    <div class="chart-msg" id="chart-msg-146">대기중...</div>
+    <div class="chart-canvas" id="chart-34"></div>
+    <div class="chart-msg" id="chart-msg-34">대기중...</div>
   </div>
 </div></div>
 
@@ -2013,7 +568,7 @@
 <th>T_early(초기움직임 시작)</th><th>게이트통과시각</th><th>T_early→게이트통과 경과</th>
 <th>신호경과(신선도기준)</th><th>포지션상태</th></tr></thead>
 <tbody>
-<tr class='t3-flagged'><td class='sym'>LSKUSDT</td><td>down</td><td>GRADUAL</td><td>1.000</td><td>1.000</td><td>2026-09-15 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-15 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>9일 전</td><td class='hb-ok'>포지션 보유중</td></tr>
+<tr class='t3-priority'><td class='sym'>LSKUSDT ⭐</td><td>down</td><td>GRADUAL</td><td>1.000</td><td>1.000</td><td>2026-09-15 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-15 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>9일 전</td><td class='hb-ok'>포지션 보유중</td></tr>
 <tr class='t3-flagged'><td class='sym'>USUSDT</td><td>up</td><td>GRADUAL</td><td>0.886</td><td>0.896</td><td>2026-09-23 (감지: 2026-09-23 23:04 UTC)</td><td>2026-09-23 (감지: 2026-09-23 23:04 UTC)</td><td>T_early당일</td><td>1일 전</td><td class='hb-ok'>포지션 보유중</td></tr>
 <tr class='t3-flagged'><td class='sym'>1000SHIBUSDT</td><td>up</td><td>GRADUAL</td><td>0.848</td><td>0.870</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='hb-ok'>포지션 보유중</td></tr>
 <tr class='t3-flagged'><td class='sym'>0GUSDT</td><td>down</td><td>GRADUAL</td><td>0.779</td><td>0.846</td><td>2026-09-02 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-02 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>22일 전</td><td class='hb-ok'>포지션 보유중</td></tr>
@@ -2023,50 +578,50 @@
 <tr class=''><td class='sym'>1INCHUSDT</td><td>up</td><td>GRADUAL</td><td>0.381</td><td>0.543</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>관찰중(미통과)</td><td></td><td>3일 전</td><td class='hb-ok'>포지션 보유중</td></tr>
 <tr class=''><td class='sym'>1000000BOBUSDT</td><td>down</td><td>GRADUAL</td><td>0.465</td><td>0.475</td><td>2026-09-10 (감지: 감지시각 미기록(과거데이터))</td><td>관찰중(미통과)</td><td></td><td>14일 전</td><td class='hb-ok'>포지션 보유중</td></tr>
 <tr class=''><td class='sym'>1000RATSUSDT</td><td>down</td><td>GRADUAL</td><td>0.411</td><td>0.444</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>관찰중(미통과)</td><td></td><td>34일 전</td><td class='hb-ok'>포지션 보유중</td></tr>
-<tr class='t3-flagged'><td class='sym'>QNTUSDT</td><td>up</td><td>GRADUAL</td><td>0.987</td><td>0.983</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>1일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>MAVIAUSDT</td><td>up</td><td>GRADUAL</td><td>0.970</td><td>0.969</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>1일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>FOLKSUSDT</td><td>up</td><td>GRADUAL</td><td>0.950</td><td>0.952</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>VIRTUALUSDT</td><td>up</td><td>GRADUAL</td><td>0.955</td><td>0.950</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>AIXBTUSDT</td><td>up</td><td>GRADUAL</td><td>0.946</td><td>0.948</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>LUNA2USDT</td><td>up</td><td>GRADUAL</td><td>0.945</td><td>0.948</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>4일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>PUMPUSDT</td><td>up</td><td>GRADUAL</td><td>0.953</td><td>0.945</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>6일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>SAFEUSDT</td><td>up</td><td>GRADUAL</td><td>0.949</td><td>0.945</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>QNTUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.987</td><td>0.983</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>1일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>MAVIAUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.970</td><td>0.969</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>1일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>FOLKSUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.950</td><td>0.952</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>VIRTUALUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.955</td><td>0.950</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>AIXBTUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.946</td><td>0.948</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>LUNA2USDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.945</td><td>0.948</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>4일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>PUMPUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.953</td><td>0.945</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>6일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>SAFEUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.949</td><td>0.945</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
 <tr class='t3-flagged'><td class='sym'>BRUSDT</td><td>up</td><td>GRADUAL</td><td>0.831</td><td>0.945</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early+10일</td><td>1일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>SKYAIUSDT</td><td>up</td><td>GRADUAL</td><td>0.932</td><td>0.942</td><td>2026-09-16 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-16 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>8일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>STRKUSDT</td><td>up</td><td>GRADUAL</td><td>0.938</td><td>0.942</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>6일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>AIOTUSDT</td><td>up</td><td>GRADUAL</td><td>0.919</td><td>0.940</td><td>2026-09-14 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-14 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>10일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>SKYAIUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.932</td><td>0.942</td><td>2026-09-16 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-16 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>8일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>STRKUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.938</td><td>0.942</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>6일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>AIOTUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.919</td><td>0.940</td><td>2026-09-14 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-14 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>10일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
 <tr class='t3-flagged'><td class='sym'>ZECUSDT</td><td>up</td><td>GRADUAL</td><td>0.826</td><td>0.939</td><td>2026-09-16 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early+7일</td><td>1일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>BEATUSDT</td><td>down</td><td>GRADUAL</td><td>0.935</td><td>0.937</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>15일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>VVVUSDT</td><td>up</td><td>GRADUAL</td><td>0.906</td><td>0.935</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>6일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>NEWTUSDT</td><td>up</td><td>GRADUAL</td><td>0.926</td><td>0.933</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>GALAUSDT</td><td>up</td><td>GRADUAL</td><td>0.915</td><td>0.932</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>3일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>BEATUSDT ⭐</td><td>down</td><td>GRADUAL</td><td>0.935</td><td>0.937</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>15일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>VVVUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.906</td><td>0.935</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>6일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>NEWTUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.926</td><td>0.933</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>GALAUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.915</td><td>0.932</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>3일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
 <tr class='t3-flagged'><td class='sym'>BRUSDT</td><td>down</td><td>GRADUAL</td><td>0.822</td><td>0.931</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>ASTERUSDT</td><td>up</td><td>GRADUAL</td><td>0.942</td><td>0.931</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>19일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>ERAUSDT</td><td>up</td><td>GRADUAL</td><td>0.931</td><td>0.930</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>1일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>WCTUSDT</td><td>up</td><td>GRADUAL</td><td>0.919</td><td>0.927</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>OGUSDT</td><td>up</td><td>GRADUAL</td><td>0.923</td><td>0.927</td><td>2026-08-23 (감지: 감지시각 미기록(과거데이터))</td><td>2026-08-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>32일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>ASTERUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.942</td><td>0.931</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>19일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>ERAUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.931</td><td>0.930</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>1일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>WCTUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.919</td><td>0.927</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>OGUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.923</td><td>0.927</td><td>2026-08-23 (감지: 감지시각 미기록(과거데이터))</td><td>2026-08-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>32일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
 <tr class='t3-flagged'><td class='sym'>DOODUSDT</td><td>down</td><td>GRADUAL</td><td>0.886</td><td>0.924</td><td>2026-09-08 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-08 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>16일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>DOODUSDT</td><td>up</td><td>GRADUAL</td><td>0.921</td><td>0.924</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>TOSHIUSDT</td><td>up</td><td>GRADUAL</td><td>0.923</td><td>0.924</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>TACUSDT</td><td>down</td><td>GRADUAL</td><td>0.913</td><td>0.922</td><td>2026-09-08 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-08 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>16일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>PTBUSDT</td><td>up</td><td>GRADUAL</td><td>0.906</td><td>0.920</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>4일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>MAGICUSDT</td><td>up</td><td>GRADUAL</td><td>0.902</td><td>0.919</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>AEROUSDT</td><td>up</td><td>GRADUAL</td><td>0.920</td><td>0.917</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>6일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>ARCUSDT</td><td>up</td><td>GRADUAL</td><td>0.913</td><td>0.917</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>3일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>DOODUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.921</td><td>0.924</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>TOSHIUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.923</td><td>0.924</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>TACUSDT ⭐</td><td>down</td><td>GRADUAL</td><td>0.913</td><td>0.922</td><td>2026-09-08 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-08 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>16일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>PTBUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.906</td><td>0.920</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>4일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>MAGICUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.902</td><td>0.919</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>AEROUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.920</td><td>0.917</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>6일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>ARCUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.913</td><td>0.917</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>3일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
 <tr class='t3-flagged'><td class='sym'>BTRUSDT</td><td>up</td><td>GRADUAL</td><td>0.866</td><td>0.916</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>15일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>MYXUSDT</td><td>up</td><td>GRADUAL</td><td>0.887</td><td>0.914</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>6일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>XNYUSDT</td><td>up</td><td>GRADUAL</td><td>0.912</td><td>0.913</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>1일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>ELSAUSDT</td><td>up</td><td>GRADUAL</td><td>0.914</td><td>0.905</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>19일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>PLUMEUSDT</td><td>up</td><td>GRADUAL</td><td>0.893</td><td>0.904</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>BNBUSDT</td><td>up</td><td>GRADUAL</td><td>0.896</td><td>0.903</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>19일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>RAVEUSDT</td><td>down</td><td>GRADUAL</td><td>0.896</td><td>0.902</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>15일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>MYXUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.887</td><td>0.914</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>6일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>XNYUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.912</td><td>0.913</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>1일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>ELSAUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.914</td><td>0.905</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>19일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>PLUMEUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.893</td><td>0.904</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>BNBUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.896</td><td>0.903</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>19일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>RAVEUSDT ⭐</td><td>down</td><td>GRADUAL</td><td>0.896</td><td>0.902</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>15일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
 <tr class='t3-flagged'><td class='sym'>ICXUSDT</td><td>down</td><td>GRADUAL</td><td>0.844</td><td>0.901</td><td>2026-08-20 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early+34일</td><td>1일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
 <tr class='t3-flagged'><td class='sym'>ESPORTSUSDT</td><td>down</td><td>GRADUAL</td><td>0.879</td><td>0.898</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>15일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
 <tr class='t3-flagged'><td class='sym'>CVCUSDT</td><td>up</td><td>GRADUAL</td><td>0.864</td><td>0.895</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>11일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>NMRUSDT</td><td>up</td><td>GRADUAL</td><td>0.907</td><td>0.894</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>19일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>NMRUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.907</td><td>0.894</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>19일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
 <tr class='t3-flagged'><td class='sym'>ALTUSDT</td><td>up</td><td>GRADUAL</td><td>0.880</td><td>0.893</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>1일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
 <tr class='t3-flagged'><td class='sym'>RAYSOLUSDT</td><td>up</td><td>GRADUAL</td><td>0.761</td><td>0.892</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>6일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
-<tr class='t3-flagged'><td class='sym'>NXPCUSDT</td><td>up</td><td>GRADUAL</td><td>0.892</td><td>0.892</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
+<tr class='t3-priority'><td class='sym'>NXPCUSDT ⭐</td><td>up</td><td>GRADUAL</td><td>0.892</td><td>0.892</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
 <tr class='t3-flagged'><td class='sym'>SWARMSUSDT</td><td>up</td><td>GRADUAL</td><td>0.882</td><td>0.890</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>2일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
 <tr class='t3-flagged'><td class='sym'>EPICUSDT</td><td>up</td><td>GRADUAL</td><td>0.876</td><td>0.889</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>6일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
 <tr class='t3-flagged'><td class='sym'>LABUSDT</td><td>down</td><td>GRADUAL</td><td>0.848</td><td>0.888</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td>11일 전</td><td class='status-momentum'>진입후보(게이트통과)</td></tr>
@@ -2790,141 +1345,142 @@
 <th>지속성점수</th><th>모멘텀점수</th><th>게이트통과시각</th><th>경과(T_early→게이트통과)</th>
 <th>상태</th><th></th></tr></thead>
 <tbody>
-<tr class='t3-flagged'><td class='sym'>LSKUSDT</td><td>down</td><td>2026-09-15 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>1.000</td><td>1.000</td><td>2026-09-15 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>LSKUSDT</td><td>up</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.987</td><td>0.999</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>LSKUSDT</td><td>up</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.987</td><td>0.999</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>AKEUSDT</td><td>down</td><td>2026-08-17 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.997</td><td>0.999</td><td>2026-08-17 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>AKEUSDT</td><td>down</td><td>2026-08-26 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.989</td><td>0.994</td><td>2026-08-26 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>AKEUSDT</td><td>up</td><td>2026-08-14 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.989</td><td>0.994</td><td>2026-08-14 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>SKRUSDT</td><td>up</td><td>2026-09-04 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.910</td><td>0.988</td><td>2026-09-04 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>IOTXUSDT</td><td>up</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.984</td><td>0.984</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>QNTUSDT</td><td>up</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.987</td><td>0.983</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>IOTXUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.980</td><td>0.982</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>RENDERUSDT</td><td>up</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.977</td><td>0.974</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>MAVIAUSDT</td><td>up</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.970</td><td>0.969</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>APRUSDT</td><td>up</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.921</td><td>0.965</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>LYNUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.962</td><td>0.961</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>APRUSDT</td><td>up</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.916</td><td>0.960</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>LDOUSDT</td><td>up</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.957</td><td>0.958</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>APRUSDT</td><td>up</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.900</td><td>0.957</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>🟢 진입후보</td></tr>
+<tr class='t3-priority'><td class='sym'>LSKUSDT</td><td>down</td><td>2026-09-15 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>1.000</td><td>1.000</td><td>2026-09-15 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>LSKUSDT</td><td>up</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.987</td><td>0.999</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>LSKUSDT</td><td>up</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.987</td><td>0.999</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>AKEUSDT</td><td>down</td><td>2026-08-17 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.997</td><td>0.999</td><td>2026-08-17 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>AKEUSDT</td><td>down</td><td>2026-08-26 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.989</td><td>0.994</td><td>2026-08-26 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>AKEUSDT</td><td>up</td><td>2026-08-14 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.989</td><td>0.994</td><td>2026-08-14 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>SKRUSDT</td><td>up</td><td>2026-09-04 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.910</td><td>0.988</td><td>2026-09-04 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>IOTXUSDT</td><td>up</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.984</td><td>0.984</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>QNTUSDT</td><td>up</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.987</td><td>0.983</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>IOTXUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.980</td><td>0.982</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>RENDERUSDT</td><td>up</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.977</td><td>0.974</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>MAVIAUSDT</td><td>up</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.970</td><td>0.969</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>APRUSDT</td><td>up</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.921</td><td>0.965</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>LYNUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.962</td><td>0.961</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>APRUSDT</td><td>up</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.916</td><td>0.960</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>LDOUSDT</td><td>up</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.957</td><td>0.958</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>APRUSDT</td><td>up</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.900</td><td>0.957</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>APRUSDT</td><td>up</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.889</td><td>0.956</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>DIAUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.955</td><td>0.954</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>MOVEUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.952</td><td>0.954</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>FOLKSUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.950</td><td>0.952</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>VIRTUALUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.955</td><td>0.950</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>LABUSDT</td><td>down</td><td>2026-08-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.947</td><td>0.950</td><td>2026-08-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>VELVETUSDT</td><td>up</td><td>2026-08-12 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.932</td><td>0.949</td><td>2026-08-12 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>AIXBTUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.946</td><td>0.948</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>1000000MOGUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.946</td><td>0.948</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>LUNA2USDT</td><td>up</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.945</td><td>0.948</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>PUMPUSDT</td><td>up</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.953</td><td>0.945</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>SAFEUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.949</td><td>0.945</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>QNTUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.945</td><td>0.945</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>MAVIAUSDT</td><td>up</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.946</td><td>0.943</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>HOLOUSDT</td><td>up</td><td>2026-08-11 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.947</td><td>0.943</td><td>2026-08-11 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>SKYAIUSDT</td><td>up</td><td>2026-09-16 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.932</td><td>0.942</td><td>2026-09-16 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>STRKUSDT</td><td>up</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.938</td><td>0.942</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>HUSDT</td><td>down</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.930</td><td>0.942</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>QNTUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.939</td><td>0.942</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>FLOWUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.929</td><td>0.941</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>MOVEUSDT</td><td>up</td><td>2026-08-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.931</td><td>0.940</td><td>2026-08-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>AIOTUSDT</td><td>up</td><td>2026-09-14 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.919</td><td>0.940</td><td>2026-09-14 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>AKEUSDT</td><td>up</td><td>2026-08-28 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.896</td><td>0.940</td><td>2026-08-28 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>BEATUSDT</td><td>down</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.935</td><td>0.937</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>LUNA2USDT</td><td>up</td><td>2026-09-07 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.934</td><td>0.935</td><td>2026-09-07 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>VVVUSDT</td><td>up</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.906</td><td>0.935</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>DOODUSDT</td><td>up</td><td>2026-09-06 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.928</td><td>0.934</td><td>2026-09-06 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>RENDERUSDT</td><td>up</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.941</td><td>0.933</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>NEWTUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.926</td><td>0.933</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>CLOUSDT</td><td>down</td><td>2026-08-20 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.925</td><td>0.933</td><td>2026-08-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>BASUSDT</td><td>down</td><td>2026-08-25 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.919</td><td>0.933</td><td>2026-08-25 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>BROCCOLI714USDT</td><td>up</td><td>2026-08-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.936</td><td>0.932</td><td>2026-08-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>GALAUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.915</td><td>0.932</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>PROMPTUSDT</td><td>up</td><td>2026-08-29 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.922</td><td>0.931</td><td>2026-08-29 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>STRKUSDT</td><td>up</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.924</td><td>0.931</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>ASTERUSDT</td><td>up</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.942</td><td>0.931</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>ERAUSDT</td><td>up</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.931</td><td>0.930</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>QNTUSDT</td><td>up</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.918</td><td>0.929</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>WCTUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.919</td><td>0.927</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>OGUSDT</td><td>up</td><td>2026-08-23 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.923</td><td>0.927</td><td>2026-08-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>LDOUSDT</td><td>up</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.918</td><td>0.927</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>RSRUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.905</td><td>0.926</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>TOSHIUSDT</td><td>up</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.923</td><td>0.926</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>LABUSDT</td><td>down</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.916</td><td>0.925</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>DOODUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.921</td><td>0.924</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>TOSHIUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.923</td><td>0.924</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>BREVUSDT</td><td>up</td><td>2026-09-19 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.925</td><td>0.923</td><td>2026-09-19 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>TACUSDT</td><td>down</td><td>2026-09-08 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.913</td><td>0.922</td><td>2026-09-08 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>PTBUSDT</td><td>up</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.906</td><td>0.920</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>MAGICUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.902</td><td>0.919</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>CETUSUSDT</td><td>up</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.907</td><td>0.918</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>IOTXUSDT</td><td>up</td><td>2026-09-07 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.910</td><td>0.917</td><td>2026-09-07 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>HUSDT</td><td>up</td><td>2026-08-11 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.908</td><td>0.917</td><td>2026-08-11 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>PLAYUSDT</td><td>up</td><td>2026-08-26 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.912</td><td>0.917</td><td>2026-08-26 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>AEROUSDT</td><td>up</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.920</td><td>0.917</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>ARCUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.913</td><td>0.917</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>TACUSDT</td><td>down</td><td>2026-08-23 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.905</td><td>0.915</td><td>2026-08-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>MYXUSDT</td><td>up</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.887</td><td>0.914</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>FOLKSUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.904</td><td>0.914</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>XNYUSDT</td><td>up</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.912</td><td>0.913</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>USELESSUSDT</td><td>up</td><td>2026-08-31 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.896</td><td>0.913</td><td>2026-08-31 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>IOTXUSDT</td><td>up</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.907</td><td>0.913</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>REDUSDT</td><td>up</td><td>2026-08-15 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.907</td><td>0.911</td><td>2026-08-15 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>FLUIDUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.908</td><td>0.911</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>USELESSUSDT</td><td>up</td><td>2026-08-20 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.890</td><td>0.910</td><td>2026-08-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>TACUSDT</td><td>up</td><td>2026-08-24 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.899</td><td>0.910</td><td>2026-08-24 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>CROSSUSDT</td><td>up</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.909</td><td>0.908</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>IOUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.888</td><td>0.905</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>ELSAUSDT</td><td>up</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.914</td><td>0.905</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>PLUMEUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.893</td><td>0.904</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>BNBUSDT</td><td>up</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.896</td><td>0.903</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>RAVEUSDT</td><td>down</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.896</td><td>0.902</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>VIRTUALUSDT</td><td>up</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.901</td><td>0.896</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>AKTUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.894</td><td>0.896</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>OPNUSDT</td><td>up</td><td>2026-08-18 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.894</td><td>0.896</td><td>2026-08-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>SANTOSUSDT</td><td>up</td><td>2026-08-20 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.890</td><td>0.895</td><td>2026-08-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>NMRUSDT</td><td>up</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.907</td><td>0.894</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>NMRUSDT</td><td>up</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.901</td><td>0.893</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>HOMEUSDT</td><td>up</td><td>2026-09-19 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.888</td><td>0.893</td><td>2026-09-19 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>NXPCUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.892</td><td>0.892</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>AEROUSDT</td><td>up</td><td>2026-09-07 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.891</td><td>0.891</td><td>2026-09-07 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
+<tr class='t3-priority'><td class='sym'>LYNUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.888</td><td>0.887</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>⭐ 최우선후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>APRUSDT</td><td>up</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.884</td><td>0.956</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>APRUSDT</td><td>up</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.889</td><td>0.956</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>APRUSDT</td><td>up</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.868</td><td>0.956</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>APRUSDT</td><td>up</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.874</td><td>0.955</td><td>2026-08-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>DIAUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.955</td><td>0.954</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>MOVEUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.952</td><td>0.954</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>FOLKSUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.950</td><td>0.952</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>VIRTUALUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.955</td><td>0.950</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>LABUSDT</td><td>down</td><td>2026-08-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.947</td><td>0.950</td><td>2026-08-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>VELVETUSDT</td><td>up</td><td>2026-08-12 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.932</td><td>0.949</td><td>2026-08-12 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>AIXBTUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.946</td><td>0.948</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>1000000MOGUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.946</td><td>0.948</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>LUNA2USDT</td><td>up</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.945</td><td>0.948</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>PUMPUSDT</td><td>up</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.953</td><td>0.945</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>SAFEUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.949</td><td>0.945</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>BRUSDT</td><td>up</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.831</td><td>0.945</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early+10일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>QNTUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.945</td><td>0.945</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>MAVIAUSDT</td><td>up</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.946</td><td>0.943</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>HOLOUSDT</td><td>up</td><td>2026-08-11 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.947</td><td>0.943</td><td>2026-08-11 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>SKYAIUSDT</td><td>up</td><td>2026-09-16 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.932</td><td>0.942</td><td>2026-09-16 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>STRKUSDT</td><td>up</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.938</td><td>0.942</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>HUSDT</td><td>down</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.930</td><td>0.942</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>BRUSDT</td><td>up</td><td>2026-08-19 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.784</td><td>0.942</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early+35일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>QNTUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.939</td><td>0.942</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>FLOWUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.929</td><td>0.941</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>BRUSDT</td><td>up</td><td>2026-08-12 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.723</td><td>0.940</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early+42일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>MOVEUSDT</td><td>up</td><td>2026-08-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.931</td><td>0.940</td><td>2026-08-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>AIOTUSDT</td><td>up</td><td>2026-09-14 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.919</td><td>0.940</td><td>2026-09-14 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>AKEUSDT</td><td>up</td><td>2026-08-28 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.896</td><td>0.940</td><td>2026-08-28 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>ZECUSDT</td><td>up</td><td>2026-09-16 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.826</td><td>0.939</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early+7일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>BEATUSDT</td><td>down</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.935</td><td>0.937</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>BRUSDT</td><td>up</td><td>2026-09-03 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.787</td><td>0.937</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early+20일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>LUNA2USDT</td><td>up</td><td>2026-09-07 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.934</td><td>0.935</td><td>2026-09-07 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>VVVUSDT</td><td>up</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.906</td><td>0.935</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>BRUSDT</td><td>down</td><td>2026-08-16 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.755</td><td>0.935</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early+38일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>DOODUSDT</td><td>up</td><td>2026-09-06 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.928</td><td>0.934</td><td>2026-09-06 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>RENDERUSDT</td><td>up</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.941</td><td>0.933</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>NEWTUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.926</td><td>0.933</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>CLOUSDT</td><td>down</td><td>2026-08-20 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.925</td><td>0.933</td><td>2026-08-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>BASUSDT</td><td>down</td><td>2026-08-25 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.919</td><td>0.933</td><td>2026-08-25 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>BROCCOLI714USDT</td><td>up</td><td>2026-08-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.936</td><td>0.932</td><td>2026-08-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>GALAUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.915</td><td>0.932</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>BRUSDT</td><td>down</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.822</td><td>0.931</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>PROMPTUSDT</td><td>up</td><td>2026-08-29 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.922</td><td>0.931</td><td>2026-08-29 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>STRKUSDT</td><td>up</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.924</td><td>0.931</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>ASTERUSDT</td><td>up</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.942</td><td>0.931</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>ERAUSDT</td><td>up</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.931</td><td>0.930</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>QNTUSDT</td><td>up</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.918</td><td>0.929</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>WCTUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.919</td><td>0.927</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>OGUSDT</td><td>up</td><td>2026-08-23 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.923</td><td>0.927</td><td>2026-08-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>LDOUSDT</td><td>up</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.918</td><td>0.927</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>RSRUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.905</td><td>0.926</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>TOSHIUSDT</td><td>up</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.923</td><td>0.926</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>LABUSDT</td><td>down</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.916</td><td>0.925</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>DOODUSDT</td><td>down</td><td>2026-09-08 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.886</td><td>0.924</td><td>2026-09-08 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>DOODUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.921</td><td>0.924</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>TOSHIUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.923</td><td>0.924</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>BREVUSDT</td><td>up</td><td>2026-09-19 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.925</td><td>0.923</td><td>2026-09-19 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>TACUSDT</td><td>down</td><td>2026-09-08 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.913</td><td>0.922</td><td>2026-09-08 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>NMRUSDT</td><td>up</td><td>2026-06-23 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.839</td><td>0.921</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early+92일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>BULLAUSDT</td><td>up</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.851</td><td>0.921</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>PTBUSDT</td><td>up</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.906</td><td>0.920</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>MAGICUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.902</td><td>0.919</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>ZECUSDT</td><td>up</td><td>2026-09-04 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.850</td><td>0.919</td><td>2026-09-04 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>CETUSUSDT</td><td>up</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.907</td><td>0.918</td><td>2026-09-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>IOTXUSDT</td><td>up</td><td>2026-09-07 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.910</td><td>0.917</td><td>2026-09-07 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>HUSDT</td><td>up</td><td>2026-08-11 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.908</td><td>0.917</td><td>2026-08-11 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>PLAYUSDT</td><td>up</td><td>2026-08-26 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.912</td><td>0.917</td><td>2026-08-26 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>AEROUSDT</td><td>up</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.920</td><td>0.917</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>ARCUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.913</td><td>0.917</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>BTRUSDT</td><td>up</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.866</td><td>0.916</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>TACUSDT</td><td>down</td><td>2026-08-23 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.905</td><td>0.915</td><td>2026-08-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>MYXUSDT</td><td>up</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.887</td><td>0.914</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>FOLKSUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.904</td><td>0.914</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>XNYUSDT</td><td>up</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.912</td><td>0.913</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>USELESSUSDT</td><td>up</td><td>2026-08-31 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.896</td><td>0.913</td><td>2026-08-31 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>IOTXUSDT</td><td>up</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.907</td><td>0.913</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>ASTERUSDT</td><td>up</td><td>2026-08-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.846</td><td>0.912</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early+32일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>REDUSDT</td><td>up</td><td>2026-08-15 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.907</td><td>0.911</td><td>2026-08-15 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>FLUIDUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.908</td><td>0.911</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>USELESSUSDT</td><td>up</td><td>2026-08-20 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.890</td><td>0.910</td><td>2026-08-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>TACUSDT</td><td>up</td><td>2026-08-24 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.899</td><td>0.910</td><td>2026-08-24 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>CROSSUSDT</td><td>up</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.909</td><td>0.908</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>MYXUSDT</td><td>down</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.883</td><td>0.908</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>1000000MOGUSDT</td><td>up</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.884</td><td>0.905</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>IOUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.888</td><td>0.905</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>ELSAUSDT</td><td>up</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.914</td><td>0.905</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>BANDUSDT</td><td>up</td><td>2026-08-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.878</td><td>0.904</td><td>2026-08-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>PLUMEUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.893</td><td>0.904</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>BNBUSDT</td><td>up</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.896</td><td>0.903</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>RSRUSDT</td><td>up</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.870</td><td>0.903</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>RAVEUSDT</td><td>down</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.896</td><td>0.902</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>SIGNUSDT</td><td>down</td><td>2026-08-14 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.885</td><td>0.902</td><td>2026-08-14 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>ICXUSDT</td><td>down</td><td>2026-08-20 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.844</td><td>0.901</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early+34일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>ESPORTSUSDT</td><td>down</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.879</td><td>0.898</td><td>2026-09-09 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>MEUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.884</td><td>0.897</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>VIRTUALUSDT</td><td>up</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.901</td><td>0.896</td><td>2026-08-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>USUSDT</td><td>up</td><td>2026-09-23 (감지: 2026-09-23 23:04 UTC)</td><td>GRADUAL</td><td>0.886</td><td>0.896</td><td>2026-09-23 (감지: 2026-09-23 23:04 UTC)</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>AKTUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.894</td><td>0.896</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>PLAYUSDT</td><td>down</td><td>2026-09-16 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.881</td><td>0.896</td><td>2026-09-16 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>OPNUSDT</td><td>up</td><td>2026-08-18 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.894</td><td>0.896</td><td>2026-08-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>ASTERUSDT</td><td>up</td><td>2026-08-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.872</td><td>0.896</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early+32일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>SANTOSUSDT</td><td>up</td><td>2026-08-20 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.890</td><td>0.895</td><td>2026-08-20 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>BNBUSDT</td><td>up</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.875</td><td>0.895</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>CVCUSDT</td><td>up</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.864</td><td>0.895</td><td>2026-09-13 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>NMRUSDT</td><td>up</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.907</td><td>0.894</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>IOTXUSDT</td><td>up</td><td>2026-08-09 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.793</td><td>0.894</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early+45일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>AXSUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.877</td><td>0.894</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>BNBUSDT</td><td>up</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.861</td><td>0.894</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>NMRUSDT</td><td>up</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.901</td><td>0.893</td><td>2026-09-05 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>ALTUSDT</td><td>up</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.880</td><td>0.893</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>HOMEUSDT</td><td>up</td><td>2026-09-19 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.888</td><td>0.893</td><td>2026-09-19 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>BEATUSDT</td><td>up</td><td>2026-08-29 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.877</td><td>0.892</td><td>2026-08-29 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>BLESSUSDT</td><td>up</td><td>2026-09-06 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.868</td><td>0.892</td><td>2026-09-06 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>RAYSOLUSDT</td><td>up</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.761</td><td>0.892</td><td>2026-09-18 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>NXPCUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.892</td><td>0.892</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>POLYXUSDT</td><td>down</td><td>2026-08-16 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.871</td><td>0.891</td><td>2026-08-16 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-reversal'>반전확정(반대방향 50%+)</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>AEROUSDT</td><td>up</td><td>2026-09-07 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.891</td><td>0.891</td><td>2026-09-07 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>IOTXUSDT</td><td>up</td><td>2026-08-09 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.757</td><td>0.890</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early+45일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>SWARMSUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.882</td><td>0.890</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>VELVETUSDT</td><td>down</td><td>2026-08-25 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.857</td><td>0.890</td><td>2026-08-25 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
@@ -2934,7 +1490,6 @@
 <tr class='t3-flagged'><td class='sym'>MAVIAUSDT</td><td>up</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.879</td><td>0.888</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>FLOCKUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.864</td><td>0.888</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>LABUSDT</td><td>up</td><td>2026-09-19 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.858</td><td>0.888</td><td>2026-09-19 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
-<tr class='t3-flagged'><td class='sym'>LYNUSDT</td><td>up</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.888</td><td>0.887</td><td>2026-09-21 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>IOTXUSDT</td><td>up</td><td>2026-08-09 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.763</td><td>0.887</td><td>2026-09-23 (감지: 감지시각 미기록(과거데이터))</td><td>T_early+45일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>IOTXUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.722</td><td>0.887</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>MERLUSDT</td><td>up</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.855</td><td>0.886</td><td>2026-09-22 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
@@ -3108,8 +1663,8 @@
 <thead><tr><th class="sym">작업</th><th>마지막 실행(UTC)</th><th>경과</th><th>상태</th><th>처리건수</th></tr></thead>
 <tbody>
 <tr class='hb-row' data-last-run='2026-09-23 16:02:23.186846+00:00' data-max-hours='26'><td class='sym'>1단 관심목록 스캔</td><td class='hb-lastrun'>2026-09-23 16:02:23.186846+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 521 / 스킵 133</td></tr>
-<tr class='hb-row' data-last-run='2026-09-24 00:28:25.858673+00:00' data-max-hours='1'><td class='sym'>2/3단 실시간스캐너</td><td class='hb-lastrun'>2026-09-24 00:28:25.858673+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 647 / 스킵 7 · 신규 Tier2 0건 / Tier3 0건</td></tr>
-<tr class='hb-row' data-last-run='2026-09-24 00:28:43.803566+00:00' data-max-hours='1'><td class='sym'>신규 페이퍼엔진</td><td class='hb-lastrun'>2026-09-24 00:28:43.803566+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 10 / 스킵 N/A · 이번폴 진입 0건 / 청산 0건</td></tr>
+<tr class='hb-row' data-last-run='2026-09-24 00:35:06.941526+00:00' data-max-hours='1'><td class='sym'>2/3단 실시간스캐너</td><td class='hb-lastrun'>2026-09-24 00:35:06.941526+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 647 / 스킵 7 · 신규 Tier2 0건 / Tier3 0건</td></tr>
+<tr class='hb-row' data-last-run='2026-09-24 00:35:21.252866+00:00' data-max-hours='1'><td class='sym'>신규 페이퍼엔진</td><td class='hb-lastrun'>2026-09-24 00:35:21.252866+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 10 / 스킵 N/A · 이번폴 진입 0건 / 청산 0건</td></tr>
 </tbody></table></div>
 </details>
 
@@ -3546,7 +2101,7 @@ setInterval(refreshHeartbeatAges, 30000);  // 뷰어가 페이지를 계속 켜�
 // 실전 확인: Binance 응답에 Access-Control-Allow-Origin: * 헤더가 있어 정적 HTML에서도 CORS 통과됨
 // (curl 헤더 확인 + 실제 브라우저 fetch로 재검증함, 2026-09-24). 실패 시(네트워크차단/심볼상장폐지 등)
 // 카드별로 "차트 로드 실패"만 표시하고 나머지 카드/페이지 기능에는 영향 없음.
-var ENTRY_CANDIDATES = [{"symbol": "LSKUSDT", "direction": "down", "gate_ts": 1789430400, "gate_price": 0.34049}, {"symbol": "QNTUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 73.83}, {"symbol": "MAVIAUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.03666}, {"symbol": "FOLKSUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 2.984}, {"symbol": "VIRTUALUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.7515}, {"symbol": "AIXBTUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.02409}, {"symbol": "LUNA2USDT", "direction": "up", "gate_ts": 1789862400, "gate_price": 0.05527}, {"symbol": "PUMPUSDT", "direction": "up", "gate_ts": 1789689600, "gate_price": 0.004242}, {"symbol": "SAFEUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.11299}, {"symbol": "BRUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 1.07819}, {"symbol": "SKYAIUSDT", "direction": "up", "gate_ts": 1789516800, "gate_price": 0.06068}, {"symbol": "STRKUSDT", "direction": "up", "gate_ts": 1789689600, "gate_price": 0.04426}, {"symbol": "AIOTUSDT", "direction": "up", "gate_ts": 1789344000, "gate_price": 0.04877}, {"symbol": "ZECUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 1633.84}, {"symbol": "BEATUSDT", "direction": "down", "gate_ts": 1788912000, "gate_price": 0.0926}, {"symbol": "VVVUSDT", "direction": "up", "gate_ts": 1789689600, "gate_price": 27.97}, {"symbol": "NEWTUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.05092}, {"symbol": "GALAUSDT", "direction": "up", "gate_ts": 1789948800, "gate_price": 0.002082}, {"symbol": "BRUSDT", "direction": "down", "gate_ts": 1790035200, "gate_price": 1.14949}, {"symbol": "ASTERUSDT", "direction": "up", "gate_ts": 1788566400, "gate_price": 0.7762}, {"symbol": "ERAUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.06989}, {"symbol": "WCTUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.04516}, {"symbol": "OGUSDT", "direction": "up", "gate_ts": 1787443200, "gate_price": 2.974}, {"symbol": "DOODUSDT", "direction": "down", "gate_ts": 1788825600, "gate_price": 0.001801}, {"symbol": "DOODUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.001965}, {"symbol": "TOSHIUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.0001351}, {"symbol": "TACUSDT", "direction": "down", "gate_ts": 1788825600, "gate_price": 0.002049}, {"symbol": "PTBUSDT", "direction": "up", "gate_ts": 1789862400, "gate_price": 0.0009421}, {"symbol": "MAGICUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.05229}, {"symbol": "AEROUSDT", "direction": "up", "gate_ts": 1789689600, "gate_price": 0.6414}, {"symbol": "ARCUSDT", "direction": "up", "gate_ts": 1789948800, "gate_price": 0.07861}, {"symbol": "BTRUSDT", "direction": "up", "gate_ts": 1788912000, "gate_price": 0.06099}, {"symbol": "MYXUSDT", "direction": "up", "gate_ts": 1789689600, "gate_price": 0.07805}, {"symbol": "XNYUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.007797}, {"symbol": "ELSAUSDT", "direction": "up", "gate_ts": 1788566400, "gate_price": 0.05309}, {"symbol": "PLUMEUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.01633}, {"symbol": "BNBUSDT", "direction": "up", "gate_ts": 1788566400, "gate_price": 766.95}, {"symbol": "RAVEUSDT", "direction": "down", "gate_ts": 1788912000, "gate_price": 0.2196}, {"symbol": "ICXUSDT", "direction": "down", "gate_ts": 1790121600, "gate_price": 0.01522}, {"symbol": "ESPORTSUSDT", "direction": "down", "gate_ts": 1788912000, "gate_price": 0.01199}, {"symbol": "USUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.019006}, {"symbol": "CVCUSDT", "direction": "up", "gate_ts": 1789257600, "gate_price": 0.03116}, {"symbol": "NMRUSDT", "direction": "up", "gate_ts": 1788566400, "gate_price": 9.282}, {"symbol": "ALTUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.007954}, {"symbol": "RAYSOLUSDT", "direction": "up", "gate_ts": 1789689600, "gate_price": 1.7604}, {"symbol": "NXPCUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.25}, {"symbol": "SWARMSUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.00869}, {"symbol": "EPICUSDT", "direction": "up", "gate_ts": 1789689600, "gate_price": 0.4254}, {"symbol": "LABUSDT", "direction": "down", "gate_ts": 1789257600, "gate_price": 0.05586}, {"symbol": "LABUSDT", "direction": "up", "gate_ts": 1789776000, "gate_price": 0.05674}, {"symbol": "IOTXUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.003868}, {"symbol": "MERLUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.03123}, {"symbol": "CLANKERUSDT", "direction": "up", "gate_ts": 1789948800, "gate_price": 13.57}, {"symbol": "CLOUSDT", "direction": "up", "gate_ts": 1787788800, "gate_price": 0.10852}, {"symbol": "CVXUSDT", "direction": "up", "gate_ts": 1787270400, "gate_price": 1.981}, {"symbol": "GOATUSDT", "direction": "up", "gate_ts": 1789948800, "gate_price": 0.01846}, {"symbol": "BANKUSDT", "direction": "up", "gate_ts": 1789776000, "gate_price": 0.03888}, {"symbol": "BOMEUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.001146}, {"symbol": "AEVOUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.02631}, {"symbol": "MOVEUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.009859}, {"symbol": "PIXELUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.005801}, {"symbol": "USELESSUSDT", "direction": "up", "gate_ts": 1789516800, "gate_price": 0.23113}, {"symbol": "BSVUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 21.1}, {"symbol": "POWERUSDT", "direction": "up", "gate_ts": 1789257600, "gate_price": 0.13308}, {"symbol": "JCTUSDT", "direction": "down", "gate_ts": 1788912000, "gate_price": 0.001566}, {"symbol": "FHEUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.02453}, {"symbol": "1000SHIBUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.006114}, {"symbol": "BLESSUSDT", "direction": "down", "gate_ts": 1788220800, "gate_price": 0.008565}, {"symbol": "WETUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.07074}, {"symbol": "HOTUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.0004461}, {"symbol": "BABYUSDT", "direction": "up", "gate_ts": 1787270400, "gate_price": 0.01183}, {"symbol": "MUSDT", "direction": "up", "gate_ts": 1789776000, "gate_price": 1.5067}, {"symbol": "LIGHTUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.194}, {"symbol": "CHILLGUYUSDT", "direction": "up", "gate_ts": 1789776000, "gate_price": 0.013907}, {"symbol": "BROCCOLIF3BUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.007831}, {"symbol": "TOWNSUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.002099}, {"symbol": "GMTUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.008728}, {"symbol": "SNXUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.2583}, {"symbol": "SENTUSDT", "direction": "up", "gate_ts": 1789344000, "gate_price": 0.0159}, {"symbol": "XPINUSDT", "direction": "down", "gate_ts": 1789257600, "gate_price": 0.000771}, {"symbol": "PNUTUSDT", "direction": "up", "gate_ts": 1789948800, "gate_price": 0.05642}, {"symbol": "VELVETUSDT", "direction": "down", "gate_ts": 1788912000, "gate_price": 0.0639}, {"symbol": "MONUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.02732}, {"symbol": "TOWNSUSDT", "direction": "down", "gate_ts": 1788912000, "gate_price": 0.001884}, {"symbol": "RAVEUSDT", "direction": "up", "gate_ts": 1789689600, "gate_price": 0.2024}, {"symbol": "BANDUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.2238}, {"symbol": "AVNTUSDT", "direction": "up", "gate_ts": 1789948800, "gate_price": 0.11625}, {"symbol": "CUSDT", "direction": "up", "gate_ts": 1789689600, "gate_price": 0.07072}, {"symbol": "ARIAUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.03978}, {"symbol": "GUSDT", "direction": "up", "gate_ts": 1789603200, "gate_price": 0.004832}, {"symbol": "GUAUSDT", "direction": "down", "gate_ts": 1788912000, "gate_price": 0.0333}, {"symbol": "INUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.03768}, {"symbol": "BTWUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.9619}, {"symbol": "FORMUSDT", "direction": "up", "gate_ts": 1789948800, "gate_price": 0.3537}, {"symbol": "DIAUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.1525}, {"symbol": "XPINUSDT", "direction": "up", "gate_ts": 1789344000, "gate_price": 0.00086}, {"symbol": "0GUSDT", "direction": "up", "gate_ts": 1789862400, "gate_price": 0.2248}, {"symbol": "ESPUSDT", "direction": "up", "gate_ts": 1789776000, "gate_price": 0.09573}, {"symbol": "FLUIDUSDT", "direction": "down", "gate_ts": 1788998400, "gate_price": 1.11}, {"symbol": "WLDUSDT", "direction": "up", "gate_ts": 1789948800, "gate_price": 0.458}, {"symbol": "PIEVERSEUSDT", "direction": "up", "gate_ts": 1789689600, "gate_price": 1.6086}, {"symbol": "GIGGLEUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 42.11}, {"symbol": "MUBARAKUSDT", "direction": "up", "gate_ts": 1789948800, "gate_price": 0.04379}, {"symbol": "RVNUSDT", "direction": "down", "gate_ts": 1789084800, "gate_price": 0.002235}, {"symbol": "TRIAUSDT", "direction": "down", "gate_ts": 1788739200, "gate_price": 0.004384}, {"symbol": "0GUSDT", "direction": "down", "gate_ts": 1788307200, "gate_price": 0.1852}, {"symbol": "EVAAUSDT", "direction": "up", "gate_ts": 1789689600, "gate_price": 0.5841}, {"symbol": "ACEUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.19574}, {"symbol": "DRIFTUSDT", "direction": "up", "gate_ts": 1789603200, "gate_price": 0.01528}, {"symbol": "VELVETUSDT", "direction": "up", "gate_ts": 1789776000, "gate_price": 0.05944}, {"symbol": "BANANAUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 4.122}, {"symbol": "DOLOUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.0306}, {"symbol": "SXTUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.009855}, {"symbol": "APEUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.1602}, {"symbol": "ALCHUSDT", "direction": "up", "gate_ts": 1789171200, "gate_price": 0.04459}, {"symbol": "TAUSDT", "direction": "up", "gate_ts": 1789171200, "gate_price": 0.05615}, {"symbol": "HAEDALUSDT", "direction": "down", "gate_ts": 1788912000, "gate_price": 0.01804}, {"symbol": "LISTAUSDT", "direction": "up", "gate_ts": 1789948800, "gate_price": 0.08374}, {"symbol": "ZETAUSDT", "direction": "up", "gate_ts": 1789948800, "gate_price": 0.05636}, {"symbol": "1000SATSUSDT", "direction": "up", "gate_ts": 1789948800, "gate_price": 1.229e-05}, {"symbol": "BICOUSDT", "direction": "up", "gate_ts": 1789948800, "gate_price": 0.02269}, {"symbol": "SLXUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.07341}, {"symbol": "ORDERUSDT", "direction": "up", "gate_ts": 1789776000, "gate_price": 0.03759}, {"symbol": "DEXEUSDT", "direction": "down", "gate_ts": 1788307200, "gate_price": 1.922}, {"symbol": "MORPHOUSDT", "direction": "up", "gate_ts": 1789776000, "gate_price": 2.5909}, {"symbol": "ZORAUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.009349}, {"symbol": "BATUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.09168}, {"symbol": "MITOUSDT", "direction": "up", "gate_ts": 1789862400, "gate_price": 0.01646}, {"symbol": "MANTAUSDT", "direction": "up", "gate_ts": 1789948800, "gate_price": 0.07126}, {"symbol": "FLOWUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.03376}, {"symbol": "GRASSUSDT", "direction": "up", "gate_ts": 1789948800, "gate_price": 0.4152}, {"symbol": "MIRAUSDT", "direction": "up", "gate_ts": 1789948800, "gate_price": 0.05395}, {"symbol": "HYPEUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 97.21}, {"symbol": "NILUSDT", "direction": "up", "gate_ts": 1789776000, "gate_price": 0.05042}, {"symbol": "IDOLUSDT", "direction": "up", "gate_ts": 1789430400, "gate_price": 0.01019}, {"symbol": "ROBOUSDT", "direction": "up", "gate_ts": 1789689600, "gate_price": 0.00995}, {"symbol": "KAITOUSDT", "direction": "down", "gate_ts": 1788048000, "gate_price": 0.2962}, {"symbol": "MAVIAUSDT", "direction": "down", "gate_ts": 1790121600, "gate_price": 0.03666}, {"symbol": "CYSUSDT", "direction": "up", "gate_ts": 1789344000, "gate_price": 0.1519}, {"symbol": "FLUIDUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 1.414}, {"symbol": "ICNTUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.1015}, {"symbol": "CETUSUSDT", "direction": "up", "gate_ts": 1789948800, "gate_price": 0.02677}, {"symbol": "ENAUSDT", "direction": "up", "gate_ts": 1789776000, "gate_price": 0.20434}, {"symbol": "LYNUSDT", "direction": "down", "gate_ts": 1787356800, "gate_price": 0.03297}, {"symbol": "PARTIUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.02591}, {"symbol": "TURTLEUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.04436}, {"symbol": "TRUSTUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.06323}];
+var ENTRY_CANDIDATES = [{"symbol": "LSKUSDT", "direction": "down", "gate_ts": 1789430400, "gate_price": 0.34049}, {"symbol": "QNTUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 73.83}, {"symbol": "MAVIAUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.03666}, {"symbol": "FOLKSUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 2.984}, {"symbol": "VIRTUALUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.7515}, {"symbol": "AIXBTUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.02409}, {"symbol": "LUNA2USDT", "direction": "up", "gate_ts": 1789862400, "gate_price": 0.05527}, {"symbol": "PUMPUSDT", "direction": "up", "gate_ts": 1789689600, "gate_price": 0.004242}, {"symbol": "SAFEUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.11299}, {"symbol": "SKYAIUSDT", "direction": "up", "gate_ts": 1789516800, "gate_price": 0.06068}, {"symbol": "STRKUSDT", "direction": "up", "gate_ts": 1789689600, "gate_price": 0.04426}, {"symbol": "AIOTUSDT", "direction": "up", "gate_ts": 1789344000, "gate_price": 0.04877}, {"symbol": "BEATUSDT", "direction": "down", "gate_ts": 1788912000, "gate_price": 0.0926}, {"symbol": "VVVUSDT", "direction": "up", "gate_ts": 1789689600, "gate_price": 27.97}, {"symbol": "NEWTUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.05092}, {"symbol": "GALAUSDT", "direction": "up", "gate_ts": 1789948800, "gate_price": 0.002082}, {"symbol": "ASTERUSDT", "direction": "up", "gate_ts": 1788566400, "gate_price": 0.7762}, {"symbol": "ERAUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.06989}, {"symbol": "WCTUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.04516}, {"symbol": "OGUSDT", "direction": "up", "gate_ts": 1787443200, "gate_price": 2.974}, {"symbol": "DOODUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.001965}, {"symbol": "TOSHIUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.0001351}, {"symbol": "TACUSDT", "direction": "down", "gate_ts": 1788825600, "gate_price": 0.002049}, {"symbol": "PTBUSDT", "direction": "up", "gate_ts": 1789862400, "gate_price": 0.0009421}, {"symbol": "MAGICUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.05229}, {"symbol": "AEROUSDT", "direction": "up", "gate_ts": 1789689600, "gate_price": 0.6414}, {"symbol": "ARCUSDT", "direction": "up", "gate_ts": 1789948800, "gate_price": 0.07861}, {"symbol": "MYXUSDT", "direction": "up", "gate_ts": 1789689600, "gate_price": 0.07805}, {"symbol": "XNYUSDT", "direction": "up", "gate_ts": 1790121600, "gate_price": 0.007797}, {"symbol": "ELSAUSDT", "direction": "up", "gate_ts": 1788566400, "gate_price": 0.05309}, {"symbol": "PLUMEUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.01633}, {"symbol": "BNBUSDT", "direction": "up", "gate_ts": 1788566400, "gate_price": 766.95}, {"symbol": "RAVEUSDT", "direction": "down", "gate_ts": 1788912000, "gate_price": 0.2196}, {"symbol": "NMRUSDT", "direction": "up", "gate_ts": 1788566400, "gate_price": 9.282}, {"symbol": "NXPCUSDT", "direction": "up", "gate_ts": 1790035200, "gate_price": 0.25}];
 if (ENTRY_CANDIDATES.length && typeof LightweightCharts !== 'undefined') {
   var chartState = {};  // idx -> { chart, series, inited, timer }
 
