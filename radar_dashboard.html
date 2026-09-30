@@ -89,11 +89,18 @@
   .step-badge.step1 { background: #16202a; color: #6ac2ff; }
   .step-badge.step2 { background: #16301f; color: #6ad98a; }
   .step-badge.step3 { background: #3a2f0e; color: #ffd166; }
+  /* [2026-09-30, 외부 크로스체크 제안] 보유포지션 표 - 실시간 현재가/손익/위험거리 게이지 */
+  .pos-live { white-space: nowrap; font-size: .82rem; }
+  .risk-gauge-label { font-size: .72rem; color: #9aa0ac; margin-bottom: 2px; }
+  .risk-gauge-track { width: 90px; height: 6px; background: #22262f; border-radius: 3px; overflow: hidden; }
+  .risk-gauge-fill { height: 100%; border-radius: 3px; transition: width .3s ease; }
+  tr.pos-danger { background: #301616 !important; box-shadow: inset 3px 0 0 #ff6a6a; }
+  tr.pos-danger:hover { background: #3a1c1c !important; }
 </style>
 </head>
 <body>
 <h1>3단 레이더 대시보드 (초고변동 알트 스크리너)</h1>
-<div class="meta">Tier1 갱신: 2026-09-29 15:10:14.693609+00:00 · Tier2/3 갱신: 2026-09-30 07:13:41.006198+00:00 ·
+<div class="meta">Tier1 갱신: 2026-09-29 15:10:14.693609+00:00 · Tier2/3 갱신: 2026-09-30 07:35:08.337912+00:00 ·
   Tier1 스캔 521/654심볼</div>
 <div class="disclaimer">
   이 대시보드는 페이퍼(가상) 트레이딩 스크리너입니다 - 케이스스터디(진행상황1-32)에서 통계적으로
@@ -122,8 +129,8 @@
 <tbody>
 <tr class='hb-row' data-last-run='2026-09-29 15:10:14.812843+00:00' data-max-hours='26'><td class='sym'>1단 관심목록 스캔</td><td class='hb-lastrun'>2026-09-29 15:10:14.812843+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 521 / 스킵 133</td></tr>
 <tr class='hb-row' data-last-run='2026-09-29 15:10:15.425992+00:00' data-max-hours='26'><td class='sym'>1단 라이브 선행성 추적기</td><td class='hb-lastrun'>2026-09-29 15:10:15.425992+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 318 / 스킵 0</td></tr>
-<tr class='hb-row' data-last-run='2026-09-30 07:13:43.145814+00:00' data-max-hours='1'><td class='sym'>2/3단 실시간스캐너</td><td class='hb-lastrun'>2026-09-30 07:13:43.145814+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 647 / 스킵 7 · 신규 Tier2 0건 / Tier3 0건 · 가격캐시: 최신651 / 갱신필요였음0 / 캐시없음3 / 오류0</td></tr>
-<tr class='hb-row' data-last-run='2026-09-30 07:05:24.935902+00:00' data-max-hours='1'><td class='sym'>신규 페이퍼엔진</td><td class='hb-lastrun'>2026-09-30 07:05:24.935902+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 10 / 스킵 N/A · 이번폴 진입 0건 / 청산 0건</td></tr>
+<tr class='hb-row' data-last-run='2026-09-30 07:35:10.566827+00:00' data-max-hours='1'><td class='sym'>2/3단 실시간스캐너</td><td class='hb-lastrun'>2026-09-30 07:35:10.566827+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 647 / 스킵 7 · 신규 Tier2 0건 / Tier3 0건 · 가격캐시: 최신651 / 갱신필요였음0 / 캐시없음3 / 오류0</td></tr>
+<tr class='hb-row' data-last-run='2026-09-30 07:35:24.958437+00:00' data-max-hours='1'><td class='sym'>신규 페이퍼엔진</td><td class='hb-lastrun'>2026-09-30 07:35:24.958437+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 10 / 스킵 N/A · 이번폴 진입 0건 / 청산 0건</td></tr>
 </tbody></table></div>
 </details>
 
@@ -131,21 +138,22 @@
 <div class="hero" style="border-left-color:#ffd166;">
 <h2 style="border-left-color:#ffd166;"><span class="step-badge active">[Active]</span> 실전운용 포지션 - 💼 지금 보유중인 포지션 (10건)</h2>
 <div class="n">동시보유상한 10건 중 10건 사용중 · GRADUAL형은 물타기 규칙(진행상황32) ·
-FAST형은 기존 감쇠규칙(미검증) 적용중</div>
+FAST형은 기존 감쇠규칙(미검증) 적용중 · 현재가/실시간손익/위험거리는 Binance 선물 공개REST를
+브라우저에서 직접 폴링(30초 간격) - 로드 직후/네트워크차단시 "..."로 표시됩니다.</div>
 <div class="tablewrap"><table id="positions">
 <thead><tr><th class="sym">심볼</th><th>유형</th><th>방향</th><th>진입시각(UTC)</th><th>보유경과</th>
-<th>물타기</th><th>진입시점 스코어</th></tr></thead>
+<th>물타기</th><th>진입시점 스코어</th><th>현재가</th><th>실시간손익</th><th>위험거리</th></tr></thead>
 <tbody>
-<tr><td class='sym'>0GUSDT</td><td>GRADUAL</td><td>롱(up)</td><td>2026-09-30T00:00:00.000</td><td>0.3일</td><td class=''>아니오</td><td>모멘텀0.86 · 지속0.80</td></tr>
-<tr><td class='sym'>ADAUSDT</td><td>GRADUAL</td><td>롱(up)</td><td>2026-09-30T00:00:00.000</td><td>0.3일</td><td class=''>아니오</td><td>모멘텀0.85 · 지속0.80</td></tr>
-<tr><td class='sym'>AEROUSDT</td><td>GRADUAL</td><td>롱(up)</td><td>2026-09-30T00:00:00.000</td><td>0.3일</td><td class=''>아니오</td><td>모멘텀0.89 · 지속0.89</td></tr>
-<tr><td class='sym'>AEVOUSDT</td><td>GRADUAL</td><td>롱(up)</td><td>2026-09-30T00:00:00.000</td><td>0.3일</td><td class=''>아니오</td><td>모멘텀0.84 · 지속0.82</td></tr>
-<tr><td class='sym'>AGTUSDT</td><td>FAST</td><td>롱(up)</td><td>2026-09-30T00:00:00.000</td><td>0.3일</td><td class=''>해당없음(FAST)</td><td>FAST0.88</td></tr>
-<tr><td class='sym'>AIOTUSDT</td><td>GRADUAL</td><td>롱(up)</td><td>2026-09-30T00:00:00.000</td><td>0.3일</td><td class=''>아니오</td><td>모멘텀0.86 · 지속0.81</td></tr>
-<tr><td class='sym'>1000000BOBUSDT</td><td>FAST</td><td>숏(down)</td><td>2026-09-23T00:00:00.000</td><td>7.3일</td><td class=''>해당없음(FAST)</td><td>FAST0.90</td></tr>
-<tr><td class='sym'>1000000MOGUSDT</td><td>GRADUAL</td><td>롱(up)</td><td>2026-09-23T00:00:00.000</td><td>7.3일</td><td class=''>아니오</td><td>모멘텀0.95 · 지속0.95</td></tr>
-<tr><td class='sym'>1000RATSUSDT</td><td>FAST</td><td>숏(down)</td><td>2026-09-23T00:00:00.000</td><td>7.3일</td><td class=''>해당없음(FAST)</td><td>FAST0.94</td></tr>
-<tr><td class='sym'>1INCHUSDT</td><td>FAST</td><td>롱(up)</td><td>2026-09-23T00:00:00.000</td><td>7.3일</td><td class=''>해당없음(FAST)</td><td>FAST0.88</td></tr>
+<tr id='pos-row-0GUSDT'><td class='sym'>0GUSDT</td><td>GRADUAL</td><td>롱(up)</td><td>2026-09-30T00:00:00.000</td><td>0.3일</td><td class=''>아니오</td><td>모멘텀0.86 · 지속0.80</td><td id='pos-price-0GUSDT' class='pos-live'>...</td><td id='pos-pnl-0GUSDT' class='pos-live'>...</td><td id='pos-risk-0GUSDT' class='pos-live'>...</td></tr>
+<tr id='pos-row-ADAUSDT'><td class='sym'>ADAUSDT</td><td>GRADUAL</td><td>롱(up)</td><td>2026-09-30T00:00:00.000</td><td>0.3일</td><td class=''>아니오</td><td>모멘텀0.85 · 지속0.80</td><td id='pos-price-ADAUSDT' class='pos-live'>...</td><td id='pos-pnl-ADAUSDT' class='pos-live'>...</td><td id='pos-risk-ADAUSDT' class='pos-live'>...</td></tr>
+<tr id='pos-row-AEROUSDT'><td class='sym'>AEROUSDT</td><td>GRADUAL</td><td>롱(up)</td><td>2026-09-30T00:00:00.000</td><td>0.3일</td><td class=''>아니오</td><td>모멘텀0.89 · 지속0.89</td><td id='pos-price-AEROUSDT' class='pos-live'>...</td><td id='pos-pnl-AEROUSDT' class='pos-live'>...</td><td id='pos-risk-AEROUSDT' class='pos-live'>...</td></tr>
+<tr id='pos-row-AEVOUSDT'><td class='sym'>AEVOUSDT</td><td>GRADUAL</td><td>롱(up)</td><td>2026-09-30T00:00:00.000</td><td>0.3일</td><td class=''>아니오</td><td>모멘텀0.84 · 지속0.82</td><td id='pos-price-AEVOUSDT' class='pos-live'>...</td><td id='pos-pnl-AEVOUSDT' class='pos-live'>...</td><td id='pos-risk-AEVOUSDT' class='pos-live'>...</td></tr>
+<tr id='pos-row-AGTUSDT'><td class='sym'>AGTUSDT</td><td>FAST</td><td>롱(up)</td><td>2026-09-30T00:00:00.000</td><td>0.3일</td><td class=''>해당없음(FAST)</td><td>FAST0.88</td><td id='pos-price-AGTUSDT' class='pos-live'>...</td><td id='pos-pnl-AGTUSDT' class='pos-live'>...</td><td id='pos-risk-AGTUSDT' class='pos-live'>...</td></tr>
+<tr id='pos-row-AIOTUSDT'><td class='sym'>AIOTUSDT</td><td>GRADUAL</td><td>롱(up)</td><td>2026-09-30T00:00:00.000</td><td>0.3일</td><td class=''>아니오</td><td>모멘텀0.86 · 지속0.81</td><td id='pos-price-AIOTUSDT' class='pos-live'>...</td><td id='pos-pnl-AIOTUSDT' class='pos-live'>...</td><td id='pos-risk-AIOTUSDT' class='pos-live'>...</td></tr>
+<tr id='pos-row-1000000BOBUSDT'><td class='sym'>1000000BOBUSDT</td><td>FAST</td><td>숏(down)</td><td>2026-09-23T00:00:00.000</td><td>7.3일</td><td class=''>해당없음(FAST)</td><td>FAST0.90</td><td id='pos-price-1000000BOBUSDT' class='pos-live'>...</td><td id='pos-pnl-1000000BOBUSDT' class='pos-live'>...</td><td id='pos-risk-1000000BOBUSDT' class='pos-live'>...</td></tr>
+<tr id='pos-row-1000000MOGUSDT'><td class='sym'>1000000MOGUSDT</td><td>GRADUAL</td><td>롱(up)</td><td>2026-09-23T00:00:00.000</td><td>7.3일</td><td class=''>아니오</td><td>모멘텀0.95 · 지속0.95</td><td id='pos-price-1000000MOGUSDT' class='pos-live'>...</td><td id='pos-pnl-1000000MOGUSDT' class='pos-live'>...</td><td id='pos-risk-1000000MOGUSDT' class='pos-live'>...</td></tr>
+<tr id='pos-row-1000RATSUSDT'><td class='sym'>1000RATSUSDT</td><td>FAST</td><td>숏(down)</td><td>2026-09-23T00:00:00.000</td><td>7.3일</td><td class=''>해당없음(FAST)</td><td>FAST0.94</td><td id='pos-price-1000RATSUSDT' class='pos-live'>...</td><td id='pos-pnl-1000RATSUSDT' class='pos-live'>...</td><td id='pos-risk-1000RATSUSDT' class='pos-live'>...</td></tr>
+<tr id='pos-row-1INCHUSDT'><td class='sym'>1INCHUSDT</td><td>FAST</td><td>롱(up)</td><td>2026-09-23T00:00:00.000</td><td>7.3일</td><td class=''>해당없음(FAST)</td><td>FAST0.88</td><td id='pos-price-1INCHUSDT' class='pos-live'>...</td><td id='pos-pnl-1INCHUSDT' class='pos-live'>...</td><td id='pos-risk-1INCHUSDT' class='pos-live'>...</td></tr>
 </tbody></table></div>
 <div class="audit-note" style="margin-top:8px;">
   ⚠️ <b>최악시나리오</b>: 최대필요자본 <b>$40</b> · 전원하드SL시 최악손실
@@ -2382,6 +2390,102 @@ function toggleDetectZone() {
   if (!zone || !btn) return;
   var nowDimmed = zone.classList.toggle('dimmed');
   btn.textContent = nowDimmed ? '선명하게 고정' : '다시 흐리게';
+}
+
+// ---- 💼 보유포지션 실시간 현재가/손익/위험거리 (Binance 선물 공개REST, 클라이언트에서 직접 폴링) ----
+// [2026-09-30, 외부 크로스체크 제안] 진입시점 스코어만 보여주고 "지금 이 포지션이 위험한지"를
+// 알 수 없다는 지적 - 심볼별로 매번 fetch하지 않고 심볼파라미터 없는 벌크 ticker 엔드포인트
+// 1번 호출로 전체 가격을 받아온 뒤 클라이언트에서 필터링(N개 포지션이어도 REST 호출은 항상 1번).
+var POSITIONS_LIVE = [{"symbol": "1000000BOBUSDT", "direction": "down", "kind": "FAST", "entry_price": 0.01855072, "avg_price": null, "add_on_used": false, "size_multiplier": 1.0}, {"symbol": "1000000MOGUSDT", "direction": "up", "kind": "GRADUAL", "entry_price": 0.12146069999999999, "avg_price": null, "add_on_used": false, "size_multiplier": 1.0}, {"symbol": "1000RATSUSDT", "direction": "down", "kind": "FAST", "entry_price": 0.039310335, "avg_price": null, "add_on_used": false, "size_multiplier": 1.0}, {"symbol": "1INCHUSDT", "direction": "up", "kind": "FAST", "entry_price": 0.09812904, "avg_price": null, "add_on_used": false, "size_multiplier": 1.0}, {"symbol": "0GUSDT", "direction": "up", "kind": "GRADUAL", "entry_price": 0.3417708, "avg_price": null, "add_on_used": false, "size_multiplier": 1.0}, {"symbol": "ADAUSDT", "direction": "up", "kind": "GRADUAL", "entry_price": 0.24562274999999997, "avg_price": null, "add_on_used": false, "size_multiplier": 1.0}, {"symbol": "AEROUSDT", "direction": "up", "kind": "GRADUAL", "entry_price": 0.81850905, "avg_price": null, "add_on_used": false, "size_multiplier": 1.0}, {"symbol": "AEVOUSDT", "direction": "up", "kind": "GRADUAL", "entry_price": 0.025542765, "avg_price": null, "add_on_used": false, "size_multiplier": 1.0}, {"symbol": "AGTUSDT", "direction": "up", "kind": "FAST", "entry_price": 0.017856924, "avg_price": null, "add_on_used": false, "size_multiplier": 1.0}, {"symbol": "AIOTUSDT", "direction": "up", "kind": "GRADUAL", "entry_price": 0.060550259999999995, "avg_price": null, "add_on_used": false, "size_multiplier": 1.0}];
+var POS_HARD_SL_CAP_PCT = 0.35;
+var POS_ADD_TRIGGER_PCT_JS = 0.1;
+var POS_RECOVERY_TP_PCT_JS = 0.02;
+var POS_PAPER_NOTIONAL_USDT = 2.0;
+
+function rowIdFor(symbol) { return symbol.replace(' ', ''); }
+
+function pctStr(x) { return (x >= 0 ? '+' : '') + x.toFixed(2) + '%'; }
+
+function renderGauge(progressPct, label, dangerous) {
+  var pct = Math.max(0, Math.min(100, progressPct));
+  var barColor = dangerous ? '#ff6a6a' : (pct >= 70 ? '#ffb454' : '#6ad98a');
+  return '<div class="risk-gauge-label">' + label + '</div>' +
+         '<div class="risk-gauge-track"><div class="risk-gauge-fill" style="width:' + pct.toFixed(0) +
+         '%;background:' + barColor + ';"></div></div>';
+}
+
+function updatePositionsLive() {
+  if (!POSITIONS_LIVE.length) return;
+  fetch('https://fapi.binance.com/fapi/v1/ticker/price').then(function(resp) {
+    if (!resp.ok) throw new Error('HTTP ' + resp.status);
+    return resp.json();
+  }).then(function(all) {
+    var priceMap = {};
+    all.forEach(function(t) { priceMap[t.symbol] = parseFloat(t.price); });
+    POSITIONS_LIVE.forEach(function(p) {
+      var rid = rowIdFor(p.symbol);
+      var cur = priceMap[p.symbol];
+      var priceCell = document.getElementById('pos-price-' + rid);
+      var pnlCell = document.getElementById('pos-pnl-' + rid);
+      var riskCell = document.getElementById('pos-risk-' + rid);
+      var row = document.getElementById('pos-row-' + rid);
+      if (cur == null || isNaN(cur)) {
+        if (priceCell) priceCell.textContent = '조회실패';
+        if (pnlCell) pnlCell.textContent = '-';
+        if (riskCell) riskCell.textContent = '-';
+        return;
+      }
+      if (priceCell) priceCell.textContent = cur.toPrecision(6);
+
+      var refPrice = (p.add_on_used && p.avg_price) ? p.avg_price : p.entry_price;
+      var upDir = p.direction === 'up';
+      var rawRet = upDir ? (cur - refPrice) / refPrice : (refPrice - cur) / refPrice;  // +면 유리, -면 불리
+      var pnlPct = rawRet * p.size_multiplier * 100;  // 실현손익(trades.csv) 계산관례와 동일 - 원금1x 대비 %
+      var pnlUsdt = POS_PAPER_NOTIONAL_USDT * pnlPct / 100;
+      if (pnlCell) {
+        pnlCell.innerHTML = '<span style="color:' + (pnlPct >= 0 ? '#6ad98a' : '#ff6a6a') + ';font-weight:700;">' +
+                             pctStr(pnlPct) + '</span> (' + (pnlUsdt >= 0 ? '+' : '') + '$' + pnlUsdt.toFixed(3) + ')';
+      }
+
+      var adverseNow = -rawRet;  // +면 불리한 방향으로 움직인 정도(원 기준가 대비)
+      var dangerous = false;
+      var riskHtml = '';
+      if (p.kind === 'FAST') {
+        var slProgress = (adverseNow / POS_HARD_SL_CAP_PCT) * 100;
+        dangerous = adverseNow >= POS_HARD_SL_CAP_PCT * 0.85;
+        riskHtml = renderGauge(slProgress, '하드SL(-' + (POS_HARD_SL_CAP_PCT * 100).toFixed(0) + '%)까지 여유 ' +
+                                Math.max(0, Math.min(100, 100 - slProgress)).toFixed(0) + '%', dangerous);
+      } else if (!p.add_on_used) {
+        var addProgress = (adverseNow / POS_ADD_TRIGGER_PCT_JS) * 100;
+        dangerous = adverseNow >= POS_ADD_TRIGGER_PCT_JS * 0.85;
+        riskHtml = renderGauge(addProgress, '물타기발동(-' + (POS_ADD_TRIGGER_PCT_JS * 100).toFixed(0) + '%)까지 여유 ' +
+                                Math.max(0, Math.min(100, 100 - addProgress)).toFixed(0) + '%', dangerous);
+      } else {
+        // 물타기 이후: 회복목표(+2%)까지 얼마나 남았는지를 우선 표시(청산에 더 가까운 쪽이 보통 이쪽)
+        var totalCapital = POS_PAPER_NOTIONAL_USDT * p.size_multiplier;
+        var slPriceLevel = (totalCapital - POS_HARD_SL_CAP_PCT * POS_PAPER_NOTIONAL_USDT) / (totalCapital / p.avg_price);
+        var slPriceLevelDown = p.avg_price * 2 - slPriceLevel;
+        var slLevel = upDir ? slPriceLevel : slPriceLevelDown;
+        var slDistPct = upDir ? (cur - slLevel) / (p.avg_price - slLevel) * 100 : (slLevel - cur) / (slLevel - p.avg_price) * 100;
+        var recoverProgress = (rawRet / POS_RECOVERY_TP_PCT_JS) * 100;  // 0=평단, 100=회복목표 도달
+        dangerous = slDistPct <= 20;
+        riskHtml = renderGauge(Math.max(0, 100 - slDistPct), '물타기 후 하드SL까지 여유 ' + Math.max(0, Math.min(100, slDistPct)).toFixed(0) + '%', dangerous) +
+                   renderGauge(Math.max(0, Math.min(100, recoverProgress)), '회복목표(+' + (POS_RECOVERY_TP_PCT_JS * 100).toFixed(0) + '%)까지', false);
+      }
+      if (riskCell) riskCell.innerHTML = riskHtml;
+      if (row) row.classList.toggle('pos-danger', dangerous);
+    });
+  }).catch(function(err) {
+    POSITIONS_LIVE.forEach(function(p) {
+      var rid = rowIdFor(p.symbol);
+      var priceCell = document.getElementById('pos-price-' + rid);
+      if (priceCell && priceCell.textContent === '...') priceCell.textContent = '조회실패(네트워크)';
+    });
+  });
+}
+if (POSITIONS_LIVE.length) {
+  updatePositionsLive();
+  setInterval(updatePositionsLive, 30000);
 }
 
 // ---- 🟢 진입후보 라이브 캔들차트 (Binance 선물 공개REST, 클라이언트에서 직접 폴링) ----
