@@ -103,22 +103,42 @@
   .hb-status-ok { background: #16301f; color: #6ad98a; }
   .hb-status-bad { background: #3a1616; color: #ff6a6a; animation: hbPulse 1.6s infinite; }
   @keyframes hbPulse { 0%,100% { opacity: 1; } 50% { opacity: .55; } }
+  /* [2026-09-30, 외부 크로스체크 제안 - 사용자 승인] 고정노출 운용가이드 배너 + 전역 방법론 토글 */
+  .guidance-banner { background: linear-gradient(90deg, #1c2a1c 0%, #14203a 100%); border: 1px solid #3a5a3a;
+                       border-radius: 8px; padding: 10px 16px; font-size: .9rem; margin: 10px 0 16px;
+                       color: #d7f5e0; }
+  .guidance-banner b { color: #ffd166; }
+  .method-toggle-btn { position: fixed; top: 14px; right: 16px; z-index: 50; background: #1a1c22;
+                         border: 1px solid #3a3d45; color: #a9d4f5; border-radius: 16px; padding: 6px 14px;
+                         font-size: .78rem; font-weight: 700; cursor: pointer; }
+  .method-toggle-btn:hover { background: #22262f; }
+  .method-toggle-btn.active { background: #16301f; border-color: #2f4a63; color: #6ad98a; }
+  @media (max-width: 480px) {
+    h1 { padding-right: 92px; }
+    .method-toggle-btn { font-size: .68rem; padding: 5px 10px; top: 10px; right: 10px; }
+  }
 </style>
 </head>
 <body>
+<button type="button" id="methodToggle" class="method-toggle-btn" onclick="toggleMethodology()">❓ 방법론</button>
 <h1>3단 레이더 대시보드 (초고변동 알트 스크리너)
   <a href="#hb-section" id="h1HbStatus" class="hb-status-badge hb-status-ok"
      title="클릭하면 하트비트 상세로 이동">🟢 정상</a>
 </h1>
 <div class="meta">Tier1 갱신: 2026-09-29 15:10:14.693609+00:00 · Tier2/3 갱신: 2026-09-30 07:35:08.337912+00:00 ·
   Tier1 스캔 521/654심볼</div>
-<div class="disclaimer">
+<div class="guidance-banner">💡<b>[운용가이드]</b> 슬롯 10/10 포화상태라 하단 후보군은 대조군일 뿐입니다. 상단 [Active]포지션의 손익/하드스탑 안전거리만 모니터링하세요.</div>
+
+<details class="collapsible method-detail" id="topDisclaimer" style="margin-top:0;">
+<summary>ℹ️ 대시보드 개요 / 방법론 요약</summary>
+<div class="n" style="margin-top:6px;">
   이 대시보드는 페이퍼(가상) 트레이딩 스크리너입니다 - 케이스스터디(진행상황1-32)에서 통계적으로
   검증된 스코어(임박점수/GRADUAL지속성+FAST세분화/규모예측/모멘텀-반전)로 진입후보를 찾고,
   <b>GRADUAL형 청산은 물타기 포함 규칙(진행상황32, TEST 배포모집단 기대값+4.71%/트레이드·
   CI[+3.43%,+5.82%] 확정)</b>이 실제로 배포돼 있습니다(FAST형은 기존 감쇠규칙, 미검증).
   실제 자금 매매가 아닌 페이퍼엔진입니다.
 </div>
+</details>
 
 <div id="hbBanner" class="hb-banner">⚠️ 아래 작업 중 최소 하나가 기대 주기보다 오래 갱신되지 않았습니다 - 멈췄을 가능성이 있습니다. 상세는 하트비트 표 참고.</div>
 <div class='audit-note' style='margin:8px 0 16px;'>🔍 <b>시스템 신뢰도 체크</b> - 가격캐시 정상(최근 갱신필요건 0건/654건 중) · 마지막 실제 청산: 2026-09-30T00:00:00.000 · <a href='#hb-section' style='color:#a9d4f5;'>상세 하트비트↓</a> · 완전히 독립적으로 확인하려면 <code>zec_screener_audit_check.bat</code> 직접 실행</div>
@@ -262,7 +282,7 @@ FAST형은 기존 감쇠규칙(미검증) 적용중 · 현재가/실시간손익
 <tr><td>53</td><td class='sym'>PIPPINUSDT</td><td>0.834</td><td>0.85</td><td>-97.58%</td><td>+95.92%</td><td>14</td></tr>
 </tbody></table></div>
 </details>
-<details id="t1-detail" style="margin-top:8px;"><summary style="cursor:pointer;color:#a9d4f5;">방법론 / BTRUSDT 검증사례 설명</summary>
+<details id="t1-detail" class="method-detail" style="margin-top:8px;"><summary style="cursor:pointer;color:#a9d4f5;">방법론 / BTRUSDT 검증사례 설명</summary>
 <div class="n" style="margin-top:8px;">
   아래 🟢진입후보/⭐최우선후보는 τ=25~30%(이미 무브가 상당 부분 진행돼야만 뜨는 구조)라 원천적으로
   "터지기 전"을 잡을 수 없음(진행상황16). 매일 전체 654개 심볼을 스캔해 "향후 14일 내 50%+ 무브
@@ -293,7 +313,7 @@ FAST형은 기존 감쇠규칙(미검증) 적용중 · 현재가/실시간손익
 <div class="n">동력상실/판정대기 필터링된 유효한 실시간 진입 타점만 · 628개 (심볼,방향) 쌍 ·
 🟢진입후보=게이트통과 ⭐최우선후보=상위우선순위(combined≥0.887) ·
 <a href="#t3-detail" style="color:#a9d4f5;">용어/기준 설명↓</a></div>
-<details id="t3-detail" style="margin-top:6px;"><summary style="cursor:pointer;color:#a9d4f5;">배경설명/판정기준 전체보기</summary>
+<details id="t3-detail" class="method-detail" style="margin-top:6px;"><summary style="cursor:pointer;color:#a9d4f5;">배경설명/판정기준 전체보기</summary>
 <ul style="margin:10px 0 4px;padding-left:20px;line-height:1.7;font-size:.85rem;color:#c7ccd6;">
   <li><b style="color:#e7ecf5;">🟢 진입후보(게이트통과)</b>: τ=25~30% 이미 진행된 시점의 신호
     (모멘텀≥0.81 AND 지속성≥0.72 - GRADUAL, 또는 FAST세분화≥0.88 - FAST · 진행상황11/12
@@ -1601,6 +1621,19 @@ function toggleDetectZone() {
   if (!zone || !btn) return;
   var nowDimmed = zone.classList.toggle('dimmed');
   btn.textContent = nowDimmed ? '선명하게 고정' : '다시 흐리게';
+}
+
+// [2026-09-30, 외부 크로스체크 제안 - 사용자 승인] 페이지 곳곳에 흩어진 방법론/백테스트근거
+// 설명(.method-detail 클래스가 붙은 <details>들)을 우측상단 버튼 하나로 한번에 펼치기/접기
+function toggleMethodology() {
+  var details = document.querySelectorAll('.method-detail');
+  var anyClosed = Array.from(details).some(function(d) { return !d.open; });
+  details.forEach(function(d) { d.open = anyClosed; });
+  var btn = document.getElementById('methodToggle');
+  if (btn) {
+    btn.classList.toggle('active', anyClosed);
+    btn.textContent = anyClosed ? '❓ 방법론 (펼침)' : '❓ 방법론';
+  }
 }
 
 // ---- 💼 보유포지션 실시간 현재가/손익/위험거리 (Binance 선물 공개REST, 클라이언트에서 직접 폴링) ----
