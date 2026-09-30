@@ -68,6 +68,19 @@
   .chart-msg.error { color: #ff8f6a; }
   .chart-msg.hidden { display: none; }
   .no-candidates { color: #9aa0ac; font-size: .9rem; padding: 12px 0; }
+  /* [2026-09-30, 외부 크로스체크 제안] "실행영역"(보유포지션)과 "탐지영역"(진입/최우선후보)
+     시각적 분리 - 슬롯이 꽉 찼을 때(10/10) 탐지영역 비중을 낮춰 지금 당장 봐야 할 보유포지션
+     리스크에 시선이 집중되게 함. 완전히 숨기진 않음(클릭/호버로 언제든 원상복귀). */
+  .detect-zone-bar { display: flex; align-items: center; gap: 10px; padding: 8px 14px;
+                       border-radius: 8px; margin: 0 0 14px; font-size: .85rem; }
+  .detect-zone-bar.full { background: #241a10; border: 1px solid #6a4a1e; color: #e0b877; }
+  .detect-zone-bar.open { background: #16202a; border: 1px solid #2f4a63; color: #a9d4f5; }
+  .detect-zone-bar button { background: #3a2f0e; border: 1px solid #6a4a1e; color: #ffd166;
+                              border-radius: 6px; padding: 4px 10px; font-size: .78rem; cursor: pointer; }
+  .detect-zone-bar.open button { background: #16301f; border-color: #2f4a63; color: #6ad98a; }
+  .detect-zone { transition: opacity .2s ease; }
+  .detect-zone.dimmed { opacity: .45; filter: saturate(.55); }
+  .detect-zone.dimmed:hover, .detect-zone.dimmed:focus-within { opacity: .85; filter: none; }
 </style>
 </head>
 <body>
@@ -85,6 +98,7 @@
 <div id="hbBanner" class="hb-banner">⚠️ 아래 작업 중 최소 하나가 기대 주기보다 오래 갱신되지 않았습니다 - 멈췄을 가능성이 있습니다. 상세는 하트비트 표 참고.</div>
 <div class='audit-note' style='margin:8px 0 16px;'>🔍 <b>시스템 신뢰도 체크</b> - 가격캐시 정상(최근 갱신필요건 0건/654건 중) · 마지막 실제 청산: 2026-09-30T00:00:00.000 · <a href='#hb-section' style='color:#a9d4f5;'>상세 하트비트↓</a> · 완전히 독립적으로 확인하려면 <code>zec_screener_audit_check.bat</code> 직접 실행</div>
 
+<div id="execZone">
 <div class="hero" style="border-left-color:#ffd166;">
 <h2 style="border-left-color:#ffd166;">💼 지금 보유중인 포지션 (10건)</h2>
 <div class="n">동시보유상한 10건 중 10건 사용중 · GRADUAL형은 물타기 규칙(진행상황32) ·
@@ -117,7 +131,10 @@ FAST형은 기존 감쇠규칙(미검증) 적용중</div>
   실자본 위험은 없음 - 나중에 실자본 스케일업 판단시 재사용할 참고용 계산.</div></details>
 </div>
 </div>
+</div>
 
+<div class="detect-zone-bar full" id="detectZoneBar"><span>⚠️ 슬롯 10/10 전부 사용중 - 신규진입 불가 상태라 아래 탐지영역은 흐리게 표시됩니다(위 보유포지션에 집중하세요).</span><button type="button" id="detectZoneToggle" onclick="toggleDetectZone()">선명하게 고정</button></div>
+<div id="detectZone" class="detect-zone dimmed">
 <div class="hero" style="border-left-color:#6ac2ff;">
 <h2 style="border-left-color:#6ac2ff;">🔭 Tier1 관심목록 Top10 - 사전예측(임박점수, 방향무관)</h2>
 <div class="n">유일하게 "아직 안 움직인 시점"에 미리 보는 층위(상위10%컷=0.834,
@@ -1625,6 +1642,7 @@ FAST형은 기존 감쇠규칙(미검증) 적용중</div>
 <tr class=''><td class='sym'>REUSDT</td><td title='GRADUAL'>롱·GRADUAL</td><td>모멘텀0.21/지속0.18</td><td title='T_early: 2026-08-19 (감지: 감지시각 미기록(과거데이터)) / 게이트통과: 관찰중(미통과) ()'>T08-19→G대기</td><td>42일전</td><td class='' title='판정에 필요한 최소경과일(5일) 미도달'>-</td><td class='status-watching' title='대기중(게이트 미통과)'>대기중</td></tr>
 </tbody></table></div>
 </details>
+</div>
 
 <details class="collapsible">
 <summary>과거 이력 전체 (Tier 3 · 심볼당 여러줄 · 스코어 상위 300/5006건 · 최근45일)</summary>
@@ -2342,6 +2360,16 @@ setInterval(refreshHeartbeatAges, 30000);  // 뷰어가 페이지를 계속 켜�
   window.addEventListener('hashchange', openHbIfTargeted);
   openHbIfTargeted();
 })();
+
+// [2026-09-30, 외부 크로스체크 제안] 슬롯꽉참(10/10)일 때 흐려지는 "탐지영역"을 클릭 한 번으로
+// 계속 선명하게 고정/원복 - 마우스오버로만 되는 CSS hover는 모바일(터치)에서 안 먹히므로 별도 버튼 필요
+function toggleDetectZone() {
+  var zone = document.getElementById('detectZone');
+  var btn = document.getElementById('detectZoneToggle');
+  if (!zone || !btn) return;
+  var nowDimmed = zone.classList.toggle('dimmed');
+  btn.textContent = nowDimmed ? '선명하게 고정' : '다시 흐리게';
+}
 
 // ---- 🟢 진입후보 라이브 캔들차트 (Binance 선물 공개REST, 클라이언트에서 직접 폴링) ----
 // 백엔드/키 없이 브라우저에서 https://fapi.binance.com/fapi/v1/klines 를 직접 호출함.
