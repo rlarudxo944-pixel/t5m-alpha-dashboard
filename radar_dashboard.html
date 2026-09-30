@@ -106,6 +106,27 @@
 <div id="hbBanner" class="hb-banner">⚠️ 아래 작업 중 최소 하나가 기대 주기보다 오래 갱신되지 않았습니다 - 멈췄을 가능성이 있습니다. 상세는 하트비트 표 참고.</div>
 <div class='audit-note' style='margin:8px 0 16px;'>🔍 <b>시스템 신뢰도 체크</b> - 가격캐시 정상(최근 갱신필요건 0건/654건 중) · 마지막 실제 청산: 2026-09-30T00:00:00.000 · <a href='#hb-section' style='color:#a9d4f5;'>상세 하트비트↓</a> · 완전히 독립적으로 확인하려면 <code>zec_screener_audit_check.bat</code> 직접 실행</div>
 
+<details class="collapsible" id="hb-section" style="margin:0 0 20px;">
+<summary>자체감사 - 하트비트 상세 (사용자 직접검증용)</summary>
+<div class="audit-note">
+  이 표는 각 예약작업이 <b>마지막으로 실제 실행을 완료한 시각</b>을 그대로 보여줍니다(가공 없음).
+  "경과"는 지금 이 화면을 보는 시점 기준으로 브라우저에서 직접 계산합니다(페이지를 새로고침하지
+  않아도 시간이 흐르면 자동으로 오래된 것으로 표시됨). <b>단, 정적 HTML 페이지는 브라우저 보안상
+  Windows 프로세스 목록을 직접 조회할 수 없습니다</b> - "지금 이 순간 진짜 프로세스가 돌고 있는지"를
+  100% 확실히 확인하려면 프로젝트 폴더의 <code>zec_screener_audit_check.bat</code>를 더블클릭해
+  직접 실행하세요 - Claude의 요약이 아니라 스크립트가 그 자리에서 직접 Windows에 물어본 원문을
+  보여줍니다.
+</div>
+<div class="tablewrap"><table id="hb">
+<thead><tr><th class="sym">작업</th><th>마지막 실행(UTC)</th><th>경과</th><th>상태</th><th>처리건수</th></tr></thead>
+<tbody>
+<tr class='hb-row' data-last-run='2026-09-29 15:10:14.812843+00:00' data-max-hours='26'><td class='sym'>1단 관심목록 스캔</td><td class='hb-lastrun'>2026-09-29 15:10:14.812843+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 521 / 스킵 133</td></tr>
+<tr class='hb-row' data-last-run='2026-09-29 15:10:15.425992+00:00' data-max-hours='26'><td class='sym'>1단 라이브 선행성 추적기</td><td class='hb-lastrun'>2026-09-29 15:10:15.425992+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 318 / 스킵 0</td></tr>
+<tr class='hb-row' data-last-run='2026-09-30 07:13:43.145814+00:00' data-max-hours='1'><td class='sym'>2/3단 실시간스캐너</td><td class='hb-lastrun'>2026-09-30 07:13:43.145814+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 647 / 스킵 7 · 신규 Tier2 0건 / Tier3 0건 · 가격캐시: 최신651 / 갱신필요였음0 / 캐시없음3 / 오류0</td></tr>
+<tr class='hb-row' data-last-run='2026-09-30 07:05:24.935902+00:00' data-max-hours='1'><td class='sym'>신규 페이퍼엔진</td><td class='hb-lastrun'>2026-09-30 07:05:24.935902+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 10 / 스킵 N/A · 이번폴 진입 0건 / 청산 0건</td></tr>
+</tbody></table></div>
+</details>
+
 <div id="execZone">
 <div class="hero" style="border-left-color:#ffd166;">
 <h2 style="border-left-color:#ffd166;"><span class="step-badge active">[Active]</span> 실전운용 포지션 - 💼 지금 보유중인 포지션 (10건)</h2>
@@ -1470,337 +1491,6 @@ FAST형은 기존 감쇠규칙(미검증) 적용중</div>
 </div>
 </div>
 
-<details class="collapsible" id="hb-section">
-<summary>자체감사 - 하트비트 (사용자 직접검증용)</summary>
-<div class="audit-note">
-  이 표는 각 예약작업이 <b>마지막으로 실제 실행을 완료한 시각</b>을 그대로 보여줍니다(가공 없음).
-  "경과"는 지금 이 화면을 보는 시점 기준으로 브라우저에서 직접 계산합니다(페이지를 새로고침하지
-  않아도 시간이 흐르면 자동으로 오래된 것으로 표시됨). <b>단, 정적 HTML 페이지는 브라우저 보안상
-  Windows 프로세스 목록을 직접 조회할 수 없습니다</b> - "지금 이 순간 진짜 프로세스가 돌고 있는지"를
-  100% 확실히 확인하려면 프로젝트 폴더의 <code>zec_screener_audit_check.bat</code>를 더블클릭해
-  직접 실행하세요 - Claude의 요약이 아니라 스크립트가 그 자리에서 직접 Windows에 물어본 원문을
-  보여줍니다.
-</div>
-<div class="tablewrap"><table id="hb">
-<thead><tr><th class="sym">작업</th><th>마지막 실행(UTC)</th><th>경과</th><th>상태</th><th>처리건수</th></tr></thead>
-<tbody>
-<tr class='hb-row' data-last-run='2026-09-29 15:10:14.812843+00:00' data-max-hours='26'><td class='sym'>1단 관심목록 스캔</td><td class='hb-lastrun'>2026-09-29 15:10:14.812843+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 521 / 스킵 133</td></tr>
-<tr class='hb-row' data-last-run='2026-09-29 15:10:15.425992+00:00' data-max-hours='26'><td class='sym'>1단 라이브 선행성 추적기</td><td class='hb-lastrun'>2026-09-29 15:10:15.425992+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 318 / 스킵 0</td></tr>
-<tr class='hb-row' data-last-run='2026-09-30 07:13:43.145814+00:00' data-max-hours='1'><td class='sym'>2/3단 실시간스캐너</td><td class='hb-lastrun'>2026-09-30 07:13:43.145814+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 647 / 스킵 7 · 신규 Tier2 0건 / Tier3 0건 · 가격캐시: 최신651 / 갱신필요였음0 / 캐시없음3 / 오류0</td></tr>
-<tr class='hb-row' data-last-run='2026-09-30 07:05:24.935902+00:00' data-max-hours='1'><td class='sym'>신규 페이퍼엔진</td><td class='hb-lastrun'>2026-09-30 07:05:24.935902+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 10 / 스킵 N/A · 이번폴 진입 0건 / 청산 0건</td></tr>
-</tbody></table></div>
-</details>
-
-<details class="collapsible">
-<summary>2단 초기포착 (Tier 2 · τ=15%/25% 크로싱 · 최근21일)</summary>
-<div class="n">전체 9580건 중 스코어 상위 300건 표시(전체는 zec_screener_tier2_tier3_state.json)</div>
-<div class="tablewrap"><table id="t2">
-<thead><tr><th class="sym">심볼</th><th>방향</th><th>T_early</th><th>τ</th><th>속도유형</th>
-<th>스코어</th><th>상태</th></tr></thead>
-<tbody>
-<tr><td class='sym'>LSKUSDT</td><td>down</td><td>2026-09-15</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.999</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>ONGUSDT</td><td>down</td><td>2026-08-27</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.996</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BTRUSDT</td><td>down</td><td>2026-08-29</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.994</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>ASTERUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.993</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BANANAUSDT</td><td>down</td><td>2026-07-07</td><td>25%</td><td>FAST</td><td>FAST세분 0.989</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>IOSTUSDT</td><td>down</td><td>2026-09-10</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.984</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>MAVIAUSDT</td><td>up</td><td>2026-06-24</td><td>25%</td><td>FAST</td><td>FAST세분 0.982</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>MAVIAUSDT</td><td>down</td><td>2026-06-24</td><td>25%</td><td>FAST</td><td>FAST세분 0.982</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SKRUSDT</td><td>up</td><td>2026-08-31</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.981</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>AKEUSDT</td><td>down</td><td>2026-09-19</td><td>25%</td><td>FAST</td><td>FAST세분 0.980</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>AKEUSDT</td><td>up</td><td>2026-09-11</td><td>25%</td><td>FAST</td><td>FAST세분 0.980</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>AKEUSDT</td><td>up</td><td>2026-08-26</td><td>25%</td><td>FAST</td><td>FAST세분 0.979</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>SKRUSDT</td><td>up</td><td>2026-08-31</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.979</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>AKEUSDT</td><td>down</td><td>2026-09-05</td><td>25%</td><td>FAST</td><td>FAST세분 0.979</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>AKEUSDT</td><td>up</td><td>2026-09-07</td><td>25%</td><td>FAST</td><td>FAST세분 0.978</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>AKEUSDT</td><td>down</td><td>2026-08-29</td><td>25%</td><td>FAST</td><td>FAST세분 0.974</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>MOVEUSDT</td><td>down</td><td>2026-06-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.971</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>MOVEUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.971</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SKRUSDT</td><td>up</td><td>2026-09-03</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.967</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>MAVIAUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.966</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>MAVIAUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.966</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BROCCOLI714USDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.966</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>BROCCOLI714USDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.966</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>ASRUSDT</td><td>down</td><td>2026-06-06</td><td>25%</td><td>FAST</td><td>FAST세분 0.965</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>LYNUSDT</td><td>up</td><td>2026-06-04</td><td>25%</td><td>FAST</td><td>FAST세분 0.961</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>DOODUSDT</td><td>up</td><td>2026-06-10</td><td>25%</td><td>FAST</td><td>FAST세분 0.961</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>DOODUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.960</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SKRUSDT</td><td>down</td><td>2026-08-31</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.958</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>DIAUSDT</td><td>up</td><td>2026-07-31</td><td>25%</td><td>FAST</td><td>FAST세분 0.957</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>DIAUSDT</td><td>down</td><td>2026-07-27</td><td>25%</td><td>FAST</td><td>FAST세분 0.957</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>DIAUSDT</td><td>up</td><td>2026-07-25</td><td>25%</td><td>FAST</td><td>FAST세분 0.954</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>LUNA2USDT</td><td>down</td><td>2026-09-20</td><td>25%</td><td>FAST</td><td>FAST세분 0.953</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>QUSDT</td><td>up</td><td>2026-08-17</td><td>25%</td><td>FAST</td><td>FAST세분 0.948</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>QUSDT</td><td>up</td><td>2026-09-04</td><td>25%</td><td>FAST</td><td>FAST세분 0.948</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SOONUSDT</td><td>down</td><td>2026-07-28</td><td>25%</td><td>FAST</td><td>FAST세분 0.945</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>TOWNSUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.945</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>TOWNSUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.945</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>TOWNSUSDT</td><td>up</td><td>2026-06-30</td><td>25%</td><td>FAST</td><td>FAST세분 0.945</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>B2USDT</td><td>down</td><td>2026-09-20</td><td>25%</td><td>FAST</td><td>FAST세분 0.944</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>CROSSUSDT</td><td>down</td><td>2026-08-14</td><td>25%</td><td>FAST</td><td>FAST세분 0.937</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>CROSSUSDT</td><td>down</td><td>2026-07-26</td><td>25%</td><td>FAST</td><td>FAST세분 0.937</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>1000RATSUSDT</td><td>up</td><td>2026-08-05</td><td>25%</td><td>FAST</td><td>FAST세분 0.936</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>1000RATSUSDT</td><td>down</td><td>2026-08-03</td><td>25%</td><td>FAST</td><td>FAST세분 0.936</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>1000RATSUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.936</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>1000RATSUSDT</td><td>down</td><td>2026-08-18</td><td>25%</td><td>FAST</td><td>FAST세분 0.936</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>ATUSDT</td><td>down</td><td>2026-06-13</td><td>25%</td><td>FAST</td><td>FAST세분 0.936</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>ALPINEUSDT</td><td>up</td><td>2026-08-18</td><td>25%</td><td>FAST</td><td>FAST세분 0.935</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>ALPINEUSDT</td><td>down</td><td>2026-08-18</td><td>25%</td><td>FAST</td><td>FAST세분 0.935</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>ERAUSDT</td><td>down</td><td>2026-07-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.935</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>KOMAUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.935</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>KOMAUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.935</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>CVCUSDT</td><td>down</td><td>2026-09-13</td><td>25%</td><td>FAST</td><td>FAST세분 0.933</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>FLUIDUSDT</td><td>down</td><td>2026-07-01</td><td>25%</td><td>FAST</td><td>FAST세분 0.933</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>ONGUSDT</td><td>up</td><td>2026-09-01</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.930</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>AVAUSDT</td><td>up</td><td>2026-09-18</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.927</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>TACUSDT</td><td>down</td><td>2026-08-27</td><td>25%</td><td>FAST</td><td>FAST세분 0.925</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>TACUSDT</td><td>up</td><td>2026-07-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.925</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>TACUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.925</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>TACUSDT</td><td>up</td><td>2026-08-23</td><td>25%</td><td>FAST</td><td>FAST세분 0.924</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>XNYUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.923</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>XNYUSDT</td><td>up</td><td>2026-08-10</td><td>25%</td><td>FAST</td><td>FAST세분 0.923</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>XNYUSDT</td><td>down</td><td>2026-08-10</td><td>25%</td><td>FAST</td><td>FAST세분 0.923</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>ICXUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.922</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>GUSDT</td><td>down</td><td>2026-09-20</td><td>25%</td><td>FAST</td><td>FAST세분 0.917</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>GUSDT</td><td>down</td><td>2026-06-26</td><td>25%</td><td>FAST</td><td>FAST세분 0.917</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>AVAUSDT</td><td>up</td><td>2026-09-18</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.917</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>CATIUSDT</td><td>up</td><td>2026-09-05</td><td>25%</td><td>FAST</td><td>FAST세분 0.915</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>ARCUSDT</td><td>down</td><td>2026-08-08</td><td>25%</td><td>FAST</td><td>FAST세분 0.915</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>GUSDT</td><td>down</td><td>2026-07-19</td><td>25%</td><td>FAST</td><td>FAST세분 0.915</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>CATIUSDT</td><td>down</td><td>2026-08-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.915</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BTRUSDT</td><td>up</td><td>2026-09-03</td><td>25%</td><td>FAST</td><td>FAST세분 0.915</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>CATIUSDT</td><td>up</td><td>2026-08-26</td><td>25%</td><td>FAST</td><td>FAST세분 0.914</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>CATIUSDT</td><td>down</td><td>2026-08-26</td><td>25%</td><td>FAST</td><td>FAST세분 0.914</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>CATIUSDT</td><td>down</td><td>2026-09-03</td><td>25%</td><td>FAST</td><td>FAST세분 0.914</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>MEUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.914</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>JELLYJELLYUSDT</td><td>down</td><td>2026-06-15</td><td>25%</td><td>FAST</td><td>FAST세분 0.913</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>TREEUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.912</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>TNSRUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.911</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>TNSRUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.911</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>TREEUSDT</td><td>down</td><td>2026-08-19</td><td>25%</td><td>FAST</td><td>FAST세분 0.911</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>LABUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.910</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>GUSDT</td><td>up</td><td>2026-06-23</td><td>25%</td><td>FAST</td><td>FAST세분 0.910</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>STOUSDT</td><td>down</td><td>2026-06-21</td><td>25%</td><td>FAST</td><td>FAST세분 0.909</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>STOUSDT</td><td>down</td><td>2026-06-03</td><td>25%</td><td>FAST</td><td>FAST세분 0.909</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>ZILUSDT</td><td>down</td><td>2026-07-28</td><td>25%</td><td>FAST</td><td>FAST세분 0.909</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>STOUSDT</td><td>down</td><td>2026-08-04</td><td>25%</td><td>FAST</td><td>FAST세분 0.909</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>RESOLVUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.908</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>TOWNSUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.908</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>MAGICUSDT</td><td>down</td><td>2026-06-28</td><td>25%</td><td>FAST</td><td>FAST세분 0.907</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>ONGUSDT</td><td>up</td><td>2026-08-21</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.905</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>BREVUSDT</td><td>down</td><td>2026-07-02</td><td>25%</td><td>FAST</td><td>FAST세분 0.905</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>UBUSDT</td><td>up</td><td>2026-09-20</td><td>25%</td><td>FAST</td><td>FAST세분 0.905</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>UBUSDT</td><td>down</td><td>2026-09-20</td><td>25%</td><td>FAST</td><td>FAST세분 0.905</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>1000000BOBUSDT</td><td>down</td><td>2026-09-06</td><td>25%</td><td>FAST</td><td>FAST세분 0.904</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>1000000BOBUSDT</td><td>up</td><td>2026-06-21</td><td>25%</td><td>FAST</td><td>FAST세분 0.904</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>1000000BOBUSDT</td><td>down</td><td>2026-06-21</td><td>25%</td><td>FAST</td><td>FAST세분 0.904</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>QUSDT</td><td>up</td><td>2026-09-12</td><td>25%</td><td>FAST</td><td>FAST세분 0.903</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>MYXUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.903</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>MYXUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.903</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>TOWNSUSDT</td><td>up</td><td>2026-09-04</td><td>25%</td><td>FAST</td><td>FAST세분 0.903</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BRUSDT</td><td>down</td><td>2026-09-20</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.902</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BULLAUSDT</td><td>down</td><td>2026-09-09</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.902</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>ESPUSDT</td><td>up</td><td>2026-07-30</td><td>25%</td><td>FAST</td><td>FAST세분 0.900</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>ESPUSDT</td><td>down</td><td>2026-07-27</td><td>25%</td><td>FAST</td><td>FAST세분 0.900</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>AGTUSDT</td><td>down</td><td>2026-09-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.900</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>AKEUSDT</td><td>down</td><td>2026-09-19</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.899</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SCRTUSDT</td><td>up</td><td>2026-08-26</td><td>25%</td><td>FAST</td><td>FAST세분 0.898</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SCRTUSDT</td><td>down</td><td>2026-08-21</td><td>25%</td><td>FAST</td><td>FAST세분 0.897</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SIRENUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.897</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>SIRENUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.897</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>SCRTUSDT</td><td>down</td><td>2026-08-14</td><td>25%</td><td>FAST</td><td>FAST세분 0.897</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>ONDOUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.895</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>ONDOUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.895</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>MUBARAKUSDT</td><td>down</td><td>2026-08-10</td><td>25%</td><td>FAST</td><td>FAST세분 0.894</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>MUBARAKUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.894</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>KGENUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.893</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>KGENUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.893</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>KGENUSDT</td><td>down</td><td>2026-08-07</td><td>25%</td><td>FAST</td><td>FAST세분 0.893</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BLUAIUSDT</td><td>up</td><td>2026-08-13</td><td>25%</td><td>FAST</td><td>FAST세분 0.893</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BLUAIUSDT</td><td>down</td><td>2026-08-10</td><td>25%</td><td>FAST</td><td>FAST세분 0.893</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BOMEUSDT</td><td>down</td><td>2026-08-21</td><td>25%</td><td>FAST</td><td>FAST세분 0.892</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BEATUSDT</td><td>up</td><td>2026-08-21</td><td>25%</td><td>FAST</td><td>FAST세분 0.892</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BLUAIUSDT</td><td>up</td><td>2026-09-07</td><td>25%</td><td>FAST</td><td>FAST세분 0.892</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BEATUSDT</td><td>down</td><td>2026-08-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.892</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BEATUSDT</td><td>up</td><td>2026-08-06</td><td>25%</td><td>FAST</td><td>FAST세분 0.892</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BEATUSDT</td><td>up</td><td>2026-09-11</td><td>25%</td><td>FAST</td><td>FAST세분 0.892</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BEATUSDT</td><td>down</td><td>2026-08-01</td><td>25%</td><td>FAST</td><td>FAST세분 0.892</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SWARMSUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.892</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SWARMSUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.892</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BRUSDT</td><td>down</td><td>2026-09-20</td><td>25%</td><td>FAST</td><td>FAST세분 0.891</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SPELLUSDT</td><td>down</td><td>2026-07-07</td><td>25%</td><td>FAST</td><td>FAST세분 0.890</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BRUSDT</td><td>down</td><td>2026-08-13</td><td>25%</td><td>FAST</td><td>FAST세분 0.889</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>CROSSUSDT</td><td>down</td><td>2026-09-17</td><td>25%</td><td>FAST</td><td>FAST세분 0.889</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>TAGUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.888</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BASUSDT</td><td>up</td><td>2026-08-25</td><td>25%</td><td>FAST</td><td>FAST세분 0.887</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>CAPUSDT</td><td>down</td><td>2026-09-03</td><td>25%</td><td>FAST</td><td>FAST세분 0.886</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>TAUSDT</td><td>up</td><td>2026-08-13</td><td>25%</td><td>FAST</td><td>FAST세분 0.885</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>TAUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.885</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>TAUSDT</td><td>down</td><td>2026-09-12</td><td>25%</td><td>FAST</td><td>FAST세분 0.885</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BTWUSDT</td><td>down</td><td>2026-09-14</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.885</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>YFIUSDT</td><td>down</td><td>2026-07-06</td><td>25%</td><td>FAST</td><td>FAST세분 0.883</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>AGTUSDT</td><td>up</td><td>2026-08-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.882</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>AINUSDT</td><td>down</td><td>2026-09-15</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.882</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>AIOUSDT</td><td>down</td><td>2026-08-17</td><td>25%</td><td>FAST</td><td>FAST세분 0.882</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>AGTUSDT</td><td>up</td><td>2026-09-01</td><td>25%</td><td>FAST</td><td>FAST세분 0.882</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>AGTUSDT</td><td>down</td><td>2026-09-01</td><td>25%</td><td>FAST</td><td>FAST세분 0.882</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>1INCHUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.881</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>HOTUSDT</td><td>down</td><td>2026-06-27</td><td>25%</td><td>FAST</td><td>FAST세분 0.881</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SKYAIUSDT</td><td>up</td><td>2026-08-25</td><td>25%</td><td>FAST</td><td>FAST세분 0.880</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>IDOLUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.877</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>IDOLUSDT</td><td>down</td><td>2026-09-15</td><td>25%</td><td>FAST</td><td>FAST세분 0.876</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BRUSDT</td><td>down</td><td>2026-09-03</td><td>25%</td><td>FAST</td><td>FAST세분 0.872</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>AINUSDT</td><td>up</td><td>2026-09-19</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.871</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>RONINUSDT</td><td>up</td><td>2026-09-15</td><td>25%</td><td>FAST</td><td>FAST세분 0.869</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>CAPUSDT</td><td>down</td><td>2026-09-15</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.868</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>XAUTUSDT</td><td>up</td><td>2026-08-24</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.868</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>GUSDT</td><td>down</td><td>2026-09-20</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.865</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>PIPPINUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.863</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>PIPPINUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.863</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>CLOUSDT</td><td>down</td><td>2026-09-02</td><td>25%</td><td>FAST</td><td>FAST세분 0.861</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>VVVUSDT</td><td>down</td><td>2026-09-09</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.860</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>PARTIUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.860</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>PARTIUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.860</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BTWUSDT</td><td>up</td><td>2026-09-19</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.860</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>GUAUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.857</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>BULLAUSDT</td><td>up</td><td>2026-09-11</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.856</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>FOLKSUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.855</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BTWUSDT</td><td>down</td><td>2026-09-02</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.855</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>ONGUSDT</td><td>down</td><td>2026-08-21</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.854</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>PRLUSDT</td><td>down</td><td>2026-08-19</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.853</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BLESSUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.853</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SKRUSDT</td><td>up</td><td>2026-09-03</td><td>25%</td><td>FAST</td><td>FAST세분 0.852</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SKRUSDT</td><td>down</td><td>2026-08-31</td><td>25%</td><td>FAST</td><td>FAST세분 0.851</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>AIOTUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.851</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>AIOTUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.851</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SKRUSDT</td><td>up</td><td>2026-09-21</td><td>25%</td><td>FAST</td><td>FAST세분 0.851</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BTWUSDT</td><td>up</td><td>2026-09-07</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.850</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>PNUTUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.850</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>EULUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.847</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>ORCAUSDT</td><td>up</td><td>2026-09-07</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.847</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>ONEUSDT</td><td>up</td><td>2026-09-20</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.847</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>STORJUSDT</td><td>down</td><td>2026-08-24</td><td>25%</td><td>FAST</td><td>FAST세분 0.846</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>STORJUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.846</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>GOATUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.844</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>ARIAUSDT</td><td>down</td><td>2026-08-27</td><td>25%</td><td>FAST</td><td>FAST세분 0.844</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>ARIAUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.843</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>ARIAUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.843</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SLXUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.842</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SLXUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.842</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>CAPUSDT</td><td>up</td><td>2026-09-19</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.841</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>CAPUSDT</td><td>down</td><td>2026-09-19</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.841</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>VELVETUSDT</td><td>up</td><td>2026-08-18</td><td>25%</td><td>FAST</td><td>FAST세분 0.839</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>VELVETUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.839</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>VELVETUSDT</td><td>up</td><td>2026-09-04</td><td>25%</td><td>FAST</td><td>FAST세분 0.839</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>NEIROUSDT</td><td>down</td><td>2026-08-21</td><td>25%</td><td>FAST</td><td>FAST세분 0.839</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>FLOCKUSDT</td><td>down</td><td>2026-09-13</td><td>25%</td><td>FAST</td><td>FAST세분 0.837</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>FLOCKUSDT</td><td>up</td><td>2026-09-12</td><td>25%</td><td>FAST</td><td>FAST세분 0.837</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>FLOCKUSDT</td><td>up</td><td>2026-09-20</td><td>25%</td><td>FAST</td><td>FAST세분 0.837</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>FLOCKUSDT</td><td>down</td><td>2026-09-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.837</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>JCTUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.837</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>FFUSDT</td><td>down</td><td>2026-09-15</td><td>25%</td><td>FAST</td><td>FAST세분 0.836</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>FFUSDT</td><td>down</td><td>2026-09-20</td><td>25%</td><td>FAST</td><td>FAST세분 0.836</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>FFUSDT</td><td>up</td><td>2026-09-01</td><td>25%</td><td>FAST</td><td>FAST세분 0.836</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>GPSUSDT</td><td>up</td><td>2026-08-22</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.834</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>XAUTUSDT</td><td>up</td><td>2026-08-21</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.834</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>LITUSDT</td><td>down</td><td>2026-09-09</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.833</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>FLOCKUSDT</td><td>down</td><td>2026-08-31</td><td>25%</td><td>FAST</td><td>FAST세분 0.827</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>FHEUSDT</td><td>down</td><td>2026-08-17</td><td>25%</td><td>FAST</td><td>FAST세분 0.827</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>FHEUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.827</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>FHEUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.827</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>OUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.826</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SXTUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.823</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SXTUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.823</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>MERLUSDT</td><td>up</td><td>2026-09-16</td><td>25%</td><td>FAST</td><td>FAST세분 0.822</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>MERLUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.822</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>MERLUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.822</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>REZUSDT</td><td>down</td><td>2026-09-13</td><td>25%</td><td>FAST</td><td>FAST세분 0.822</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>XAUTUSDT</td><td>up</td><td>2026-08-21</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.821</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>AINUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.820</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>STARUSDT</td><td>down</td><td>2026-08-25</td><td>25%</td><td>FAST</td><td>FAST세분 0.819</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>STARUSDT</td><td>down</td><td>2026-09-01</td><td>25%</td><td>FAST</td><td>FAST세분 0.819</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>STARUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.819</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>GPSUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.818</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>TRADOORUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.818</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>TRADOORUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.818</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>BTRUSDT</td><td>down</td><td>2026-09-10</td><td>25%</td><td>FAST</td><td>FAST세분 0.817</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>0GUSDT</td><td>down</td><td>2026-09-01</td><td>25%</td><td>FAST</td><td>FAST세분 0.816</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>HUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.815</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>CYSUSDT</td><td>up</td><td>2026-08-17</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.814</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>GPSUSDT</td><td>down</td><td>2026-08-18</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.814</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SYRUPUSDT</td><td>up</td><td>2026-09-04</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.812</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>VTHOUSDT</td><td>down</td><td>2026-09-13</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.812</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>AIAUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.811</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>AIAUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.811</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>SYRUPUSDT</td><td>up</td><td>2026-08-23</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.811</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>UAIUSDT</td><td>up</td><td>2026-09-03</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.811</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>LABUSDT</td><td>down</td><td>2026-09-12</td><td>25%</td><td>FAST</td><td>FAST세분 0.811</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>PRLUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.810</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>PRLUSDT</td><td>down</td><td>2026-08-19</td><td>25%</td><td>FAST</td><td>FAST세분 0.810</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>GRAMUSDT</td><td>up</td><td>2026-09-26</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.810</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>PLUMEUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.810</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>PLUMEUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.810</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>XAUTUSDT</td><td>up</td><td>2026-08-24</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.810</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>PIEVERSEUSDT</td><td>down</td><td>2026-08-21</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.809</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>ONTUSDT</td><td>down</td><td>2026-08-20</td><td>25%</td><td>FAST</td><td>FAST세분 0.809</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>XPINUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.809</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>CAPUSDT</td><td>up</td><td>2026-09-07</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.808</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>LABUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.808</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>XPINUSDT</td><td>down</td><td>2026-09-14</td><td>25%</td><td>FAST</td><td>FAST세분 0.808</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>XPINUSDT</td><td>up</td><td>2026-09-13</td><td>25%</td><td>FAST</td><td>FAST세분 0.808</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>RIFUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.808</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>XPINUSDT</td><td>up</td><td>2026-08-17</td><td>25%</td><td>FAST</td><td>FAST세분 0.808</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>AZTECUSDT</td><td>up</td><td>2026-09-04</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.807</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>AVAUSDT</td><td>down</td><td>2026-09-18</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.805</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SOPHUSDT</td><td>up</td><td>2026-09-09</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.805</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>FORMUSDT</td><td>down</td><td>2026-09-08</td><td>25%</td><td>FAST</td><td>FAST세분 0.804</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SOLVUSDT</td><td>down</td><td>2026-09-17</td><td>25%</td><td>FAST</td><td>FAST세분 0.802</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>FORMUSDT</td><td>down</td><td>2026-09-21</td><td>25%</td><td>FAST</td><td>FAST세분 0.802</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>COLLECTUSDT</td><td>down</td><td>2026-08-21</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.802</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>ZESTUSDT</td><td>up</td><td>2026-09-04</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.802</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SPORTFUNUSDT</td><td>up</td><td>2026-08-22</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.801</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>SPORTFUNUSDT</td><td>down</td><td>2026-08-22</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.801</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>PIEVERSEUSDT</td><td>down</td><td>2026-09-02</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.801</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>KOMAUSDT</td><td>down</td><td>2026-09-14</td><td>25%</td><td>FAST</td><td>FAST세분 0.800</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>KOMAUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.799</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>USELESSUSDT</td><td>down</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.799</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>KOMAUSDT</td><td>down</td><td>2026-09-07</td><td>25%</td><td>FAST</td><td>FAST세분 0.799</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>ZEREBROUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.798</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BTWUSDT</td><td>down</td><td>2026-08-19</td><td>25%</td><td>FAST</td><td>FAST세분 0.796</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>BULLAUSDT</td><td>up</td><td>2026-09-16</td><td>25%</td><td>FAST</td><td>FAST세분 0.796</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BULLAUSDT</td><td>down</td><td>2026-09-16</td><td>25%</td><td>FAST</td><td>FAST세분 0.796</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>LIGHTUSDT</td><td>down</td><td>2026-08-28</td><td>25%</td><td>FAST</td><td>FAST세분 0.796</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>LIGHTUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.796</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>METISUSDT</td><td>up</td><td>2026-09-07</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.796</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>ACEUSDT</td><td>up</td><td>2026-09-01</td><td>25%</td><td>FAST</td><td>FAST세분 0.795</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>USELESSUSDT</td><td>down</td><td>2026-09-05</td><td>25%</td><td>FAST</td><td>FAST세분 0.792</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>PIEVERSEUSDT</td><td>down</td><td>2026-09-21</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.792</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>EVAAUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.792</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>EVAAUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.792</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>BASUSDT</td><td>down</td><td>2026-08-28</td><td>25%</td><td>FAST</td><td>FAST세분 0.792</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>STEEMUSDT</td><td>up</td><td>2026-09-13</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.789</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>ZEREBROUSDT</td><td>up</td><td>2026-08-22</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.789</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>BTWUSDT</td><td>down</td><td>2026-08-19</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.789</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>RAYSOLUSDT</td><td>down</td><td>2026-09-11</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.788</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>WIFUSDT</td><td>up</td><td>2026-08-22</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.788</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>TRIAUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.787</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>TRIAUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.787</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>MAGMAUSDT</td><td>down</td><td>2026-08-29</td><td>25%</td><td>FAST</td><td>FAST세분 0.786</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>STXUSDT</td><td>up</td><td>2026-08-25</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.786</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>COLLECTUSDT</td><td>down</td><td>2026-09-06</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.786</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>TRIAUSDT</td><td>down</td><td>2026-08-19</td><td>25%</td><td>FAST</td><td>FAST세분 0.785</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>COLLECTUSDT</td><td>down</td><td>2026-09-05</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.785</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>RAVEUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.783</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>RAVEUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.783</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>CAPUSDT</td><td>up</td><td>2026-08-21</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.783</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>RAVEUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.783</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>OPGUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.781</td><td class='status-momentum'>지속확정(50%+)</td></tr>
-<tr><td class='sym'>OPGUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.781</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
-<tr><td class='sym'>HEMIUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.781</td><td class='status-watching'>관찰중</td></tr>
-<tr><td class='sym'>HEMIUSDT</td><td>down</td><td>2026-09-02</td><td>25%</td><td>FAST</td><td>FAST세분 0.781</td><td class='status-watching'>관찰중</td></tr>
-</tbody></table></div>
-</details>
-
 <h2>페이퍼엔진 거래내역 (원본 그대로, 가공 없음)</h2>
 <div class="n">최근 500건, 최신순 (현재 보유포지션 10건 별도)</div>
 <div class="tablewrap"><table id="trades">
@@ -1815,9 +1505,10 @@ FAST형은 기존 감쇠규칙(미검증) 적용중</div>
 </tbody></table></div>
 
 <h2 id="archive" style="margin-top:44px;border-top:2px solid #3a3d45;padding-top:22px;color:#7d8290;font-size:1.1rem;">🗄️ 연구용 아카이브 (참고용, 실시간 모니터링과 무관)</h2>
-<div class="n" style="margin-bottom:14px;">아래 3개는 실시간 액션 후보에서 이미 제외되었거나 더 이상 "지금 볼 것"이 아닌
-과거/참고용 데이터입니다(외부 크로스체크 제안 2026-09-30) - 실시간 모니터링은 맨 위 3개 핵심
-섹션(보유포지션 / Tier1 상위10 / 최우선후보+진입후보 액션리스트)만 보면 충분합니다.</div>
+<div class="n" style="margin-bottom:14px;">아래 4개는 실시간 액션 후보에서 이미 제외되었거나, 더 상위단계(Step2/3) 초기포착
+직전 원시데이터라 그 자체로는 "지금 볼 것"이 아닌 과거/참고용 데이터입니다(외부 크로스체크 제안
+2026-09-30) - 실시간 모니터링은 맨 위 3개 핵심 섹션(보유포지션 / Tier1 상위10 / Step2·3
+액션리스트)만 보면 충분합니다.</div>
 
 <details class="collapsible">
 <summary>⚠️ 동력상실로 제외된 신호 (67건 · 게이트통과 후 되돌림비율≥1.35, 반전확정 가능성 높음)</summary>
@@ -2309,6 +2000,318 @@ FAST형은 기존 감쇠규칙(미검증) 적용중</div>
 <tr class='t3-flagged'><td class='sym'>TREEUSDT</td><td>up</td><td>2026-08-19 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.866</td><td>0.882</td><td>2026-08-19 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>BANKUSDT</td><td>up</td><td>2026-09-19 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.873</td><td>0.882</td><td>2026-09-19 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-watching'>관찰중</td><td>🟢 진입후보</td></tr>
 <tr class='t3-flagged'><td class='sym'>BULLAUSDT</td><td>up</td><td>2026-09-02 (감지: 감지시각 미기록(과거데이터))</td><td>GRADUAL</td><td>0.853</td><td>0.882</td><td>2026-09-02 (감지: 감지시각 미기록(과거데이터))</td><td>T_early당일</td><td class='status-momentum'>지속확정(50%+)</td><td>🟢 진입후보</td></tr>
+</tbody></table></div>
+</details>
+
+<details class="collapsible">
+<summary>2단 초기포착 (Tier 2 · τ=15%/25% 크로싱 · 최근21일)</summary>
+<div class="n">전체 9580건 중 스코어 상위 300건 표시(전체는 zec_screener_tier2_tier3_state.json) -
+게이트통과 이전의 초기 크로싱 원시데이터라 그 자체로는 액션가능한 신호가 아님(Step2/3는 위 Tier3
+액션리스트가 담당).</div>
+<div class="tablewrap"><table id="t2">
+<thead><tr><th class="sym">심볼</th><th>방향</th><th>T_early</th><th>τ</th><th>속도유형</th>
+<th>스코어</th><th>상태</th></tr></thead>
+<tbody>
+<tr><td class='sym'>LSKUSDT</td><td>down</td><td>2026-09-15</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.999</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>ONGUSDT</td><td>down</td><td>2026-08-27</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.996</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BTRUSDT</td><td>down</td><td>2026-08-29</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.994</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>ASTERUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.993</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BANANAUSDT</td><td>down</td><td>2026-07-07</td><td>25%</td><td>FAST</td><td>FAST세분 0.989</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>IOSTUSDT</td><td>down</td><td>2026-09-10</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.984</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>MAVIAUSDT</td><td>up</td><td>2026-06-24</td><td>25%</td><td>FAST</td><td>FAST세분 0.982</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>MAVIAUSDT</td><td>down</td><td>2026-06-24</td><td>25%</td><td>FAST</td><td>FAST세분 0.982</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SKRUSDT</td><td>up</td><td>2026-08-31</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.981</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>AKEUSDT</td><td>down</td><td>2026-09-19</td><td>25%</td><td>FAST</td><td>FAST세분 0.980</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>AKEUSDT</td><td>up</td><td>2026-09-11</td><td>25%</td><td>FAST</td><td>FAST세분 0.980</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>AKEUSDT</td><td>up</td><td>2026-08-26</td><td>25%</td><td>FAST</td><td>FAST세분 0.979</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>SKRUSDT</td><td>up</td><td>2026-08-31</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.979</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>AKEUSDT</td><td>down</td><td>2026-09-05</td><td>25%</td><td>FAST</td><td>FAST세분 0.979</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>AKEUSDT</td><td>up</td><td>2026-09-07</td><td>25%</td><td>FAST</td><td>FAST세분 0.978</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>AKEUSDT</td><td>down</td><td>2026-08-29</td><td>25%</td><td>FAST</td><td>FAST세분 0.974</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>MOVEUSDT</td><td>down</td><td>2026-06-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.971</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>MOVEUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.971</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SKRUSDT</td><td>up</td><td>2026-09-03</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.967</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>MAVIAUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.966</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>MAVIAUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.966</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BROCCOLI714USDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.966</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>BROCCOLI714USDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.966</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>ASRUSDT</td><td>down</td><td>2026-06-06</td><td>25%</td><td>FAST</td><td>FAST세분 0.965</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>LYNUSDT</td><td>up</td><td>2026-06-04</td><td>25%</td><td>FAST</td><td>FAST세분 0.961</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>DOODUSDT</td><td>up</td><td>2026-06-10</td><td>25%</td><td>FAST</td><td>FAST세분 0.961</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>DOODUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.960</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SKRUSDT</td><td>down</td><td>2026-08-31</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.958</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>DIAUSDT</td><td>up</td><td>2026-07-31</td><td>25%</td><td>FAST</td><td>FAST세분 0.957</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>DIAUSDT</td><td>down</td><td>2026-07-27</td><td>25%</td><td>FAST</td><td>FAST세분 0.957</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>DIAUSDT</td><td>up</td><td>2026-07-25</td><td>25%</td><td>FAST</td><td>FAST세분 0.954</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>LUNA2USDT</td><td>down</td><td>2026-09-20</td><td>25%</td><td>FAST</td><td>FAST세분 0.953</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>QUSDT</td><td>up</td><td>2026-08-17</td><td>25%</td><td>FAST</td><td>FAST세분 0.948</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>QUSDT</td><td>up</td><td>2026-09-04</td><td>25%</td><td>FAST</td><td>FAST세분 0.948</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SOONUSDT</td><td>down</td><td>2026-07-28</td><td>25%</td><td>FAST</td><td>FAST세분 0.945</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>TOWNSUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.945</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>TOWNSUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.945</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>TOWNSUSDT</td><td>up</td><td>2026-06-30</td><td>25%</td><td>FAST</td><td>FAST세분 0.945</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>B2USDT</td><td>down</td><td>2026-09-20</td><td>25%</td><td>FAST</td><td>FAST세분 0.944</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>CROSSUSDT</td><td>down</td><td>2026-08-14</td><td>25%</td><td>FAST</td><td>FAST세분 0.937</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>CROSSUSDT</td><td>down</td><td>2026-07-26</td><td>25%</td><td>FAST</td><td>FAST세분 0.937</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>1000RATSUSDT</td><td>up</td><td>2026-08-05</td><td>25%</td><td>FAST</td><td>FAST세분 0.936</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>1000RATSUSDT</td><td>down</td><td>2026-08-03</td><td>25%</td><td>FAST</td><td>FAST세분 0.936</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>1000RATSUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.936</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>1000RATSUSDT</td><td>down</td><td>2026-08-18</td><td>25%</td><td>FAST</td><td>FAST세분 0.936</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>ATUSDT</td><td>down</td><td>2026-06-13</td><td>25%</td><td>FAST</td><td>FAST세분 0.936</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>ALPINEUSDT</td><td>up</td><td>2026-08-18</td><td>25%</td><td>FAST</td><td>FAST세분 0.935</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>ALPINEUSDT</td><td>down</td><td>2026-08-18</td><td>25%</td><td>FAST</td><td>FAST세분 0.935</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>ERAUSDT</td><td>down</td><td>2026-07-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.935</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>KOMAUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.935</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>KOMAUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.935</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>CVCUSDT</td><td>down</td><td>2026-09-13</td><td>25%</td><td>FAST</td><td>FAST세분 0.933</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>FLUIDUSDT</td><td>down</td><td>2026-07-01</td><td>25%</td><td>FAST</td><td>FAST세분 0.933</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>ONGUSDT</td><td>up</td><td>2026-09-01</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.930</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>AVAUSDT</td><td>up</td><td>2026-09-18</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.927</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>TACUSDT</td><td>down</td><td>2026-08-27</td><td>25%</td><td>FAST</td><td>FAST세분 0.925</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>TACUSDT</td><td>up</td><td>2026-07-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.925</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>TACUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.925</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>TACUSDT</td><td>up</td><td>2026-08-23</td><td>25%</td><td>FAST</td><td>FAST세분 0.924</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>XNYUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.923</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>XNYUSDT</td><td>up</td><td>2026-08-10</td><td>25%</td><td>FAST</td><td>FAST세분 0.923</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>XNYUSDT</td><td>down</td><td>2026-08-10</td><td>25%</td><td>FAST</td><td>FAST세분 0.923</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>ICXUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.922</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>GUSDT</td><td>down</td><td>2026-09-20</td><td>25%</td><td>FAST</td><td>FAST세분 0.917</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>GUSDT</td><td>down</td><td>2026-06-26</td><td>25%</td><td>FAST</td><td>FAST세분 0.917</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>AVAUSDT</td><td>up</td><td>2026-09-18</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.917</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>CATIUSDT</td><td>up</td><td>2026-09-05</td><td>25%</td><td>FAST</td><td>FAST세분 0.915</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>ARCUSDT</td><td>down</td><td>2026-08-08</td><td>25%</td><td>FAST</td><td>FAST세분 0.915</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>GUSDT</td><td>down</td><td>2026-07-19</td><td>25%</td><td>FAST</td><td>FAST세분 0.915</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>CATIUSDT</td><td>down</td><td>2026-08-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.915</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BTRUSDT</td><td>up</td><td>2026-09-03</td><td>25%</td><td>FAST</td><td>FAST세분 0.915</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>CATIUSDT</td><td>up</td><td>2026-08-26</td><td>25%</td><td>FAST</td><td>FAST세분 0.914</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>CATIUSDT</td><td>down</td><td>2026-08-26</td><td>25%</td><td>FAST</td><td>FAST세분 0.914</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>CATIUSDT</td><td>down</td><td>2026-09-03</td><td>25%</td><td>FAST</td><td>FAST세분 0.914</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>MEUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.914</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>JELLYJELLYUSDT</td><td>down</td><td>2026-06-15</td><td>25%</td><td>FAST</td><td>FAST세분 0.913</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>TREEUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.912</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>TNSRUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.911</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>TNSRUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.911</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>TREEUSDT</td><td>down</td><td>2026-08-19</td><td>25%</td><td>FAST</td><td>FAST세분 0.911</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>LABUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.910</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>GUSDT</td><td>up</td><td>2026-06-23</td><td>25%</td><td>FAST</td><td>FAST세분 0.910</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>STOUSDT</td><td>down</td><td>2026-06-21</td><td>25%</td><td>FAST</td><td>FAST세분 0.909</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>STOUSDT</td><td>down</td><td>2026-06-03</td><td>25%</td><td>FAST</td><td>FAST세분 0.909</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>ZILUSDT</td><td>down</td><td>2026-07-28</td><td>25%</td><td>FAST</td><td>FAST세분 0.909</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>STOUSDT</td><td>down</td><td>2026-08-04</td><td>25%</td><td>FAST</td><td>FAST세분 0.909</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>RESOLVUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.908</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>TOWNSUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.908</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>MAGICUSDT</td><td>down</td><td>2026-06-28</td><td>25%</td><td>FAST</td><td>FAST세분 0.907</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>ONGUSDT</td><td>up</td><td>2026-08-21</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.905</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>BREVUSDT</td><td>down</td><td>2026-07-02</td><td>25%</td><td>FAST</td><td>FAST세분 0.905</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>UBUSDT</td><td>up</td><td>2026-09-20</td><td>25%</td><td>FAST</td><td>FAST세분 0.905</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>UBUSDT</td><td>down</td><td>2026-09-20</td><td>25%</td><td>FAST</td><td>FAST세분 0.905</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>1000000BOBUSDT</td><td>down</td><td>2026-09-06</td><td>25%</td><td>FAST</td><td>FAST세분 0.904</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>1000000BOBUSDT</td><td>up</td><td>2026-06-21</td><td>25%</td><td>FAST</td><td>FAST세분 0.904</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>1000000BOBUSDT</td><td>down</td><td>2026-06-21</td><td>25%</td><td>FAST</td><td>FAST세분 0.904</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>QUSDT</td><td>up</td><td>2026-09-12</td><td>25%</td><td>FAST</td><td>FAST세분 0.903</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>MYXUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.903</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>MYXUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.903</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>TOWNSUSDT</td><td>up</td><td>2026-09-04</td><td>25%</td><td>FAST</td><td>FAST세분 0.903</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BRUSDT</td><td>down</td><td>2026-09-20</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.902</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BULLAUSDT</td><td>down</td><td>2026-09-09</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.902</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>ESPUSDT</td><td>up</td><td>2026-07-30</td><td>25%</td><td>FAST</td><td>FAST세분 0.900</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>ESPUSDT</td><td>down</td><td>2026-07-27</td><td>25%</td><td>FAST</td><td>FAST세분 0.900</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>AGTUSDT</td><td>down</td><td>2026-09-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.900</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>AKEUSDT</td><td>down</td><td>2026-09-19</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.899</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SCRTUSDT</td><td>up</td><td>2026-08-26</td><td>25%</td><td>FAST</td><td>FAST세분 0.898</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SCRTUSDT</td><td>down</td><td>2026-08-21</td><td>25%</td><td>FAST</td><td>FAST세분 0.897</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SIRENUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.897</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>SIRENUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.897</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>SCRTUSDT</td><td>down</td><td>2026-08-14</td><td>25%</td><td>FAST</td><td>FAST세분 0.897</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>ONDOUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.895</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>ONDOUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.895</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>MUBARAKUSDT</td><td>down</td><td>2026-08-10</td><td>25%</td><td>FAST</td><td>FAST세분 0.894</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>MUBARAKUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.894</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>KGENUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.893</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>KGENUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.893</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>KGENUSDT</td><td>down</td><td>2026-08-07</td><td>25%</td><td>FAST</td><td>FAST세분 0.893</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BLUAIUSDT</td><td>up</td><td>2026-08-13</td><td>25%</td><td>FAST</td><td>FAST세분 0.893</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BLUAIUSDT</td><td>down</td><td>2026-08-10</td><td>25%</td><td>FAST</td><td>FAST세분 0.893</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BOMEUSDT</td><td>down</td><td>2026-08-21</td><td>25%</td><td>FAST</td><td>FAST세분 0.892</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BEATUSDT</td><td>up</td><td>2026-08-21</td><td>25%</td><td>FAST</td><td>FAST세분 0.892</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BLUAIUSDT</td><td>up</td><td>2026-09-07</td><td>25%</td><td>FAST</td><td>FAST세분 0.892</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BEATUSDT</td><td>down</td><td>2026-08-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.892</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BEATUSDT</td><td>up</td><td>2026-08-06</td><td>25%</td><td>FAST</td><td>FAST세분 0.892</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BEATUSDT</td><td>up</td><td>2026-09-11</td><td>25%</td><td>FAST</td><td>FAST세분 0.892</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BEATUSDT</td><td>down</td><td>2026-08-01</td><td>25%</td><td>FAST</td><td>FAST세분 0.892</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SWARMSUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.892</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SWARMSUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.892</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BRUSDT</td><td>down</td><td>2026-09-20</td><td>25%</td><td>FAST</td><td>FAST세분 0.891</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SPELLUSDT</td><td>down</td><td>2026-07-07</td><td>25%</td><td>FAST</td><td>FAST세분 0.890</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BRUSDT</td><td>down</td><td>2026-08-13</td><td>25%</td><td>FAST</td><td>FAST세분 0.889</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>CROSSUSDT</td><td>down</td><td>2026-09-17</td><td>25%</td><td>FAST</td><td>FAST세분 0.889</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>TAGUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.888</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BASUSDT</td><td>up</td><td>2026-08-25</td><td>25%</td><td>FAST</td><td>FAST세분 0.887</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>CAPUSDT</td><td>down</td><td>2026-09-03</td><td>25%</td><td>FAST</td><td>FAST세분 0.886</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>TAUSDT</td><td>up</td><td>2026-08-13</td><td>25%</td><td>FAST</td><td>FAST세분 0.885</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>TAUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.885</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>TAUSDT</td><td>down</td><td>2026-09-12</td><td>25%</td><td>FAST</td><td>FAST세분 0.885</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BTWUSDT</td><td>down</td><td>2026-09-14</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.885</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>YFIUSDT</td><td>down</td><td>2026-07-06</td><td>25%</td><td>FAST</td><td>FAST세분 0.883</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>AGTUSDT</td><td>up</td><td>2026-08-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.882</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>AINUSDT</td><td>down</td><td>2026-09-15</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.882</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>AIOUSDT</td><td>down</td><td>2026-08-17</td><td>25%</td><td>FAST</td><td>FAST세분 0.882</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>AGTUSDT</td><td>up</td><td>2026-09-01</td><td>25%</td><td>FAST</td><td>FAST세분 0.882</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>AGTUSDT</td><td>down</td><td>2026-09-01</td><td>25%</td><td>FAST</td><td>FAST세분 0.882</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>1INCHUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.881</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>HOTUSDT</td><td>down</td><td>2026-06-27</td><td>25%</td><td>FAST</td><td>FAST세분 0.881</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SKYAIUSDT</td><td>up</td><td>2026-08-25</td><td>25%</td><td>FAST</td><td>FAST세분 0.880</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>IDOLUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.877</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>IDOLUSDT</td><td>down</td><td>2026-09-15</td><td>25%</td><td>FAST</td><td>FAST세분 0.876</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BRUSDT</td><td>down</td><td>2026-09-03</td><td>25%</td><td>FAST</td><td>FAST세분 0.872</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>AINUSDT</td><td>up</td><td>2026-09-19</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.871</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>RONINUSDT</td><td>up</td><td>2026-09-15</td><td>25%</td><td>FAST</td><td>FAST세분 0.869</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>CAPUSDT</td><td>down</td><td>2026-09-15</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.868</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>XAUTUSDT</td><td>up</td><td>2026-08-24</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.868</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>GUSDT</td><td>down</td><td>2026-09-20</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.865</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>PIPPINUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.863</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>PIPPINUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.863</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>CLOUSDT</td><td>down</td><td>2026-09-02</td><td>25%</td><td>FAST</td><td>FAST세분 0.861</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>VVVUSDT</td><td>down</td><td>2026-09-09</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.860</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>PARTIUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.860</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>PARTIUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.860</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BTWUSDT</td><td>up</td><td>2026-09-19</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.860</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>GUAUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.857</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>BULLAUSDT</td><td>up</td><td>2026-09-11</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.856</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>FOLKSUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.855</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BTWUSDT</td><td>down</td><td>2026-09-02</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.855</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>ONGUSDT</td><td>down</td><td>2026-08-21</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.854</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>PRLUSDT</td><td>down</td><td>2026-08-19</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.853</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BLESSUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.853</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SKRUSDT</td><td>up</td><td>2026-09-03</td><td>25%</td><td>FAST</td><td>FAST세분 0.852</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SKRUSDT</td><td>down</td><td>2026-08-31</td><td>25%</td><td>FAST</td><td>FAST세분 0.851</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>AIOTUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.851</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>AIOTUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.851</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SKRUSDT</td><td>up</td><td>2026-09-21</td><td>25%</td><td>FAST</td><td>FAST세분 0.851</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BTWUSDT</td><td>up</td><td>2026-09-07</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.850</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>PNUTUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.850</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>EULUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.847</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>ORCAUSDT</td><td>up</td><td>2026-09-07</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.847</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>ONEUSDT</td><td>up</td><td>2026-09-20</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.847</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>STORJUSDT</td><td>down</td><td>2026-08-24</td><td>25%</td><td>FAST</td><td>FAST세분 0.846</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>STORJUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.846</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>GOATUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.844</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>ARIAUSDT</td><td>down</td><td>2026-08-27</td><td>25%</td><td>FAST</td><td>FAST세분 0.844</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>ARIAUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.843</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>ARIAUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.843</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SLXUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.842</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SLXUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.842</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>CAPUSDT</td><td>up</td><td>2026-09-19</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.841</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>CAPUSDT</td><td>down</td><td>2026-09-19</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.841</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>VELVETUSDT</td><td>up</td><td>2026-08-18</td><td>25%</td><td>FAST</td><td>FAST세분 0.839</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>VELVETUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.839</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>VELVETUSDT</td><td>up</td><td>2026-09-04</td><td>25%</td><td>FAST</td><td>FAST세분 0.839</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>NEIROUSDT</td><td>down</td><td>2026-08-21</td><td>25%</td><td>FAST</td><td>FAST세분 0.839</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>FLOCKUSDT</td><td>down</td><td>2026-09-13</td><td>25%</td><td>FAST</td><td>FAST세분 0.837</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>FLOCKUSDT</td><td>up</td><td>2026-09-12</td><td>25%</td><td>FAST</td><td>FAST세분 0.837</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>FLOCKUSDT</td><td>up</td><td>2026-09-20</td><td>25%</td><td>FAST</td><td>FAST세분 0.837</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>FLOCKUSDT</td><td>down</td><td>2026-09-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.837</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>JCTUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.837</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>FFUSDT</td><td>down</td><td>2026-09-15</td><td>25%</td><td>FAST</td><td>FAST세분 0.836</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>FFUSDT</td><td>down</td><td>2026-09-20</td><td>25%</td><td>FAST</td><td>FAST세분 0.836</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>FFUSDT</td><td>up</td><td>2026-09-01</td><td>25%</td><td>FAST</td><td>FAST세분 0.836</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>GPSUSDT</td><td>up</td><td>2026-08-22</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.834</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>XAUTUSDT</td><td>up</td><td>2026-08-21</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.834</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>LITUSDT</td><td>down</td><td>2026-09-09</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.833</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>FLOCKUSDT</td><td>down</td><td>2026-08-31</td><td>25%</td><td>FAST</td><td>FAST세분 0.827</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>FHEUSDT</td><td>down</td><td>2026-08-17</td><td>25%</td><td>FAST</td><td>FAST세분 0.827</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>FHEUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.827</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>FHEUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.827</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>OUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.826</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SXTUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.823</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SXTUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.823</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>MERLUSDT</td><td>up</td><td>2026-09-16</td><td>25%</td><td>FAST</td><td>FAST세분 0.822</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>MERLUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.822</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>MERLUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.822</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>REZUSDT</td><td>down</td><td>2026-09-13</td><td>25%</td><td>FAST</td><td>FAST세분 0.822</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>XAUTUSDT</td><td>up</td><td>2026-08-21</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.821</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>AINUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.820</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>STARUSDT</td><td>down</td><td>2026-08-25</td><td>25%</td><td>FAST</td><td>FAST세분 0.819</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>STARUSDT</td><td>down</td><td>2026-09-01</td><td>25%</td><td>FAST</td><td>FAST세분 0.819</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>STARUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.819</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>GPSUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.818</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>TRADOORUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.818</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>TRADOORUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.818</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>BTRUSDT</td><td>down</td><td>2026-09-10</td><td>25%</td><td>FAST</td><td>FAST세분 0.817</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>0GUSDT</td><td>down</td><td>2026-09-01</td><td>25%</td><td>FAST</td><td>FAST세분 0.816</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>HUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.815</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>CYSUSDT</td><td>up</td><td>2026-08-17</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.814</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>GPSUSDT</td><td>down</td><td>2026-08-18</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.814</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SYRUPUSDT</td><td>up</td><td>2026-09-04</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.812</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>VTHOUSDT</td><td>down</td><td>2026-09-13</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.812</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>AIAUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.811</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>AIAUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.811</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>SYRUPUSDT</td><td>up</td><td>2026-08-23</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.811</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>UAIUSDT</td><td>up</td><td>2026-09-03</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.811</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>LABUSDT</td><td>down</td><td>2026-09-12</td><td>25%</td><td>FAST</td><td>FAST세분 0.811</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>PRLUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.810</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>PRLUSDT</td><td>down</td><td>2026-08-19</td><td>25%</td><td>FAST</td><td>FAST세분 0.810</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>GRAMUSDT</td><td>up</td><td>2026-09-26</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.810</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>PLUMEUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.810</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>PLUMEUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.810</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>XAUTUSDT</td><td>up</td><td>2026-08-24</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.810</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>PIEVERSEUSDT</td><td>down</td><td>2026-08-21</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.809</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>ONTUSDT</td><td>down</td><td>2026-08-20</td><td>25%</td><td>FAST</td><td>FAST세분 0.809</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>XPINUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.809</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>CAPUSDT</td><td>up</td><td>2026-09-07</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.808</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>LABUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.808</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>XPINUSDT</td><td>down</td><td>2026-09-14</td><td>25%</td><td>FAST</td><td>FAST세분 0.808</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>XPINUSDT</td><td>up</td><td>2026-09-13</td><td>25%</td><td>FAST</td><td>FAST세분 0.808</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>RIFUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.808</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>XPINUSDT</td><td>up</td><td>2026-08-17</td><td>25%</td><td>FAST</td><td>FAST세분 0.808</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>AZTECUSDT</td><td>up</td><td>2026-09-04</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.807</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>AVAUSDT</td><td>down</td><td>2026-09-18</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.805</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SOPHUSDT</td><td>up</td><td>2026-09-09</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.805</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>FORMUSDT</td><td>down</td><td>2026-09-08</td><td>25%</td><td>FAST</td><td>FAST세분 0.804</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SOLVUSDT</td><td>down</td><td>2026-09-17</td><td>25%</td><td>FAST</td><td>FAST세분 0.802</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>FORMUSDT</td><td>down</td><td>2026-09-21</td><td>25%</td><td>FAST</td><td>FAST세분 0.802</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>COLLECTUSDT</td><td>down</td><td>2026-08-21</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.802</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>ZESTUSDT</td><td>up</td><td>2026-09-04</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.802</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SPORTFUNUSDT</td><td>up</td><td>2026-08-22</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.801</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>SPORTFUNUSDT</td><td>down</td><td>2026-08-22</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.801</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>PIEVERSEUSDT</td><td>down</td><td>2026-09-02</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.801</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>KOMAUSDT</td><td>down</td><td>2026-09-14</td><td>25%</td><td>FAST</td><td>FAST세분 0.800</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>KOMAUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.799</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>USELESSUSDT</td><td>down</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.799</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>KOMAUSDT</td><td>down</td><td>2026-09-07</td><td>25%</td><td>FAST</td><td>FAST세분 0.799</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>ZEREBROUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.798</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BTWUSDT</td><td>down</td><td>2026-08-19</td><td>25%</td><td>FAST</td><td>FAST세분 0.796</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>BULLAUSDT</td><td>up</td><td>2026-09-16</td><td>25%</td><td>FAST</td><td>FAST세분 0.796</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BULLAUSDT</td><td>down</td><td>2026-09-16</td><td>25%</td><td>FAST</td><td>FAST세분 0.796</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>LIGHTUSDT</td><td>down</td><td>2026-08-28</td><td>25%</td><td>FAST</td><td>FAST세분 0.796</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>LIGHTUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.796</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>METISUSDT</td><td>up</td><td>2026-09-07</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.796</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>ACEUSDT</td><td>up</td><td>2026-09-01</td><td>25%</td><td>FAST</td><td>FAST세분 0.795</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>USELESSUSDT</td><td>down</td><td>2026-09-05</td><td>25%</td><td>FAST</td><td>FAST세분 0.792</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>PIEVERSEUSDT</td><td>down</td><td>2026-09-21</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.792</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>EVAAUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.792</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>EVAAUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.792</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>BASUSDT</td><td>down</td><td>2026-08-28</td><td>25%</td><td>FAST</td><td>FAST세분 0.792</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>STEEMUSDT</td><td>up</td><td>2026-09-13</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.789</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>ZEREBROUSDT</td><td>up</td><td>2026-08-22</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.789</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>BTWUSDT</td><td>down</td><td>2026-08-19</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.789</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>RAYSOLUSDT</td><td>down</td><td>2026-09-11</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.788</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>WIFUSDT</td><td>up</td><td>2026-08-22</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.788</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>TRIAUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.787</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>TRIAUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.787</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>MAGMAUSDT</td><td>down</td><td>2026-08-29</td><td>25%</td><td>FAST</td><td>FAST세분 0.786</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>STXUSDT</td><td>up</td><td>2026-08-25</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.786</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>COLLECTUSDT</td><td>down</td><td>2026-09-06</td><td>15%</td><td>GRADUAL</td><td>규모(200%+) 0.786</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>TRIAUSDT</td><td>down</td><td>2026-08-19</td><td>25%</td><td>FAST</td><td>FAST세분 0.785</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>COLLECTUSDT</td><td>down</td><td>2026-09-05</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.785</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>RAVEUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.783</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>RAVEUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.783</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>CAPUSDT</td><td>up</td><td>2026-08-21</td><td>15%</td><td>FAST</td><td>규모(200%+) 0.783</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>RAVEUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.783</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>OPGUSDT</td><td>up</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.781</td><td class='status-momentum'>지속확정(50%+)</td></tr>
+<tr><td class='sym'>OPGUSDT</td><td>down</td><td>2026-08-22</td><td>25%</td><td>FAST</td><td>FAST세분 0.781</td><td class='status-reversal'>반전확정(반대방향 50%+)</td></tr>
+<tr><td class='sym'>HEMIUSDT</td><td>up</td><td>2026-09-09</td><td>25%</td><td>FAST</td><td>FAST세분 0.781</td><td class='status-watching'>관찰중</td></tr>
+<tr><td class='sym'>HEMIUSDT</td><td>down</td><td>2026-09-02</td><td>25%</td><td>FAST</td><td>FAST세분 0.781</td><td class='status-watching'>관찰중</td></tr>
 </tbody></table></div>
 </details>
 
