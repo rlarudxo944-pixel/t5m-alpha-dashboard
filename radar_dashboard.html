@@ -81,6 +81,14 @@
   .detect-zone { transition: opacity .2s ease; }
   .detect-zone.dimmed { opacity: .45; filter: saturate(.55); }
   .detect-zone.dimmed:hover, .detect-zone.dimmed:focus-within { opacity: .85; filter: none; }
+  /* [2026-09-30, 외부 크로스체크 제안] 퍼널단계 라벨 - 선행탐지(Step1)->조건충족대기(Step2)
+     ->최우선실행타점(Step3)->실전운용(Active) 순서를 헤더에서 바로 보이게 */
+  .step-badge { display: inline-block; font-size: .72rem; font-weight: 800; letter-spacing: .02em;
+                 padding: 2px 7px; border-radius: 5px; vertical-align: middle; margin-right: 2px; }
+  .step-badge.active { background: #3a2f0e; color: #ffd166; }
+  .step-badge.step1 { background: #16202a; color: #6ac2ff; }
+  .step-badge.step2 { background: #16301f; color: #6ad98a; }
+  .step-badge.step3 { background: #3a2f0e; color: #ffd166; }
 </style>
 </head>
 <body>
@@ -100,7 +108,7 @@
 
 <div id="execZone">
 <div class="hero" style="border-left-color:#ffd166;">
-<h2 style="border-left-color:#ffd166;">💼 지금 보유중인 포지션 (10건)</h2>
+<h2 style="border-left-color:#ffd166;"><span class="step-badge active">[Active]</span> 실전운용 포지션 - 💼 지금 보유중인 포지션 (10건)</h2>
 <div class="n">동시보유상한 10건 중 10건 사용중 · GRADUAL형은 물타기 규칙(진행상황32) ·
 FAST형은 기존 감쇠규칙(미검증) 적용중</div>
 <div class="tablewrap"><table id="positions">
@@ -136,7 +144,7 @@ FAST형은 기존 감쇠규칙(미검증) 적용중</div>
 <div class="detect-zone-bar full" id="detectZoneBar"><span>⚠️ 슬롯 10/10 전부 사용중 - 신규진입 불가 상태라 아래 탐지영역은 흐리게 표시됩니다(위 보유포지션에 집중하세요).</span><button type="button" id="detectZoneToggle" onclick="toggleDetectZone()">선명하게 고정</button></div>
 <div id="detectZone" class="detect-zone dimmed">
 <div class="hero" style="border-left-color:#6ac2ff;">
-<h2 style="border-left-color:#6ac2ff;">🔭 Tier1 관심목록 Top10 - 사전예측(임박점수, 방향무관)</h2>
+<h2 style="border-left-color:#6ac2ff;"><span class="step-badge step1">[Step1]</span> 선행탐지 - 🔭 Tier1 관심목록 Top10 (사전관찰, 방향무관 임박점수)</h2>
 <div class="n">유일하게 "아직 안 움직인 시점"에 미리 보는 층위(상위10%컷=0.834,
 전체 53개 중 상위10개만 표시) · <a href="#t1-detail" style="color:#a9d4f5;">방법론/BTRUSDT검증사례↓</a></div>
 <div class='audit-note'><b>아직 판단하기엔 이릅니다</b> - 첫 스냅샷(2026-09-24)으로부터 14일이 지나야 첫 판정이 나옵니다(예정: 2026-10-08). 현재 318건이 판정 대기중.</div>
@@ -241,7 +249,8 @@ FAST형은 기존 감쇠규칙(미검증) 적용중</div>
 </div>
 
 <div class="hero" style="border-color:#3a3d45;background:linear-gradient(180deg, #1a1c22 0%, #0f1115 140px);">
-<h2 style="font-size:1.05rem;border-left-color:#7d8290;">🟢 진입후보 / ⭐ 최우선후보 - 최우선후보+진입후보 액션리스트</h2>
+<h2 style="font-size:1.05rem;border-left-color:#7d8290;"><span class="step-badge step2">[Step2]</span> 조건충족 대기(게이트통과) → <span class="step-badge step3">[Step3]</span> 최우선 실행타점 -
+🟢 진입후보 / ⭐ 최우선후보 액션리스트</h2>
 <div class="n">동력상실/판정대기 필터링된 유효한 실시간 진입 타점만 · 628개 (심볼,방향) 쌍 ·
 🟢진입후보=게이트통과 ⭐최우선후보=상위우선순위(combined≥0.887) ·
 <a href="#t3-detail" style="color:#a9d4f5;">용어/기준 설명↓</a></div>
