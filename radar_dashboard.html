@@ -195,7 +195,7 @@
 </h1>
 <div class="meta">Tier1 갱신: 2026-09-30 15:10:15.131380+00:00 · Tier2/3 갱신: 2026-10-01 08:42:14.893421+00:00 ·
   Tier1 스캔 521/654심볼</div>
-<div class="guidance-banner">💡<b>[운용가이드]</b> 슬롯 10/10 포화상태라 하단 후보군은 대조군일 뿐입니다. 상단 [Active]포지션의 손익/하드스탑 안전거리만 모니터링하세요.</div>
+<div class="guidance-banner">💡<b>[운용가이드]</b> 슬롯 10/20 사용중, 10건 신규진입 가능합니다. 상단 [Active]포지션과 아래 [Step3] 최우선후보를 같이 확인하세요.</div>
 
 <details class="collapsible method-detail" id="topDisclaimer" style="margin-top:0;">
 <summary>ℹ️ 대시보드 개요 / 방법론 요약</summary>
@@ -235,7 +235,7 @@
 <div id="execZone">
 <div class="hero" style="border-left-color:#ffd166;">
 <h2 style="border-left-color:#ffd166;"><span class="step-badge active">[Active]</span> 실전운용 포지션 - 💼 지금 보유중인 포지션 (10건)</h2>
-<div class="n">동시보유상한 10건 중 10건 사용중 · GRADUAL형은 물타기 규칙(진행상황32) ·
+<div class="n">동시보유상한 20건 중 10건 사용중 · GRADUAL형은 물타기 규칙(진행상황32) ·
 FAST형은 기존 감쇠규칙(미검증) 적용중 · 현재가/실시간손익/위험거리는 Binance 선물 공개REST를
 브라우저에서 직접 폴링(30초 간격) - 로드 직후/네트워크차단시 "..."로 표시됩니다.</div>
 <div class="tablewrap"><table id="positions">
@@ -254,22 +254,22 @@ FAST형은 기존 감쇠규칙(미검증) 적용중 · 현재가/실시간손익
 <tr id='pos-row-1INCHUSDT'><td class='sym'>1INCHUSDT</td><td>FAST</td><td>롱(up)</td><td title='게이트통과 감지(진입체결 자체 시각은 아님) · 일봉캐시 진입일자(exit로직 조회키)=2026-09-23T00:00:00.000'>2026-09-23 23:06:20</td><td>8.4일</td><td class=''>해당없음(FAST)</td><td>FAST0.88</td><td id='pos-price-1INCHUSDT' class='pos-live'>...</td><td id='pos-pnl-1INCHUSDT' class='pos-live'>...</td><td id='pos-risk-1INCHUSDT' class='pos-live'>...</td></tr>
 </tbody></table></div>
 <div class="audit-note" style="margin-top:8px;">
-  ⚠️ <b>최악시나리오</b>: 최대필요자본 <b>$40</b> · 전원하드SL시 최악손실
-  <b>$7.00</b>(한도 이내) · 현재 물타기중 0건, 배치자본
-  $20.00/$40
+  ⚠️ <b>최악시나리오</b>: 최대필요자본 <b>$80</b> · 전원하드SL시 최악손실
+  <b>$14.00</b>(한도 이내) · 현재 물타기중 0건, 배치자본
+  $20.00/$80
   <details style="display:inline;"><summary style="display:inline;cursor:pointer;color:#a9d4f5;">공식설명</summary>
-  <div style="margin-top:6px;">동시보유상한 10건 × 포지션당
+  <div style="margin-top:6px;">동시보유상한 20건 × 포지션당
   $2 × 물타기 최대 2배 = 최대필요자본
   (TOTAL_EXPOSURE_USDT와 일치) · 전부 하드SL(-35%) 맞으면 최악손실,
-  포트폴리오 일일손실한도 $10 대비 비교(단 4연속손실 등
+  포트폴리오 일일손실한도 $20 대비 비교(단 4연속손실 등
   다른 킬스위치가 먼저/나중에 걸릴 수 있어 정확한 발동순서는 별도확인 필요). 페이퍼트레이딩이라
   실자본 위험은 없음 - 나중에 실자본 스케일업 판단시 재사용할 참고용 계산.</div></details>
 </div>
 </div>
 </div>
 
-<div class="detect-zone-bar full" id="detectZoneBar"><span>⚠️ 슬롯 10/10 전부 사용중 - 신규진입 불가 상태라 아래 탐지영역은 흐리게 표시됩니다(위 보유포지션에 집중하세요).</span><button type="button" id="detectZoneToggle" onclick="toggleDetectZone()">선명하게 고정</button></div>
-<div id="detectZone" class="detect-zone dimmed">
+
+<div id="detectZone" class="detect-zone">
 <div class="hero" style="border-left-color:#6ac2ff;">
 <h2 style="border-left-color:#6ac2ff;"><span class="step-badge step1">[Step1]</span> 선행탐지 - 🔭 Tier1 관심목록 Top10 (사전관찰, 방향무관 임박점수)</h2>
 <div class="n">유일하게 "아직 안 움직인 시점"에 미리 보는 층위(상위10%컷=0.841,
