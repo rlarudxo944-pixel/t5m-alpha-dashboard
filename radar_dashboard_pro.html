@@ -132,6 +132,17 @@
     cursor: pointer; margin-left: 10px; }
   .theme-toggle:hover { color: var(--text-bright); border-color: var(--text-dim); }
 
+  /* ---- 실시간 로그 패널(zec_live_log_viewer_server.py가 이 HTML을 서빙할 때만 작동) ---- */
+  .log-sources { display: flex; gap: 14px; font-size: 10px; }
+  .log-src-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 5px; }
+  .log-src-stale { opacity: 0.4; }
+  .log-term { height: 320px; overflow-y: auto; padding: 6px 10px; background: var(--bg); }
+  .log-line { white-space: pre-wrap; word-break: break-all; line-height: 1.5; font-size: 11.5px; }
+  .log-ts { color: var(--text-dim); margin-right: 6px; }
+  .log-tag { font-weight: 700; margin-right: 6px; }
+  .log-disconnected { color: var(--text-dim); padding: 20px; text-align: center; }
+  .log-disconnected b { color: var(--amber); }
+
   @media (max-width: 1000px) {
     .main-grid { grid-template-columns: 1fr; }
     .signals-grid { grid-template-columns: 1fr; }
@@ -148,7 +159,7 @@
     <span id="sysStat" class="sysstat ok">
       <span class="sysdot ok"></span>시스템 <b>정상</b>
     </span>
-    &nbsp;&nbsp;생성시각 2026-10-08 05:29:31 UTC
+    &nbsp;&nbsp;생성시각 2026-10-08 05:43:37 UTC
     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">라이트모드</button>
   </div>
 </div>
@@ -304,8 +315,8 @@
           <thead><tr><th>작업</th><th class="num">최종실행(UTC)</th><th class="num">경과</th><th>상태</th><th>상세</th></tr></thead>
           <tbody><tr class='hb-row' data-last-run='2026-10-07 15:10:31.634086+00:00' data-max-hours='26'><td class='sym'>T1-SCAN</td><td class='num hb-lastrun'>2026-10-07 15:10:31.634086+00:00</td><td class='num hb-age'>...</td><td class='pos'>정상</td><td class='dim'>-</td></tr>
 <tr class='hb-row' data-last-run='2026-10-07 15:10:32.375854+00:00' data-max-hours='26'><td class='sym'>T1-TRACKER</td><td class='num hb-lastrun'>2026-10-07 15:10:32.375854+00:00</td><td class='num hb-age'>...</td><td class='pos'>정상</td><td class='dim'>-</td></tr>
-<tr class='hb-row' data-last-run='2026-10-08 05:12:13.571616+00:00' data-max-hours='1'><td class='sym'>T2T3-LIVE</td><td class='num hb-lastrun'>2026-10-08 05:12:13.571616+00:00</td><td class='num hb-age'>...</td><td class='pos'>정상</td><td class='dim'>t2=0 t3=0</td></tr>
-<tr class='hb-row' data-last-run='2026-10-08 05:12:33.985056+00:00' data-max-hours='1'><td class='sym'>PAPER-ENGINE</td><td class='num hb-lastrun'>2026-10-08 05:12:33.985056+00:00</td><td class='num hb-age'>...</td><td class='pos'>정상</td><td class='dim'>in=0 out=0</td></tr>
+<tr class='hb-row' data-last-run='2026-10-08 05:42:07.590517+00:00' data-max-hours='1'><td class='sym'>T2T3-LIVE</td><td class='num hb-lastrun'>2026-10-08 05:42:07.590517+00:00</td><td class='num hb-age'>...</td><td class='pos'>정상</td><td class='dim'>t2=1 t3=0</td></tr>
+<tr class='hb-row' data-last-run='2026-10-08 05:42:28.397481+00:00' data-max-hours='1'><td class='sym'>PAPER-ENGINE</td><td class='num hb-lastrun'>2026-10-08 05:42:28.397481+00:00</td><td class='num hb-age'>...</td><td class='pos'>정상</td><td class='dim'>in=0 out=0</td></tr>
 <tr class='hb-row' data-last-run='2026-10-08 05:21:33.110872+00:00' data-max-hours='1'><td class='sym'>LIVE-ENGINE(SHADOW)</td><td class='num hb-lastrun'>2026-10-08 05:21:33.110872+00:00</td><td class='num hb-age'>...</td><td class='pos'>정상</td><td class='dim'>in=1 out=1</td></tr></tbody>
         </table>
       </div>
@@ -316,26 +327,26 @@
         <table>
           <thead><tr><th>심볼</th><th>타입</th><th class="num">진입가</th><th>진입시각(UTC)</th>
             <th class="num">보유기간</th><th>상태</th><th>주문모드</th></tr></thead>
-          <tbody><tr><td class='sym'>ATUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='neg'>SHORT</span></td><td class='num'>0.131700</td><td>2026-10-08 05:21:27</td><td class='num'>0.01d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>ATHUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.006720</td><td>2026-10-08 02:22:56</td><td class='num'>0.13d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>ASTERUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.708300</td><td>2026-10-08 02:22:50</td><td class='num'>0.13d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>ARIAUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='neg'>SHORT</span></td><td class='num'>0.034070</td><td>2026-10-08 02:22:45</td><td class='num'>0.13d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>ARCUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='neg'>SHORT</span></td><td class='num'>0.063660</td><td>2026-10-08 02:22:40</td><td class='num'>0.13d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>ALPINEUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.366900</td><td>2026-10-08 02:22:35</td><td class='num'>0.13d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>ALLUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.657400</td><td>2026-10-08 02:22:29</td><td class='num'>0.13d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>ALCHUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.045390</td><td>2026-10-08 02:22:21</td><td class='num'>0.13d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>AKTUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.704700</td><td>2026-10-08 02:22:16</td><td class='num'>0.13d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>AKEUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='neg'>SHORT</span></td><td class='num'>0.027515</td><td>2026-10-08 02:22:10</td><td class='num'>0.13d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>AIOTUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.046600</td><td>2026-10-08 02:22:05</td><td class='num'>0.13d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>AGTUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.025828</td><td>2026-10-08 02:21:54</td><td class='num'>0.13d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>AEVOUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.025810</td><td>2026-10-08 02:21:49</td><td class='num'>0.13d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>AEROUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.800555</td><td>2026-10-08 02:21:44</td><td class='num'>0.13d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>1INCHUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.098690</td><td>2026-10-08 02:21:30</td><td class='num'>0.13d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>1000SATSUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.000012</td><td>2026-10-08 02:21:25</td><td class='num'>0.13d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>1000RATSUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.039380</td><td>2026-10-08 02:21:20</td><td class='num'>0.13d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>1000000MOGUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.113800</td><td>2026-10-08 02:21:15</td><td class='num'>0.13d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>0GUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.302451</td><td>2026-10-08 01:21:15</td><td class='num'>0.17d</td><td>정상</td><td class='dim'>PAPER_SHADOW(과거분,주문없음)</td></tr>
-<tr><td class='sym'>LUNA2USDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='neg'>SHORT</span></td><td class='num'>0.047666</td><td>2026-10-07 02:21:15</td><td class='num'>1.13d</td><td>정상</td><td class='dim'>PAPER_SHADOW(과거분,주문없음)</td></tr></tbody>
+          <tbody><tr><td class='sym'>ATUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='neg'>SHORT</span></td><td class='num'>0.131700</td><td>2026-10-08 05:21:27</td><td class='num'>0.02d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>ATHUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.006720</td><td>2026-10-08 02:22:56</td><td class='num'>0.14d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>ASTERUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.708300</td><td>2026-10-08 02:22:50</td><td class='num'>0.14d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>ARIAUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='neg'>SHORT</span></td><td class='num'>0.034070</td><td>2026-10-08 02:22:45</td><td class='num'>0.14d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>ARCUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='neg'>SHORT</span></td><td class='num'>0.063660</td><td>2026-10-08 02:22:40</td><td class='num'>0.14d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>ALPINEUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.366900</td><td>2026-10-08 02:22:35</td><td class='num'>0.14d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>ALLUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.657400</td><td>2026-10-08 02:22:29</td><td class='num'>0.14d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>ALCHUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.045390</td><td>2026-10-08 02:22:21</td><td class='num'>0.14d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>AKTUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.704700</td><td>2026-10-08 02:22:16</td><td class='num'>0.14d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>AKEUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='neg'>SHORT</span></td><td class='num'>0.027515</td><td>2026-10-08 02:22:10</td><td class='num'>0.14d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>AIOTUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.046600</td><td>2026-10-08 02:22:05</td><td class='num'>0.14d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>AGTUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.025828</td><td>2026-10-08 02:21:54</td><td class='num'>0.14d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>AEVOUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.025810</td><td>2026-10-08 02:21:49</td><td class='num'>0.14d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>AEROUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.800555</td><td>2026-10-08 02:21:44</td><td class='num'>0.14d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>1INCHUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.098690</td><td>2026-10-08 02:21:30</td><td class='num'>0.14d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>1000SATSUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.000012</td><td>2026-10-08 02:21:25</td><td class='num'>0.14d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>1000RATSUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.039380</td><td>2026-10-08 02:21:20</td><td class='num'>0.14d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>1000000MOGUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.113800</td><td>2026-10-08 02:21:15</td><td class='num'>0.14d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>0GUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.302451</td><td>2026-10-08 01:21:15</td><td class='num'>0.18d</td><td>정상</td><td class='dim'>PAPER_SHADOW(과거분,주문없음)</td></tr>
+<tr><td class='sym'>LUNA2USDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='neg'>SHORT</span></td><td class='num'>0.047666</td><td>2026-10-07 02:21:15</td><td class='num'>1.14d</td><td>정상</td><td class='dim'>PAPER_SHADOW(과거분,주문없음)</td></tr></tbody>
         </table>
       </div>
     </div>
@@ -422,7 +433,7 @@
     </div>
   </div>
   <div class="panel">
-    <div class="panel-head">TIER-3 액션가능<span class="count">650</span></div>
+    <div class="panel-head">TIER-3 액션가능<span class="count">649</span></div>
     <div class="panel-body short">
       <table>
         <thead><tr><th>심볼</th><th>방향</th><th>유형</th><th class="num">점수</th><th>상태</th><th>플래그</th></tr></thead>
@@ -459,6 +470,11 @@
       </table>
     </div>
   </div>
+</div>
+
+<div class="panel" style="margin-top:1px;">
+  <div class="panel-head">실시간 로그<span class="log-sources" id="logSources"></span></div>
+  <div class="log-term" id="logTerm"><div class="log-disconnected" id="logEmpty">로그 연결 대기중...</div></div>
 </div>
 
 <script>
@@ -568,6 +584,98 @@ if (POSITIONS_LIVE.length) {
   updatePositionsLive();
   setInterval(updatePositionsLive, 30000);
 }
+
+// ---- 실시간 로그 패널 ----
+// zec_live_log_viewer_server.py가 이 HTML 자체를 "/"로 서빙중일 때만 같은 origin에
+// /api/logs가 존재함 - 그 경우에만 실시간으로 흐름. file://로 직접 열었거나 GitHub
+// Pages 공개버전으로 봤을 때는 fetch가 실패(또는 404)하므로 "연결 안됨" 안내만 뜨고
+// 페이지 나머지 기능(포지션/전적/신호)에는 전혀 영향 없음 - 상대경로라 origin이 다르면
+// 자동으로 실패하는 걸 이용(별도 환경판별 로직 불필요).
+var LOG_MAX_LINES = 400;
+var LOG_POLL_MS = 1200;
+var LOG_RETRY_MS = 5000;  // 연결 안 된 상태에서의 재시도 주기(서버를 나중에 켤 수도 있음)
+var logCursor = 0;
+var logSourceColors = {};
+var logTerm = document.getElementById('logTerm');
+var logSourcesEl = document.getElementById('logSources');
+var logEmptyEl = document.getElementById('logEmpty');
+var logConnected = false;
+var logDisconnectedShown = false;  // "연결안됨" 메시지를 이미 그렸는지(초기 placeholder와는 별개 플래그)
+
+function logFmtTs(epoch) {
+  var d = new Date(epoch * 1000);
+  return d.toTimeString().slice(0, 8);
+}
+
+function logIsNearBottom() {
+  return logTerm.scrollHeight - logTerm.scrollTop - logTerm.clientHeight < 60;
+}
+
+function logEscapeHtml(s) {
+  var d = document.createElement('div');
+  d.textContent = s;
+  return d.innerHTML;
+}
+
+function logRenderSourcesBar(status, sources) {
+  logSourceColors = {};
+  sources.forEach(function(s) { logSourceColors[s.tag] = s.color; });
+  var now = Date.now() / 1000;
+  logSourcesEl.innerHTML = sources.map(function(s) {
+    var st = status[s.tag] || {};
+    var stale = !st.last_seen || (now - st.last_seen) > 120 || !st.path_exists;
+    var label = !st.path_exists ? '파일없음' : (st.last_seen ? logFmtTs(st.last_seen) : '대기중');
+    return '<span class="' + (stale ? 'log-src-stale' : '') + '">' +
+           '<span class="log-src-dot" style="background:' + s.color + '"></span>' +
+           s.tag + ' <span style="color:var(--text-dim)">' + label + '</span></span>';
+  }).join('');
+}
+
+function logAppendLine(item) {
+  if (logEmptyEl) { logEmptyEl.remove(); logEmptyEl = null; }
+  var div = document.createElement('div');
+  div.className = 'log-line';
+  var color = logSourceColors[item.tag] || '#888';
+  div.innerHTML = '<span class="log-ts">' + logFmtTs(item.ts) + '</span>' +
+                   '<span class="log-tag" style="color:' + color + '">[' + item.tag + ']</span>' +
+                   logEscapeHtml(item.text);
+  logTerm.appendChild(div);
+  while (logTerm.children.length > LOG_MAX_LINES) {
+    logTerm.removeChild(logTerm.firstChild);
+  }
+}
+
+function logShowDisconnected() {
+  logConnected = false;
+  if (logDisconnectedShown) return;  // 이미 끊김 메시지 표시중(초기 placeholder와는 무관한 플래그)
+  logDisconnectedShown = true;
+  logTerm.innerHTML = '<div class="log-disconnected" id="logEmpty">' +
+    '<b>로그 서버 연결 안됨</b><br>로컬에서 <code>python zec_live_log_viewer_server.py</code> 실행 후 ' +
+    'http://127.0.0.1:8799 로 접속하면 실시간 로그가 흐릅니다.<br>' +
+    '(이 페이지가 GitHub Pages 공개버전이거나 파일로 직접 열었다면 로그패널은 항상 이 상태입니다)' +
+    '</div>';
+  logEmptyEl = document.getElementById('logEmpty');
+  logSourcesEl.innerHTML = '';
+}
+
+function logPoll() {
+  fetch('/api/logs?cursor=' + logCursor).then(function(r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  }).then(function(data) {
+    if (!logConnected) { logConnected = true; logDisconnectedShown = false; logTerm.innerHTML = ''; logEmptyEl = null; }
+    var stick = logIsNearBottom();
+    data.items.forEach(function(item) { logAppendLine(item); });
+    logCursor = data.cursor;
+    logRenderSourcesBar(data.status, data.sources);
+    if (stick && data.items.length) { logTerm.scrollTop = logTerm.scrollHeight; }
+    setTimeout(logPoll, LOG_POLL_MS);
+  }).catch(function() {
+    logShowDisconnected();
+    setTimeout(logPoll, LOG_RETRY_MS);
+  });
+}
+logPoll();
 </script>
 </body>
 </html>
