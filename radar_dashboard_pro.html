@@ -134,6 +134,7 @@
 
   /* ---- 실시간 로그 패널(zec_live_log_viewer_server.py가 이 HTML을 서빙할 때만 작동) ---- */
   .log-sources { display: flex; gap: 14px; font-size: 10px; }
+  .log-mode-note { font-size: 10px; color: var(--amber); font-weight: 400; margin-left: 10px; }
   .log-src-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 5px; }
   .log-src-stale { opacity: 0.4; }
   .log-term { height: 320px; overflow-y: auto; padding: 6px 10px; background: var(--bg); }
@@ -164,14 +165,133 @@
     <span id="sysStat" class="sysstat ok">
       <span class="sysdot ok"></span>시스템 <b>정상</b>
     </span>
-    &nbsp;&nbsp;생성시각 2026-10-08 15:24:45 KST
+    &nbsp;&nbsp;생성시각 2026-10-08 15:41:36 KST
     <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">라이트모드</button>
   </div>
 </div>
 
 <div class="panel" style="margin-top:1px;">
-  <div class="panel-head">실시간 로그<span class="log-sources" id="logSources"></span></div>
-  <div class="log-term" id="logTerm"><div class="log-disconnected" id="logEmpty">로그 연결 대기중...</div></div>
+  <div class="panel-head">실시간 로그<span class="log-mode-note" id="logModeNote">최근 로그(2026-10-08 15:41:36 KST 기준, 실시간 아님)</span><span class="log-sources" id="logSources"></span></div>
+  <div class="log-term" id="logTerm"><div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[write] F:\t5m_engine_FULL\zec_screener_tier1_state.json (521 symbols, watchlist cut=0.8411, 53 on watchlist)</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[tracker] today=2026-09-30 n_new_logged=53 n_resolved_this_run=0 cumulative: total=371 resolved=0 pending=371 hit_rate=None</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[model] refit on frozen TRAIN (141087 rows, date&lt;2026-06-01) - reproduces 진행상황5&#x27;s official Stage 1 model</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[scan] 521 scored, 133 skipped (no/short cache), 10s elapsed</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[write] F:\t5m_engine_FULL\zec_screener_tier1_state.json (521 symbols, watchlist cut=0.8411, 53 on watchlist)</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[tracker] today=2026-10-01 n_new_logged=53 n_resolved_this_run=0 cumulative: total=424 resolved=0 pending=424 hit_rate=None</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[model] refit on frozen TRAIN (141087 rows, date&lt;2026-06-01) - reproduces 진행상황5&#x27;s official Stage 1 model</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[scan] 521 scored, 133 skipped (no/short cache), 10s elapsed</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[write] F:\t5m_engine_FULL\zec_screener_tier1_state.json (521 symbols, watchlist cut=0.8459, 53 on watchlist)</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[tracker] today=2026-10-02 n_new_logged=53 n_resolved_this_run=0 cumulative: total=477 resolved=0 pending=477 hit_rate=None</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[model] refit on frozen TRAIN (141087 rows, date&lt;2026-06-01) - reproduces 진행상황5&#x27;s official Stage 1 model</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[scan] 521 scored, 133 skipped (no/short cache), 10s elapsed</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[write] F:\t5m_engine_FULL\zec_screener_tier1_state.json (521 symbols, watchlist cut=0.8484, 53 on watchlist)</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[tracker] today=2026-10-03 n_new_logged=53 n_resolved_this_run=0 cumulative: total=530 resolved=0 pending=530 hit_rate=None</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[model] refit on frozen TRAIN (141087 rows, date&lt;2026-06-01) - reproduces 진행상황5&#x27;s official Stage 1 model</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[scan] 518 scored, 136 skipped (no/short cache), 11s elapsed</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[write] F:\t5m_engine_FULL\zec_screener_tier1_state.json (518 symbols, watchlist cut=0.8507, 52 on watchlist)</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[tracker] today=2026-10-04 n_new_logged=52 n_resolved_this_run=0 cumulative: total=582 resolved=0 pending=582 hit_rate=None</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[model] refit on frozen TRAIN (141087 rows, date&lt;2026-06-01) - reproduces 진행상황5&#x27;s official Stage 1 model</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[scan] 518 scored, 136 skipped (no/short cache), 10s elapsed</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[write] F:\t5m_engine_FULL\zec_screener_tier1_state.json (518 symbols, watchlist cut=0.8552, 52 on watchlist)</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[tracker] today=2026-10-05 n_new_logged=52 n_resolved_this_run=0 cumulative: total=634 resolved=0 pending=634 hit_rate=None</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[model] refit on frozen TRAIN (141087 rows, date&lt;2026-06-01) - reproduces 진행상황5&#x27;s official Stage 1 model</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[scan] 518 scored, 136 skipped (no/short cache), 10s elapsed</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[write] F:\t5m_engine_FULL\zec_screener_tier1_state.json (518 symbols, watchlist cut=0.8594, 52 on watchlist)</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[tracker] today=2026-10-06 n_new_logged=52 n_resolved_this_run=0 cumulative: total=686 resolved=0 pending=686 hit_rate=None</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[model] refit on frozen TRAIN (141087 rows, date&lt;2026-06-01) - reproduces 진행상황5&#x27;s official Stage 1 model</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[scan] 518 scored, 136 skipped (no/short cache), 26s elapsed</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[write] F:\t5m_engine_FULL\zec_screener_tier1_state.json (518 symbols, watchlist cut=0.8614, 52 on watchlist)</div>
+<div class='log-line'><span class='log-tag' style='color:#3d7fc9'>[TIER1]</span>[tracker] today=2026-10-07 n_new_logged=52 n_resolved_this_run=0 cumulative: total=738 resolved=0 pending=738 hit_rate=None</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[model] magnitude-tier (tau=15%, 200%+) refit, TRAIN n=2162</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[model] momentum-vs-reversal (tau=30%) refit, TRAIN n=4253</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[kline_refresh] {&#x27;fresh&#x27;: 0, &#x27;updated&#x27;: 0, &#x27;today_refreshed&#x27;: 651, &#x27;no_cache&#x27;: 3, &#x27;no_new_data&#x27;: 0, &#x27;fetch_error&#x27;: 0}</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[scan] 648 symbols scanned, 6 skipped (no/short cache), 473s elapsed</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[tier2] 0 new crossing(s) this poll</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[tier3] 0 new crossing(s) this poll</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[write] F:\t5m_engine_FULL\zec_screener_live_state.json (cumulative), zec_screener_tier2_tier3_state.json (tier2=6222, tier3=3541 total flagged-to-date)</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[model] continuation (tau=30%) refit, TRAIN n=6127</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[model] FAST-subdiscrimination (tau=25%) refit, TRAIN n=1172</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[model] magnitude-tier (tau=15%, 200%+) refit, TRAIN n=2162</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[model] momentum-vs-reversal (tau=30%) refit, TRAIN n=4253</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[kline_refresh] {&#x27;fresh&#x27;: 0, &#x27;updated&#x27;: 0, &#x27;today_refreshed&#x27;: 651, &#x27;no_cache&#x27;: 3, &#x27;no_new_data&#x27;: 0, &#x27;fetch_error&#x27;: 0}</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[scan] 648 symbols scanned, 6 skipped (no/short cache), 470s elapsed</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[tier2] 1 new crossing(s) this poll</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[tier3] 0 new crossing(s) this poll</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[write] F:\t5m_engine_FULL\zec_screener_live_state.json (cumulative), zec_screener_tier2_tier3_state.json (tier2=6223, tier3=3541 total flagged-to-date)</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[model] continuation (tau=30%) refit, TRAIN n=6127</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[model] FAST-subdiscrimination (tau=25%) refit, TRAIN n=1172</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[model] magnitude-tier (tau=15%, 200%+) refit, TRAIN n=2162</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[model] momentum-vs-reversal (tau=30%) refit, TRAIN n=4253</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[kline_refresh] {&#x27;fresh&#x27;: 0, &#x27;updated&#x27;: 0, &#x27;today_refreshed&#x27;: 651, &#x27;no_cache&#x27;: 3, &#x27;no_new_data&#x27;: 0, &#x27;fetch_error&#x27;: 0}</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[scan] 648 symbols scanned, 6 skipped (no/short cache), 486s elapsed</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[tier2] 0 new crossing(s) this poll</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[tier3] 0 new crossing(s) this poll</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[write] F:\t5m_engine_FULL\zec_screener_live_state.json (cumulative), zec_screener_tier2_tier3_state.json (tier2=6223, tier3=3541 total flagged-to-date)</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[model] continuation (tau=30%) refit, TRAIN n=6127</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[model] FAST-subdiscrimination (tau=25%) refit, TRAIN n=1172</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[model] magnitude-tier (tau=15%, 200%+) refit, TRAIN n=2162</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[model] momentum-vs-reversal (tau=30%) refit, TRAIN n=4253</div>
+<div class='log-line'><span class='log-tag' style='color:#2fae60'>[TIER23]</span>[kline_refresh] {&#x27;fresh&#x27;: 0, &#x27;updated&#x27;: 0, &#x27;today_refreshed&#x27;: 651, &#x27;no_cache&#x27;: 3, &#x27;no_new_data&#x27;: 0, &#x27;fetch_error&#x27;: 0}</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>  [CVCUSDT] 진입(FAST) down @ 0.027876 (FAST세분화=0.933)</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>=== 폴 완료: 진입1건 청산0건, 현재보유121건 ===</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>=== RADAR_MOMENTUM_V1 폴 시작 2026-10-08 04:11:44.807744+00:00 ===</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>[model] momentum(tau=30%) refit for exit-scoring, TRAIN n=4253</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>[model] FAST-subdiscrimination(tau=25%) refit for exit-scoring, TRAIN n=1172</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>[구제] 콜드스타트 baseline이었지만 아직 관찰중+신선(35일이내)인 38건을 진입평가 대상으로 재편입(사용자 지시 2026-09-24)</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>=== 폴 완료: 진입0건 청산0건, 현재보유121건 ===</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>=== RADAR_MOMENTUM_V1 폴 시작 2026-10-08 04:42:36.684872+00:00 ===</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>[model] momentum(tau=30%) refit for exit-scoring, TRAIN n=4253</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>[model] FAST-subdiscrimination(tau=25%) refit for exit-scoring, TRAIN n=1172</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>[구제] 콜드스타트 baseline이었지만 아직 관찰중+신선(35일이내)인 38건을 진입평가 대상으로 재편입(사용자 지시 2026-09-24)</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>  [GOATUSDT] 추가진입(물타기) @ 0.016658 - 평단 0.018509-&gt;0.017535, 노출 2.00-&gt;4.00USDT</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>  [GOATUSDT] 청산 recovery_tp_sameday pnl=+3.84% (+0.077USDT) [물타기사용, 노출2.0x]</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>  [GOATUSDT] 진입(FAST) down @ 0.016812 (FAST세분화=0.887)</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>=== 폴 완료: 진입1건 청산1건, 현재보유121건 ===</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>=== RADAR_MOMENTUM_V1 폴 시작 2026-10-08 05:12:16.651743+00:00 ===</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>[model] momentum(tau=30%) refit for exit-scoring, TRAIN n=4253</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>[model] FAST-subdiscrimination(tau=25%) refit for exit-scoring, TRAIN n=1172</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>[구제] 콜드스타트 baseline이었지만 아직 관찰중+신선(35일이내)인 39건을 진입평가 대상으로 재편입(사용자 지시 2026-09-24)</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>=== 폴 완료: 진입0건 청산0건, 현재보유121건 ===</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>=== RADAR_MOMENTUM_V1 폴 시작 2026-10-08 05:42:10.939917+00:00 ===</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>[model] momentum(tau=30%) refit for exit-scoring, TRAIN n=4253</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>[model] FAST-subdiscrimination(tau=25%) refit for exit-scoring, TRAIN n=1172</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>[구제] 콜드스타트 baseline이었지만 아직 관찰중+신선(35일이내)인 38건을 진입평가 대상으로 재편입(사용자 지시 2026-09-24)</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>=== 폴 완료: 진입0건 청산0건, 현재보유121건 ===</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>=== RADAR_MOMENTUM_V1 폴 시작 2026-10-08 06:12:28.173394+00:00 ===</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>[model] momentum(tau=30%) refit for exit-scoring, TRAIN n=4253</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>[model] FAST-subdiscrimination(tau=25%) refit for exit-scoring, TRAIN n=1172</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>[구제] 콜드스타트 baseline이었지만 아직 관찰중+신선(35일이내)인 38건을 진입평가 대상으로 재편입(사용자 지시 2026-09-24)</div>
+<div class='log-line'><span class='log-tag' style='color:#c99a3c'>[PAPER]</span>=== 폴 완료: 진입0건 청산0건, 현재보유121건 ===</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>=== RADAR_LIVE_V1 폴 시작 [TESTNET(테스트넷 실주문, 가짜자금)] 2026-10-08 05:21:03.643668+00:00 ===</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>[model] momentum(tau=30%) refit for exit-scoring, TRAIN n=4253</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>[model] FAST-subdiscrimination(tau=25%) refit for exit-scoring, TRAIN n=1172</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>  [AINUSDT] 추가진입(물타기) @ 0.037782 - 평단 0.041980-&gt;0.039771, 노출 2.00-&gt;4.00USDT</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>  [AINUSDT] 실제 물타기체결 @ 0.040030 - 평단 0.041980-&gt;0.040983, 노출 10.00-&gt;19.97USDT</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>  [AINUSDT] 청산 recovery_tp_sameday pnl=-4.80% (-0.480USDT) [TESTNET] [물타기사용, 노출2.0x]</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>  [1000000BOBUSDT] 진입후보였으나 거래소 status=SETTLING(TRADING 아님) - 스킵</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>  [1000000BOBUSDT] 진입후보였으나 거래소 status=SETTLING(TRADING 아님) - 스킵</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>  [ATUSDT] 진입(FAST) down @ 0.131700 (FAST세분화=0.936) [TESTNET]</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>=== 폴 완료: 진입1건 청산1건, 현재보유20건 [TESTNET(테스트넷 실주문, 가짜자금)] ===</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>=== RADAR_LIVE_V1 폴 시작 [TESTNET(테스트넷 실주문, 가짜자금)] 2026-10-08 05:51:03.954268+00:00 ===</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>[model] momentum(tau=30%) refit for exit-scoring, TRAIN n=4253</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>[model] FAST-subdiscrimination(tau=25%) refit for exit-scoring, TRAIN n=1172</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>  [AIOTUSDT] 추가진입(물타기,FAST) @ 0.042872 - 평단 0.046600-&gt;0.044658, 노출 2.00-&gt;4.00USDT</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>  [AIOTUSDT] 실제 물타기체결 @ 0.042200 - 평단 0.046600-&gt;0.044298, 노출 10.00-&gt;20.00USDT</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>  [AIOTUSDT] 청산 recovery_tp_sameday pnl=-10.08% (-1.008USDT) [TESTNET] [물타기사용, 노출2.0x]</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>[구제] seen이었지만 아직 관찰중+신선(35일이내)+미거래인 7건을 진입평가 대상으로 재편입(진행상황58 버그수정)</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>  [1000000BOBUSDT] 진입후보였으나 거래소 status=SETTLING(TRADING 아님) - 스킵</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>  [1000000BOBUSDT] 진입후보였으나 거래소 status=SETTLING(TRADING 아님) - 스킵</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>  [AIOTUSDT] 진입(GRADUAL) up @ 0.042200 (모멘텀=0.862 지속성=0.815) [TESTNET]</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>=== 폴 완료: 진입1건 청산1건, 현재보유20건 [TESTNET(테스트넷 실주문, 가짜자금)] ===</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>=== RADAR_LIVE_V1 폴 시작 [TESTNET(테스트넷 실주문, 가짜자금)] 2026-10-08 06:21:03.965437+00:00 ===</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>[model] momentum(tau=30%) refit for exit-scoring, TRAIN n=4253</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>[model] FAST-subdiscrimination(tau=25%) refit for exit-scoring, TRAIN n=1172</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>  [AIOTUSDT] 청산 baseline_tp pnl=-2.21% (-0.221USDT) [TESTNET]</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>[구제] seen이었지만 아직 관찰중+신선(35일이내)+미거래인 4건을 진입평가 대상으로 재편입(진행상황58 버그수정)</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>  [1000000BOBUSDT] 진입후보였으나 거래소 status=SETTLING(TRADING 아님) - 스킵</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>  [1000000BOBUSDT] 진입후보였으나 거래소 status=SETTLING(TRADING 아님) - 스킵</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>  [AIOTUSDT] 진입(GRADUAL) up @ 0.041400 (모멘텀=0.940 지속성=0.919) [TESTNET]</div>
+<div class='log-line'><span class='log-tag' style='color:#e14b4b'>[LIVE_SHADOW]</span>=== 폴 완료: 진입1건 청산1건, 현재보유20건 [TESTNET(테스트넷 실주문, 가짜자금)] ===</div></div>
 </div>
 
 <div class="kpi-row">
@@ -337,26 +457,26 @@
         <table>
           <thead><tr><th>심볼</th><th>타입</th><th class="num">진입가</th><th>진입시각(KST)</th>
             <th class="num">보유기간</th><th>상태</th><th>주문모드</th></tr></thead>
-          <tbody><tr><td class='sym'>AIOTUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.041400</td><td>2026-10-08 15:21:22</td><td class='num'>0.00d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>ATUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='neg'>SHORT</span></td><td class='num'>0.131700</td><td>2026-10-08 14:21:27</td><td class='num'>0.04d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>ATHUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.006720</td><td>2026-10-08 11:22:56</td><td class='num'>0.17d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>ASTERUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.708300</td><td>2026-10-08 11:22:50</td><td class='num'>0.17d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>ARIAUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='neg'>SHORT</span></td><td class='num'>0.034070</td><td>2026-10-08 11:22:45</td><td class='num'>0.17d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>ARCUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='neg'>SHORT</span></td><td class='num'>0.063660</td><td>2026-10-08 11:22:40</td><td class='num'>0.17d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>ALPINEUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.366900</td><td>2026-10-08 11:22:35</td><td class='num'>0.17d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>ALLUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.657400</td><td>2026-10-08 11:22:29</td><td class='num'>0.17d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>ALCHUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.045390</td><td>2026-10-08 11:22:21</td><td class='num'>0.17d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>AKTUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.704700</td><td>2026-10-08 11:22:16</td><td class='num'>0.17d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>AKEUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='neg'>SHORT</span></td><td class='num'>0.027515</td><td>2026-10-08 11:22:10</td><td class='num'>0.17d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>AGTUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.025828</td><td>2026-10-08 11:21:54</td><td class='num'>0.17d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>AEVOUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.025810</td><td>2026-10-08 11:21:49</td><td class='num'>0.17d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>AEROUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.800555</td><td>2026-10-08 11:21:44</td><td class='num'>0.17d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>1INCHUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.098690</td><td>2026-10-08 11:21:30</td><td class='num'>0.17d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>1000SATSUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.000012</td><td>2026-10-08 11:21:25</td><td class='num'>0.17d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>1000RATSUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.039380</td><td>2026-10-08 11:21:20</td><td class='num'>0.17d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>1000000MOGUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.113800</td><td>2026-10-08 11:21:15</td><td class='num'>0.17d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
-<tr><td class='sym'>0GUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.302451</td><td>2026-10-08 10:21:15</td><td class='num'>0.21d</td><td>정상</td><td class='dim'>PAPER_SHADOW(과거분,주문없음)</td></tr>
-<tr><td class='sym'>LUNA2USDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='neg'>SHORT</span></td><td class='num'>0.047666</td><td>2026-10-07 11:21:15</td><td class='num'>1.17d</td><td>정상</td><td class='dim'>PAPER_SHADOW(과거분,주문없음)</td></tr></tbody>
+          <tbody><tr><td class='sym'>AIOTUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.041400</td><td>2026-10-08 15:21:22</td><td class='num'>0.01d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>ATUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='neg'>SHORT</span></td><td class='num'>0.131700</td><td>2026-10-08 14:21:27</td><td class='num'>0.06d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>ATHUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.006720</td><td>2026-10-08 11:22:56</td><td class='num'>0.18d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>ASTERUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.708300</td><td>2026-10-08 11:22:50</td><td class='num'>0.18d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>ARIAUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='neg'>SHORT</span></td><td class='num'>0.034070</td><td>2026-10-08 11:22:45</td><td class='num'>0.18d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>ARCUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='neg'>SHORT</span></td><td class='num'>0.063660</td><td>2026-10-08 11:22:40</td><td class='num'>0.18d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>ALPINEUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.366900</td><td>2026-10-08 11:22:35</td><td class='num'>0.18d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>ALLUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.657400</td><td>2026-10-08 11:22:29</td><td class='num'>0.18d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>ALCHUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.045390</td><td>2026-10-08 11:22:21</td><td class='num'>0.18d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>AKTUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.704700</td><td>2026-10-08 11:22:16</td><td class='num'>0.18d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>AKEUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='neg'>SHORT</span></td><td class='num'>0.027515</td><td>2026-10-08 11:22:10</td><td class='num'>0.18d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>AGTUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.025828</td><td>2026-10-08 11:21:54</td><td class='num'>0.18d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>AEVOUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.025810</td><td>2026-10-08 11:21:49</td><td class='num'>0.18d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>AEROUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.800555</td><td>2026-10-08 11:21:44</td><td class='num'>0.18d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>1INCHUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.098690</td><td>2026-10-08 11:21:30</td><td class='num'>0.18d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>1000SATSUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.000012</td><td>2026-10-08 11:21:25</td><td class='num'>0.18d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>1000RATSUSDT</td><td><span class='tag tag-fast'>FAST</span> <span class='pos'>LONG</span></td><td class='num'>0.039380</td><td>2026-10-08 11:21:20</td><td class='num'>0.18d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>1000000MOGUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.113800</td><td>2026-10-08 11:21:15</td><td class='num'>0.18d</td><td>정상</td><td class='amber'>TESTNET(실주문)</td></tr>
+<tr><td class='sym'>0GUSDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='pos'>LONG</span></td><td class='num'>0.302451</td><td>2026-10-08 10:21:15</td><td class='num'>0.22d</td><td>정상</td><td class='dim'>PAPER_SHADOW(과거분,주문없음)</td></tr>
+<tr><td class='sym'>LUNA2USDT</td><td><span class='tag tag-gradual'>GRADUAL</span> <span class='neg'>SHORT</span></td><td class='num'>0.047666</td><td>2026-10-07 11:21:15</td><td class='num'>1.18d</td><td>정상</td><td class='dim'>PAPER_SHADOW(과거분,주문없음)</td></tr></tbody>
         </table>
       </div>
     </div>
@@ -656,6 +776,12 @@ function logShowDisconnected() {
   logConnected = false;
   if (logDisconnectedShown) return;  // 이미 끊김 메시지 표시중(초기 placeholder와는 무관한 플래그)
   logDisconnectedShown = true;
+  // [2026-10-08] 생성시점에 구워넣은 정적 로그스냅샷(.log-line)이 이미 떠있으면 지우지 않음 -
+  // GitHub Pages 공개버전은 구조적으로 /api/logs가 없어 이 catch가 항상 실행되는데, 매번
+  // 스냅샷을 "연결안됨" 배너로 덮어써버리면 사용자가 요청한 "최근 로그라도 보이게"가 무의미해짐.
+  // 패널헤드의 logModeNote("최근 로그... 실시간 아님")가 이미 상황을 명확히 설명하므로 본문은
+  // 그대로 둠 - 스냅샷이 아예 없을 때(로그파일 자체가 없던 첫 실행 등)만 안내배너로 대체.
+  if (logTerm.querySelector('.log-line')) return;
   logTerm.innerHTML = '<div class="log-disconnected" id="logEmpty">' +
     '<b>로그 서버 연결 안됨</b><br>로컬에서 <code>python zec_live_log_viewer_server.py</code> 실행 후 ' +
     'http://127.0.0.1:8799 로 접속하면 실시간 로그가 흐릅니다.<br>' +
@@ -670,7 +796,11 @@ function logPoll() {
     if (!r.ok) throw new Error('HTTP ' + r.status);
     return r.json();
   }).then(function(data) {
-    if (!logConnected) { logConnected = true; logDisconnectedShown = false; logTerm.innerHTML = ''; logEmptyEl = null; }
+    if (!logConnected) {
+      logConnected = true; logDisconnectedShown = false; logTerm.innerHTML = ''; logEmptyEl = null;
+      var noteEl = document.getElementById('logModeNote');
+      if (noteEl) noteEl.textContent = '';  // 실시간 연결 성공 - "정적 스냅샷" 안내문구 제거
+    }
     var stick = logIsNearBottom();
     data.items.forEach(function(item) { logAppendLine(item); });
     logCursor = data.cursor;
