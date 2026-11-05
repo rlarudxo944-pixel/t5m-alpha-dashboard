@@ -193,7 +193,7 @@
   <a href="#hb-section" id="h1HbStatus" class="hb-status-badge hb-status-ok"
      title="클릭하면 하트비트 상세로 이동">🟢 정상</a>
 </h1>
-<div class="meta">Tier1 갱신: 2026-11-04 15:10:13.811953+00:00 · Tier2/3 갱신: 2026-11-05 14:40:58.428944+00:00 ·
+<div class="meta">Tier1 갱신: 2026-11-05 15:10:13.817006+00:00 · Tier2/3 갱신: 2026-11-05 14:40:58.428944+00:00 ·
   Tier1 스캔 519/654심볼</div>
 <div class="guidance-banner">💡<b>[운용가이드]</b> 슬롯 3/200 사용중, 197건 신규진입 가능합니다. 상단 [Active]포지션과 아래 [Step3] 최우선후보를 같이 확인하세요.</div>
 
@@ -227,11 +227,11 @@
 <div class="tablewrap"><table id="hb">
 <thead><tr><th class="sym">작업</th><th>마지막 실행(UTC)</th><th>경과</th><th>상태</th><th>처리건수</th></tr></thead>
 <tbody>
-<tr class='hb-row' data-last-run='2026-11-04 15:10:14.054626+00:00' data-max-hours='26'><td class='sym'>1단 관심목록 스캔</td><td class='hb-lastrun'>2026-11-04 15:10:14.054626+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 519 / 스킵 135</td></tr>
-<tr class='hb-row' data-last-run='2026-11-04 15:10:14.640426+00:00' data-max-hours='26'><td class='sym'>1단 라이브 선행성 추적기</td><td class='hb-lastrun'>2026-11-04 15:10:14.640426+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 1986 / 스킵 0</td></tr>
+<tr class='hb-row' data-last-run='2026-11-05 15:10:13.884006+00:00' data-max-hours='26'><td class='sym'>1단 관심목록 스캔</td><td class='hb-lastrun'>2026-11-05 15:10:13.884006+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 519 / 스킵 135</td></tr>
+<tr class='hb-row' data-last-run='2026-11-05 15:10:14.545004+00:00' data-max-hours='26'><td class='sym'>1단 라이브 선행성 추적기</td><td class='hb-lastrun'>2026-11-05 15:10:14.545004+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 2038 / 스킵 0</td></tr>
 <tr class='hb-row' data-last-run='2026-11-05 14:41:00.055249+00:00' data-max-hours='1'><td class='sym'>2/3단 실시간스캐너</td><td class='hb-lastrun'>2026-11-05 14:41:00.055249+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 649 / 스킵 5 · 신규 Tier2 0건 / Tier3 0건 · 가격캐시: 최신0 / 당일갱신651 / 캐치업(1일+묵음)0 / 캐시없음3 / 오류0</td></tr>
 <tr class='hb-row' data-last-run='2026-11-05 14:41:13.608786+00:00' data-max-hours='1'><td class='sym'>신규 페이퍼엔진</td><td class='hb-lastrun'>2026-11-05 14:41:13.608786+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 3 / 스킵 N/A · 이번폴 진입 0건 / 청산 0건</td></tr>
-<tr class='hb-row' data-last-run='2026-11-05 14:21:14.786891+00:00' data-max-hours='1'><td class='sym'>LIVE 실행루프(섀도우)</td><td class='hb-lastrun'>2026-11-05 14:21:14.786891+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 30 / 스킵 N/A · 이번폴 진입 0건 / 청산 0건</td></tr>
+<tr class='hb-row' data-last-run='2026-11-05 14:51:14.237463+00:00' data-max-hours='1'><td class='sym'>LIVE 실행루프(섀도우)</td><td class='hb-lastrun'>2026-11-05 14:51:14.237463+00:00</td><td class='hb-age'>계산중...</td><td class='hb-ok'>정상</td><td>처리 30 / 스킵 N/A · 이번폴 진입 0건 / 청산 0건</td></tr>
 </tbody></table></div>
 </details>
 
@@ -294,79 +294,79 @@ FAST형도 2026-10-05부터 동일구조(진행상황44/45, add@-8%/recover+3%/�
 <h2 style="border-left-color:#6ac2ff;"><span class="step-badge step1">[Step1]</span> 선행탐지 - 🔭 Tier1 관심목록 Top10 (사전관찰, 방향무관 임박점수)</h2>
 <div class="n">유일하게 "아직 안 움직인 시점"에 미리 보는 층위(상위10%컷=0.896,
 전체 52개 중 상위10개만 표시) · <a href="#t1-detail" style="color:#a9d4f5;">방법론/BTRUSDT검증사례↓</a></div>
-<div class='audit-note'>판정완료 1258건 중 실제 50%+무브 적중 <b>31.5%</b> (백테스트 TEST 상위10% 실측 발생률과 비교 참고용). 대기중 728건.</div>
+<div class='audit-note'>판정완료 1310건 중 실제 50%+무브 적중 <b>31.7%</b> (백테스트 TEST 상위10% 실측 발생률과 비교 참고용). 대기중 728건.</div>
 <div class="tablewrap"><table id="t1">
 <thead><tr><th>순위</th><th class="sym">심볼</th><th>임박점수</th><th>vol_ratio</th>
 <th>ATH대비</th><th>ATL대비</th><th>과거이동횟수</th></tr></thead>
 <tbody>
-<tr><td>1</td><td class='sym'>SUNUSDT</td><td>0.995</td><td>3.31</td><td>-51.83%</td><td>+5.17%</td><td>1</td></tr>
-<tr><td>2</td><td class='sym'>PAXGUSDT</td><td>0.990</td><td>0.98</td><td>-28.76%</td><td>+20.42%</td><td>1</td></tr>
-<tr><td>3</td><td class='sym'>QNTUSDT</td><td>0.982</td><td>1.01</td><td>-32.87%</td><td>+244.25%</td><td>2</td></tr>
-<tr><td>4</td><td class='sym'>ASTERUSDT</td><td>0.980</td><td>0.80</td><td>-69.71%</td><td>+49.74%</td><td>5</td></tr>
-<tr><td>5</td><td class='sym'>IDOLUSDT</td><td>0.976</td><td>251.63</td><td>-50.10%</td><td>+185.16%</td><td>9</td></tr>
-<tr><td>6</td><td class='sym'>NMRUSDT</td><td>0.969</td><td>1.30</td><td>-54.75%</td><td>+53.31%</td><td>5</td></tr>
-<tr><td>7</td><td class='sym'>RENDERUSDT</td><td>0.956</td><td>0.77</td><td>-67.56%</td><td>+23.34%</td><td>4</td></tr>
-<tr><td>8</td><td class='sym'>LYNUSDT</td><td>0.955</td><td>11.33</td><td>-93.66%</td><td>+71.27%</td><td>12</td></tr>
-<tr><td>9</td><td class='sym'>IRYSUSDT</td><td>0.954</td><td>43.82</td><td>-72.25%</td><td>+73.69%</td><td>7</td></tr>
-<tr><td>10</td><td class='sym'>MAVIAUSDT</td><td>0.945</td><td>1.48</td><td>-89.99%</td><td>+5.93%</td><td>7</td></tr>
+<tr><td>1</td><td class='sym'>SUNUSDT</td><td>0.995</td><td>3.47</td><td>-51.86%</td><td>+5.10%</td><td>1</td></tr>
+<tr><td>2</td><td class='sym'>PAXGUSDT</td><td>0.990</td><td>1.12</td><td>-26.68%</td><td>+23.94%</td><td>1</td></tr>
+<tr><td>3</td><td class='sym'>IDOLUSDT</td><td>0.985</td><td>254.66</td><td>-47.30%</td><td>+201.17%</td><td>9</td></tr>
+<tr><td>4</td><td class='sym'>QNTUSDT</td><td>0.982</td><td>0.92</td><td>-28.75%</td><td>+265.35%</td><td>2</td></tr>
+<tr><td>5</td><td class='sym'>ASTERUSDT</td><td>0.981</td><td>0.82</td><td>-69.47%</td><td>+50.92%</td><td>5</td></tr>
+<tr><td>6</td><td class='sym'>NMRUSDT</td><td>0.970</td><td>1.15</td><td>-54.93%</td><td>+52.71%</td><td>5</td></tr>
+<tr><td>7</td><td class='sym'>LYNUSDT</td><td>0.955</td><td>12.75</td><td>-94.31%</td><td>+53.65%</td><td>12</td></tr>
+<tr><td>8</td><td class='sym'>RENDERUSDT</td><td>0.955</td><td>0.78</td><td>-65.14%</td><td>+32.53%</td><td>4</td></tr>
+<tr><td>9</td><td class='sym'>IRYSUSDT</td><td>0.950</td><td>35.28</td><td>-73.01%</td><td>+68.95%</td><td>7</td></tr>
+<tr><td>10</td><td class='sym'>MAVIAUSDT</td><td>0.945</td><td>1.52</td><td>-89.87%</td><td>+7.16%</td><td>7</td></tr>
 </tbody></table></div>
 <details style="margin-top:8px;"><summary style="cursor:pointer;color:#a9d4f5;">전체 관심목록 52개 보기</summary>
 <div class="tablewrap" style="margin-top:6px;"><table>
 <thead><tr><th>순위</th><th class="sym">심볼</th><th>임박점수</th><th>vol_ratio</th>
 <th>ATH대비</th><th>ATL대비</th><th>과거이동횟수</th></tr></thead>
 <tbody>
-<tr><td>1</td><td class='sym'>SUNUSDT</td><td>0.995</td><td>3.31</td><td>-51.83%</td><td>+5.17%</td><td>1</td></tr>
-<tr><td>2</td><td class='sym'>PAXGUSDT</td><td>0.990</td><td>0.98</td><td>-28.76%</td><td>+20.42%</td><td>1</td></tr>
-<tr><td>3</td><td class='sym'>QNTUSDT</td><td>0.982</td><td>1.01</td><td>-32.87%</td><td>+244.25%</td><td>2</td></tr>
-<tr><td>4</td><td class='sym'>ASTERUSDT</td><td>0.980</td><td>0.80</td><td>-69.71%</td><td>+49.74%</td><td>5</td></tr>
-<tr><td>5</td><td class='sym'>IDOLUSDT</td><td>0.976</td><td>251.63</td><td>-50.10%</td><td>+185.16%</td><td>9</td></tr>
-<tr><td>6</td><td class='sym'>NMRUSDT</td><td>0.969</td><td>1.30</td><td>-54.75%</td><td>+53.31%</td><td>5</td></tr>
-<tr><td>7</td><td class='sym'>RENDERUSDT</td><td>0.956</td><td>0.77</td><td>-67.56%</td><td>+23.34%</td><td>4</td></tr>
-<tr><td>8</td><td class='sym'>LYNUSDT</td><td>0.955</td><td>11.33</td><td>-93.66%</td><td>+71.27%</td><td>12</td></tr>
-<tr><td>9</td><td class='sym'>IRYSUSDT</td><td>0.954</td><td>43.82</td><td>-72.25%</td><td>+73.69%</td><td>7</td></tr>
-<tr><td>10</td><td class='sym'>MAVIAUSDT</td><td>0.945</td><td>1.48</td><td>-89.99%</td><td>+5.93%</td><td>7</td></tr>
-<tr><td>11</td><td class='sym'>BANANAUSDT</td><td>0.944</td><td>0.68</td><td>-89.52%</td><td>+21.50%</td><td>5</td></tr>
-<tr><td>12</td><td class='sym'>PUMPUSDT</td><td>0.933</td><td>0.65</td><td>-49.86%</td><td>+260.80%</td><td>8</td></tr>
-<tr><td>13</td><td class='sym'>OGUSDT</td><td>0.932</td><td>1.05</td><td>-90.26%</td><td>+1.24%</td><td>4</td></tr>
-<tr><td>14</td><td class='sym'>IOTXUSDT</td><td>0.932</td><td>1.04</td><td>-89.51%</td><td>+58.98%</td><td>2</td></tr>
-<tr><td>15</td><td class='sym'>DOODUSDT</td><td>0.930</td><td>15.70</td><td>-85.64%</td><td>+52.50%</td><td>7</td></tr>
-<tr><td>16</td><td class='sym'>AGTUSDT</td><td>0.929</td><td>22.52</td><td>-50.87%</td><td>+1554.93%</td><td>15</td></tr>
-<tr><td>17</td><td class='sym'>ARCUSDT</td><td>0.928</td><td>0.97</td><td>-63.22%</td><td>+233.77%</td><td>17</td></tr>
-<tr><td>18</td><td class='sym'>TRUSTUSDT</td><td>0.927</td><td>2.26</td><td>-84.07%</td><td>+17.93%</td><td>3</td></tr>
-<tr><td>19</td><td class='sym'>CLOUSDT</td><td>0.926</td><td>0.58</td><td>-93.30%</td><td>+22.05%</td><td>18</td></tr>
-<tr><td>20</td><td class='sym'>ALLUSDT</td><td>0.926</td><td>1.21</td><td>-54.73%</td><td>+29.90%</td><td>3</td></tr>
-<tr><td>21</td><td class='sym'>QUSDT</td><td>0.924</td><td>20.58</td><td>-85.61%</td><td>+274.79%</td><td>12</td></tr>
-<tr><td>22</td><td class='sym'>TURTLEUSDT</td><td>0.923</td><td>3.41</td><td>-82.12%</td><td>+10.21%</td><td>3</td></tr>
-<tr><td>23</td><td class='sym'>BANUSDT</td><td>0.923</td><td>1.02</td><td>-70.27%</td><td>+3.38%</td><td>10</td></tr>
-<tr><td>24</td><td class='sym'>STBLUSDT</td><td>0.921</td><td>0.77</td><td>-95.71%</td><td>+19.88%</td><td>7</td></tr>
-<tr><td>25</td><td class='sym'>JCTUSDT</td><td>0.920</td><td>42.85</td><td>-46.22%</td><td>+276.62%</td><td>14</td></tr>
-<tr><td>26</td><td class='sym'>RESOLVUSDT</td><td>0.917</td><td>0.87</td><td>-95.74%</td><td>+2.19%</td><td>13</td></tr>
-<tr><td>27</td><td class='sym'>AIOTUSDT</td><td>0.916</td><td>16.39</td><td>-95.04%</td><td>+817.89%</td><td>17</td></tr>
-<tr><td>28</td><td class='sym'>1000000MOGUSDT</td><td>0.916</td><td>0.87</td><td>-94.99%</td><td>+2.80%</td><td>6</td></tr>
-<tr><td>29</td><td class='sym'>SAPIENUSDT</td><td>0.915</td><td>0.73</td><td>-85.49%</td><td>+1.87%</td><td>8</td></tr>
-<tr><td>30</td><td class='sym'>MOVEUSDT</td><td>0.915</td><td>0.54</td><td>-96.74%</td><td>+4.73%</td><td>5</td></tr>
-<tr><td>31</td><td class='sym'>XNYUSDT</td><td>0.915</td><td>1.38</td><td>-78.16%</td><td>+88.42%</td><td>15</td></tr>
-<tr><td>32</td><td class='sym'>PLAYUSDT</td><td>0.915</td><td>1.12</td><td>-91.61%</td><td>+5.00%</td><td>12</td></tr>
-<tr><td>33</td><td class='sym'>SKYUSDT</td><td>0.914</td><td>1.04</td><td>-33.07%</td><td>+56.90%</td><td>4</td></tr>
-<tr><td>34</td><td class='sym'>EVAAUSDT</td><td>0.914</td><td>80.29</td><td>-88.52%</td><td>+383.39%</td><td>14</td></tr>
-<tr><td>35</td><td class='sym'>ARIAUSDT</td><td>0.914</td><td>38.81</td><td>-85.05%</td><td>+439.34%</td><td>12</td></tr>
-<tr><td>36</td><td class='sym'>ASRUSDT</td><td>0.913</td><td>1.02</td><td>-91.08%</td><td>+1.17%</td><td>5</td></tr>
-<tr><td>37</td><td class='sym'>SAFEUSDT</td><td>0.912</td><td>1.36</td><td>-85.19%</td><td>+4.98%</td><td>3</td></tr>
-<tr><td>38</td><td class='sym'>FOLKSUSDT</td><td>0.910</td><td>0.75</td><td>-93.17%</td><td>+158.64%</td><td>8</td></tr>
-<tr><td>39</td><td class='sym'>AIXBTUSDT</td><td>0.908</td><td>0.71</td><td>-91.87%</td><td>+1.52%</td><td>7</td></tr>
-<tr><td>40</td><td class='sym'>HUSDT</td><td>0.905</td><td>0.57</td><td>-92.65%</td><td>+157.57%</td><td>16</td></tr>
-<tr><td>41</td><td class='sym'>SKYAIUSDT</td><td>0.905</td><td>0.60</td><td>-96.00%</td><td>+85.82%</td><td>17</td></tr>
-<tr><td>42</td><td class='sym'>1000CHEEMSUSDT</td><td>0.905</td><td>1.01</td><td>-81.28%</td><td>+0.00%</td><td>3</td></tr>
-<tr><td>43</td><td class='sym'>BNBUSDT</td><td>0.902</td><td>1.87</td><td>-46.53%</td><td>+27.78%</td><td>2</td></tr>
-<tr><td>44</td><td class='sym'>USELESSUSDT</td><td>0.901</td><td>0.50</td><td>-69.51%</td><td>+318.31%</td><td>18</td></tr>
-<tr><td>45</td><td class='sym'>SOONUSDT</td><td>0.899</td><td>2.12</td><td>-90.48%</td><td>+150.98%</td><td>8</td></tr>
-<tr><td>46</td><td class='sym'>AEROUSDT</td><td>0.899</td><td>0.75</td><td>-58.42%</td><td>+123.88%</td><td>7</td></tr>
-<tr><td>47</td><td class='sym'>BLESSUSDT</td><td>0.899</td><td>20.10</td><td>-95.41%</td><td>+117.86%</td><td>17</td></tr>
-<tr><td>48</td><td class='sym'>TOSHIUSDT</td><td>0.899</td><td>0.90</td><td>-90.11%</td><td>+5.92%</td><td>5</td></tr>
-<tr><td>49</td><td class='sym'>WETUSDT</td><td>0.897</td><td>11.34</td><td>-80.99%</td><td>+13.81%</td><td>4</td></tr>
-<tr><td>50</td><td class='sym'>VIRTUALUSDT</td><td>0.897</td><td>0.72</td><td>-72.04%</td><td>+14.01%</td><td>3</td></tr>
-<tr><td>51</td><td class='sym'>FLUIDUSDT</td><td>0.897</td><td>2.10</td><td>-70.52%</td><td>+150.67%</td><td>5</td></tr>
-<tr><td>52</td><td class='sym'>LINEAUSDT</td><td>0.897</td><td>0.52</td><td>-94.36%</td><td>+12.06%</td><td>5</td></tr>
+<tr><td>1</td><td class='sym'>SUNUSDT</td><td>0.995</td><td>3.47</td><td>-51.86%</td><td>+5.10%</td><td>1</td></tr>
+<tr><td>2</td><td class='sym'>PAXGUSDT</td><td>0.990</td><td>1.12</td><td>-26.68%</td><td>+23.94%</td><td>1</td></tr>
+<tr><td>3</td><td class='sym'>IDOLUSDT</td><td>0.985</td><td>254.66</td><td>-47.30%</td><td>+201.17%</td><td>9</td></tr>
+<tr><td>4</td><td class='sym'>QNTUSDT</td><td>0.982</td><td>0.92</td><td>-28.75%</td><td>+265.35%</td><td>2</td></tr>
+<tr><td>5</td><td class='sym'>ASTERUSDT</td><td>0.981</td><td>0.82</td><td>-69.47%</td><td>+50.92%</td><td>5</td></tr>
+<tr><td>6</td><td class='sym'>NMRUSDT</td><td>0.970</td><td>1.15</td><td>-54.93%</td><td>+52.71%</td><td>5</td></tr>
+<tr><td>7</td><td class='sym'>LYNUSDT</td><td>0.955</td><td>12.75</td><td>-94.31%</td><td>+53.65%</td><td>12</td></tr>
+<tr><td>8</td><td class='sym'>RENDERUSDT</td><td>0.955</td><td>0.78</td><td>-65.14%</td><td>+32.53%</td><td>4</td></tr>
+<tr><td>9</td><td class='sym'>IRYSUSDT</td><td>0.950</td><td>35.28</td><td>-73.01%</td><td>+68.95%</td><td>7</td></tr>
+<tr><td>10</td><td class='sym'>MAVIAUSDT</td><td>0.945</td><td>1.52</td><td>-89.87%</td><td>+7.16%</td><td>7</td></tr>
+<tr><td>11</td><td class='sym'>BANANAUSDT</td><td>0.945</td><td>0.70</td><td>-89.31%</td><td>+23.90%</td><td>5</td></tr>
+<tr><td>12</td><td class='sym'>PUMPUSDT</td><td>0.934</td><td>0.67</td><td>-50.79%</td><td>+254.13%</td><td>8</td></tr>
+<tr><td>13</td><td class='sym'>OGUSDT</td><td>0.932</td><td>1.13</td><td>-90.14%</td><td>+2.48%</td><td>4</td></tr>
+<tr><td>14</td><td class='sym'>IOTXUSDT</td><td>0.932</td><td>1.05</td><td>-89.23%</td><td>+63.11%</td><td>2</td></tr>
+<tr><td>15</td><td class='sym'>ARCUSDT</td><td>0.929</td><td>0.84</td><td>-62.15%</td><td>+243.51%</td><td>17</td></tr>
+<tr><td>16</td><td class='sym'>CLOUSDT</td><td>0.927</td><td>0.62</td><td>-93.33%</td><td>+21.44%</td><td>18</td></tr>
+<tr><td>17</td><td class='sym'>DOODUSDT</td><td>0.927</td><td>9.79</td><td>-85.09%</td><td>+58.30%</td><td>7</td></tr>
+<tr><td>18</td><td class='sym'>ALLUSDT</td><td>0.926</td><td>1.23</td><td>-53.88%</td><td>+32.34%</td><td>3</td></tr>
+<tr><td>19</td><td class='sym'>JCTUSDT</td><td>0.926</td><td>48.52</td><td>-30.89%</td><td>+384.00%</td><td>14</td></tr>
+<tr><td>20</td><td class='sym'>AGTUSDT</td><td>0.926</td><td>22.88</td><td>-63.88%</td><td>+1116.53%</td><td>15</td></tr>
+<tr><td>21</td><td class='sym'>TRUSTUSDT</td><td>0.925</td><td>2.74</td><td>-82.11%</td><td>+32.39%</td><td>3</td></tr>
+<tr><td>22</td><td class='sym'>TURTLEUSDT</td><td>0.924</td><td>3.54</td><td>-81.55%</td><td>+13.75%</td><td>3</td></tr>
+<tr><td>23</td><td class='sym'>BANUSDT</td><td>0.923</td><td>0.98</td><td>-70.01%</td><td>+4.29%</td><td>10</td></tr>
+<tr><td>24</td><td class='sym'>QUSDT</td><td>0.922</td><td>14.12</td><td>-85.40%</td><td>+280.40%</td><td>12</td></tr>
+<tr><td>25</td><td class='sym'>STBLUSDT</td><td>0.922</td><td>0.68</td><td>-95.65%</td><td>+21.45%</td><td>7</td></tr>
+<tr><td>26</td><td class='sym'>AIOTUSDT</td><td>0.919</td><td>16.34</td><td>-94.88%</td><td>+846.73%</td><td>17</td></tr>
+<tr><td>27</td><td class='sym'>RESOLVUSDT</td><td>0.918</td><td>0.85</td><td>-95.69%</td><td>+3.28%</td><td>13</td></tr>
+<tr><td>28</td><td class='sym'>ARIAUSDT</td><td>0.917</td><td>41.37</td><td>-84.34%</td><td>+464.87%</td><td>12</td></tr>
+<tr><td>29</td><td class='sym'>MOVEUSDT</td><td>0.916</td><td>0.57</td><td>-96.72%</td><td>+5.17%</td><td>5</td></tr>
+<tr><td>30</td><td class='sym'>XNYUSDT</td><td>0.916</td><td>1.25</td><td>-78.23%</td><td>+87.82%</td><td>15</td></tr>
+<tr><td>31</td><td class='sym'>1000000MOGUSDT</td><td>0.916</td><td>0.93</td><td>-94.78%</td><td>+7.11%</td><td>6</td></tr>
+<tr><td>32</td><td class='sym'>SAPIENUSDT</td><td>0.916</td><td>0.76</td><td>-85.32%</td><td>+3.04%</td><td>8</td></tr>
+<tr><td>33</td><td class='sym'>SKYUSDT</td><td>0.915</td><td>1.00</td><td>-31.18%</td><td>+61.34%</td><td>4</td></tr>
+<tr><td>34</td><td class='sym'>PLAYUSDT</td><td>0.915</td><td>1.07</td><td>-92.17%</td><td>+0.00%</td><td>12</td></tr>
+<tr><td>35</td><td class='sym'>ASRUSDT</td><td>0.914</td><td>1.05</td><td>-90.99%</td><td>+2.15%</td><td>5</td></tr>
+<tr><td>36</td><td class='sym'>SAFEUSDT</td><td>0.912</td><td>1.40</td><td>-84.68%</td><td>+8.58%</td><td>3</td></tr>
+<tr><td>37</td><td class='sym'>FOLKSUSDT</td><td>0.909</td><td>1.19</td><td>-92.35%</td><td>+189.40%</td><td>8</td></tr>
+<tr><td>38</td><td class='sym'>AIXBTUSDT</td><td>0.909</td><td>0.75</td><td>-91.68%</td><td>+3.92%</td><td>7</td></tr>
+<tr><td>39</td><td class='sym'>SKYAIUSDT</td><td>0.907</td><td>0.56</td><td>-96.03%</td><td>+84.18%</td><td>17</td></tr>
+<tr><td>40</td><td class='sym'>HUSDT</td><td>0.906</td><td>0.56</td><td>-92.52%</td><td>+161.93%</td><td>16</td></tr>
+<tr><td>41</td><td class='sym'>BNBUSDT</td><td>0.903</td><td>1.92</td><td>-44.87%</td><td>+31.74%</td><td>2</td></tr>
+<tr><td>42</td><td class='sym'>USELESSUSDT</td><td>0.902</td><td>0.58</td><td>-66.26%</td><td>+362.99%</td><td>18</td></tr>
+<tr><td>43</td><td class='sym'>1000CHEEMSUSDT</td><td>0.902</td><td>1.19</td><td>-80.25%</td><td>+5.50%</td><td>3</td></tr>
+<tr><td>44</td><td class='sym'>BLESSUSDT</td><td>0.902</td><td>12.38</td><td>-95.99%</td><td>+90.61%</td><td>17</td></tr>
+<tr><td>45</td><td class='sym'>SOONUSDT</td><td>0.900</td><td>1.96</td><td>-90.53%</td><td>+149.71%</td><td>8</td></tr>
+<tr><td>46</td><td class='sym'>AEROUSDT</td><td>0.900</td><td>0.83</td><td>-57.86%</td><td>+126.85%</td><td>7</td></tr>
+<tr><td>47</td><td class='sym'>TOSHIUSDT</td><td>0.900</td><td>0.82</td><td>-89.99%</td><td>+7.15%</td><td>5</td></tr>
+<tr><td>48</td><td class='sym'>FLUIDUSDT</td><td>0.898</td><td>6.47</td><td>-64.18%</td><td>+204.62%</td><td>5</td></tr>
+<tr><td>49</td><td class='sym'>VIRTUALUSDT</td><td>0.898</td><td>0.76</td><td>-71.68%</td><td>+15.48%</td><td>3</td></tr>
+<tr><td>50</td><td class='sym'>WETUSDT</td><td>0.898</td><td>11.04</td><td>-80.57%</td><td>+16.32%</td><td>4</td></tr>
+<tr><td>51</td><td class='sym'>LABUSDT</td><td>0.897</td><td>0.59</td><td>-99.77%</td><td>+22.42%</td><td>16</td></tr>
+<tr><td>52</td><td class='sym'>LINEAUSDT</td><td>0.897</td><td>0.54</td><td>-94.22%</td><td>+14.99%</td><td>5</td></tr>
 </tbody></table></div>
 </details>
 <details id="t1-detail" class="method-detail" style="margin-top:8px;"><summary style="cursor:pointer;color:#a9d4f5;">방법론 / BTRUSDT 검증사례 설명</summary>
